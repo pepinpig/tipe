@@ -7,8 +7,8 @@ points_img1 = []
 points_img2 = []
 
 # Charger les images
-img1 = cv.imread('IMG_0078.jpg')
-img2 = cv.imread('IMG_0079.jpg')
+img1 = cv.imread('images/IMG_0078.jpg')
+img2 = cv.imread('images/IMG_0079.jpg')
 
 # Sauvegarder les points dans un fichier
 def save_points(filename, points):
