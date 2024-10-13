@@ -2,11 +2,14 @@
 typedef struct {
     int n;
     int m;
-    int** mat;
+    float** mat;
 } matrice;
 
 //Créer une matrice nulle de taille n*m
 matrice matrice_nulle(int n, int m);
+
+//Créer un pointeur vers une matrice nulle de taille n*m
+matrice* matrice_nulle_pointeur(int n, int m);
 
 
 //Affiche la matrice a
@@ -24,4 +27,16 @@ matrice produit(matrice a, matrice b);
 //Renvoie une nouvelle matrice, transposée de la matrice a
 matrice transposee(matrice a);
 
+void echange_ligne(matrice* a, int i, int j);
+void multiplication_ligne(matrice* a, int i, float lambda);
+void ajout_ligne(matrice* a, int i, int j, float lambda);
+int choix_pivot_naïf(matrice *a, int i);
+int choix_pivot_partiel(matrice *a, int i);
+//Effectue un pivot de Gauss sur la matrice* a
+int Gauss_Jordan(matrice* a);
+//Effectue un pivot de Gauss sur la matrice* a
+int Gauss_Jordan_print(matrice* a);
+matrice* inverser_matrice(matrice* a);
+matrice* inverser_matrice_print(matrice* a);
 
+matrice* resolution_systeme(matrice* a,matrice* v);
