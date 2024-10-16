@@ -25,3 +25,8 @@ Point* point_vide_pointeur();
 //Convertir point plan en point 3D
 matrice vect3_of_vect2(matrice v);
 
+//Libérer la mémoire associée à un point
+void free_point(Point* p);
+
+//Affiche les coordonnées du point p dans differentes bases
+void print_point(Point* p);

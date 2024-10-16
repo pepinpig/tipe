@@ -75,7 +75,7 @@ int test_inverser() {
     print_matrice(*M);
     
     // Inversion de la matrice
-    matrice* inv = inverser_matrice_print(M);
+    matrice* inv = inverser_matrice(M);
     
     printf("\nMatrice inverse de M:\n");
     print_matrice(*inv);
@@ -111,9 +111,13 @@ int test_resolution_system() {
 
 int lirePoints(const char *nomFichier, Point** points, int n, int camera) {
     FILE *fichier = fopen(nomFichier, "r");
+    int ni;
+    fscanf(fichier, "%d", &ni);
+    assert(n==ni);
     for (int i = 0; i < n; i++) {
         if (camera == 1) {
             fscanf(fichier, "%f %f", &points[i]->cam1.mat[0][0], &points[i]->cam1.mat[1][0]);
+            fscanf(fichier, "%f %f", &points[i]->reel.mat[0][0], &points[i]->reel.mat[1][0]);
         } else if (camera == 2) {
             fscanf(fichier, "%f %f", &points[i]->cam2.mat[0][0], &points[i]->cam2.mat[1][0]);
         }
@@ -123,25 +127,21 @@ int lirePoints(const char *nomFichier, Point** points, int n, int camera) {
 }
 
 int main() {
-    int n1;
-    int n2;
+    int n;
     FILE *fichier1 = fopen("points_img1.txt", "r");
-    fscanf(fichier1, "%d", &n1);
+    fscanf(fichier1, "%d", &n);
     fclose(fichier1);
 
-    FILE *fichier2 = fopen("points_img2.txt", "r");
-    fscanf(fichier2, "%d", &n2);
-    fclose(fichier2);
-
-    if (n1 != n2) {
-        printf("Erreur : le nombre de points dans les fichiers ne correspond pas.\n");
-        return 1;
-    }
-    Point* points[n1];
-    for (int i = 0; i < n1; ++i){
+    Point* points[n];
+    for (int i = 0; i < n; ++i){
         points[i]=point_vide_pointeur();
     }
-    lirePoints("points_img1.txt", points, n1,1);
-    //lirePoints("points_img2.txt", points, n1,2);
+    lirePoints("points_img1.txt", points, n,1);
+    lirePoints("points_img2.txt", points, n,2);
+    print_point(points[0]);
+    matrice C1 = concatenation3(vect3_of_vect2(points[0]->cam1),vect3_of_vect2(points[1]->cam1),vect3_of_vect2(points[2]->cam1));
+    matrice C2 = concatenation3(vect3_of_vect2(points[0]->cam2),vect3_of_vect2(points[1]->cam2),vect3_of_vect2(points[2]->cam2));
+    print_matrice(C1);
+    print_matrice(C2);
     return 0;
 }

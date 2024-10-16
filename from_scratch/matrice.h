@@ -27,6 +27,13 @@ matrice produit(matrice a, matrice b);
 //Renvoie une nouvelle matrice, transposée de la matrice a
 matrice transposee(matrice a);
 
+// Fonction pour concaténer deux matrices horizontalement
+matrice concatenation2(matrice a, matrice b) ;
+
+// Fonction pour concaténer trois matrices horizontalement
+matrice concatenation3(matrice a, matrice b, matrice c) ;
+
+
 void echange_ligne(matrice* a, int i, int j);
 void multiplication_ligne(matrice* a, int i, float lambda);
 void ajout_ligne(matrice* a, int i, int j, float lambda);
@@ -40,3 +47,4 @@ matrice* inverser_matrice(matrice* a);
 matrice* inverser_matrice_print(matrice* a);
 
 matrice* resolution_systeme(matrice* a,matrice* v);
+

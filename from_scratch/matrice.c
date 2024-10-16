@@ -12,9 +12,9 @@ matrice matrice_nulle(int n, int m){
     matrice a;
     a.n = n;
     a.m = m;
-    a.mat = calloc(a.n,sizeof(int*));
+    a.mat = calloc(a.n,sizeof(float*));
     for (int i = 0; i < a.n; i++) {
-        a.mat[i] = calloc(a.m,sizeof(int));
+        a.mat[i] = calloc(a.m,sizeof(float));
     }
     return a;
 }
@@ -90,6 +90,28 @@ matrice transposee(matrice a) {
 }
 
 
+matrice concatenation2(matrice a, matrice b) {
+    assert(a.n == b.n);
+    matrice result = matrice_nulle(a.n, a.m + b.m);
+    for (int i = 0; i < a.n; i++) {
+        for (int j = 0; j < a.m; j++) {
+            result.mat[i][j] = a.mat[i][j];
+        }
+    }
+    for (int i = 0; i < b.n; i++) {
+        for (int j = 0; j < b.m; j++) {
+            result.mat[i][a.m + j] = b.mat[i][j];
+        }
+    }
+    return result;
+}
+
+matrice concatenation3(matrice a, matrice b, matrice c) {
+    concatenation2(concatenation2(a,b),c);
+}
+
+
+
 /*Resolution de système AU=V d inconnue U*/
 
 void echange_ligne(matrice* a, int i, int j) {
@@ -153,35 +175,7 @@ int choix_pivot_partiel(matrice *a, int i) {
     
     return max_index;
 }
-// Algorithme de Gauss-Jordan
-int Gauss_Jordan_print(matrice* a) {
-    int n = a->n; // nombre de lignes
-    int m = a->m; // nombre de colonnes
-    for (int j = 0; j < m; ++j) {
-        printf("j=%d\n", j);
-        print_matrice(*a);
-        printf("choix pivot\n");
-        int pivot_index = choix_pivot_partiel(a, j);  // Choix du pivot
-        printf("choix pivot\n");
-        if (pivot_index != -1) {
-            echange_ligne(a, j, pivot_index);  // Remontée de la ligne du pivot
-            float pivot_value = a->mat[j][j];  // Unitarisation du pivot
-            multiplication_ligne(a, j, 1.0f / pivot_value);  
-            
-            // Élimination dans les autres lignes
-            for (int k = 0; k < n; ++k) {  // Utiliser n pour itérer sur les lignes
-                if (k != j) {
-                    float lambda = -a->mat[k][j];
-                    printf("Eliminating in row %d, column %d: lambda = %f\n", k, j, lambda);
-                    ajout_ligne(a, k, j, lambda); 
-                }
-            }
-        } 
-        printf("test1\n");
-    }
-    printf("test2\n");
-    return 0;
-}
+
 
 // Algorithme de Gauss-Jordan
 int Gauss_Jordan(matrice* a) {
@@ -206,41 +200,6 @@ int Gauss_Jordan(matrice* a) {
 }
 
 
-matrice* inverser_matrice_print(matrice* a) {
-    int n = a->n; //nombre de ligne
-    int m = a->m; //nombre de colonne
-    matrice* inv = matrice_nulle_pointeur(n, n);  // Crée une matrice identité pour l'inverse
-    for (int i = 0; i < n; i++) {
-        inv->mat[i][i] = 1;  // Initialisation de la matrice identité
-    }
-    for (int j = 0; j < m; ++j) { 
-        printf("M:\n");
-        print_matrice(*a);
-        printf("inv:\n");
-        print_matrice(*inv);
-        int pivot_index = choix_pivot_partiel(a, j);  // Choix du pivot
-        if (pivot_index != -1) {
-            echange_ligne(a, j, pivot_index);  // Remontée de la ligne du pivot
-            echange_ligne(inv, j, pivot_index);  // Remontée de la ligne du pivot
-            float pivot_value = a->mat[j][j];  // Unitarisation du pivot
-            multiplication_ligne(a, j, 1.0f / pivot_value);  
-            multiplication_ligne(inv, j, 1.0f / pivot_value);
-            // Élimination dans les autres lignes
-            for (int k = 0; k < n; ++k) {  // Utiliser n pour itérer sur les lignes
-                if (k != j) {
-                    float lambda = -a->mat[k][j];
-                    ajout_ligne(a, k, j, lambda); 
-                    ajout_ligne(inv, k, j, lambda); 
-                }
-            }
-        }
-        else{
-            printf("Erreur : la matrice est non inversible.\n");
-            exit(EXIT_FAILURE);
-        } 
-    }
-    return inv;
-}
 
 matrice* inverser_matrice(matrice* a) {
     int n = a->n; //nombre de ligne
