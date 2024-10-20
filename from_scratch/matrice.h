@@ -24,6 +24,8 @@ matrice somme(matrice a, matrice b);
 //Renvoie une nouvelle matrice, produit des matrices a et b
 matrice produit(matrice a, matrice b);
 
+void multiplication_scalaire(matrice a, float lambda);
+
 //Renvoie une nouvelle matrice, transposée de la matrice a
 matrice transposee(matrice a);
 
@@ -47,4 +49,4 @@ matrice* inverser_matrice(matrice* a);
 matrice* inverser_matrice_print(matrice* a);
 
 matrice* resolution_systeme(matrice* a,matrice* v);
-
+matrice* resolution_systeme_print(matrice* a,matrice* v);

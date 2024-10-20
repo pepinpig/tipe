@@ -68,15 +68,25 @@ matrice somme(matrice a, matrice b) {
 
 matrice produit(matrice a, matrice b) {
     assert(a.m == b.n);
-    matrice c = matrice_nulle(a.n,b.m);
+    matrice c = matrice_nulle(a.n, b.m);
     for (int i = 0; i < a.n; i++) {
-        for (int j=0; j<b.m; j++){
-            for (int k=0; k<b.n; k++){
-                c.mat[i][j]=c.mat[i][j]+a.mat[i][k]*b.mat[k][j];
+        for (int j = 0; j < b.m; j++) {
+            for (int k = 0; k < a.m; k++) {
+                c.mat[i][j] += a.mat[i][k] * b.mat[k][j];
             }
         }
     }
+
     return c;
+}
+
+
+void multiplication_scalaire(matrice a, float lambda) {
+    for (int i = 0; i < a.n; i++) {
+        for (int j = 0; j < a.m; j++) {
+            a.mat[i][j] = lambda*(a.mat[i][j]);
+        }
+    }
 }
 
 matrice transposee(matrice a) {
@@ -244,12 +254,66 @@ matrice* resolution_systeme(matrice* A, matrice* V) {
         }
         Augmente->mat[i][m] = V->mat[i][0];  // Colonne augmentée avec V
     }
-    print_matrice(*Augmente);   
     Gauss_Jordan(Augmente);
     // Extraire la solution U (les colonnes après la matrice A)
     matrice* U = matrice_nulle_pointeur(n, 1);
     for (int i = 0; i < n; i++) {
         U->mat[i][0] = Augmente->mat[i][n];
+    }
+
+    return U;
+}
+
+matrice* resolution_systeme_print(matrice* A, matrice* V) {
+    int n = A->n;
+    int m = A->m;
+
+    printf("Matrice A initiale :\n");
+    print_matrice(*A);  // Print de la matrice A
+
+    printf("Vecteur V initial :\n");
+    print_matrice(*V);  // Print du vecteur V
+
+    // Création de la matrice augmentée [A | V]
+    // Création de la matrice augmentée [A | V]
+    matrice* Augmente = matrice_nulle_pointeur(n, m + 1);  // A avec une colonne supplémentaire
+
+    if (Augmente == NULL) {
+        printf("Erreur d'allocation mémoire pour la matrice augmentée.\n");
+        exit(1);  // Sortir si l'allocation échoue
+    }
+
+    printf("Création de la matrice augmentée [A | V]...\n");
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            Augmente->mat[i][j] = A->mat[i][j];  // Copier chaque élément de A
+        }
+        
+        // Vérification des dimensions de V
+        if (i < V->n && V->m == 1) {  // V est supposé être un vecteur colonne
+            Augmente->mat[i][m] = V->mat[i][0];  // Ajouter V comme colonne supplémentaire
+        } else {
+            printf("Erreur : Incohérence de dimensions entre A et V.\n");
+            exit(1);  // Sortir si les dimensions ne sont pas compatibles
+        }
+    }
+
+    printf("Matrice augmentée [A | V] avant Gauss-Jordan :\n");
+    print_matrice(*Augmente);  // Print de la matrice augmentée
+
+    // Appliquer Gauss-Jordan
+    Gauss_Jordan(Augmente);  // Il est supposé que cette fonction modifie la matrice augmentée
+
+    printf("Matrice augmentée [A | V] après Gauss-Jordan :\n");
+    print_matrice(*Augmente);  // Print de la matrice augmentée après Gauss-Jordan
+
+    // Extraire la solution U (les colonnes après la matrice A)
+    matrice* U = matrice_nulle_pointeur(n, 1);
+    printf("Extraction de la solution U :\n");
+    for (int i = 0; i < n; i++) {
+        U->mat[i][0] = Augmente->mat[i][m];
+        printf("U[%d][0] = %f\n", i, U->mat[i][0]);  // Print chaque élément de la solution U
     }
 
     return U;
