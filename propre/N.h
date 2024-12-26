@@ -1,2 +1,2 @@
 #pragma once
-#define N 27
+#define N 6

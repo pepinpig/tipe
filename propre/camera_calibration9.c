@@ -153,11 +153,12 @@ void camera_calibration_resolution(matrice* P, matrice* A) {
 
 
 int main(int argc, char* argv[]) {
+    printf("test");
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <nom_de_l'image>\n", argv[0]);
         return 1;
     }
-
+    printf("test");
     long double* X = calloc(N, sizeof(long double));
     long double* Y = calloc(N, sizeof(long double));
     long double* Z = calloc(N, sizeof(long double));
@@ -169,11 +170,12 @@ int main(int argc, char* argv[]) {
     char points_image_file[256];
     char points_reel_file[256];
     snprintf(points_image_file, sizeof(points_image_file), "points/donnees/points_%s.txt", image_name);
-    snprintf(points_reel_file, sizeof(points_reel_file), "points/donnees/points_reel%s.txt", image_name);
-    printf("test\n");
+    snprintf(points_reel_file, sizeof(points_reel_file), "points/donnees/points_reels%s.txt", image_name);
+    printf("test");
     load_all_points_images(points_image_file, u, v);
+    printf("test");
     load_all_points_reels(points_reel_file, X, Y, Z);
-    printf("test\n");
+    printf("test");
     matrice* A = contruction_A(X, Y, Z, u, v);
     printf("A:\n");
     print_matrice(*A);
@@ -187,14 +189,6 @@ int main(int argc, char* argv[]) {
     nom_fichier(fn, "P", image_name);
     printf("%s\n", fn);
     save_matrice_to_file(&P, fn);
-
-    // Ajouter d'autres matrices (K, T, ...) si nécessaire
-    // Par exemple, si vous calculez une matrice K :
-    /*
-    matrice* K = calcul_K(&P);
-    save_matrix_to_file(K, "K", image_name);
-    free_matrice(K);
-    */
 
     // Libérer la mémoire
     free(X);
