@@ -1,0 +1,16 @@
+POur calculer les matrices P :
+1: mettre 2 images d'un même objet dans le dossier image
+2: lancer le fichier save_points.py avec une première image en arguments(avec extension) en ouvrant en parallele un fichier texte dans donnees
+3: Définir un repère de la scène et cliquer sur 6 points en ajoutant leur coordonnées réels dans le fichier texte(appuyer sur Entrée pour valider les points, recommencer de 0 si vous vous êtes trompé)
+4: Sauvegarder les coordonnées réel avec le nom de fichier "point_reel<nom_image>.txt
+5: Selectionner les mêmes points sur la seconde image et créer une copie du fichier "point_reel<image1>.txt" en le nommant point_reel<image2>.txt
+6: compiler matrice.c manipulation_fichiers.c SVD.c camera_calibration9.c 
+7: l executer 2 fois avec chacune des image en argument (sans extension)
+
+Pour reconstruir n'importe quelle point sur l image: 
+1: reexeccuter save_point sur les deux images en selectionnant un ensemble de points
+2: selectionner ces memes points dans le mem ordre sur la seconde image
+3: compiler matrice.c manipulation_fichiers.c SVD.c validation.c 
+4: l executer avec les deux images en argument
+5: lancer plot_points.py avec le nom du fichier reconstruit (points_reconstruits<nom_image>.txt) en argument
+
