@@ -3,6 +3,9 @@
 #include <assert.h>
 #include "matrice.h"
 #include <math.h>
+#include <time.h>
+#include <stdbool.h>
+
 #define MAX_ROWS 100
 #define MAX_COLS 100
 #define EPSILON 1e-9 // Pour vérifier si un nombre est proche de zéro
@@ -12,36 +15,69 @@ matrice matrice_nulle(int n, int m){
     matrice a;
     a.n = n;
     a.m = m;
-    a.mat = calloc(a.n,sizeof(float*));
+    a.mat = calloc(a.n,sizeof(long double*));
     for (int i = 0; i < a.n; i++) {
-        a.mat[i] = calloc(a.m,sizeof(float));
+        a.mat[i] = calloc(a.m,sizeof(long double));
     }
     return a;
 }
 
 matrice* matrice_nulle_pointeur(int n, int m) {
-    matrice* M = (matrice*) malloc(sizeof(matrice));  // Alloue de l'espace pour la structure matrice
+    matrice* M = (matrice*) malloc(sizeof(matrice));  
     M->n = n;
     M->m = m;
     
-    // Alloue de l'espace pour les lignes de la matrice
-    M->mat = (float**) malloc(n * sizeof(float*));
+    M->mat = (long double**) malloc(n * sizeof(long double*));
     for (int i = 0; i < n; i++) {
-        M->mat[i] = (float*) calloc(m, sizeof(float));  // Remplir chaque ligne avec des zéros
+        M->mat[i] = (long double*) calloc(m, sizeof(long double)); 
     }
 
-    return M;  // Retourne un pointeur vers la matrice
+    return M;  
 }
 
+matrice matrice_identite(int n) {
+    matrice I = matrice_nulle(n, n);
+    for (int i = 0; i < n; ++i) {
+        I.mat[i][i] = 1.0;
+    }
+    return I;
+}
 
+long double norme_vecteur(matrice a, int colonne) {
+    long double somme = 0.0;
+    for (int i = 0; i < a.n; ++i) {
+        somme += a.mat[i][colonne] * a.mat[i][colonne];
+    }
+    return sqrt(somme);
+}
 void print_matrice (matrice a) {
     for(int i=0; i<a.n; i++){
         for(int j=0;j<a.m;j++){
-            printf("%6.2f ",a.mat[i][j]);
+            printf("%6.3Lf ",a.mat[i][j]);
         }
         printf("\n");
     }
     printf("\n");
+}
+
+
+bool matrice_egale(matrice a, matrice b) {
+    long double tol = 0.1; 
+
+    if (a.n != b.n || a.m != b.m) {
+        return false;
+    }
+    for (int i = 0; i < a.n; ++i) {
+        for (int j = 0; j < a.m; ++j) {
+            if (fabs(a.mat[i][j] - b.mat[i][j]) > tol) {
+                printf("A[%d][%d]=%Lf not equal to B[%d][%d]=%Lf\n",
+                       i, j, a.mat[i][j], i, j, b.mat[i][j]);
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
 
 void free_matrice(matrice a){
@@ -50,6 +86,9 @@ void free_matrice(matrice a){
     }
     free(a.mat);
 }
+
+
+
 
 matrice somme(matrice a, matrice b) {
     assert(a.n == b.n);
@@ -80,8 +119,17 @@ matrice produit(matrice a, matrice b) {
     return c;
 }
 
+matrice copie(matrice a){
+    matrice res=matrice_nulle(a.m,a.n);
+    for (int i = 0; i < a.n; i++) {
+        for (int j=0; j<a.m; j++){
+            res.mat[i][j]=a.mat[i][j];
+        }
+    }
+    return res;
+}
 
-void multiplication_scalaire(matrice a, float lambda) {
+void multiplication_scalaire(matrice a, long double lambda) {
     for (int i = 0; i < a.n; i++) {
         for (int j = 0; j < a.m; j++) {
             a.mat[i][j] = lambda*(a.mat[i][j]);
@@ -128,26 +176,64 @@ void echange_ligne(matrice* a, int i, int j) {
     assert(i < a->n);
     assert(j < a->n);
     for (int k = 0; k < a->m; k++) {
-        float temp = a->mat[i][k];
+        long double temp = a->mat[i][k];
         a->mat[i][k] = a->mat[j][k];
         a->mat[j][k] = temp;
     }
 }
 
-void multiplication_ligne(matrice* a, int i, float lambda) {
+void multiplication_ligne(matrice* a, int i, long double lambda) {
     assert(i < a->n);
     for (int k = 0; k < a->m; k++) {
         a->mat[i][k] = lambda * a->mat[i][k];
     }
 }
 
-void ajout_ligne(matrice* a, int i, int j, float lambda) {
+void ajout_ligne(matrice* a, int i, int j, long double lambda) {
     assert(i < a->n);
     assert(j < a->n);
     for (int k = 0; k < a->m; k++) {
         a->mat[i][k] = a->mat[i][k] + lambda * a->mat[j][k];
     }
 }
+
+void set_colonne(matrice *target, int col_idx, matrice column_vector) {
+    // Ensure column index is within bounds
+    if (col_idx < 0 || col_idx >= target->m) {
+        fprintf(stderr, "Column index out of bounds in set_colonne.\n");
+        return;
+    }
+
+    // Ensure the dimensions of the column vector are compatible
+    if (column_vector.n != target->n || column_vector.m != 1) {
+        fprintf(stderr, "Dimension mismatch in set_colonne.\n");
+        return;
+    }
+
+    // Replace the column values
+    for (int i = 0; i < target->n; i++) {
+        target->mat[i][col_idx] = column_vector.mat[i][0];
+    }
+}
+
+matrice matrice_colonne(matrice A, int i) {
+    // Vérification de la validité de l'indice i
+    if (i < 0 || i >= A.m) {
+        printf("Indice de colonne invalide\n");
+        exit(1);
+    }
+    
+    // Création de la matrice colonne (n x 1)
+    matrice col = matrice_nulle(A.n, 1);
+    
+    // Remplir la matrice colonne avec les éléments de la colonne i de A
+    for (int j = 0; j < A.n; j++) {
+        col.mat[j][0] = A.mat[j][i];
+    }
+    
+    return col;
+}
+
 
 
 /*Le pivot partiel consiste à rechercher, dans la colonne en cours 
@@ -170,7 +256,7 @@ int choix_pivot_partiel(matrice *a, int i) {
     int n = a->n;
     int m = a->m;
     int max_index = i;
-    float max_value = fabs(a->mat[i][i]);
+    long double max_value = fabs(a->mat[i][i]);
     
     for (int k = i + 1; k < n; k++) {
         if (fabs(a->mat[k][i]) > max_value) {
@@ -195,12 +281,12 @@ int Gauss_Jordan(matrice* a) {
         int pivot_index = choix_pivot_partiel(a, j);  // Choix du pivot
         if (pivot_index != -1) {
             echange_ligne(a, j, pivot_index);  // Remontée de la ligne du pivot
-            float pivot_value = a->mat[j][j];  // Unitarisation du pivot
+            long double pivot_value = a->mat[j][j];  // Unitarisation du pivot
             multiplication_ligne(a, j, 1.0f / pivot_value);  
             // Élimination dans les autres lignes
             for (int k = 0; k < n; ++k) {  // Utiliser n pour itérer sur les lignes
                 if (k != j) {
-                    float lambda = -a->mat[k][j];
+                    long double lambda = -a->mat[k][j];
                     ajout_ligne(a, k, j, lambda); 
                 }
             }
@@ -211,37 +297,112 @@ int Gauss_Jordan(matrice* a) {
 
 
 
-matrice* inverser_matrice(matrice* a) {
-    int n = a->n; //nombre de ligne
-    int m = a->m; //nombre de colonne
-    matrice* inv = matrice_nulle_pointeur(n, n);  // Crée une matrice identité pour l'inverse
-    for (int i = 0; i < n; i++) {
-        inv->mat[i][i] = 1;  // Initialisation de la matrice identité
-    }
-    for (int j = 0; j < m; ++j) { 
-        int pivot_index = choix_pivot_partiel(a, j);  // Choix du pivot
+
+
+// Fonction Gauss-Jordan avec affichage réduit pour débogage
+
+// Fonction principale de Gauss-Jordan
+int Gauss_Jordan_print(matrice* a) {
+    int n = a->n; // nombre de lignes
+    int m = a->m; // nombre de colonnes
+
+    for (int j = 0; j < m; ++j) {  // Itération sur les colonnes
+        if (j >= n) {
+            break;  // Si j dépasse le nombre de lignes, on arrête
+        }
+
+        // Choix du pivot
+        int pivot_index = choix_pivot_partiel(a, j);
         if (pivot_index != -1) {
-            echange_ligne(a, j, pivot_index);  // Remontée de la ligne du pivot
-            echange_ligne(inv, j, pivot_index);  // Remontée de la ligne du pivot
-            float pivot_value = a->mat[j][j];  // Unitarisation du pivot
-            multiplication_ligne(a, j, 1.0f / pivot_value);  
-            multiplication_ligne(inv, j, 1.0f / pivot_value);
+            // Remontée de la ligne du pivot si nécessaire
+            if (pivot_index != j) {
+                echange_ligne(a, j, pivot_index);
+            }
+
+            // Unitarisation du pivot
+            long double pivot_value = a->mat[j][j];
+            if (pivot_value != 0) { // Évite la division par zéro
+                multiplication_ligne(a, j, 1.0f / pivot_value);
+            }
+
+
             // Élimination dans les autres lignes
-            for (int k = 0; k < n; ++k) {  // Utiliser n pour itérer sur les lignes
-                if (k != j) {
-                    float lambda = -a->mat[k][j];
-                    ajout_ligne(a, k, j, lambda); 
-                    ajout_ligne(inv, k, j, lambda); 
+            for (int k = 0; k < n; ++k) {
+                if (k != j && j < m) { // Assurer que j est dans les limites des colonnes
+                    long double lambda = -a->mat[k][j];
+                    if (lambda != 0) {
+                        ajout_ligne(a, k, j, lambda);
+                    }
                 }
             }
+            print_matrice(*a);
         }
-        else{
-            printf("Erreur : la matrice est non inversible.\n");
-            exit(EXIT_FAILURE);
-        } 
     }
+    print_matrice(*a);
+
+    return 0;
+}
+matrice* inverser_matrice(matrice* a) {
+    if (a->n != a->m) {
+        printf("Erreur : La matrice n'est pas carrée, donc non inversible.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    int n = a->n;  // Nombre de lignes (ou colonnes, car carrée)
+    matrice* inv = matrice_nulle_pointeur(n, n);  // Crée une matrice pour l'inverse
+    
+    // Initialisation de la matrice identité
+    for (int i = 0; i < n; i++) {
+        inv->mat[i][i] = 1.0;
+    }
+
+    for (int j = 0; j < n; ++j) { 
+        // Choix du pivot : recherche du maximum en valeur absolue
+        int pivot_index = choix_pivot_partiel(a, j);
+        if (pivot_index == -1) {
+            printf("Erreur : la matrice est singulière, donc non inversible.\n");
+            exit(EXIT_FAILURE);
+        }
+
+        // Échange des lignes si nécessaire
+        if (pivot_index != j) {
+            echange_ligne(a, j, pivot_index);
+            echange_ligne(inv, j, pivot_index);
+        }
+
+        // Unitarisation de la ligne du pivot
+        long double pivot_value = a->mat[j][j];
+        if (fabs(pivot_value) < 1e-12) {  // Gestion d'une valeur pivot trop petite
+            printf("Erreur : Pivot presque nul, la matrice est singulière.\n");
+            exit(EXIT_FAILURE);
+        }
+
+        multiplication_ligne(a, j, 1.0 / pivot_value);
+        multiplication_ligne(inv, j, 1.0 / pivot_value);
+
+        // Élimination des autres lignes
+        for (int k = 0; k < n; ++k) {
+            if (k != j) {
+                long double lambda = -a->mat[k][j];
+                ajout_ligne(a, k, j, lambda);
+                ajout_ligne(inv, k, j, lambda);
+            }
+        }
+    }
+
     return inv;
 }
+
+
+
+matrice pseudo_inverser_matrice(matrice* a) {  
+    matrice at=transposee(*a);
+    matrice at_a=produit(at,*a);
+    matrice* at_a_inv=inverser_matrice(&at_a);
+    matrice pseudoinv=produit(*at_a_inv,at);
+    return pseudoinv;
+}
+
 
 matrice* resolution_systeme(matrice* A, matrice* V) {
     int n = A->n;
@@ -255,7 +416,7 @@ matrice* resolution_systeme(matrice* A, matrice* V) {
         Augmente->mat[i][m] = V->mat[i][0];  // Colonne augmentée avec V
     }
     Gauss_Jordan(Augmente);
-    // Extraire la solution U (les colonnes après la matrice A)
+    // Extrairere la solution U (les colonnes après la matrice A)
     matrice* U = matrice_nulle_pointeur(n, 1);
     for (int i = 0; i < n; i++) {
         U->mat[i][0] = Augmente->mat[i][n];
@@ -264,6 +425,8 @@ matrice* resolution_systeme(matrice* A, matrice* V) {
     return U;
 }
 
+
+// Fonction principale pour résoudre un système d'équations
 matrice* resolution_systeme_print(matrice* A, matrice* V) {
     int n = A->n;
     int m = A->m;
@@ -274,7 +437,6 @@ matrice* resolution_systeme_print(matrice* A, matrice* V) {
     printf("Vecteur V initial :\n");
     print_matrice(*V);  // Print du vecteur V
 
-    // Création de la matrice augmentée [A | V]
     // Création de la matrice augmentée [A | V]
     matrice* Augmente = matrice_nulle_pointeur(n, m + 1);  // A avec une colonne supplémentaire
 
@@ -303,7 +465,7 @@ matrice* resolution_systeme_print(matrice* A, matrice* V) {
     print_matrice(*Augmente);  // Print de la matrice augmentée
 
     // Appliquer Gauss-Jordan
-    Gauss_Jordan(Augmente);  // Il est supposé que cette fonction modifie la matrice augmentée
+    Gauss_Jordan_print(Augmente);  // Il est supposé que cette fonction modifie la matrice augmentée
 
     printf("Matrice augmentée [A | V] après Gauss-Jordan :\n");
     print_matrice(*Augmente);  // Print de la matrice augmentée après Gauss-Jordan
@@ -313,8 +475,99 @@ matrice* resolution_systeme_print(matrice* A, matrice* V) {
     printf("Extraction de la solution U :\n");
     for (int i = 0; i < n; i++) {
         U->mat[i][0] = Augmente->mat[i][m];
-        printf("U[%d][0] = %f\n", i, U->mat[i][0]);  // Print chaque élément de la solution U
+        printf("U[%d][0] = %Lf\n", i, U->mat[i][0]);  // Print chaque élément de la solution U
+    }
+
+    // Libération de la mémoire
+    free(Augmente->mat);
+    free(Augmente);
+    
+    return U;
+}
+/*
+
+// Fonction pour ajouter une petite perturbation aléatoire
+void perturber_matrice(matrice* A, long double epsilon) {
+    for (int i = 0; i < A->n; i++) {
+        for (int j = 0; j < A->m; j++) {
+            A->mat[i][j] += ((long double)rand() / (long double)RAND_MAX) * epsilon;
+        }
+    }
+}
+
+matrice* resolution_systeme_non_nulle(matrice* A, matrice* V) {
+    int n = A->n;  // Nombre de lignes
+    int m = A->m;  // Nombre de colonnes
+
+    // Création de la matrice augmentée [A | V]
+    matrice* Augmente = matrice_nulle_pointeur(n, m + 1);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            Augmente->mat[i][j] = A->mat[i][j];
+        }
+        Augmente->mat[i][m] = V->mat[i][0];  // Colonne augmentée avec V
+    }
+
+    // Résolution avec Gauss-Jordan
+    if (!Gauss_Jordan(Augmente)) {
+        printf("Erreur: La matrice est singulière ou il y a une division par zéro.\n");
+        return NULL;
+    }
+
+    // Extraire la solution U (la dernière colonne après la matrice A)
+    matrice* U = matrice_nulle_pointeur(m, 1);
+    int solution_nulle = 1;
+    for (int i = 0; i < m; i++) {
+        U->mat[i][0] = Augmente->mat[i][m];
+        if (U->mat[i][0] != 0) {
+            solution_nulle = 0;
+        }
+    }
+
+    // Si la solution est nulle, trouver une solution non nulle
+    if (solution_nulle) {
+        printf("Solution nulle trouvée, recherche d'une solution non nulle...\n");
+        srand(time(NULL));  // Initialisation de la graine aléatoire
+        int tentative = 0;
+        long double epsilon = 1e-5;  // Petite perturbation
+
+        // Tentatives de trouver une solution non nulle
+        while (solution_nulle && tentative < 10) {
+            // Perturber légèrement la matrice A
+            perturber_matrice(A, epsilon);
+
+            // Réinitialiser la matrice augmentée [A | V] avec la matrice perturbée
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    Augmente->mat[i][j] = A->mat[i][j];
+                }
+                Augmente->mat[i][m] = V->mat[i][0];
+            }
+
+            // Résolution avec Gauss-Jordan
+            if (!Gauss_Jordan(Augmente)) {
+                printf("Erreur: La matrice est singulière après perturbation.\n");
+                return NULL;
+            }
+
+            // Extraire la nouvelle solution
+            solution_nulle = 1;
+            for (int i = 0; i < m; i++) {
+                U->mat[i][0] = Augmente->mat[i][m];
+                if (U->mat[i][0] != 0) {
+                    solution_nulle = 0;
+                }
+            }
+
+            tentative++;
+        }
+
+        if (solution_nulle) {
+            printf("Impossible de trouver une solution non nulle après plusieurs tentatives.\n");
+            return NULL;
+        }
     }
 
     return U;
-}
+}*/
+

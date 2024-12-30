@@ -4,9 +4,10 @@ import numpy as np
 import argparse
 
 # Listes pour stocker les points correspondants
-points_img = []
+points_img1 = []
+points_img2 = []
 
-# Fonction pour redimensionner l'image en conservant le ratio et avec des dimensions maximales de 1000px de hauteur et 3000px de largeur
+# Fonction pour redimensionner l'image en conservant le ratio et avec des dimensions maximales de 600px de hauteur et 3000px de largeur
 def resize_image(image, max_height=600, max_width=3000):
     height, width = image.shape[:2]
 
@@ -26,56 +27,75 @@ def save_points(filename, points):
     np.savetxt(filename, points, fmt='%d')
 
 # Créer le fichier N.h
-def save_point_count_header(filename, count):
+def save_point_count_header(filename, count1, count2):
     with open(filename, 'w') as f:
-        f.write(f"#pragma once\n#define N {count}\n")
+        f.write(f"#pragma once\n#define N {count1}\n")
 
-# Sélection des points
-def select_points(event, x, y, flags, param):
+# Sélection des points pour la première image
+def select_points_img1(event, x, y, flags, param):
     if event == cv.EVENT_LBUTTONDOWN:
-        points_img.append([x, y])
-        cv.circle(img, (x, y), 5, (0, 255, 0), -1)
-        cv.imshow('Image', img)
+        points_img1.append([x, y])
+        cv.circle(param, (x, y), 5, (0, 255, 0), -1)
+        cv.imshow('Image 1', param)
 
-# Fonction principale pour charger l'image et sélectionner les points
-def process_image(image_name):
-    global img
-    image_path = f'./points/images/{image_name}'
+# Sélection des points pour la deuxième image
+def select_points_img2(event, x, y, flags, param):
+    if event == cv.EVENT_LBUTTONDOWN:
+        points_img2.append([x, y])
+        cv.circle(param, (x, y), 5, (0, 255, 0), -1)
+        cv.imshow('Image 2', param)
 
-    # Charger l'image et la redimensionner avec les dimensions maximales
-    original_img = cv.imread(image_path)
-    img = resize_image(original_img)
-    
-    # Afficher l'image et configurer les clics pour la sélection des points
-    cv.imshow('Image', img)
-    cv.setMouseCallback('Image', select_points)
-    
-    # Attendre la sélection des points
+# Fonction principale pour charger les images et sélectionner les points
+def process_images(image_name1, image_name2):
+    # Charger la première image
+    image_path1 = f'./points/images/{image_name1}'
+    original_img1 = cv.imread(image_path1)
+    img1 = resize_image(original_img1)
+
+    # Charger la deuxième image
+    image_path2 = f'./points/images/{image_name2}'
+    original_img2 = cv.imread(image_path2)
+    img2 = resize_image(original_img2)
+
+    # Afficher la première image et configurer les clics pour la sélection des points
+    cv.imshow('Image 1', img1)
+    cv.imshow('Image 2', img2)
+    cv.setMouseCallback('Image 1', select_points_img1, param=img1)
+    cv.setMouseCallback('Image 2', select_points_img2, param=img2)
+
+    # Attendre la sélection des points pour la première image
+    print("Sélectionnez les points pour la première image et appuyez sur une touche pour continuer.")
     cv.waitKey(0)
-    
-    # Extraire le nom de l'image sans l'extension
-    base_name = os.path.splitext(image_name)[0]
-    
-    # Créer le nom du fichier texte pour sauvegarder les points
-    output_filename = f'points/donnees/points_{base_name}.txt'
-    
-    # Sauvegarder les points sélectionnés
-    save_points(output_filename, points_img)
-    print(f'Points sauvegardés dans le fichier : {output_filename}')
-    
-    # Créer le fichier N.h avec le nombre de points sélectionnés
+
+    cv.destroyWindow('Image 1')
+    cv.destroyWindow('Image 2')
+
+    # Sauvegarder les points pour la première image
+    base_name1 = os.path.splitext(image_name1)[0]
+    output_filename1 = f'points/donnees/points_{base_name1}.txt'
+    save_points(output_filename1, points_img1)
+    print(f'Points sauvegardés pour la première image dans le fichier : {output_filename1}')
+
+    # Sauvegarder les points pour la deuxième image
+    base_name2 = os.path.splitext(image_name2)[0]
+    output_filename2 = f'points/donnees/points_{base_name2}.txt'
+    save_points(output_filename2, points_img2)
+    print(f'Points sauvegardés pour la deuxième image dans le fichier : {output_filename2}')
+
+    # Créer le fichier N.h avec le nombre de points sélectionnés pour les deux images
     header_filename = f'N.h'
-    save_point_count_header(header_filename, len(points_img))
-    print(f"Fichier d'en-tête créé : {header_filename} avec N = {len(points_img)}")
+    save_point_count_header(header_filename, len(points_img1), len(points_img2))
+    print(f"Fichier d'en-tête créé : {header_filename} avec N1 = {len(points_img1)} et N2 = {len(points_img2)}")
 
 # Point d'entrée du programme
 if __name__ == "__main__":
     # Création d'un parser pour les arguments de la ligne de commande
-    parser = argparse.ArgumentParser(description="Sélectionner des points sur une image et les sauvegarder dans un fichier texte.")
-    parser.add_argument("image_name", type=str, help="Nom de l'image (dans le dossier /images)")
-    
+    parser = argparse.ArgumentParser(description="Sélectionner des points sur deux images et les sauvegarder dans des fichiers texte.")
+    parser.add_argument("image_name1", type=str, help="Nom de la première image (dans le dossier /images)")
+    parser.add_argument("image_name2", type=str, help="Nom de la deuxième image (dans le dossier /images)")
+
     # Lecture des arguments
     args = parser.parse_args()
-    
+
     # Appel de la fonction principale
-    process_image(args.image_name)
+    process_images(args.image_name1, args.image_name2)

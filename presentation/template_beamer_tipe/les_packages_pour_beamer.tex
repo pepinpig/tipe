@@ -1,0 +1,76 @@
+%-------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+%\usepackage[english]{babel}
+
+%-------------------
+\usepackage{minted} %pour inclure du code
+\setminted[ocaml]{	                               
+	%bgcolor = black!3!white,                           %--fond 
+	frame = leftline,	framesep = 6pt, rulecolor= expli, %-- cadre
+	linenos=true, numbersep=4pt, xleftmargin=20pt,      %--numéro de ligne
+	breaklines=true,                                    %--découpage des longues lignes
+	tabsize=2,                                          %--tabulations
+}
+\setminted[c]{	                               
+	%bgcolor = black!3!white,                           %--fond 
+	frame = leftline,	framesep = 6pt, rulecolor= expli, %-- cadre
+	linenos=true, numbersep=4pt, xleftmargin=20pt,      %--numéro de ligne
+	breaklines=true,                                    %--découpage des longues lignes
+	tabsize=2,                                          %--tabulations
+}
+
+%-------------------
+\usepackage[ruled,vlined]{algorithm2e} %pour le pseudo-code
+%ajouter l'option linesnumbered si on veut les numéros de lignes
+\SetAlgorithmName{Algorithme}{Algo}{Liste des algorithmes}
+\SetFuncArgSty{textup}%style des arguments des fonctions pas en gras
+\SetArgSty{textup}%style des condidtions des if, for, while pas en gras
+
+
+\SetKwFor{ForEach}{pour tout}{faire}{}
+\SetKwFor{For}{pour}{faire}{finpour}
+\SetKwIF{Si}{SinonSi}{Sinon}{si}{alors}{sinon si}{sinon}{}
+\SetKwInput{Input}{Entrée}
+\SetKwInput{Output}{Sortie}
+\SetKwProg{myproc}{Procedure}{:}{}
+\SetKw{Return}{retourner}
+\SetKwComment{tcc}{(*}{*)}
+\SetKwFor{Tq}{tant que}{faire}{}
+\SetKwRepeat{Repeter}{répéter}{jusqu’à}
+
+%-------------------
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{textcomp,lmodern}%pour l'euro
+\usepackage{cancel}%pour barrer
+
+%-------------------
+\usepackage{array,multirow}
+\usepackage{tabularx}%tableaux élastiques
+
+
+%-------------------
+\usepackage{tikz} %graphiques et dessins
+\usetikzlibrary{shapes}%pr écrire \node[ellipse] par ex
+\usetikzlibrary{positioning} %pr écrire \node[below rigth = 3pt and 5pt]
+\usetikzlibrary{decorations.pathreplacing}%pr les accolades
+\usetikzlibrary{patterns}%pour les hachures
+
+%-------------------
+\usepackage{caption}%les personaliser (les centrer par ex)
+\usepackage{changepage}%pour élargir la page avec adjustwidth
+\usepackage{calc}%pour pouvoir écrire \textwidth-1cm
+
+
+%-------------------
+\usepackage{xspace}%espaces après les commandes texte
+
+
+%------------------
+
+%-------------------
+
+
+
+\usepackage[clock]{ifsym}

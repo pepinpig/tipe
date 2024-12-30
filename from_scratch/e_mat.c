@@ -12,10 +12,10 @@ int lirePoints(const char *nomFichier, Point** points, int n, int camera) {
     assert(n==ni);
     for (int i = 0; i < n; i++) {
         if (camera == 1) {
-            fscanf(fichier, "%f %f", &points[i]->cam1.mat[0][0], &points[i]->cam1.mat[1][0]);
-            fscanf(fichier, "%f %f", &points[i]->reel.mat[0][0], &points[i]->reel.mat[1][0]);
+            fscanf(fichier, "%Lf %Lf", &points[i]->cam1.mat[0][0], &points[i]->cam1.mat[1][0]);
+            fscanf(fichier, "%Lf %Lf", &points[i]->reel.mat[0][0], &points[i]->reel.mat[1][0]);
         } else if (camera == 2) {
-            fscanf(fichier, "%f %f", &points[i]->cam2.mat[0][0], &points[i]->cam2.mat[1][0]);
+            fscanf(fichier, "%Lf %Lf", &points[i]->cam2.mat[0][0], &points[i]->cam2.mat[1][0]);
         }
     }
     fclose(fichier);
