@@ -26,7 +26,7 @@ def plot_triangles(triangles):
     for triangle in triangles:
         # Boucler sur chaque triangle et l'afficher
         x, y, z = triangle[:, 0], triangle[:, 1], triangle[:, 2]
-        ax.plot_trisurf(x, y, z, alpha=0.5, edgecolor='k')  # Surface du triangle
+        ax.plot_trisurf(x, y, z, alpha=0.5, edgecolor='k', color='b')  # Surface du triangle
         ax.scatter(x, y, z, color='r')  # Sommets du triangle
     
     ax.set_xlabel("X")

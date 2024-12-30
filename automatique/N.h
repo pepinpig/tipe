@@ -1,2 +1,2 @@
 #pragma once
-#define N 4
+#define N 6

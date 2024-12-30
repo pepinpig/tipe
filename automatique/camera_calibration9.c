@@ -150,6 +150,7 @@ int main(int argc, char* argv[]) {
     snprintf(points_image_file, sizeof(points_image_file), "points/donnees/points_calibrage_%s.txt", image_name);
     snprintf(points_reel_file, sizeof(points_reel_file), "points/donnees/points_reels_%s.txt", cl);
     load_all_points_images(points_image_file, u, v); 
+    printf("test\n");
     load_all_points_reels(points_reel_file, X, Y, Z);
     matrice* A = contruction_A(X, Y, Z, u, v);
     char fn[100];

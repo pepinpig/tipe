@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -21,6 +22,21 @@ void print_couleur(char* c1, char* c2, char* c3, char* base_nom) {
     fprintf(file, "%s\n", c3);
 
     fclose(file);
+}
+bool couleur_valide(char* c){
+    if (!strcmp(c,"BO")){
+        return true;
+    }
+    if (!strcmp(c,"OV")){
+        return true;
+    }
+    if (!strcmp(c,"VR")){
+        return true;
+    }
+    if (!strcmp(c,"RB")){
+        return true;
+    }
+    return false;
 }
 
 // Fonction pour lire les couleurs à partir d'un fichier
@@ -103,27 +119,30 @@ int main(int argc, char* argv[]){
     }
 
     char command[500];
-    char couleurs_p1[4];
-    char couleurs_p2[4];
-    char couleurs_p3[4];
+    char couleurs_p1[4]="";
+    char couleurs_p2[4]="";
+    char couleurs_p3[4]="";
 
     if (calibrage == 'O') {
         // Sauvegarde des couleurs et exécution des scripts de calibration
         snprintf(command, sizeof(command), "python3 save_points2.py %s0.%s %s1.%s 1", base_nom, extension, base_nom, extension);
         system(command);
-        printf("Indiquer la couleur des faces latérales (BO : bleu-orange, OV : orange-vert, VR: vert-rouge, RB: rouge-bleu)\n");
-        scanf("%s", couleurs_p1);
-
+        while (!couleur_valide(couleurs_p1)){
+            printf("Indiquer la couleur des faces latérales (BO : bleu-orange, OV : orange-vert, VR: vert-rouge, RB: rouge-bleu)\n");
+            scanf("%s", couleurs_p1);
+        }
         snprintf(command, sizeof(command), "python3 save_points2.py %s2.%s %s3.%s 1", base_nom, extension, base_nom, extension);
         system(command);
-        printf("Indiquer la couleur des faces latérales (BO : bleu-orange, OV : orange-vert, VR: vert-rouge, RB: rouge-bleu)\n");
-        scanf("%s", couleurs_p2);
-
+        while (!couleur_valide(couleurs_p2)){
+            printf("Indiquer la couleur des faces latérales (BO : bleu-orange, OV : orange-vert, VR: vert-rouge, RB: rouge-bleu)\n");
+            scanf("%s", couleurs_p2);
+        }
         snprintf(command, sizeof(command), "python3 save_points2.py %s4.%s %s5.%s 1", base_nom, extension, base_nom, extension);
         system(command);
-        printf("Indiquer la couleur des faces latérales (BO : bleu-orange, OV : orange-vert, VR: vert-rouge, RB: rouge-bleu)\n");
-        scanf("%s", couleurs_p3);
-
+        while (!couleur_valide(couleurs_p3)){
+            printf("Indiquer la couleur des faces latérales (BO : bleu-orange, OV : orange-vert, VR: vert-rouge, RB: rouge-bleu)\n");
+            scanf("%s", couleurs_p3);
+        }
         print_couleur(couleurs_p1, couleurs_p2, couleurs_p3, base_nom);
 
     } else {
@@ -160,7 +179,7 @@ int main(int argc, char* argv[]){
     snprintf(command, sizeof(command), "python3 rassemble_point.py %s0 %s2 %s4", base_nom, base_nom, base_nom);
     system(command);
     snprintf(command, sizeof(command), "python3 plot_points.py points_reconstruits-%s0 points_reconstruits-%s2 points_reconstruits-%s4", base_nom,base_nom,base_nom);
-    snprintf(command, sizeof(command), "gcc triangle.c -o t");
+    snprintf(command, sizeof(command), "gcc triangle.c -o t -lm");
     system(command);
     snprintf(command, sizeof(command), "./t %s0", base_nom);
     system(command);

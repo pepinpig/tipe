@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
+
+#define TOLERANCE 1e-3 // Tolérance pour les vérifications de colinéarité et d'orientation
 
 // Produit scalaire pour des vecteurs de dimension 3
 double scalaire(double* v1, double* v2) {
@@ -10,7 +13,9 @@ double scalaire(double* v1, double* v2) {
     }
     return s;
 }
-
+double norme(double* v) {
+    return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+}
 // Addition de deux vecteurs (retourne un nouveau vecteur)
 double* add(double* v1, double* v2) {
     double* v3 = malloc(3 * sizeof(double));
@@ -143,48 +148,60 @@ void destroy_points(double** l, int n) {
     free(l);
 }
 
-bool* keeptrig (int**l, int ntrig, int size, double** point){
-    bool* res = malloc(ntrig*sizeof(bool));
-    for(int i = 0;i<ntrig;i++){
-        double* v1= sub(point[l[i][1]],point[l[i][0]]);
-        double* v2= sub(point[l[i][2]],point[l[i][0]]);
-        double* n = prod(v1,v2);
-        if (nulv(n)){
-            res[i]=false;
-        }
-        else {
-            double* bary = barycentre(l[i],3,point);
-            res[i]=true;
+bool* keeptrig(int** l, int ntrig, int size, double** point) {
+    bool* res = malloc(ntrig * sizeof(bool));
+    
+    for (int i = 0; i < ntrig; i++) {
+        // Vecteurs représentant les arêtes du triangle
+        double* v1 = sub(point[l[i][1]], point[l[i][0]]);
+        double* v2 = sub(point[l[i][2]], point[l[i][0]]);
+        
+        // Calcul du produit vectoriel des arêtes pour vérifier la colinéarité
+        double* n = prod(v1, v2);
+        
+        // Vérifier si les points sont approximativement colinéaires
+        if (norme(n) < TOLERANCE) {
+            res[i] = false; // Triangle dégénéré avec tolérance
+        } else {
+            // Calcul du barycentre pour l'orientation
+            double* bary = barycentre(l[i], 3, point);
+            res[i] = true;
+            
             int signe = 0;
-            for(int j=0;j<size;j++){
-                double* v= sub(bary,point[j]);
-                /*printf("\n");
-                print_vect(v);
-                printf("\n");
-                print_vect(n);
-                printf("\n");*/
-                double s = scalaire(n,v);
-                free (v);
-                //printf("\n scalaire %d = %lf \n",j,s);
-                if (s!=0){
-                    if (signe == 0){
-                        signe = (s>0)?1:(-1);
-                    }
-                    else if (signe*s< 0){
-                        res[i]=false;
+            for (int j = 0; j < size; j++) {
+                double* v = sub(bary, point[j]);
+                
+                // Vérifier le produit scalaire pour l'orientation
+                double s = scalaire(n, v);
+                
+                if (fabs(s) < TOLERANCE) {
+                    s = 0; // Considérer comme étant zéro si le produit scalaire est proche de zéro
+                }
+                
+                // Vérifier si le signe du produit scalaire change
+                if (s != 0) {
+                    if (signe == 0) {
+                        signe = (s > 0) ? 1 : -1;
+                    } else if (signe * s < 0) {
+                        res[i] = false;
                         break;
                     }
                 }
-                //printf("\n signe  = %d\n",signe);
+                
+                free(v);
             }
             free(bary);
         }
+        
+        // Libération de la mémoire des vecteurs utilisés pour le calcul
         free(v1);
         free(v2);
         free(n);
     }
+    
     return res;
 }
+
 
 // Lecture des points depuis un fichier
 double** read_points(char* filename, int count) {
