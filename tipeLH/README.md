@@ -14,9 +14,7 @@ Ce projet implémente une pipeline de reconstruction 3D à partir d’images, in
 | `matrice.c` | Implémente les opérations sur les matrices. |
 | `save_points.py` | Selectionnées les points pour le calibrage et les sauvegardés dans un fichier texte (usage : python3 save_points.py <img1>.jpg <img2>.jpg <calibration?>) |
 | `detection.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
-| `detection.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
-
-
+| `test.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
 ---
 
 ### 📂 Fichier include
