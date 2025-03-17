@@ -1,4 +1,4 @@
-#include"brief_descriptor.h"
+#include"appariement.h"
 
 void generer_paires(int pairs[NUM_PAIRS][4], int patch_size) {
     for (int i = 0; i < NUM_PAIRS; i++) {

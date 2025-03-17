@@ -13,11 +13,17 @@ Ce projet implémente une pipeline de reconstruction 3D à partir d’images, in
 | `main.c` | Programme principal qui orchestre la reconstruction 3D. |
 | `matrice.c` | Implémente les opérations sur les matrices. |
 | `save_points.py` | Selectionnées les points pour le calibrage et les sauvegardés dans un fichier texte (usage : python3 save_points.py <img1>.jpg <img2>.jpg <calibration?>) |
+| `moravec.c` | Effectue une selction de points d'intérêts avec la méthode de Moravec|
+| `appariement.c` | calcul du descripteur briefet  calcul de la distance à la droite épipolaire|
+| `detection.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image - avec moravec, brief et eipolar_distance|
 | `detection.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
-| `test.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
-| `testno2pouretresur.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
-| `tczdc.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
----
+| `SVD.c` | Plusieurs fonctions pour calculer la décomposition SVD d'une matrice et son application à la résolution de système|
+| `triangles.c` | Détermine les triangles utilent pour reconstruir l'enveloppe de l'objet|
+| `manipulation_fichier.c` | Utilitaire pour lire et ecrire des matrices dans les données|
+| `save_points.py` | Utilitaire pour selctionner des points sur une image et enregistrer leur coordonnées|
+| `jpg_to_txt.py` | Utilitaire pour lire les images par pixel|
+| `correspondance.py` | Affichage des droites epipolaires|
+| `rassemble_points.py` | |
 
 ### 📂 Fichier include
 

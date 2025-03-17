@@ -9,7 +9,6 @@
 #include "matrice.h"
 #include "manipulation_fichier.h"
 #include "SVD.h"
-#include "N.h"
 
 // Fonction pour construire la matrice A
 matrice* construction_A(long double* X, long double* Y, long double* Z, long double* u, long double* v);

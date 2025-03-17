@@ -1,5 +1,5 @@
-#ifndef BRIEF_DESCRIPTOR_H
-#define BRIEF_DESCRIPTOR_H
+#ifndef APPARIEMENT_H
+#define APPARIEMENT_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -25,4 +25,4 @@ void compute_brief(matrice* image, matrice* points, int patch_size, int num_bits
 
 
 
-#endif // BRIEF_DESCRIPTOR_H
+#endif 

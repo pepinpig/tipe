@@ -1,14 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
-#include "matrice.h"
-#include "manipulation_fichier.h"
-#include "SVD.h"
-#include "N.h"
-
-
+#include <camera_calibration.h>
 
 matrice* contruction_A(long double* X, long double* Y, long double* Z, long double* u, long double* v) {
     matrice* A = matrice_nulle_pointeur(2 * N, 12); // 12 inconnues (p_11 à p_34)
