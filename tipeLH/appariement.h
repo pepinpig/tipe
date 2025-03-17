@@ -24,5 +24,13 @@ uint8_t get_pixel(matrice* image, int x, int y);
 void compute_brief(matrice* image, matrice* points, int patch_size, int num_bits);
 
 
+/ matrice* detection(char* filename, int window, int seuil, int param);
+
+// matrice* detection_impression(char* filename, int window, int seuil, int param);
+// Fonction pour calculer la distance de Hamming entre deux descripteurs
+int hamming_distance(uint64_t descriptor1[2], uint64_t descriptor2[2]);
+
+// Fonction pour calculer la droite épipolaire pour un point donné
+double[3] epipolar_line();
 
 #endif 
