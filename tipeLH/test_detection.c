@@ -2,6 +2,8 @@
 #include "appariement.h"
 #include "trouve_coin.h"
 #include "camera_calibration.h"
+#define DISTANCE_SEUIL 100
+#define HAMMING_SEUIL 100
 
 // Fonction pour sélectionner la meilleure correspondance entre deux images
 int select_best_match(int n1, int n2, float F[3][3]);
@@ -66,7 +68,7 @@ long double distance_point_droite(matrice* l,matrice* X) {
     return fabs(a * x + b * y + c) / sqrt(a * b + b * b);
 }
 
-matrice* slection_moravec(char* filename, nbp){
+matrice* slection_moravec(char* filename, nbp, matrice* input){
     char input_name[32];
     snprintf(input_name, sizeof(input_name), "%s.txt", filename);
     if (!file_exists(input_name)){
@@ -74,7 +76,6 @@ matrice* slection_moravec(char* filename, nbp){
         snprintf(command, sizeof(command), "python3 jpg_to_txt.py %s.jpg", filename);
         system(command);
     }
-    matrice* input;
     printf("%s", input_name);
     read_matrice_from_file_dimension(&input, input_name);
     matrice* output=matrice_nulle_pointeur(input->n,input->m);
@@ -101,25 +102,30 @@ int main(int argc, char* argv[]) {
     char* filename2=argv[2];
     int* nbp1;
     int* nbp2;
-    matrice* img1=selection_moravec(filename1,nbp1);
-    matrice* img2=selection_moravec(filename2,nbp2);
+    matrice* input1;
+    matrice* input2;
+    matrice* img1=selection_moravec(filename1,nbp1, input1);
+    matrice* img2=selection_moravec(filename2,nbp2n input2);
     //tri de points utiles sur image 1
     //....
     //calcule des droites epipolaires pour chaque points de img1
     matrice* distance=matrice_nulle_pointeur(nbp2,2);
     matrice* retenus=matrice_nulle_pointeur(nbp1,3); //coordonnées du point + distance hamming
     matrice* F=compute_F(filename1, filename2);
-    matrice* img1_descripteur=compute_brief()
-    matrice* img2_descripteur=compute_brief()
+    srand(time(NULL));
+    int pairs[NUM_PAIRS][4];
+    generer_paires(pairs);
+    uint128_t* img1_descripteur=compute_brief(input1, img1, pairs)
+    uint128_t* img2_descripteur=compute_brief(input2, img2, pairs)
     for (int i=0;i<*nbp1;i++){
         matrice* X1=coo_vect(img1->mat[i][0], img1->mat[i][1]);
         matrice* l=epipolar_line(F,X1);
         for(int j=0;j<*nbp2;j++){
             matrice* X2=coo_vect(img2->mat[i][0], img2->mat[i][1]);
                 //pour chaque point retenu de img1, on prend les point de img2 à distance inferieur au seuil
-            if (distance_point_droite(l,X2)<SEUIL){
+            if (distance_point_droite(l,X2)<DISTANCE_SEUIL){
                 //on compare les distances de hamming
-                int h=hamming_distance(img2_descripteur->mat[j][0],img1_descripteur->mat[i][0], img1->mat[i][1]);
+                int h=hamming_distance(img2_descripteur[j],img1_descripteur[i]);
                 if (h<retenus->mat[i][2]){
                     retenus->mat[i][0]=img2->mat[j][0];
                     retenus->mat[i][1]=img2->mat[j][1];
@@ -130,7 +136,7 @@ int main(int argc, char* argv[]) {
     }
     //on verifie que les distances de hamming sont suffisement proche, si oui, on valide la paire, sinon on l'invalide
     for (int i=0;i<*nbp1;i++){
-        if (hamming_distance(retenus->mat[i][0],img1->mat[i][0])<SEUIL2){
+        if (hamming_distance(retenus->mat[i][0],img1->mat[i][0])<HAMMING_SEUIL){
             retenus->mat[i][0]=NULL;
             img1->mat[i][0]=NULL;
             retenus->mat[i][1]=NULL;
