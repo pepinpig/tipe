@@ -7,6 +7,8 @@
 #include <string.h>
 #include <math.h>
 #include "matrice.h" 
+#include "camera_calibration.h" 
+
 
 // Définitions des constantes
 #define PATCH_SIZE 31   // Taille du patch utilisée
@@ -31,6 +33,6 @@ void compute_brief(matrice* image, matrice* points, int patch_size, int num_bits
 int hamming_distance(uint64_t descriptor1[2], uint64_t descriptor2[2]);
 
 // Fonction pour calculer la droite épipolaire pour un point donné
-double[3] epipolar_line();
+matrice* epipolar_line(matrice* F, long double x, long double y);
 
 #endif 

@@ -34,7 +34,7 @@ matrice* contruction_A(long double* X, long double* Y, long double* Z, long doub
     free_matrice(B);*/
 }
 
-void camera_calibration_resolution(matrice* P, matrice* A) {
+void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* R, matrice* T) {
     // Étape 1 : Calcul de la décomposition SVD de A
     matrice U, S, V; // Matrices pour la décomposition SVD
     qr_algorithm_SVD(A, &U, &S, &V);
@@ -96,17 +96,17 @@ void camera_calibration_resolution(matrice* P, matrice* A) {
         for (int j = 0; j < 3; ++j){
             P_extract->mat[i][j]=P->mat[i][j];
         }
-    }
+    }inverser_matrice
     matrice* P_inv = inverser_matrice(P_extract);
-    matrice Q, R;
-    decomposition_QR(P_inv, &Q, &R);
+    matrice Q;
+    decomposition_QR(P_inv, &Q, R);
 
     // Étape 6 : Calcul de K, R et T
-    matrice* K = inverser_matrice(&R);
+    K = inverser_matrice(R);
     matrice* R_inv = inverser_matrice(&Q);
     multiplication_scalaire(*K, 1.0 / K->mat[2][2]); // Normalisation de K(3,3) = 1
 
-    matrice T = produit(*K, *R_inv);
+    *T = produit(*K, *R_inv);
     multiplication_scalaire(T, -1); // T = -RC
 
     // Libération de la mémoire
@@ -123,3 +123,15 @@ void camera_calibration_resolution(matrice* P, matrice* A) {
 }
 
 
+matrice* compute_E(matrice* R, matrice* T){
+    return produit_vectoriel(T,R);
+}
+
+matrice* compute_F(matrice* K1,matrice* K2 , matrice* R, matrice* T){
+    matrice* res=matrice_nulle_pointeur(3,3);
+    res->mat=inverser_matrice(K1);
+    *(res->mat)=transposee(*(res->mat));
+    matrice* E=compute_E(R,T);
+    *(res->mat)=produit(produit(*(res->mat),*E),*(inverser_matrice(K2)));
+    return res;
+}

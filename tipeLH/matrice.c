@@ -476,90 +476,23 @@ matrice* resolution_systeme_print(matrice* A, matrice* V) {
     
     return U;
 }
-/*
 
-// Fonction pour ajouter une petite perturbation aléatoire
-void perturber_matrice(matrice* A, long double epsilon) {
-    for (int i = 0; i < A->n; i++) {
-        for (int j = 0; j < A->m; j++) {
-            A->mat[i][j] += ((long double)rand() / (long double)RAND_MAX) * epsilon;
-        }
-    }
+matrice* produit_vectoriel(matrice* v, matrice* b){
+    ax=matrice_nulle_pointeur(3,3);
+    ax->mat[0][1]=-(v->mat[3][0]);
+    ax->mat[0][2]=(v->mat[2][0]);
+    ax->mat[1][0]=(v->mat[3][0]);
+    ax->mat[1][2]=-(v->mat[1][0]);
+    ax->mat[2][0]=-(v->mat[2][0]);
+    ax->mat[2][1]=(v->mat[1][0]);
+    matrice* res=matrice_nulle_pointeur;
+    *res=produit(*ax,b);
+    return res;
 }
 
-matrice* resolution_systeme_non_nulle(matrice* A, matrice* V) {
-    int n = A->n;  // Nombre de lignes
-    int m = A->m;  // Nombre de colonnes
-
-    // Création de la matrice augmentée [A | V]
-    matrice* Augmente = matrice_nulle_pointeur(n, m + 1);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            Augmente->mat[i][j] = A->mat[i][j];
-        }
-        Augmente->mat[i][m] = V->mat[i][0];  // Colonne augmentée avec V
-    }
-
-    // Résolution avec Gauss-Jordan
-    if (!Gauss_Jordan(Augmente)) {
-        printf("Erreur: La matrice est singulière ou il y a une division par zéro.\n");
-        return NULL;
-    }
-
-    // Extraire la solution U (la dernière colonne après la matrice A)
-    matrice* U = matrice_nulle_pointeur(m, 1);
-    int solution_nulle = 1;
-    for (int i = 0; i < m; i++) {
-        U->mat[i][0] = Augmente->mat[i][m];
-        if (U->mat[i][0] != 0) {
-            solution_nulle = 0;
-        }
-    }
-
-    // Si la solution est nulle, trouver une solution non nulle
-    if (solution_nulle) {
-        printf("Solution nulle trouvée, recherche d'une solution non nulle...\n");
-        srand(time(NULL));  // Initialisation de la graine aléatoire
-        int tentative = 0;
-        long double epsilon = 1e-5;  // Petite perturbation
-
-        // Tentatives de trouver une solution non nulle
-        while (solution_nulle && tentative < 10) {
-            // Perturber légèrement la matrice A
-            perturber_matrice(A, epsilon);
-
-            // Réinitialiser la matrice augmentée [A | V] avec la matrice perturbée
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    Augmente->mat[i][j] = A->mat[i][j];
-                }
-                Augmente->mat[i][m] = V->mat[i][0];
-            }
-
-            // Résolution avec Gauss-Jordan
-            if (!Gauss_Jordan(Augmente)) {
-                printf("Erreur: La matrice est singulière après perturbation.\n");
-                return NULL;
-            }
-
-            // Extraire la nouvelle solution
-            solution_nulle = 1;
-            for (int i = 0; i < m; i++) {
-                U->mat[i][0] = Augmente->mat[i][m];
-                if (U->mat[i][0] != 0) {
-                    solution_nulle = 0;
-                }
-            }
-
-            tentative++;
-        }
-
-        if (solution_nulle) {
-            printf("Impossible de trouver une solution non nulle après plusieurs tentatives.\n");
-            return NULL;
-        }
-    }
-
-    return U;
-}*/
-
+matrice* coo_vect(long double x, long double y){
+    matrice* res=matrice_nulle_pointeur(3,1);
+    res->mat[0][0]=x;
+    res->mat[1][0]=y;
+    res->mat[2][0]=1;
+}

@@ -20,6 +20,8 @@ matrice matrice_nulle(int n, int m);
 //Créer un pointeur vers une matrice nulle de taille n*m
 matrice* matrice_nulle_pointeur(int n, int m);
 
+//Martice (x y 1)^T
+matrice* coo_vect(long double x, long double y);
 
 // Crée une matrice identité de taille n*n
 matrice matrice_identite(int n);
@@ -77,4 +79,6 @@ matrice* resolution_systeme_non_nulle(matrice* A, matrice* V);
 */
 
 matrice pseudo_inverser_matrice(matrice* a);
+
+matrice* produit_vectoriel(matrice* a, matrice* b);
 #endif

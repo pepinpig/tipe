@@ -14,10 +14,7 @@ uint8_t get_pixel(matrice* image, int x, int y) {
     return (uint8_t) image->mat[y][x];
 }
 
-void compute_brief(matrice* image, matrice* points, int patch_size, int num_bits) {
-    int pairs[NUM_PAIRS][4];
-    generer_paires(pairs, patch_size);  // Générer les paires de test
-    
+matrice* compute_brief(matrice* image, int pairs[NUM_PAIRS][4]) {
     for (int i = 0; i < points->n; i++) {
         int x = (int) points->mat[i][0]; 
         int y = (int) points->mat[i][1];
@@ -43,4 +40,11 @@ void compute_brief(matrice* image, matrice* points, int patch_size, int num_bits
         points->mat[i][2] = (long double) descriptor1;
         points->mat[i][3] = (long double) descriptor2;
     }
+}
+
+
+matrice* epipolar_line(matrice* F, matrice* X){
+    matrice* res=matrice_nulle_pointeur(3,1);
+    *(res->mat)=produit(*(F->mat),*(X->mat));
+    return res;
 }

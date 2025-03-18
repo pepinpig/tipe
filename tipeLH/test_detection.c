@@ -57,8 +57,13 @@ matrice* detection_impression(char* filename, int window, int seuil, int param) 
     return points; 
 }
 
-double distance_point_droite(double x, doubley; double[3] l) {
-    return fabs(l[0] * x + l[1] * y + l[2]) / sqrt(l[0] * l[0] + l[1] * l[1]);
+long double distance_point_droite(matrice* l,matrice* X) {
+    long double a=l->mat[0][0];
+    long double b=l->mat[1][0];
+    long double c=l->mat[2][0];
+    long double x=X->mat[0][0];
+    long double y=X->mat[1][0];
+    return fabs(a * x + b * y + c) / sqrt(a * b + b * b);
 }
 
 matrice* slection_moravec(char* filename, nbp){
@@ -107,10 +112,12 @@ int main(int argc, char* argv[]) {
     matrice* img1_descripteur=compute_brief()
     matrice* img2_descripteur=compute_brief()
     for (int i=0;i<*nbp1;i++){
-        int[3] l=epipolar_line(F,img1->mat[i][0], img1->mat[i][1]);
+        matrice* X1=coo_vect(img1->mat[i][0], img1->mat[i][1]);
+        matrice* l=epipolar_line(F,X1);
         for(int j=0;j<*nbp2;j++){
+            matrice* X2=coo_vect(img2->mat[i][0], img2->mat[i][1]);
                 //pour chaque point retenu de img1, on prend les point de img2 à distance inferieur au seuil
-            if (distance_point_droite(img2->mat[j][0],img2->mat[j][1],l)<SEUIL){
+            if (distance_point_droite(l,X2)<SEUIL){
                 //on compare les distances de hamming
                 int h=hamming_distance(img2_descripteur->mat[j][0],img1_descripteur->mat[i][0], img1->mat[i][1]);
                 if (h<retenus->mat[i][2]){
