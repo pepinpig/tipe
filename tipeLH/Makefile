@@ -10,7 +10,13 @@ test_moravec : manipulation_fichier.o matrice.o moravec.o test_moravec.c
 test_trouve_coin : manipulation_fichier.o matrice.o moravec.o trouve_coin.o test_trouve_coin.c
 	gcc -Wall -g manipulation_fichier.o matrice.o moravec.o trouve_coin.o test_trouve_coin.c -lm -o test_trouve_coin
 
-moravec.o :  moravec.c
+test_detection : manipulation_fichier.o matrice.o moravec.o appariement.o camera_calibration.o test_detection.c
+	gcc -Wall -g manipulation_fichier.o matrice.o moravec.o appariement.o camera_calibration.o test_detection.c -lm -o test_detection
+
+appariement.o : appariement.c appariement.h
+	gcc -Wall -g 	gcc -Wall -g -c appariement.c -lm -o appariement.o
+
+moravec.o :  moravec.c moravec.h
 	gcc -Wall -g -c moravec.c -lm -o moravec.o
 
 triangle.o : triangle.h triangle.c
@@ -24,6 +30,10 @@ matrice.o : matrice.c matrice.h
 
 SVD.o : SVD.c SVD.h
 	gcc -Wall -g -c SVD.c -lm -o SVD.o
+
+camera_calibration.o :camera_calibration.c camera_calibration.h
+	gcc -Wall -g -c camera_calibration.c -lm -o camera_calibration.o
+
 
 trouve_coin.o : trouve_coin.c trouve_coin.h
 	gcc -Wall -g -c trouve_coin.c -lm -o trouve_coin.o

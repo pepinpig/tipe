@@ -57,6 +57,7 @@ Contient les fichiers d’entrée et de sortie.
 | `test_triangulation`  | Test de triangulation|
 | `test_moravec`        | Test de la détection de moravec|
 | `test_trouve_coin`    | Test la détection de coin |
+| `test_detection`    | Test l'ensemble du processus de detection et d'appariement |
 | `clean`              | Supprime tous les fichiers objets (`.o`) et les exécutables |
 
 
