@@ -235,7 +235,7 @@ matrice matrice_colonne(matrice A, int i) {
 puis à permuter les lignes pour que cet élément devienne le pivot. 
 Cela permet d'éviter les divisions par de petites valeurs, ce qui stabilise numériquement le processus.*/
 
-int choix_pivot_naïf(matrice *a, int i) {
+int choix_pivot_naif(matrice *a, int i) {
     int n = a->n;
     for (int k = i; k < n; k++) {
         if (fabs(a->mat[k][i]) > 0) {
@@ -478,15 +478,15 @@ matrice* resolution_systeme_print(matrice* A, matrice* V) {
 }
 
 matrice* produit_vectoriel(matrice* v, matrice* b){
-    ax=matrice_nulle_pointeur(3,3);
+    matrice* ax=matrice_nulle_pointeur(3,3);
     ax->mat[0][1]=-(v->mat[3][0]);
     ax->mat[0][2]=(v->mat[2][0]);
     ax->mat[1][0]=(v->mat[3][0]);
     ax->mat[1][2]=-(v->mat[1][0]);
     ax->mat[2][0]=-(v->mat[2][0]);
     ax->mat[2][1]=(v->mat[1][0]);
-    matrice* res=matrice_nulle_pointeur;
-    *res=produit(*ax,b);
+    matrice* res=matrice_nulle_pointeur(3,3);
+    *res=produit(*ax,*b);
     return res;
 }
 
@@ -495,4 +495,5 @@ matrice* coo_vect(long double x, long double y){
     res->mat[0][0]=x;
     res->mat[1][0]=y;
     res->mat[2][0]=1;
+    return res;
 }

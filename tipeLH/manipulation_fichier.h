@@ -1,5 +1,4 @@
-#ifndef manipulation_fichier_H
-#define manipulation_fichier_H
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,5 +31,3 @@ void read_matrice_from_file_dimension(matrice** mtx, char* filename);
 void read_matrice_from_file(matrice *A, const char *filename);
 //Créer chaine de caractère <matrix_name>-<image_name>.txt
 void nom_fichier(char* filename, char* matrix_name, char* image_name);
-
-#endif

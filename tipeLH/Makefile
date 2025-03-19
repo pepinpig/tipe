@@ -14,7 +14,7 @@ test_detection : manipulation_fichier.o matrice.o moravec.o appariement.o camera
 	gcc -Wall -g manipulation_fichier.o matrice.o moravec.o appariement.o camera_calibration.o test_detection.c -lm -o test_detection
 
 appariement.o : appariement.c appariement.h
-	gcc -Wall -g 	gcc -Wall -g -c appariement.c -lm -o appariement.o
+	gcc -Wall -g -c appariement.c -lm -o appariement.o
 
 moravec.o :  moravec.c moravec.h
 	gcc -Wall -g -c moravec.c -lm -o moravec.o

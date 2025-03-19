@@ -2,10 +2,10 @@
 
 void generer_paires(int pairs[NUM_PAIRS][4]) {
     for (int i = 0; i < NUM_PAIRS; i++) {
-        pairs[i][0] = rand() % PATH_SIZE - PATH_SIZE / 2; // x1
-        pairs[i][1] = rand() % PATH_SIZE - PATH_SIZE / 2; // y1
-        pairs[i][2] = rand() % PATH_SIZE - PATH_SIZE / 2; // x2
-        pairs[i][3] = rand() % PATH_SIZE - PATH_SIZE / 2; // y2
+        pairs[i][0] = rand() % PATCH_SIZE - PATCH_SIZE / 2; // x1
+        pairs[i][1] = rand() % PATCH_SIZE - PATCH_SIZE / 2; // y1
+        pairs[i][2] = rand() % PATCH_SIZE - PATCH_SIZE / 2; // x2
+        pairs[i][3] = rand() % PATCH_SIZE - PATCH_SIZE / 2; // y2
     }
 }
 
@@ -61,6 +61,6 @@ int hamming_distance(uint128_t d1, uint128_t d2) {
 
 matrice* epipolar_line(matrice* F, matrice* X){
     matrice* res=matrice_nulle_pointeur(3,1);
-    *(res->mat)=produit(*(F->mat),*(X->mat));
+    *res=produit(*F,*X);
     return res;
 }

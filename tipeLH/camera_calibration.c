@@ -1,4 +1,4 @@
-#include <camera_calibration.h>
+#include "camera_calibration.h"
 
 matrice* contruction_A(long double* X, long double* Y, long double* Z, long double* u, long double* v) {
     matrice* A = matrice_nulle_pointeur(2 * N, 12); // 12 inconnues (p_11 à p_34)
@@ -40,7 +40,6 @@ void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* 
     qr_algorithm_SVD(A, &U, &S, &V);
 
     // Trouver le vecteur singulier droit unitaire associé à la plus petite valeur singulière
-    long double min_sigma = S.mat[S.n - 1][S.m - 1];
     int index_min = S.n - 1;
 /*    for (int i = 0; i < S.n && i < S.m; i++) {
         if (S.mat[i][i] < min_sigma) {
@@ -73,7 +72,7 @@ void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* 
     free_matrice(p);
 
     // Étape 4 : Calcul de la décomposition SVD de P
-    matrice U2,C, S2, V2;
+    matrice U2, S2, V2;
     qr_algorithm_SVD(P, &U2, &S2, &V2);
 
     // Extraction du vecteur singulier droit associé à la plus petite valeur singulière
@@ -96,7 +95,7 @@ void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* 
         for (int j = 0; j < 3; ++j){
             P_extract->mat[i][j]=P->mat[i][j];
         }
-    }inverser_matrice
+    }
     matrice* P_inv = inverser_matrice(P_extract);
     matrice Q;
     decomposition_QR(P_inv, &Q, R);
@@ -107,7 +106,7 @@ void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* 
     multiplication_scalaire(*K, 1.0 / K->mat[2][2]); // Normalisation de K(3,3) = 1
 
     *T = produit(*K, *R_inv);
-    multiplication_scalaire(T, -1); // T = -RC
+    multiplication_scalaire(*T, -1); // T = -RC
 
     // Libération de la mémoire
 /*    free_matrice(P_inv);
@@ -129,9 +128,9 @@ matrice* compute_E(matrice* R, matrice* T){
 
 matrice* compute_F(matrice* K1,matrice* K2 , matrice* R, matrice* T){
     matrice* res=matrice_nulle_pointeur(3,3);
-    res->mat=inverser_matrice(K1);
-    *(res->mat)=transposee(*(res->mat));
+    res=inverser_matrice(K1);
+    *res=transposee(*res);
     matrice* E=compute_E(R,T);
-    *(res->mat)=produit(produit(*(res->mat),*E),*(inverser_matrice(K2)));
+    *res=produit(produit(*res,*E),*(inverser_matrice(K2)));
     return res;
 }

@@ -1,5 +1,4 @@
-#ifndef matrice_H
-#define Matrice_H
+#pragma once
 
 #include <stdbool.h>
 #include <math.h>
@@ -62,23 +61,21 @@ void ajout_ligne(matrice* a, int i, int j, long double lambda);
 void set_colonne(matrice *target, int col_idx, matrice column_vector);
 // Fonction pour extraire la i-ème colonne de la matrice A
 matrice matrice_colonne(matrice A, int i);
-int choix_pivot_naïf(matrice *a, int i);
+int choix_pivot_naif(matrice *a, int i);
 int choix_pivot_partiel(matrice *a, int i);
 //Effectue un pivot de Gauss sur la matrice* a
 int Gauss_Jordan(matrice* a);
 //Effectue un pivot de Gauss sur la matrice* a
 int Gauss_Jordan_print(matrice* a);
+
 matrice* inverser_matrice(matrice* a);
+
 matrice* inverser_matrice_print(matrice* a);
 
 matrice* resolution_systeme(matrice* a,matrice* v);
-matrice* resolution_systeme_print(matrice* a,matrice* v);
 
-/*void perturber_matrice(matrice* A, long double epsilon) ;
-matrice* resolution_systeme_non_nulle(matrice* A, matrice* V);
-*/
+matrice* resolution_systeme_print(matrice* a,matrice* v);
 
 matrice pseudo_inverser_matrice(matrice* a);
 
 matrice* produit_vectoriel(matrice* a, matrice* b);
-#endif
