@@ -14,7 +14,7 @@ long double distance_point_droite(matrice* l,matrice* X) {
     return fabs(a * x + b * y + c) / sqrt(a * b + b * b);
 }
 
-matrice* selection_moravec(char* filename, int* nbp, matrice* input){
+matrice* read_jpg(char* filename){
     char input_name[32];
     snprintf(input_name, sizeof(input_name), "%s.txt", filename);
     if (!file_exists(input_name)){
@@ -23,7 +23,12 @@ matrice* selection_moravec(char* filename, int* nbp, matrice* input){
         system(command);
     }
     printf("%s", input_name);
+    matrice* input;
     read_matrice_from_file_dimension(&input, input_name);
+    return input;
+}
+
+matrice* selection_moravec(char* filename, int* nbp, matrice* input){
     matrice* output=matrice_nulle_pointeur(input->n,input->m);
     int nb_points=moravec(input, output);
     nbp=&nb_points;
@@ -46,10 +51,10 @@ int main(int argc, char* argv[]) {
     //detection des points d'interet avec Moravec pour il
     char* filename1=argv[1];
     char* filename2=argv[2];
-    int* nbp1;
-    int* nbp2;
-    matrice* input1;
-    matrice* input2;
+    int* nbp1=calloc(1,sizeof(int));
+    int* nbp2=calloc(1,sizeof(int));
+    matrice* input1=read_jpg(filename1);
+    matrice* input2=read_jpg(filename2);
     matrice* img1=selection_moravec(filename1,nbp1, input1);
     matrice* img2=selection_moravec(filename2,nbp2, input2);
     //tri de points utiles sur image 1
@@ -57,8 +62,8 @@ int main(int argc, char* argv[]) {
     //calcule des droites epipolaires pour chaque points de img1
     matrice* retenus=matrice_nulle_pointeur(*nbp1,1);//coordonnées du point 
     uint128_t* retenus_descripteur=calloc(*nbp1,sizeof(uint128_t));//distance hamming
-    
-    matrice* F=read_matrice_from_file();
+    matrice* F=matrice_nulle_pointeur(3,3);
+    read_matrice_from_file(F, "F.txt");
     srand(time(NULL));
     int pairs[NUM_PAIRS][4];
     generer_paires(pairs);
