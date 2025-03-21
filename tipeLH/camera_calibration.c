@@ -126,11 +126,53 @@ matrice* compute_E(matrice* R, matrice* T){
     return produit_vectoriel(T,R);
 }
 
-matrice* compute_F(matrice* K1,matrice* K2 , matrice* R, matrice* T){
+matrice* compute_F_aux(matrice* K , matrice* R, matrice* T){
     matrice* res=matrice_nulle_pointeur(3,3);
-    res=inverser_matrice(K1);
+    res=inverser_matrice(K);
     *res=transposee(*res);
     matrice* E=compute_E(R,T);
-    *res=produit(produit(*res,*E),*(inverser_matrice(K2)));
+    *res=produit(produit(*res,*E),*(inverser_matrice(K)));
     return res;
+}
+matrice* compute_F(char* filename1,char*  filename2){
+    matrice* P, matrice* A, matrice* K, matrice* R, matrice* T;
+    compute_matrice_caract(filename1,P,A,K,R,T) ;
+    matrice* res= compute_F_aux(K,R, T);
+    return res;
+}
+
+int compute_matrice_caract(char* image_name, matrice* P, matrice* A, matrice* K, matrice* R, matrice* T) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <nom_de_l'image> <couleurs> \n", argv[0]);
+        return 1;
+    }
+    long double* X = calloc(N, sizeof(long double));
+    long double* Y = calloc(N, sizeof(long double));
+    long double* Z = calloc(N, sizeof(long double));
+    long double* u = calloc(N, sizeof(long double));
+    long double* v = calloc(N, sizeof(long double));
+    char points_image_file[256];
+    char points_reel_file[256];
+    snprintf(points_image_file, sizeof(points_image_file), "points/donnees/points_calibrage_%s.txt", image_name);
+    snprintf(points_reel_file, sizeof(points_reel_file), "points/donnees/points_reels_%s.txt", cl);
+    load_all_points_images(points_image_file, u, v); 
+    load_all_points_reels(points_reel_file, X, Y, Z);
+    matrice* A = contruction_A(X, Y, Z, u, v);
+    char fn[100];
+    nom_fichier(fn, "A", image_name);
+    save_matrice_to_file(A, fn);
+    matrice* P = matrice_nulle_pointeur(3, 4);
+    matrice* K = matrice_nulle_pointeur(3, 3);
+    matrice* R = matrice_nulle_pointeur(3, 3);
+    matrice* T = matrice_nulle_pointeur(3, 1);
+    camera_calibration_resolution(P, A, K, R, T);
+    nom_fichier(fn, "P", image_name);
+    save_matrice_to_file(&P, fn);
+    free(X);
+    free(Y);
+    free(Z);
+    free(u);
+    free(v);
+    free_matrice(*A);
+    return 0;
 }

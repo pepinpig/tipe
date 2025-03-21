@@ -1,4 +1,4 @@
-#include "camera_calibration9.h"
+#include "camera_calibration.h"
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
@@ -23,8 +23,11 @@ int main(int argc, char* argv[]) {
     char fn[100];
     nom_fichier(fn, "A", image_name);
     save_matrice_to_file(A, fn);
-    matrice P = matrice_nulle(3, 4);
-    camera_calibration_resolution(&P, A);
+    matrice* P = matrice_nulle_pointeur(3, 4);
+    matrice* K = matrice_nulle_pointeur(3, 3);
+    matrice* R = matrice_nulle_pointeur(3, 3);
+    matrice* T = matrice_nulle_pointeur(3, 1);
+    camera_calibration_resolution(P, A, K, R, T);
     nom_fichier(fn, "P", image_name);
     save_matrice_to_file(&P, fn);
 

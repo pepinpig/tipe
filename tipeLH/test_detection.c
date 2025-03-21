@@ -57,7 +57,8 @@ int main(int argc, char* argv[]) {
     //calcule des droites epipolaires pour chaque points de img1
     matrice* retenus=matrice_nulle_pointeur(*nbp1,1);//coordonnées du point 
     uint128_t* retenus_descripteur=calloc(*nbp1,sizeof(uint128_t));//distance hamming
-    matrice* F=compute_F(filename1, filename2);
+    
+    matrice* F=read_matrice_from_file();
     srand(time(NULL));
     int pairs[NUM_PAIRS][4];
     generer_paires(pairs);

@@ -26,11 +26,6 @@ def resize_image(image, max_height=600, max_width=3000):
 def save_points(filename, points):
     np.savetxt(filename, points, fmt='%d')
 
-# Créer le fichier N.h
-def save_point_count_header(filename, count1, count2):
-    with open(filename, 'w') as f:
-        f.write(f"#pragma once\n#define N {count1}\n")
-
 # Sélection des points pour la première image
 def select_points_img1(event, x, y, flags, param):
     if event == cv.EVENT_LBUTTONDOWN:
@@ -88,18 +83,12 @@ def process_images(image_name1, image_name2, calibrage):
     save_points(output_filename2, points_img2)
     print(f'Points sauvegardés pour la deuxième image dans le fichier : {output_filename2}')
 
-    # Créer le fichier N.h avec le nombre de points sélectionnés pour les deux images
-    header_filename = f'N.h'
-    save_point_count_header(header_filename, len(points_img1), len(points_img2))
-    print(f"Fichier d'en-tête créé : {header_filename} avec N1 = {len(points_img1)} et N2 = {len(points_img2)}")
-
 # Point d'entrée du programme
 if __name__ == "__main__":
     # Création d'un parser pour les arguments de la ligne de commande
     parser = argparse.ArgumentParser(description="Sélectionner des points sur deux images et les sauvegarder dans des fichiers texte.")
     parser.add_argument("image_name1", type=str, help="Nom de la première image (dans le dossier /images)")
     parser.add_argument("image_name2", type=str, help="Nom de la deuxième image (dans le dossier /images)")
-    parser.add_argument("calibrage", type=int, help="1 si Calibration ")
 
     # Lecture des arguments
     args = parser.parse_args()
