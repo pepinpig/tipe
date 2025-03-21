@@ -20,6 +20,8 @@ void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* 
 matrice* compute_E(matrice* R, matrice* T);
 
 //Calcule la matrice fondamental F associé à l'image
-matrice* compute_F(matrice* K1, matrice* K2, matrice* R, matrice* T);
+matrice* compute_F_aux(matrice* K , matrice* R, matrice* T);
 
+matrice* compute_F(char* filename1,char*  filename2);
+int compute_matrice_caract(char* image_name,char* cl, matrice* P, matrice* A, matrice* K, matrice* R, matrice* T);
 #endif // CAMERA_CALIBRATION_H

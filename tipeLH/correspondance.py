@@ -7,8 +7,8 @@ points_img1 = []
 points_img2 = []
 
 # Charger les images
-img1 = cv.imread('points/images/dodec1.jpg')
-img2 = cv.imread('points/images/dodec0.jpg')
+img1 = cv.imread('points/images/pave.jpg')
+img2 = cv.imread('points/images/pave2.jpg')
 
 # Sauvegarder les points dans un fichier
 def save_points(filename, points):
@@ -71,6 +71,8 @@ if len(points_img1) >= 8 and len(points_img2) >= 8:
     '''mask est utilisé pour indiquer quels points ont été 
     considérés comme inliers (valeurs acceptées) lors 
     du calcul de la matrice fondamentale F'''
+    np.savetxt('points/images/F', F, fmt='%d');
+
     #FM_LMEDS "Least Median of Squares" (méthode des moindres médianes des carrés).
     print("Matrice calculée !")
 

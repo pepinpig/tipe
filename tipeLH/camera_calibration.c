@@ -134,18 +134,14 @@ matrice* compute_F_aux(matrice* K , matrice* R, matrice* T){
     *res=produit(produit(*res,*E),*(inverser_matrice(K)));
     return res;
 }
-matrice* compute_F(char* filename1,char*  filename2){
-    matrice* P, matrice* A, matrice* K, matrice* R, matrice* T;
-    compute_matrice_caract(filename1,P,A,K,R,T) ;
+matrice* compute_F(char* filename1, char* filename2){
+    matrice* P; matrice* A; matrice* K; matrice* R; matrice* T;
+    compute_matrice_caract(filename1, ""P,A,K,R,T) ;
     matrice* res= compute_F_aux(K,R, T);
     return res;
 }
 
-int compute_matrice_caract(char* image_name, matrice* P, matrice* A, matrice* K, matrice* R, matrice* T) {
-    if (argc < 2) {
-        fprintf(stderr, "Usage: %s <nom_de_l'image> <couleurs> \n", argv[0]);
-        return 1;
-    }
+int compute_matrice_caract(char* image_name, char* cl, matrice* P, matrice* A, matrice* K, matrice* R, matrice* T) {
     long double* X = calloc(N, sizeof(long double));
     long double* Y = calloc(N, sizeof(long double));
     long double* Z = calloc(N, sizeof(long double));

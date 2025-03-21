@@ -13,6 +13,9 @@ test_trouve_coin : manipulation_fichier.o matrice.o moravec.o trouve_coin.o test
 test_detection : manipulation_fichier.o matrice.o moravec.o appariement.o camera_calibration.o test_detection.c
 	gcc -Wall -g manipulation_fichier.o matrice.o moravec.o appariement.o camera_calibration.o test_detection.c -lm -o test_detection
 
+test_camera_calibration : manipulation_fichier.o matrice.o camera_calibration.o test_detection.c
+	gcc -Wall -g manipulation_fichier.o matrice.o camera_calibration.o test_detection.c -lm -o test_detection
+
 appariement.o : appariement.c appariement.h
 	gcc -Wall -g -c appariement.c -lm -o appariement.o
 
