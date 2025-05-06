@@ -1,7 +1,7 @@
 WFLAGS := -Wall
 CFLAGS := -std=c99
 
-all : test_triangulation test_moravec test_trouve_coin 
+all : test_triangulation test_moravec test_trouve_coin test_detection
 
 
 test_triangulation : triangle.o triangle.h test_triangulation.c

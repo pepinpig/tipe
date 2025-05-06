@@ -61,7 +61,8 @@ matrice* compute_score(matrice* plan, int** actif, int size){ //size est la tail
   return score;
 }
   
-void filtre_mat(matrice* input, int** actif, int size){
+int filtre_mat(matrice* input, int** actif, int size){
+  int s=0;
   matrice* tmp = matrice_nulle(input->n,input->m);
   for(int i = 0;i<size;i++){
     if(!au_bord(input,actif[i][0],actif[i][1])){
@@ -71,7 +72,7 @@ void filtre_mat(matrice* input, int** actif, int size){
   for(int i = 0;i<input->n;i++){
     for(int j = 0;j<input->m;j++){
 			if(tmp->mat[i][j]==1 && input->mat[i][j]<2000){
-				printf("gardé\n");
+        s++;
 				input->mat[i][j]=1;
 			}
 			else {
@@ -80,6 +81,7 @@ void filtre_mat(matrice* input, int** actif, int size){
 		}
 	}
 	free_matrice(tmp);
+  return s;
   /*for(int i = 0;i<input->n;i++){
     for(int j = 0;j<input->m;j++){
       if(au_bord(input,i,j))
