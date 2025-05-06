@@ -6,8 +6,9 @@
 #include "matrice.h"
 #include "manipulation_fichier.h"
 
-#define WINDOW 3 // nombre de pixel considéré dans chaque direction
-#define SEUIL 9000
+#define WINDOW 5 // nombre de pixel considéré dans chaque direction
+#define SEUIL 2000
+
 #define PARAM true 
 
 double variance(matrice* image, int x, int y, int dx, int dy);

@@ -19,9 +19,8 @@ double variance(matrice* image, int x, int y, int dx, int dy) {
 // Application de l'algorithme de Moravec pour la détection des coins
 int moravec(matrice* image_input, matrice* image_output) {
     int count=0;
-    printf("n:%d, m:%d",image_input->n,image_input->m );
-    for (int x = 1; x < image_input->n - 1; x++) {
-        for (int y = 1; y < image_input->m - 1; y++) {
+    for (int y = 1; y < image_input->n - 1; y++) {
+        for (int x = 1; x < image_input->m - 1; x++) {
             int var0 = variance(image_input, x, y, 0, 1);  // Verticale
             int var1 = variance(image_input, x, y, 1, 0);  // Horizontale
             int var2 = variance(image_input, x, y, 1, 1);  // Diagonale bas gauche haut droite
@@ -40,17 +39,15 @@ int moravec(matrice* image_input, matrice* image_output) {
                 vartot /= 4;
             }
             if (vartot > SEUIL) {
-                image_output->mat[x][y] = 1;  // Coin détecté
-                printf("x:%d y:%d",x,y);
+                image_output->mat[y][x] = 1;  // Coin détecté
                 count++;
             } else {
-                image_output->mat[x][y] = 0;  // Pas de coin
+                image_output->mat[y][x] = 0;  // Pas de coin
             }
         }
     }
     return count;
 }
-
 
 int moravec_arr(matrice* image_input, int*** detected){
   matrice* tmp = matrice_nulle(image_input->n,image_input->m);

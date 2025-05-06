@@ -27,7 +27,7 @@ test_reconstruction : manipulation_fichier.o matrice.o SVD.o camera_calibration.
 	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o SVD.o camera_calibration.o  test_reconstruction.c -lm -o test_reconstruction
 
 
-moravec.o :  moravec.c
+moravec.o :  moravec.c moravec.h
 	gcc $(CFLAGS) $(WFLAGS) -g -c moravec.c -lm -o moravec.o
 
 triangle.o : triangle.h triangle.c
