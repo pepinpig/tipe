@@ -71,7 +71,7 @@ int filtre_mat(matrice* input, int** actif, int size){
   }
   for(int i = 0;i<input->n;i++){
     for(int j = 0;j<input->m;j++){
-			if(tmp->mat[i][j]==1 && input->mat[i][j]<2000){
+			if(tmp->mat[i][j]==1 && input->mat[i][j]<SEUILTC){
         s++;
 				input->mat[i][j]=1;
 			}
@@ -93,8 +93,9 @@ int filtre_mat(matrice* input, int** actif, int size){
 
 }
 
-void pretty_mat(matrice* input, int** actif, int size){
-  matrice* tmp= matrice_nulle(input->n,input->m);
+int pretty_mat(matrice* input, int** actif, int size){
+  int s=0;
+  matrice* tmp = matrice_nulle(input->n,input->m);
   for(int i = 0;i<size;i++){
     if(!au_bord(input,actif[i][0],actif[i][1])){
       tmp->mat[actif[i][0]][actif[i][1]]=1;
@@ -102,30 +103,32 @@ void pretty_mat(matrice* input, int** actif, int size){
   }
   for(int i = 0;i<input->n;i++){
     for(int j = 0;j<input->m;j++){
-      if(tmp->mat[i][j]==1){
-        printf("%f\n",input->mat[i][j]);
-      }
-    }
-  }
-  int s = 0;
-  for(int i = 0;i<input->n;i++){
-    for(int j = 0;j<input->m;j++){
-			if(tmp->mat[i][j]==1 && input->mat[i][j]<700){
+			if(tmp->mat[i][j]==1 && input->mat[i][j]<SEUILTC){
         s++;
-        for(int k = -5;k<5;k++){
-          for(int l= -5;l<5;l++){
-            //printf("i+k = %d j+l = %d m = %d n = %d\n",i+k,j+l,input->m,input->n);
-            fflush(stdout);
-            input->mat[i+k][j+l]=1;
-            tmp->mat[i+k][j+l]=0;
-          }
-        }
+        tmp->mat[i][j]=1;
 			}
 			else {
-        input->mat[i][j]=0;
+        tmp->mat[i][j]=0;
 			}
 		}
 	}
-  printf("     %d   %d   ",s,size);
+  for(int i = 0;i<input->n;i++){
+    for(int j = 0;j<input->m;j++){
+      if(tmp->mat[i][j]==1){
+        for(int k = -5;k<5;k++){
+          for(int l= -5;l<5;l++){
+            if(!au_bord(input,i+k,j+l)){
+            input->mat[i+k][j+l]=1;
+            tmp->mat[i+k][j+l]=2;
+            }
+          }
+        }
+      }
+      else if (tmp->mat[i][j]==0){
+        input->mat[i][j]=0;
+      }
+    }
+  }
 	free_matrice(tmp);
+  return s;
 }
