@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <math.h>
+#include "matrice.h"
 #include <stdint.h>
 
 #define SEUIL 1e-3
