@@ -1,5 +1,41 @@
 #include "matrice.h"
 
+bool infxy(matrice* mat,int i,int j){
+  if (mat->mat[i][0]<mat->mat[j][0])
+    return true;
+  return (mat->mat[i][0]==mat->mat[j][0]&&mat->mat[i][1]<=mat->mat[j][1]);
+}
+
+void swapl(matrice* mat,int i,int j){
+  for(int k = 0 ; k < mat->m;k++){
+    int tmp = mat->mat[i][k];
+    mat->mat[i][k]=mat->mat[j][k];
+    mat->mat[j][k]=tmp;
+  }
+}
+
+int partitionne(matrice* mat, int deb, int fin){
+  int j = deb;
+  for(int i = deb;i<fin;i++){
+    if(infxy(mat,i,fin-1)){
+      swapl(mat,i,j);
+      j++;
+    }
+  }
+  return j-1;
+}
+
+void sortxy_rec(matrice* mat,int deb, int fin){
+  if (fin-deb>1){
+    int pivot = partitionne(mat,deb,fin);
+    sortxy_rec(mat,deb,pivot-1);
+    sortxy_rec(mat,pivot+1,fin);
+  }
+}
+
+void sortxy(matrice* mat){
+  sortxy_rec(mat,0,mat->n);
+}
 
 matrice* matrice_nulle(int n, int m) {
     matrice* M = (matrice*) malloc(sizeof(matrice));
