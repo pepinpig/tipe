@@ -235,3 +235,16 @@ void stl_generate(char* filename, double** point, triangle* l, unsigned long int
     printf("stl generated : %s\n", filename);
     fflush(stdout);
 }
+
+double** mat_to_table (matrice* mat,int* n){
+  *n = mat->n;
+  double** space = malloc(sizeof(double*)*(*n));
+  for(int i = 0; i<*n;i++){
+    space[i]=malloc(sizeof(double)*3);
+    for(int j = 0; j<3;j++){
+      space[i][j]=mat->mat[i][j];
+    }
+  }
+  return space;
+}
+

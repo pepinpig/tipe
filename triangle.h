@@ -33,3 +33,4 @@ bool* keeptrig(triangle* l,unsigned long int ntrig, int size, double** point) ;
 double** read_points(char* filename, int count) ;
 void stl_generate(char* filename, double** point, triangle* l,unsigned long int ntrig,bool *garde);
 double ** rand_points(int n);
+double** mat_to_table (matrice* mat,int* n);
