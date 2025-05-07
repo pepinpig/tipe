@@ -24,7 +24,7 @@ def plot_image_with_points(image, points):
     ax.imshow(image, cmap='gray')
 
     for i in range(len(points)):
-        ax.scatter(points[i, 1], points[i, 0], color=colors[i], label='Points' if i == 0 else "")
+        ax.scatter(points[i, 0], points[i, 1], color=colors[i], label='Points' if i == 0 else "")
 
     plt.show()
 

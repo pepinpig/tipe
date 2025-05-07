@@ -32,17 +32,17 @@ def plot_images_with_points(image1, image2, points1, points2):
     for i in range(min(len(points1), len(points2))):
         color = colors[i]
         # Point image 1
-        ax.scatter(points1[i, 0], points1[i, 1], color=color, label='Points Image 1' if i == 0 else "")
-        ax.text(points1[i, 0] + 3, points1[i, 1] - 3, str(i), color=color, fontsize=11)
+        ax.scatter(points1[i, 1], points1[i, 0], color=color, label='Points Image 1' if i == 0 else "")
+        ax.text(points1[i, 1] + 3, points1[i, 0] - 3, str(i), color=color, fontsize=11)
 
         # Point image 2
         if (points2[i, 0] + points2[i, 1] > 0):
-            ax.scatter(points2[i, 0] + image1.shape[1], points2[i, 1], color=color, label='Points Image 2' if i == 0 else "")
-            ax.text(points2[i, 0] + image1.shape[1] + 3, points2[i, 1] - 3, str(i), color=color, fontsize=11)
+            ax.scatter(points2[i, 1] + image1.shape[1], points2[i, 0], color=color, label='Points Image 2' if i == 0 else "")
+            ax.text(points2[i, 1] + image1.shape[1] + 3, points2[i, 0] - 3, str(i), color=color, fontsize=11)
 
             # Ligne entre les points
-            ax.plot([points1[i, 0], points2[i, 0] + image1.shape[1]],
-                    [points1[i, 1], points2[i, 1]], color=color, linestyle='-', linewidth=1)
+            ax.plot([points1[i, 1], points2[i, 1] + image1.shape[1]],
+                    [points1[i, 0], points2[i, 0]], color=color, linestyle='-', linewidth=1)
     
     ax.set_title('Points appariés avec numéros')
     ax.legend()
@@ -73,7 +73,7 @@ def main(image1_name, image2_name, points1_name, points2_name):
 
 if __name__ == '__main__':
     if len(sys.argv) != 5:
-        print("Usage: python plot_points_ap.py <image1_name> <image2_name> <points1_name> <points2_name>")
+        print("Usage: python script.py <image1_name> <image2_name> <points1_name> <points2_name>")
         sys.exit(1)
     
     image1_name = sys.argv[1]
