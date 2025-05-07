@@ -4,8 +4,8 @@ CFLAGS := -std=c99
 all : test_triangulation test_moravec test_trouve_coin test_detection
 
 
-test_triangulation : triangle.o triangle.h test_triangulation.c
-	gcc $(CFLAGS) $(WFLAGS) -g triangle.o test_triangulation.c -lm -o test_triangulation
+test_triangulation : triangle.o manipulation_fichier.o matrice.o SVD.o camera_calibration.o reconstruction.o triangle.h test_triangulation.c 
+	gcc $(CFLAGS) $(WFLAGS) -g triangle.o manipulation_fichier.o matrice.o reconstruction.o SVD.o camera_calibration.o  test_triangulation.c -lm -o test_triangulation
   
 test_moravec : manipulation_fichier.o matrice.o moravec.o test_moravec.c
 	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o moravec.o test_moravec.c -lm -o test_moravec
@@ -23,9 +23,12 @@ test_SVD : manipulation_fichier.o matrice.o SVD.o
 test_camera_calibration : manipulation_fichier.o matrice.o SVD.o camera_calibration.o test_camera_calibration.c
 	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o SVD.o camera_calibration.o  test_camera_calibration.c -lm -o test_camera_calibration
 
-test_reconstruction : manipulation_fichier.o matrice.o SVD.o camera_calibration.o test_reconstruction.c
-	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o SVD.o camera_calibration.o  test_reconstruction.c -lm -o test_reconstruction
+test_reconstruction : manipulation_fichier.o matrice.o reconstruction.o SVD.o camera_calibration.o test_reconstruction.c
+	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o reconstruction.o SVD.o camera_calibration.o  test_reconstruction.c -lm -o test_reconstruction
 
+
+reconstruction.o :  reconstruction.c reconstruction.h
+	gcc $(CFLAGS) $(WFLAGS) -g -c reconstruction.c -lm -o reconstruction.o
 
 moravec.o :  moravec.c moravec.h
 	gcc $(CFLAGS) $(WFLAGS) -g -c moravec.c -lm -o moravec.o
