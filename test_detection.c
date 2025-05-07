@@ -2,8 +2,8 @@
 #include "appariement.h"
 #include "trouve_coin.h"
 #include "camera_calibration.h"
-#define DISTANCE_SEUIL 13
-#define HAMMING_SEUIL 100
+#define DISTANCE_SEUIL 60
+#define HAMMING_SEUIL 130
 
 #define MAX_FILENAME 256
 
@@ -19,7 +19,7 @@ matrice* read_jpg(char* filename){
     snprintf(input_name, sizeof(input_name), "%s.txt", filename);
     if (!file_exists(input_name)){
         char command[128];
-        snprintf(command, sizeof(command), "python3 jpg_to_txt2.py %s.jpg", filename);
+        snprintf(command, sizeof(command), "python3 jpg_to_txt.py %s.jpg", filename);
         system(command);
     }
     printf("%s", input_name);
@@ -160,11 +160,14 @@ int main(int argc, char* argv[]) {
         fflush(stdout);
         img1 = bit_image_to_points(output1,nbp1);
         free_matrice(output1);
+        save_matrice_to_file(img1, points_file1);
     } else if (argc > 3 && strcmp(argv[3], "select") == 0) {
         snprintf(command, sizeof(command), "python3 save_points.py %s.jpg %s.jpg", filename1, filename2);
         system(command);
         read_matrice_from_file_dimension(&img1, points_file1);
         read_matrice_from_file_dimension(&img2, points_file2);
+        snprintf(command, sizeof(command), "python3 plot_appariement.py %s.jpg %s.jpg points_%s.txt points_%s.txt", filename1, filename2, filename1, filename2);
+        system(command);
     } else {
         read_matrice_from_file_dimension(&img1, points_file1);
         read_matrice_from_file_dimension(&img2, points_file2);
@@ -172,15 +175,17 @@ int main(int argc, char* argv[]) {
 
     nbp1 = img1->n;
     nbp2 = img2->n;
-
-    snprintf(command, sizeof(command), "python3 plot_appariement.py %s.jpg %s.jpg points_%s.txt points_%s.txt", filename1, filename2, filename1, filename2);
-    system(command);
+    
+    
 
     matrice* retenus = matrice_nulle(nbp1, 2);
     matrice* retenus_dh = matrice_nulle(nbp1, 1);
     uint256_t** retenus_descripteur = init_descriptor(nbp1);
     matrice* F = matrice_nulle(3, 3);
-    read_matrice_from_file(F, "F.txt");
+    printf("verifier d'avoir lancer correspondance.py pour clacluler F");
+    char F_name[100];
+    snprintf(F_name, sizeof(F_name), "F_%s.txt", filename1);
+    read_matrice_from_file(F, F_name);
     srand(time(NULL));
     int pairs[NUM_PAIRS][4];
     generer_paires(pairs);
@@ -188,13 +193,15 @@ int main(int argc, char* argv[]) {
     uint256_t** img2_descripteur = compute_brief(input2, img2, pairs);
     for (int i = 0; i < nbp1; i++) {
         printf("\n-----------\n");
-        printf("point %d de coordonnéees %d %d...\n", i, (int)img1->mat[i][0], (int)img1->mat[i][1]);
+        printf("point img1 %d de coordonnéees %d %d :\n", i, (int)img1->mat[i][0], (int)img1->mat[i][1]);
         matrice* X1 = coo_vect(img1->mat[i][0], img1->mat[i][1]);
         matrice* l = epipolar_line(F, X1);
         int h_min = 1000;
 
         for (int j = 0; j < nbp2; j++) {
             matrice* X2 = coo_vect(img2->mat[j][0], img2->mat[j][1]);
+            printf("point img2 %d de coordonnéees %d %d :", j, (int)img2->mat[j][0], (int)img2->mat[j][1]);
+            printf("distance %f / hamming %d \n", fabs(produit_scalaire(l, X2)), hamming_distance(img2_descripteur[j], img1_descripteur[i]));
             if (fabs(produit_scalaire(l, X2)) < DISTANCE_SEUIL) {
                 int h = hamming_distance(img2_descripteur[j], img1_descripteur[i]);
                 if (h < h_min) {
@@ -224,9 +231,13 @@ int main(int argc, char* argv[]) {
     save_matrice_to_file(img1, export_char);
     snprintf(export_char, sizeof(export_char), "points_ap_%s.txt", filename2);
     save_matrice_to_file(retenus, export_char);
-    snprintf(command, sizeof(command), "python3 plot_points_ap.py %s.jpg %s.jpg points_ap_%s.txt points_ap_%s.txt", filename1, filename2, filename1, filename2);
+    if (argc > 3 && strcmp(argv[3], "moravec") == 0){
+        snprintf(command, sizeof(command), "python3 plot_points_ap_inv.py %s.jpg %s.jpg points_ap_%s.txt points_ap_%s.txt", filename1, filename2, filename1, filename2);
+    }
+    else{
+        snprintf(command, sizeof(command), "python3 plot_points_ap.py %s.jpg %s.jpg points_ap_%s.txt points_ap_%s.txt", filename1, filename2, filename1, filename2);
+    }
     system(command);
-
     free(actif);
     return 0;
 }

@@ -1,42 +1,33 @@
 #include "triangle.h"
+#include "reconstruction.h"
 
 #define NBRPOINTS 50
 
 int main(int argc, char* argv[]) {
-  fprintf(stdout, "N = %d\n", NBRPOINTS); fflush(stdout);
-    /*if (argc < 2) {
-        fprintf(stderr, "Usage: %s <nom_fichier>\n", argv[0]);
-        return EXIT_FAILURE;
+    if (argc < 7) {
+        fprintf(stderr, "Usage: %s <nom_image>*6\n", argv[0]);
+        return 1;
     }
-    char* base_nom = argv[1];
-    char filename[256];
-    snprintf(filename,sizeof(filename), "points_3D-%s",base_nom);
-    char fn_complete_n[256];
-    snprintf(fn_complete_n, sizeof(fn_complete_n), "points/donnees/nb_points-%s.txt", base_nom);
-    FILE* file = fopen(fn_complete_n, "r");
-    if (!file) {
-        printf("%s\n",fn_complete_n );
-        perror("Erreur d'ouverture du fichier nb_points.txt");
-        return EXIT_FAILURE;
-    }
-    int point_count;
-    fscanf(file, "%d", &point_count);
-    fclose(file);
-    double** env = read_points(filename, point_count);
-    */
-    
-    double** env = rand_points(NBRPOINTS);
-    unsigned long int n = trois_parmi(NBRPOINTS);
+    char* image_name1 = argv[1];
+    char* image_name2 = argv[2];
+    char* image_name3 = argv[3];
+    char* image_name4 = argv[4];
+    char* image_name5 = argv[5];
+    char* image_name6 = argv[6];
+    matrice* matrice_output;
+    int nb_points =reconstruction3(image_name1, image_name2,  image_name3,  image_name4,  image_name5,  image_name6, &matrice_output);
+    double** env = mat_to_table (matrice_output,&nb_points);
+    unsigned long int n = trois_parmi(nb_points);
     printf("malloc triangle debut\n");
     fflush(stdout);
-    triangle* triangle_table = triangles(NBRPOINTS);
+    triangle* triangle_table = triangles(nb_points);
     printf("malloc triangle fin\n");
     fflush(stdout);
     //char fn_complete[512];
     //snprintf(fn_complete, sizeof(fn_complete), "points/donnees/tri_%s.txt", filename);
     //FILE* file2 = fopen(fn_complete, "w");
 
-    bool* garde = keeptrig(triangle_table,n,NBRPOINTS,env);
+    bool* garde = keeptrig(triangle_table,n,nb_points,env);
     /*for (int i = 0; i < n; i++) {
         if (garde[i]) {
             for (int j = 0; j < 3; j++) {
@@ -50,7 +41,7 @@ int main(int argc, char* argv[]) {
     //fclose(file2);
     free(garde);
     destroy_trigs(triangle_table);
-    destroy_points(env, NBRPOINTS);
+    destroy_points(env, nb_points);
 
     return EXIT_SUCCESS;
 }
