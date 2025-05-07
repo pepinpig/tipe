@@ -50,7 +50,7 @@ matrice* compute_score(matrice* plan, int** actif, int size){ //size est la tail
   printf("size = %d \n",size);
   for(int i = 0; i < size; i++){
     for(int j = i+1; j < size; j++){
-      if(distance(actif[i][0],actif[i][1],actif[j][0],actif[j][1])<40*40 && !au_bord(plan,actif[i][0],actif[i][1]) && !au_bord(plan,actif[j][0],actif[j][1])){ //On ne traite pas de points trop au bord
+      if(distance(actif[i][0],actif[i][1],actif[j][0],actif[j][1])<DIST*DIST && !au_bord(plan,actif[i][0],actif[i][1]) && !au_bord(plan,actif[j][0],actif[j][1])){ //On ne traite pas de points trop au bord
 																			//		printf("%d",j);
         update_score(plan,score,actif[i][0],actif[i][1],actif[j][0],actif[j][1]);
       }
@@ -129,4 +129,3 @@ void pretty_mat(matrice* input, int** actif, int size){
   printf("     %d   %d   ",s,size);
 	free_matrice(tmp);
 }
-

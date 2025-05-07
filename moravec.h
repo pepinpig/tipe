@@ -7,7 +7,9 @@
 #include "manipulation_fichier.h"
 
 #define WINDOW 5 // nombre de pixel considéré dans chaque direction
-#define SEUIL 2000
+#define SEUIL 4000
+#define SEUILTC 1
+#define DIST 40
 
 #define PARAM true 
 
