@@ -147,6 +147,13 @@ matrice* concatenation2(matrice* a, matrice* b) {
 matrice* concatenation3(matrice* a, matrice* b, matrice* c) {
     return concatenation2(concatenation2(a,b),c);
 }
+matrice* concatenationv2(matrice* a, matrice* b){
+    return transposee(concatenation2(transposee(a), transposee(b)));
+}
+
+matrice* concatenationv3(matrice* a, matrice*b, matrice* c){
+    return concatenationv2(concatenationv2(a,b),c);
+}
 
 
 void assert_ligne_in_range(matrice * a, int i){

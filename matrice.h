@@ -53,11 +53,17 @@ void multiplication_scalaire(matrice* a, double lambda);
 //Renvoie une nouvelle matrice, transposée de la matrice a
 matrice *transposee(matrice* a);
 
-// Fonction pour concaténer deux matrices horizontalement
+// Concatènae deux matrices a b horizontalement
 matrice *concatenation2(matrice* a, matrice* b) ;
 
-// Fonction pour concaténer trois matrices horizontalement
+// Concatène trois matrices a b c horizontalement
 matrice *concatenation3(matrice* a, matrice* b, matrice* c) ;
+
+// Concatène trois matrices a b c verticalement
+matrice* concatenationv2(matrice* a, matrice* b);
+
+// Concatène trois matrices a b c verticalement
+matrice* concatenationv3(matrice* a, matrice* b, matrice* c);
 
 matrice* copie(matrice* a);
 
