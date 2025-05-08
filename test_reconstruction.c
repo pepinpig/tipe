@@ -7,12 +7,7 @@ int main(int argc, char* argv[]) {
     }
     char* image_name1 = argv[1];
     char* image_name2 = argv[2];
-    char* image_name3 = argv[3];
-    char* image_name4 = argv[4];
-    char* image_name5 = argv[5];
-    char* image_name6 = argv[6];
-    char* image_name7 = argv[7];
-    char* image_name8 = argv[8];
+
     matrice* matrice_output;
     int nb_points =reconstruction1(image_name1, image_name2, &matrice_output);
     char command[256];

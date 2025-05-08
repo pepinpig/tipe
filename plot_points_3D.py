@@ -39,7 +39,7 @@ def lire_et_tracer_points(fichiers):
 
             # Ajouter des étiquettes pour chaque point
             for i, (x, y, z) in enumerate(zip(x_coords, y_coords, z_coords)):
-                ax.text(x, y, z, f"{i + 1}", color=couleur)
+                ax.text(x, y, z, f"{i}", color=couleur)
 
         # Définir les mêmes échelles pour chaque axe
         max_range = max(x_max - x_min, y_max - y_min, z_max - z_min) / 2.0

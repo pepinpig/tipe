@@ -19,7 +19,7 @@ def resize_image(image, max_height=600, max_width=3000):
 # Sauvegarde les points dans un fichier texte
 def save_points(filename, points):
     with open(filename, 'w') as f:
-        f.write(f"{len(points)} 2\n")
+        #f.write(f"{len(points)} 2\n")
         np.savetxt(f, points, fmt='%d')
 
 # Callback de sélection de points
@@ -49,7 +49,7 @@ def process_image(image_name):
 
     base_name = os.path.splitext(image_name)[0]
     save_points(f'points/donnees/points_calibrage_{base_name}.txt', points)
-    print(f"Points sauvegardés dans points_{base_name}.txt")
+    print(f"Points sauvegardés dans points_calibrage_{base_name}.txt")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Sélectionner des points sur une seule image.")

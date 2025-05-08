@@ -3,8 +3,32 @@ import cv2
 import sys
 import os
 
+def correct_projection_matrix_YZ(P):
+    T = np.array([
+        [1, 0, 0, 0],
+        [0, 0, 1, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, 1]
+    ])
+    return P @ T
+
+def swap_y_z(points_3d):
+    """
+    Inverse Y et Z pour un tableau de points 3D de forme (N, 3).
+    """
+    if points_3d.shape[1] != 3:
+        raise ValueError("Les points doivent avoir la forme (N, 3)")
+    
+    swapped = points_3d.copy()
+    swapped[:, [1, 2]] = swapped[:, [2, 1]]
+    return swapped
+
 def load_points(file_path):
-    """Charge les points depuis un fichier (ignore les -1 -1)."""
+    """Charge les points depuis un fichier (ignore les -1 -1) si le fichier existe."""
+    if not os.path.exists(file_path):
+        print(f"Erreur : le fichier {file_path} est introuvable.")
+        sys.exit(1)
+
     points = []
     with open(file_path, 'r') as f:
         for line in f:
@@ -66,7 +90,8 @@ def main():
     print("Chargement des points...")
     image_points = load_points(points_2d_file)
     object_points = load_points_3d(points_3d_file)
-
+    object_points = swap_y_z(object_points)  # ✅ Correction ici
+    print(object_points)
     if len(image_points) != len(object_points):
         print(f"Erreur : {len(image_points)} points 2D mais {len(object_points)} points 3D.")
         sys.exit(1)
@@ -76,9 +101,10 @@ def main():
 
     print("Calcul de la matrice de projection P...")
     P = compute_projection_matrix(A)
+    P_corrected = correct_projection_matrix_YZ(P)
 
-    print("P =\n", P)
-    save_projection_matrix(P, image_name)
+    print("P =\n", P_corrected)
+    save_projection_matrix(P_corrected, image_name)
 
 if __name__ == "__main__":
     main()

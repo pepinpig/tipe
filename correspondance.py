@@ -50,6 +50,7 @@ def on_click_show_epiline(event, x, y, flags, param):
             point = np.array([[[x, y]]], dtype=np.float32)
             lines = cv.computeCorrespondEpilines(point, 2, F)
             print(lines)
+            print(F*l)
             img1_with_lines = draw_epilines(param['img1'].copy(), lines, param['pts1'])
             cv.imshow('Image 1', img1_with_lines)
 
