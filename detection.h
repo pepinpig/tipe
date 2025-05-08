@@ -2,10 +2,10 @@
 #include "appariement.h"
 #include "trouve_coin.h"
 #include "camera_calibration.h"
-#define DISTANCE_SEUIL 5
-#define HAMMING_SEUIL 130
+#define DISTANCE_SEUIL 8
+#define HAMMING_SEUIL 100
 #define MAX_FILENAME 256
-#define MARGEX 5
+#define MARGEX 10
 
 float point_line_distance(matrice* line, matrice* point);
 matrice* read_jpg(char* filename);

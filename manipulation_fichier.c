@@ -19,6 +19,7 @@ void read_matrice_from_file_dimension(matrice** mtx, char* filename) {
     snprintf(complete_fn, 256, "points/donnees/%s", filename);
     
     FILE* fichier = fopen(complete_fn, "r");
+    printf("Lecture de %s ...\n", filename);
     assert(fichier != NULL);
     
     int n, m;
@@ -134,29 +135,11 @@ int save_matrice_to_file_clean(matrice *A, char* filename) {
     return nb_points;
 }
 
-
-void save_matrice_to_file_inv(matrice *A, char* filename) {
-    char complete_fn[256];
-    snprintf(complete_fn, 256, "points/donnees/%s", filename);
-    FILE *file = fopen(complete_fn, "w");
-    assert(file != NULL);
-
-    for (int i = 0; i < A->n; i++) {
-        for (int j = 0; j < A->m; j++) {
-            fprintf(file, "%lf ", A->mat[i][A->m-j]);
-        }
-        fprintf(file, "\n");
-    }
-
-    fclose(file);
-    printf("Matrice enregistrée dans %s\n", filename);
-}
-
-
 void read_matrice_from_file(matrice* A, const char *filename) {
     char complete_fn[256];
     snprintf(complete_fn, 256, "points/donnees/%s", filename);
     FILE *file = fopen(complete_fn, "r");
+    printf("Lecture de %s ...\n", filename);
     assert(file != NULL);
 
     for (int i = 0; i < A->n; i++) {
