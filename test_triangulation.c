@@ -4,8 +4,8 @@
 #define NBRPOINTS 50
 
 int main(int argc, char* argv[]) {
-    if (argc < 7) {
-        fprintf(stderr, "Usage: %s <nom_image>*6\n", argv[0]);
+    if (argc < 9) {
+        fprintf(stderr, "Usage: %s <nom_image>*8\n", argv[0]);
         return 1;
     }
     char* image_name1 = argv[1];
@@ -14,8 +14,10 @@ int main(int argc, char* argv[]) {
     char* image_name4 = argv[4];
     char* image_name5 = argv[5];
     char* image_name6 = argv[6];
+    char* image_name7 = argv[7];
+    char* image_name8 = argv[8];
     matrice* matrice_output;
-    int nb_points =reconstruction3(image_name1, image_name2,  image_name3,  image_name4,  image_name5,  image_name6, &matrice_output);
+    int nb_points =reconstruction4(image_name1, image_name2,  image_name3,  image_name4,  image_name5,  image_name6,image_name7,  image_name8, &matrice_output);
     double** env = mat_to_table (matrice_output,&nb_points);
     unsigned long int n = trois_parmi(nb_points);
     printf("malloc triangle debut\n");

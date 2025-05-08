@@ -482,6 +482,13 @@ matrice* coo_vect(double x, double y){
     res->mat[2][0]=1;
     return res;
 }
+matrice* coo_vect_inv(double x, double y){
+    matrice* res=matrice_nulle(3,1);
+    res->mat[0][0]=y;
+    res->mat[1][0]=x;
+    res->mat[2][0]=1;
+    return res;
+}
 double determinant_matrice(matrice* M) {
     assert(M->n == M->m); // Matrice carrée
 

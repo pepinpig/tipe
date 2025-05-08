@@ -58,6 +58,24 @@ void save_matrice_to_file_dimension(matrice* matrix, char* filename) {
     printf("Matrice enregistrée dans %s\n", filename);
 }
 
+void save_matrice_to_file_dimension_inv(matrice* matrix, char* filename) {
+    char complete_fn[256];
+    snprintf(complete_fn, 256, "points/donnees/%s", filename);
+    FILE* file = fopen(complete_fn, "w");
+    assert(file != NULL);
+
+    fprintf(file, "%d %d", matrix->n, matrix->m);
+    fprintf(file, "\n");
+    for (int i = 0; i < matrix->n; ++i) {
+        fprintf(file, "%lf ", matrix->mat[i][1]);
+        fprintf(file, "%lf ", matrix->mat[i][0]);
+        fprintf(file, "\n");
+    }
+
+    fclose(file);
+    printf("Matrice enregistrée dans %s\n", filename);
+}
+
 void save_matrice_pbm(matrice* matrix, char* filename, char* parametre) {
     char complete_fn[256];
     snprintf(complete_fn, 256, "points/images/%s", filename);
@@ -95,6 +113,46 @@ void save_matrice_to_file(matrice *A, char* filename) {
     printf("Matrice enregistrée dans %s\n", filename);
 }
 
+int save_matrice_to_file_clean(matrice *A, char* filename) {
+    char complete_fn[256];
+    snprintf(complete_fn, 256, "points/donnees/%s", filename);
+    FILE *file = fopen(complete_fn, "w");
+    assert(file != NULL);
+    int nb_points=0;
+    for (int i = 0; i < A->n; i++) {
+        if (A->mat[i][0]!=-1){
+            nb_points++;
+            for (int j = 0; j < A->m; j++) {
+                fprintf(file, "%lf ", A->mat[i][j]);
+            }
+            fprintf(file, "\n");
+        }
+    }
+
+    fclose(file);
+    printf("Matrice enregistrée dans %s\n", filename);
+    return nb_points;
+}
+
+
+void save_matrice_to_file_inv(matrice *A, char* filename) {
+    char complete_fn[256];
+    snprintf(complete_fn, 256, "points/donnees/%s", filename);
+    FILE *file = fopen(complete_fn, "w");
+    assert(file != NULL);
+
+    for (int i = 0; i < A->n; i++) {
+        for (int j = 0; j < A->m; j++) {
+            fprintf(file, "%lf ", A->mat[i][A->m-j]);
+        }
+        fprintf(file, "\n");
+    }
+
+    fclose(file);
+    printf("Matrice enregistrée dans %s\n", filename);
+}
+
+
 void read_matrice_from_file(matrice* A, const char *filename) {
     char complete_fn[256];
     snprintf(complete_fn, 256, "points/donnees/%s", filename);
@@ -111,10 +169,10 @@ void read_matrice_from_file(matrice* A, const char *filename) {
 }
 
 
-void load_all_points_images(const char* filename, double* u, double*v) {
+void load_all_points_images(const char* filename, double* u, double*v, int n) {
     FILE *file = fopen(filename, "r");
     double ui, vi;
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < n; i++) {
         fscanf(file, "%lf %lf", &ui, &vi);
         u[i]=ui;
         v[i]=vi;
@@ -123,10 +181,10 @@ void load_all_points_images(const char* filename, double* u, double*v) {
 }
 
 
-void load_all_points_reels(const char* filename, double* X, double* Y, double* Z) {
+void load_all_points_reels(const char* filename, double* X, double* Y, double* Z, int n) {
     FILE *file = fopen(filename, "r");
     double Xi, Yi, Zi;
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < n; i++) {
         fscanf(file, "%lf %lf %lf", &Xi, &Yi, &Zi);
         X[i]=Xi;
         Y[i]=Yi;

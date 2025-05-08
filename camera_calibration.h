@@ -8,9 +8,9 @@
 #include "matrice.h"
 #include "manipulation_fichier.h"
 #include "SVD.h"
-
+#define N 16 //nombre de points de calibration
 // Fonction pour construire la matrice A
-matrice* construction_A(double* X, double* Y, double* Z, double* u, double* v);
+matrice* construction_A(double* X, double* Y, double* Z, double* u, double* v, int n);
 
 // Fonction pour résoudre la calibration de la caméra
 void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* R, matrice* T);

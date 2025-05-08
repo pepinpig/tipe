@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     char parametre[256];
     printf("test\n");
     snprintf(parametre, sizeof(parametre), "fichier:%s, seuil:%d, fenetre:%d, param:%d", filename, SEUIL, WINDOW, PARAM);
-    snprintf(output_name, sizeof(output_name), "tc-%s-mv-%d-%d-%d.pbm", filename, SEUIL, WINDOW, PARAM);
+    snprintf(output_name, sizeof(output_name), "%s-mv-%d-%d-%d-tc.pbm", filename, SEUIL, WINDOW, PARAM);
     save_matrice_pbm(output, output_name, parametre);
     save_matrice_to_file(output, filename);
     free_matrice(input);

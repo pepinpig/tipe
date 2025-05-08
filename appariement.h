@@ -12,7 +12,7 @@
 
 
 // Définitions des constantes
-#define PATCH_SIZE 31   // Taille du patch utilisée
+#define PATCH_SIZE 41   // Taille du patch utilisée
 #define NUM_PAIRS 256  
 
 typedef struct uint256{

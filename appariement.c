@@ -55,7 +55,6 @@ uint256_t** compute_brief(matrice* image, matrice* points, int pairs[NUM_PAIRS][
     }
     // Parcours des points
     for (int i = 0; i < points->n; i++) {
-        printf("calcul brief points %d\n",i);
         // Vérification que les coordonnées du point sont valides
         if (points->mat == NULL) {
             fprintf(stderr, "Points non valides\n");
@@ -64,7 +63,6 @@ uint256_t** compute_brief(matrice* image, matrice* points, int pairs[NUM_PAIRS][
         }
         int x = (int) points->mat[i][0]; 
         int y = (int) points->mat[i][1];
-        printf("coordonées %d %d\n",x,y);
         // Parcours des paires
         for (int j = 0; j < NUM_PAIRS; j++) {
             int x1 = x + pairs[j][0], y1 = y + pairs[j][1];
