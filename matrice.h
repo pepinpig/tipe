@@ -15,6 +15,8 @@ typedef struct matrice_s{
     double** mat;
 } matrice;
 
+void sortxy(matrice* mat);
+
 //Créer un pointeur vers une matrice nulle de taille n*m
 matrice* matrice_nulle(int n, int m);
 

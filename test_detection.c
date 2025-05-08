@@ -65,29 +65,18 @@ matrice* selection_moravec(char* filename, int* nbp, matrice* input){
 
 
 int main(int argc, char* argv[]) {
-    if (argc < 3) {
-        fprintf(stderr, "Usage: %s <nom_image1> <nom_image2> [moravec/select]\n", argv[0]);
-        return 1;
-    }
-    char command[500];
-    char export_char[64];
-    char points_file1[MAX_FILENAME], points_file2[MAX_FILENAME];
-    char* filename1 = argv[1];
-    char* filename2 = argv[2];
+  char command[500];
+  if (argc < 3) {
+      fprintf(stderr, "Usage: %s <nom_image1> <nom_image2> [moravec/select]\n", argv[0]);
+      return 1;
+  }
+  char export_char[64];
+  char* filename1 = argv[1];
+  char* filename2 = argv[2];
 
-    snprintf(points_file1, sizeof(points_file1), "points_%s.txt", filename1);
-    snprintf(points_file2, sizeof(points_file2), "points_%s.txt", filename2);
-
-    int nbp2;
-    matrice* input1 = read_jpg(filename1);
-    matrice* input2 = read_jpg(filename2);
-    matrice *img1, *img2;
-    int** actif = NULL;
-    printf("debug debut\n");
-    fflush(stdout);
-    int nbp1= moravec_arr(input1,&actif);
-    printf("moravec : n detec = %d\n",nbp1);
-    fflush(stdout);
+  matrice* input1 = read_jpg(filename1);
+  matrice* input2 = read_jpg(filename2);
+  matrice *img1, *img2;
 
     if (argc > 3 && strcmp(argv[3], "moravec") == 0) {
         img2 = selection_moravec(filename2, &nbp2, input2);
@@ -115,8 +104,7 @@ int main(int argc, char* argv[]) {
         snprintf(command, sizeof(command), "python3 plot_appariement.py %s.jpg %s.jpg points_%s.txt points_%s.txt", filename1, filename2, filename1, filename2);
         //system(command);
     } else {
-        read_matrice_from_file_dimension(&img1, points_file1);
-        read_matrice_from_file_dimension(&img2, points_file2);
+      init_img_file(&img1,&img2,filename1,filename2);
     }
 
     nbp1 = img1->n;

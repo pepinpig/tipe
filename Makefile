@@ -13,8 +13,8 @@ test_moravec : manipulation_fichier.o matrice.o moravec.o test_moravec.c moravec
 test_trouve_coin :  moravec.h manipulation_fichier.o matrice.o moravec.o trouve_coin.o test_trouve_coin.c
 	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o moravec.o trouve_coin.o test_trouve_coin.c -lm -o test_trouve_coin
 
-test_detection : manipulation_fichier.o matrice.o moravec.o appariement.o trouve_coin.o  SVD.o camera_calibration.o test_detection.c
-	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o moravec.o appariement.o trouve_coin.o  SVD.o camera_calibration.o test_detection.c -lm -o test_detection
+test_detection : detection.o manipulation_fichier.o matrice.o moravec.o appariement.o trouve_coin.o  SVD.o camera_calibration.o test_detection.c
+	gcc $(CFLAGS) $(WFLAGS) -g detection.o manipulation_fichier.o matrice.o moravec.o appariement.o trouve_coin.o  SVD.o camera_calibration.o test_detection.c -lm -o test_detection
 
 test_SVD : manipulation_fichier.o matrice.o SVD.o
 	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o SVD.o test_SVD.c -lm -o test_SVD
@@ -49,6 +49,9 @@ SVD.o : SVD.c SVD.h
 
 trouve_coin.o : trouve_coin.c trouve_coin.h 
 	gcc $(CFLAGS) $(WFLAGS) -g -c trouve_coin.c -lm -o trouve_coin.o
+	
+detection.o : detection.c detection.h
+	gcc $(CFLAGS) $(WFLAGS) -g -c detection.c -lm -o detection.o
 
 clean :
 	rm -f *.o
