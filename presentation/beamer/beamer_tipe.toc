@@ -1,5 +1,0 @@
-\babel@toc {french}{}\relax 
-\beamer@sectionintoc {1}{Première section : le haut des slides}{2}{0}{1}
-\beamer@subsectionintoc {1}{1}{À propos de l'en-tête}{4}{0}{1}
-\beamer@subsectionintoc {1}{2}{Mise en forme du bandeau de titre}{6}{0}{1}
-\beamer@sectionintoc {2}{Faire des animations}{9}{0}{2}
