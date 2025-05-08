@@ -1,86 +1,34 @@
-#include "moravec.h"
-#include "appariement.h"
-#include "trouve_coin.h"
-#include "camera_calibration.h"
-#define DISTANCE_SEUIL 6
-#define HAMMING_SEUIL 100
+#include "detection.h"
 
-#define MAX_FILENAME 256
-
-
-
-matrice* read_jpg(char* filename){
-    char input_name[32];
-    snprintf(input_name, sizeof(input_name), "%s.txt", filename);
-    if (!file_exists(input_name)){
-        char command[128];
-        snprintf(command, sizeof(command), "python3 jpg_to_txt.py %s.jpg", filename);
-        system(command);
-    }
-    printf("%s", input_name);
-    matrice* input;
-    read_matrice_from_file_dimension(&input, input_name);
-    return input;
-}
-float point_line_distance(matrice* line, matrice* point) {
-    float a = line->mat[0][0];
-    float b = line->mat[1][0];
-    float c = line->mat[2][0];
-    float x = point->mat[0][0];
-    float y = point->mat[1][0];
-    return fabs(a * x + b * y + c) / sqrt(a * a + b * b);
-}
-
-matrice* bit_image_to_points (matrice* image, int nb_points){
-    matrice* res=matrice_nulle(nb_points,2);
-    int c=0;
-    for (int i = 0; i < image->n; i++){
-        for (int j=0; j<image->m; j++){
-            if ((image->mat[i][j])==1){
-                res->mat[c][0]=j;
-                res->mat[c][1]=i;
-                c++;
-            }
-        }
-    }
-    return res;
-    
-}
-
-matrice* selection_moravec(char* filename, int* nbp, matrice* input){
-    matrice* output=matrice_nulle(input->n,input->m);
-    int nb_points=moravec(input, output);
-    *nbp=nb_points;
-    char output_name[128];
-    char parametre[256];
-    snprintf(parametre, sizeof(parametre), "fichier:%s, seuil:%d, fenetre:%d, param:%d", filename, SEUIL, WINDOW, PARAM);
-    snprintf(output_name, sizeof(output_name), "%s-mv-%d-%d-%d.pbm", filename, SEUIL, WINDOW, PARAM);
-    save_matrice_pbm(output, output_name, parametre);
-    snprintf(output_name, sizeof(output_name), "points_%s.txt", filename);
-    save_matrice_to_file(output, filename);
-    printf("nb_points : %d\n",nb_points);
-    matrice* points=bit_image_to_points(output, *nbp);
-    return points;
-}
 
 
 int main(int argc, char* argv[]) {
-  char command[500];
-  if (argc < 3) {
-      fprintf(stderr, "Usage: %s <nom_image1> <nom_image2> [moravec/select]\n", argv[0]);
-      return 1;
-  }
-  char export_char[64];
-  char* filename1 = argv[1];
-  char* filename2 = argv[2];
+    char command[500];
+    if (argc < 3) {
+        fprintf(stderr, "Usage: %s <nom_image1> <nom_image2> [moravec/select]\n", argv[0]);
+        return 1;
+    }
+    char export_char[64];
+    char points_file1[MAX_FILENAME], points_file2[MAX_FILENAME];
+    char* filename1 = argv[1];
+    char* filename2 = argv[2];
+    
+    snprintf(points_file1, sizeof(points_file1), "points_%s.txt", filename1);
+    snprintf(points_file2, sizeof(points_file2), "points_%s.txt", filename2);
 
-  matrice* input1 = read_jpg(filename1);
-  matrice* input2 = read_jpg(filename2);
-  matrice *img1, *img2;
+    int nbp2;
+    matrice* input1 = read_jpg(filename1);
+    matrice* input2 = read_jpg(filename2);
+    matrice *img1, *img2;
+    int** actif = NULL;
+    printf("debug debut\n");
+    fflush(stdout);
+    int nbp1= moravec_arr(input1,&actif);
+    printf("moravec : n detec = %d\n",nbp1);
+    fflush(stdout);
 
     if (argc > 3 && strcmp(argv[3], "moravec") == 0) {
         img2 = selection_moravec(filename2, &nbp2, input2);
-        printf("moravec2 : n detec = %d\n",nbp2);
         fflush(stdout);
         save_matrice_to_file_dimension(img2, points_file2);
         //filtrage sur la premiere image
@@ -111,7 +59,6 @@ int main(int argc, char* argv[]) {
     nbp2 = img2->n;
     matrice* retenus = matrice_nulle(nbp1, 2);
     matrice* retenus_dh = matrice_nulle(nbp1, 1);
-    uint256_t** retenus_descripteur = init_descriptor(nbp1);
     matrice* F = matrice_nulle(3, 3);
     printf("verifier d'avoir lancer correspondance.py pour clacluler F");
     char F_name[100];

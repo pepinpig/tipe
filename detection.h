@@ -7,12 +7,10 @@
 #define MAX_FILENAME 256
 #define MARGEX 5
 
-void changement_repere(matrice* points, int image_size);
+float point_line_distance(matrice* line, matrice* point);
 matrice* read_jpg(char* filename);
 matrice* bit_image_to_points (matrice* image, int nb_points);
 matrice* selection_moravec(char* filename, int* nbp, matrice* input);
-matrice* k(matrice* pt, matrice** P);
-matrice* H_pp(char* filename1, char* filename2);
 void init_img_moravec(matrice** img1, matrice** img2, char* filename1, char* filename2, matrice* input1, matrice* input2);
 void init_img_select(matrice** img1, matrice** img2, char* filename1, char* filename2);
 void init_img_file(matrice** img1,matrice** img2, char* filename1, char* filename2);

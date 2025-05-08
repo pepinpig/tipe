@@ -1,9 +1,12 @@
 #include "detection.h" 
 
-void changement_repere(matrice* points, int image_size){
-    for (int i = 0; i < points->n; i++){
-        points->mat[i][0]=image_size-1-(points->mat[i][0]);
-    }
+float point_line_distance(matrice* line, matrice* point) {
+  float a = line->mat[0][0];
+  float b = line->mat[1][0];
+  float c = line->mat[2][0];
+  float x = point->mat[0][0];
+  float y = point->mat[1][0];
+  return fabs(a * x + b * y + c) / sqrt(a * a + b * b);
 }
 
 matrice* read_jpg(char* filename){
@@ -26,8 +29,8 @@ matrice* bit_image_to_points (matrice* image, int nb_points){
     for (int i = 0; i < image->n; i++){
         for (int j=0; j<image->m; j++){
             if ((image->mat[i][j])==1){
-                res->mat[c][0]=i;
-                res->mat[c][1]=j;
+                res->mat[c][0]=j;
+                res->mat[c][1]=i;
                 c++;
             }
         }
@@ -52,53 +55,6 @@ matrice* selection_moravec(char* filename, int* nbp, matrice* input){
     return points;
 }
 
-
-matrice* k(matrice* pt, matrice** P){
-    matrice* XA=coo_vect(pt->mat[0][0], pt->mat[0][1]);
-    matrice* XB=coo_vect(pt->mat[1][0], pt->mat[1][1]);
-    matrice* XC=coo_vect(pt->mat[2][0], pt->mat[2][1]);
-    matrice* XD=coo_vect(pt->mat[3][0], pt->mat[3][1]);
-    *P=concatenation3(XA,XB,XC);
-    matrice* k=resolution_systeme(*P,XD);
-    return k;
-}
-
-matrice* H_pp(char* filename1, char* filename2){
-    char export_char[32];
-    matrice* pt1=matrice_nulle(6,2);
-    snprintf(export_char, 32, "%s_c.txt", filename1);
-    read_matrice_from_file(pt1, export_char);
-    matrice* pt2=matrice_nulle(6,2);
-    snprintf(export_char, 32, "%s_c.txt", filename2);
-    read_matrice_from_file(pt2, export_char);
-    matrice** P1=malloc(sizeof(matrice*));
-    matrice** P2=malloc(sizeof(matrice*));;
-    matrice* k1=k(pt1, P1);
-    matrice* k2=k(pt2, P2);
-    matrice* R=matrice_nulle(3, 1);
-    R->mat[0][0]=k2->mat[0][0]/k1->mat[0][0];
-    R->mat[1][0]=k2->mat[1][0]/k1->mat[1][0];
-    R->mat[2][0]=k2->mat[2][0]/k1->mat[2][0];
-    matrice* X2=matrice_nulle(3, 1);
-    X2->mat[0][0]=(R->mat[0][0])*((*P2)->mat[0][0]);
-    X2->mat[1][0]=(R->mat[1][0])*((*P2)->mat[0][1]);
-    X2->mat[2][0]=(R->mat[2][0])*((*P2)->mat[0][2]);
-    matrice* Y2=matrice_nulle(3, 1);
-    Y2->mat[0][0]=(R->mat[0][0])*((*P2)->mat[1][0]);
-    Y2->mat[1][0]=(R->mat[1][0])*((*P2)->mat[1][1]);
-    Y2->mat[2][0]=(R->mat[2][0])*((*P2)->mat[1][2]);
-    matrice* Z2=matrice_nulle(3, 1);
-    Z2->mat[0][0]=(R->mat[0][0]);
-    X2->mat[1][0]=(R->mat[1][0]);
-    X2->mat[2][0]=(R->mat[2][0]);
-    matrice* tP=transposee(*P1);
-    matrice* f1=resolution_systeme(tP,X2);
-    matrice* f2=resolution_systeme(tP,Y2);
-    matrice* f3=resolution_systeme(tP,Z2);
-    matrice* res=transposee(concatenation3(f1,f2,f3));
-    print_matrice(res);
-    return res;
-}
 
 
 void init_img_moravec(matrice** img1, matrice** img2, char* filename1, char* filename2, matrice* input1, matrice* input2){
