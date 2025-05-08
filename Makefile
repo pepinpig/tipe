@@ -1,7 +1,7 @@
 WFLAGS := -Wall
 CFLAGS := -std=c99
 
-all : test_triangulation test_moravec test_trouve_coin test_detection
+all : test_triangulation tes test_moravec test_trouve_coin test_detection test_camera_calibration test_reconstruction_mult test_reconstruction test_SVD
 
 
 test_triangulation : triangle.o manipulation_fichier.o matrice.o SVD.o camera_calibration.o reconstruction.o triangle.h test_triangulation.c 
@@ -55,6 +55,13 @@ detection.o : detection.c detection.h
 
 clean :
 	rm -f *.o
+	rm -f *.txt
+	rm -f test_triangulation
+	rm -f test_detection
+	rm -f test_moravec
+	rm -f test_camera_calibration
+	rm -f test_SVD
+	rm -f test_reconstruction
+	rm -f test_reconstruction_mult
 	rm -f test_triangulation
 	rm -f test_trouve_coin
-	rm -f test-moravec
