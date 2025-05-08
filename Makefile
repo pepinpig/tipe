@@ -7,10 +7,10 @@ all : test_triangulation test_moravec test_trouve_coin test_detection
 test_triangulation : triangle.o manipulation_fichier.o matrice.o SVD.o camera_calibration.o reconstruction.o triangle.h test_triangulation.c 
 	gcc $(CFLAGS) $(WFLAGS) -g triangle.o manipulation_fichier.o matrice.o reconstruction.o SVD.o camera_calibration.o  test_triangulation.c -lm -o test_triangulation
   
-test_moravec : manipulation_fichier.o matrice.o moravec.o test_moravec.c
+test_moravec : manipulation_fichier.o matrice.o moravec.o test_moravec.c moravec.h
 	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o moravec.o test_moravec.c -lm -o test_moravec
 
-test_trouve_coin : manipulation_fichier.o matrice.o moravec.o trouve_coin.o test_trouve_coin.c
+test_trouve_coin :  moravec.h manipulation_fichier.o matrice.o moravec.o trouve_coin.o test_trouve_coin.c
 	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o moravec.o trouve_coin.o test_trouve_coin.c -lm -o test_trouve_coin
 
 test_detection : manipulation_fichier.o matrice.o moravec.o appariement.o trouve_coin.o  SVD.o camera_calibration.o test_detection.c
@@ -26,6 +26,8 @@ test_camera_calibration : manipulation_fichier.o matrice.o SVD.o camera_calibrat
 test_reconstruction : manipulation_fichier.o matrice.o reconstruction.o SVD.o camera_calibration.o test_reconstruction.c
 	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o reconstruction.o SVD.o camera_calibration.o  test_reconstruction.c -lm -o test_reconstruction
 
+test_reconstruction_mult : manipulation_fichier.o matrice.o reconstruction.o SVD.o camera_calibration.o test_reconstruction_mult.c
+	gcc $(CFLAGS) $(WFLAGS) -g manipulation_fichier.o matrice.o reconstruction.o SVD.o camera_calibration.o  test_reconstruction_mult.c -lm -o test_reconstruction_mult
 
 reconstruction.o :  reconstruction.c reconstruction.h
 	gcc $(CFLAGS) $(WFLAGS) -g -c reconstruction.c -lm -o reconstruction.o
@@ -45,7 +47,7 @@ matrice.o : matrice.c matrice.h
 SVD.o : SVD.c SVD.h
 	gcc $(CFLAGS) $(WFLAGS) -g -c SVD.c -lm -o SVD.o
 
-trouve_coin.o : trouve_coin.c trouve_coin.h
+trouve_coin.o : trouve_coin.c trouve_coin.h 
 	gcc $(CFLAGS) $(WFLAGS) -g -c trouve_coin.c -lm -o trouve_coin.o
 
 clean :
