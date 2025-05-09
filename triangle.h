@@ -6,8 +6,6 @@
 #include "matrice.h"
 #include <stdint.h>
 
-#define SEUIL 1e-3
-
 struct triangle_s{
   int16_t a;
   int16_t b;

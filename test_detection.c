@@ -30,8 +30,8 @@ int main(int argc, char* argv[]) {
       snprintf(export_char, sizeof(export_char), "points_ap_%s.txt", filename2);
       int n2=save_matrice_to_file_clean(retenus, export_char);
       assert(n1==n2);
-      snprintf(command, sizeof(command), "python3 plot_points_ap.py %s.jpg %s.jpg points_ap_%s.txt points_ap_%s.txt", filename1, filename2, filename1, filename2);
-      system(command);
+      //snprintf(command, sizeof(command), "python3 plot_points_ap.py %s.jpg %s.jpg points_ap_%s.txt points_ap_%s.txt", filename1, filename2, filename1, filename2);
+      //system(command);
       free_matrice(retenus);
       return 0;
   }

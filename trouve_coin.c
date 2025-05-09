@@ -50,7 +50,7 @@ matrice* compute_score(matrice* plan, int** actif, int size){ //size est la tail
   printf("size = %d \n",size);
   for(int i = 0; i < size; i++){
     for(int j = i+1; j < size; j++){
-      if(distance(actif[i][0],actif[i][1],actif[j][0],actif[j][1])<DIST*DIST && !au_bord(plan,actif[i][0],actif[i][1]) && !au_bord(plan,actif[j][0],actif[j][1])){ //On ne traite pas de points trop au bord
+      if(distance(actif[i][0],actif[i][1],actif[j][0],actif[j][1])<Dist_tc*Dist_tc && !au_bord(plan,actif[i][0],actif[i][1]) && !au_bord(plan,actif[j][0],actif[j][1])){ //On ne traite pas de points trop au bord
 																			//		printf("%d",j);
         update_score(plan,score,actif[i][0],actif[i][1],actif[j][0],actif[j][1]);
       }
@@ -71,7 +71,7 @@ int filtre_mat(matrice* input, int** actif, int size){
   }
   for(int i = 0;i<input->n;i++){
     for(int j = 0;j<input->m;j++){
-			if(tmp->mat[i][j]==1 && input->mat[i][j]<SEUILTC){
+			if(tmp->mat[i][j]==1 && input->mat[i][j]<Seuil_tc){
         s++;
 				input->mat[i][j]=1;
 			}
@@ -103,7 +103,7 @@ int pretty_mat(matrice* input, int** actif, int size){
   }
   for(int i = 0;i<input->n;i++){
     for(int j = 0;j<input->m;j++){
-			if(tmp->mat[i][j]==1 && input->mat[i][j]<SEUILTC){
+			if(tmp->mat[i][j]==1 && input->mat[i][j]<Seuil_tc){
         s++;
         tmp->mat[i][j]=1;
 			}

@@ -133,7 +133,7 @@ bool* keeptrig(triangle* l, unsigned long int ntrig, int size, double** point) {
 
         prod(v1, v2,n);
         
-        if (norme(n) < SEUIL) {
+        if (norme(n) < Seuil_triangle) {
             res[i] = false;
         } else {
             barycentre(l[i], bary, point);
@@ -144,7 +144,7 @@ bool* keeptrig(triangle* l, unsigned long int ntrig, int size, double** point) {
                 sub(bary, point[j], v);
                 double s = scalaire(n, v);
                 
-                if (fabs(s) < SEUIL) {
+                if (fabs(s) < Seuil_triangle) {
                     s = 0;
                 }
                 if (s != 0) {

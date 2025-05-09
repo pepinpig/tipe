@@ -3,7 +3,7 @@
 // Calcul de la variance pour une direction donnée
 double variance(matrice* image, int x, int y, int dx, int dy) {
     int count = 0; int sum = 0; int sumSq = 0;
-    for (int i = -WINDOW; i <= WINDOW; ++i) {
+    for (int i = -Window; i <= Window; ++i) {
         int nx = x + i * dx;
         int ny = y + i * dy;
         if (nx >= 0 && nx < image->m && ny >= 0 && ny < image->n) {
@@ -38,7 +38,7 @@ int moravec(matrice* image_input, matrice* image_output) {
                 vartot += var3;
                 vartot /= 4;
             }
-            if (vartot > SEUIL) {
+            if (vartot > Seuil_moravec) {
                 image_output->mat[y][x] = 1;  // Coin détecté
                 count++;
             } else {

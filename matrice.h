@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include "constante.h"
 
 #define EPSILON 0.0001
 

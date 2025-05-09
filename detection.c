@@ -45,8 +45,8 @@ matrice* selection_moravec(char* filename, int* nbp, matrice* input){
     *nbp=nb_points;
     char output_name[128];
     char parametre[256];
-    snprintf(parametre, sizeof(parametre), "fichier:%s, seuil:%d, fenetre:%d, param:%d", filename, SEUIL, WINDOW, PARAM);
-    snprintf(output_name, sizeof(output_name), "%s-mv-%d-%d-%d.pbm", filename, SEUIL, WINDOW, PARAM);
+    snprintf(parametre, sizeof(parametre), "fichier:%s, seuil:%d, fenetre:%d, param:%d", filename, Seuil_moravec, Window, PARAM);
+    snprintf(output_name, sizeof(output_name), "%s-mv-%d-%d-%d.pbm", filename, Seuil_moravec, Window, PARAM);
     save_matrice_pbm(output, output_name, parametre);
     snprintf(output_name, sizeof(output_name), "points_%s.txt", filename);
     save_matrice_to_file(output, filename);
@@ -125,7 +125,7 @@ matrice* corresp (matrice* img1, matrice* img2, matrice* input1, matrice* input2
     //printf("point img1 %d de coordonnéees %d %d :\n", i, (int)img1->mat[i][0], (int)img1->mat[i][1]);
     matrice* X1 = coo_vect(img1->mat[i][0], img1->mat[i][1]);
     matrice* l = epipolar_line(F, X1);
-    int h_min = HAMMING_SEUIL;
+    int h_min = Hamming_seuil;
     for (int j = 0; j < nbp2; j++) {
       //printf("xprec = %d\n",xprec);
       if (img2->mat[j][0]>=xprec-MARGEX){
@@ -133,7 +133,7 @@ matrice* corresp (matrice* img1, matrice* img2, matrice* input1, matrice* input2
         //printf("j : \n",j);
         //printf("X2 : \n");
         //print_matrice(X2);
-        if (point_line_distance(l, X2) < DISTANCE_SEUIL) {
+        if (point_line_distance(l, X2) < Distance_seuil) {
           found++;
           if (found==1){
             count++;

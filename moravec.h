@@ -6,15 +6,6 @@
 #include "matrice.h"
 #include "manipulation_fichier.h"
 
-// #define WINDOW 5 //bon seuil
-// #define SEUIL 1000
-// #define SEUILTC 1000
-// #define DIST 40
-
-#define WINDOW 5 // nombre de pixel considéré dans chaque direction
-#define SEUIL 2000
-#define SEUILTC 50
-#define DIST 20
 
 #define PARAM true 
 
