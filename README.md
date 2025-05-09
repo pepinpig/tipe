@@ -2,6 +2,8 @@
 
 ## Description
 Ce projet implémente une pipeline de reconstruction 3D à partir d’images, incluant le calcul de matrices de transformation, la calibration de caméra et la mise en correspondance de points.
+
+Execution rapide : compiler avec make menu puis executer ./menu
 ---
 
 ## Structure du projet
@@ -10,15 +12,18 @@ Ce projet implémente une pipeline de reconstruction 3D à partir d’images, in
 
 | Fichier | Description |
 |---------|------------|
-| `main.c` | Programme principal qui orchestre la reconstruction 3D. |
+| `menu.c` | Gestion interactive des étapes de la reconstruction |
 | `matrice.c` | Implémente les opérations sur les matrices. |
 | `moravec.c` | Effectue une selction de points d'intérêts avec la méthode de Moravec|
-| `appariement.c` | calcul du descripteur briefet  calcul de la distance à la droite épipolaire|
+| `trouve_coin.c` | Raffinement des points détecter par Moravec|
+| `appariement.c` | calcul du descripteur brief et distance à la droite épipolaire|
 | `detection.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image - avec moravec, brief et eipolar_distance|
-| `detection.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
+| `camera_calibration.c` | Effectue la détection, le tris et l'appariement des points d'intérêts pour un couple d'image |
 | `SVD.c` | Plusieurs fonctions pour calculer la décomposition SVD d'une matrice et son application à la résolution de système|
+| `reconstruction.c` | Effectue la reconstruction de coordonnées 3D à partir depoints 2D|
 | `triangles.c` | Détermine les triangles utilent pour reconstruir l'enveloppe de l'objet|
 | `manipulation_fichier.c` | Utilitaire pour lire et ecrire des matrices dans les données|
+| `constante.c` |Modification des paramètres de reconstruction|
 
 ### 📂 Fichier include
 
@@ -32,6 +37,18 @@ Ce projet implémente une pipeline de reconstruction 3D à partir d’images, in
 | `optimisation.h` | Contient les définitions des fonctions d’optimisation. |
 | `matrice.h` | Définit les structures et opérations de base sur les matrices. |
 
+### Fichier test
+
+| Fichier |
+|---------|
+| `test_moravec.c` |  
+| `test_trouve_coin.c` | 
+| `test_detection.c` |  
+| `test_camera_calibration.c` | 
+| `test_SVD.c` | 
+| `test_reconstruction.c` |
+| `test_reconstruction_mult.c` |
+| `test_triangulation.c` |
 ---
 
 ### 📂 `points/`
@@ -53,14 +70,14 @@ Contient les fichiers d’entrée et de sortie.
 
 ## Compilation et Exécution
 
-| Commande               | Description |
-|------------------------|-------------|
-| `all`                 | Compile tous les exécutables de tests|
-| `test_triangulation`  | Test de triangulation|
-| `test_moravec`        | Test de la détection de moravec|
-| `test_trouve_coin`    | Test la détection de coin |
-| `test_detection`    | Test l'ensemble du processus de detection et d'appariement |
-| `clean`              | Supprime tous les fichiers objets (`.o`) et les exécutables |
+| Commande               | Description | Usage|
+|------------------------|-------------|---------|
+| `all`                 | Compile tous les exécutables de tests||
+| `test_triangulation`  | Test de triangulation||
+| `test_moravec`        | Test de la détection de moravec||
+| `test_trouve_coin`    | Test la détection de coin ||
+| `test_detection`    | Test l'ensemble du processus de detection et d'appariement ||
+| `clean`              | Supprime tous les fichiers objets (`.o`) et les exécutables ||
 
 
 
@@ -92,3 +109,5 @@ n BRIEF, the test pairs are preselected randomly but remain fixed for all keypoi
 ### 26/03 : detection et appariement 
 premier test resussi d appariement
 teste detecction :  trouve matrice points appariés
+
+### 6-8/05 : assemblage des differents programmes et debug
