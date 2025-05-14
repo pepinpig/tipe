@@ -22,6 +22,10 @@ typedef struct uint256{
     uint64_t low2;   // Partie basse (64 bits)
 } uint256_t;
 
+typedef struct {
+    uint8_t r, g, b;
+} pixel_rgb;
+
 
 // Déclaration des fonctions
 // Générer des paires de tests BRIEF avec des paramètres pour la taille de patch et le nombre de bits
@@ -30,16 +34,21 @@ void generer_paires(int pairs[NUM_PAIRS][4]);
 // Récupérer l'intensité d'un pixel dans l'image (grayscale 2D array)
 uint8_t get_pixel(matrice* image, int x, int y);
 
+// Récupérer l'intensité d'un pixel dans l'image couleur
+pixel_rgb get_pixel_rgb(matrice* image_r,matrice* image_g, matrice* image_b, int x, int y) ;
+
 // Fonction pour initialiser un tableau de descripteurs BRIEF
 uint256_t** init_descriptor(int n);
 
 // Fonction pour libérer la mémoire allouée à un tableau de descripteurs BRIEF
 void free_descriptors(uint256_t** res, int n);
 
-
 // Générer le descripteur BRIEF et l'ajouter à la matrice "points"
 uint256_t** compute_brief(matrice* image, matrice* points, int pairs[NUM_PAIRS][4] );
 
+// Générer le descripteur BRIEF_RGB et l'ajouter à la matrice "points"
+uint256_t** compute_brief_rgb(matrice* image_r,matrice* image_g,matrice* image_b, matrice* points, int pairs[NUM_PAIRS][4]);
+ 
 // Compte le nombre de bits à 1 dans un uint64_t
 int one_count(uint64_t x);
 

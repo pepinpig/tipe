@@ -12,6 +12,13 @@ int main(int argc, char* argv[]) {
   
     matrice* input1 = read_jpg(filename1);
     matrice* input2 = read_jpg(filename2);
+    matrice* input1_r = read_jpg_color(filename1, "r");
+    matrice* input1_g = read_jpg_color(filename1, "g");
+    matrice* input1_b = read_jpg_color(filename1, "b");
+    matrice* input2_r = read_jpg_color(filename2, "r");
+    matrice* input2_g = read_jpg_color(filename2, "g");
+    matrice* input2_b = read_jpg_color(filename2, "b");
+
     matrice *img1, *img2;
   
     if (argc > 3 && strcmp(argv[3], "moravec") == 0) {
@@ -24,14 +31,12 @@ int main(int argc, char* argv[]) {
   
       int nbp1 = img1->n;
       int nbp2 = img2->n;
-      matrice* retenus = corresp (img1,img2,input1,input2,nbp1,nbp2,filename1,filename2);
+      matrice* retenus = corresp_color (img1,img2,input1_r, input1_g, input1_b, input2_r, input2_g, input2_b, nbp1,nbp2,filename1,filename2);
       snprintf(export_char, sizeof(export_char), "points_ap_%s.txt", filename1);
       print_matrice(img1);
       int n1=save_matrice_to_file_clean(img1, export_char);
       if (n1==0){
-        printf("\n n!n!n!n!n!n!n!n!n\n");
         perror("pas de points");
-        printf(" n!n!n!n!n!n!n!n!n\n");
       }
       snprintf(export_char, sizeof(export_char), "points_ap_%s.txt", filename2);
       int n2=save_matrice_to_file_clean(retenus, export_char);

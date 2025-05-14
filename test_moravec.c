@@ -39,8 +39,8 @@ int main(int argc, char* argv[]) {
     char output_name[128];
     char parametre[256];
     snprintf(parametre, sizeof(parametre), "fichier:%s, seuil:%d, fenetre:%d, param:%d", filename, Seuil_moravec, Window, PARAM);
-    //snprintf(output_name, sizeof(output_name), "%s-mv-%d-%d-%d.pbm", filename, Seuil_moravec, Window, PARAM);
-    //save_matrice_pbm(output, output_name, parametre);
+    snprintf(output_name, sizeof(output_name), "%s-mv-%d-%d-%d.pbm", filename, Seuil_moravec, Window, PARAM);
+    save_matrice_pbm(output, output_name, parametre);
     save_matrice_to_file(output, filename);
     matrice* points=bit_image_to_points(output, nb_points);
     char command[500];
