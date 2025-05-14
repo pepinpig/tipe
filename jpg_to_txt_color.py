@@ -12,7 +12,8 @@ input_dir = "points/images/"
 output_dir = "points/donnees/"
 input_path = os.path.join(input_dir, image_path)
 
-image = cv2.imread(input_path, cv2.IMREAD_COLOR)
+image_rgb = cv2.imread(input_path, cv2.IMREAD_COLOR)
+image = cv2.cvtColor(image_rgb, cv2.COLOR_BGR2LAB)
 
 if image is None:
     print(f"Error: Image '{input_path}' not found or cannot be read!")
