@@ -4,7 +4,7 @@
 #include "camera_calibration.h"
 
 #define MAX_FILENAME 256
-#define MARGEX 1
+#define MARGEX 0
 
 float point_line_distance(matrice* line, matrice* point);
 matrice* read_jpg(char* filename);

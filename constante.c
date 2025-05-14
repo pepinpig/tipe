@@ -1,15 +1,15 @@
 #include "constante.h"
 
 //Appariement
-int Distance_seuil = 8;
+int Distance_seuil = 2;
 int Hamming_seuil = 100;
 
 //Detection
 int Window = 4;
-int Seuil_moravec = 1000;
+int Seuil_moravec = 2000;
 
 //Trouve coin
-int Seuil_tc = 0;
+int Seuil_tc = 10;
 int Dist_tc = 10;
 
 //Triangle

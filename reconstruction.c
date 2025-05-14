@@ -32,6 +32,15 @@ int reconstruction1(const  char* image_name1, const char* image_name2,  matrice*
     free_matrice(P1);
     free_matrice(P2);
 }
+
+bool filtre (matrice* p){
+    if ((fabs(p->mat[0][0])>1.25)||(fabs(p->mat[1][0]))>1.25||(fabs(p->mat[2][0])>1.25)){
+        return false;
+    }
+    return true;
+}
+
+
 int reconstruction1_aux(matrice* P1, matrice* P2,const char* file_points1, const char* file_points2, matrice** mat, const char* image_name1) {
     int points_ecrits=0;
     FILE* f1 = fopen(file_points1, "r");
@@ -72,7 +81,7 @@ int reconstruction1_aux(matrice* P1, matrice* P2,const char* file_points1, const
             p->mat[i][0] /= p->mat[3][0];
         }
 
-        if ((p->mat[2][0])>1){
+        if (((p->mat[2][0])>1)&&(filtre(p))){
             fprintf(output, "%f %f %f\n", p->mat[0][0], p->mat[1][0], p->mat[2][0]);
             points_ecrits++;
         }
