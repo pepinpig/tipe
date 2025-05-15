@@ -1,0 +1,16 @@
+\beamer@sectionintoc {1}{Selection et Appariement}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Selection}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Appariement}{12}{0}{1}
+\beamer@sectionintoc {2}{Reconstruction}{13}{0}{2}
+\beamer@subsectionintoc {2}{1}{Modélisation théorique}{15}{0}{2}
+\beamer@subsectionintoc {2}{2}{Résolution}{18}{0}{2}
+\beamer@subsectionintoc {2}{3}{Résolution de système surdéterminé}{21}{0}{2}
+\beamer@subsubsectionintoc {2}{3}{1}{SVD}{21}{0}{2}
+\beamer@subsubsectionintoc {2}{3}{2}{Solution approchée}{21}{0}{2}
+\beamer@subsectionintoc {2}{4}{Reconstruction des points}{21}{0}{2}
+\beamer@sectionintoc {3}{Selection et Appariement}{21}{0}{3}
+\beamer@subsectionintoc {3}{1}{Selection}{23}{0}{3}
+\beamer@subsectionintoc {3}{2}{Appariement}{25}{0}{3}
+\beamer@sectionintoc {4}{Analyse des résultats}{28}{0}{4}
+\beamer@subsectionintoc {4}{1}{Quelques exemples}{30}{0}{4}
+\beamer@subsectionintoc {4}{2}{Critiques}{31}{0}{4}

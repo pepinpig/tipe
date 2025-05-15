@@ -1,0 +1,86 @@
+%-------------------
+% gestion des pages
+%-------------------
+\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{pdflscape} %pages horizontales dans le PDF
+\usepackage{calc} %pour pouvoir écrire \textwidth-1cm
+
+%--pour les numéro de pages/ pieds de pages
+%-- voir mise_en_forme_MPI.tex pour mise en oeuvre
+\usepackage{fancyhdr}
+
+
+%-------------------
+% sommaire 
+%-------------------
+\usepackage{tocloft}%mise en forme de la toc
+\usepackage{titlesec}%mise en forme des titres de section
+\usepackage[pagebackref,hidelinks]{hyperref}%pour les liens hypertextes
+
+
+%-------------------
+% langue et encodage
+%-------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+
+
+%-------------------
+% symboles et mode maths
+%-------------------
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{textcomp,lmodern}%pour l'euro
+\usepackage{mathrsfs}%lettres style manuscrit italique
+\usepackage{stmaryrd}%pour \llbracket et \rrbracket
+
+%-------------------
+% code
+%-------------------
+\usepackage{minted}
+%%-- pour la commande qui évite l'italique
+%%-- voir https://github.com/gpoore/minted/issues/71
+%\usepackage{etoolbox}
+%\usepackage{newunicodechar}
+
+
+
+%-------------------
+% environnement, théorèmes et exercices
+%-------------------
+%\usepackage{thmbox}%pour les jolis thm
+
+
+%-------------------
+% tableaux
+%-------------------
+\usepackage{array,multirow}
+
+
+%-------------------
+% images
+%-------------------
+\usepackage{xcolor} %pour redefinir des couleurs
+\usepackage{caption}%les personaliser (les centrer par ex)
+\usepackage{graphicx} % pour includegraphics
+
+\usepackage{tikz} %graphiques et dessins
+\usetikzlibrary{shapes}%pr écrire \node[ellipse] par ex
+\usetikzlibrary{positioning} %pr écrire \node[below rigth = 3pt and 5pt]
+\usetikzlibrary{decorations.pathreplacing}%pr les accolades
+\usetikzlibrary{patterns}%pour les hachures
+
+
+
+
+
+%-------------------
+% divers
+%-------------------
+\usepackage{cancel}%pour barrer
+%-------------------
+\usepackage{lipsum}% for dummy text
+%-------------------
+
+
+

@@ -1,0 +1,53 @@
+%================== ENCODAGE & LANGUE ==================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[french]{babel} % Optionnel
+
+%================== MATHS & SYMBOLES ===================
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{yhmath, mathdots, cancel}
+\usepackage{siunitx}
+\usepackage{gensymb}
+\usepackage{textcomp}
+
+%================== TABLEAUX ============================
+\usepackage{array, tabularx, multirow, booktabs}
+
+%================== COULEURS & GRAPHISMES ===============
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{
+  shapes.geometric,
+  backgrounds,
+  fadings,
+  patterns,
+  shadows.blur,
+  shapes,
+  positioning,
+  decorations.pathreplacing
+}
+
+%================== MISE EN PAGE ========================
+\usepackage{changepage}
+\usepackage{calc}
+\usepackage{caption}
+\usepackage{xspace}
+
+%================== ALGORITHMIQUE =======================
+\usepackage[ruled,vlined]{algorithm2e}
+\SetAlgorithmName{Algorithme}{Algo}{Liste des algorithmes}
+\SetFuncArgSty{textup}
+\SetArgSty{textup}
+\SetKwFor{ForEach}{pour tout}{faire}{}
+\SetKwFor{For}{pour}{faire}{finpour}
+\SetKwIF{Si}{SinonSi}{Sinon}{si}{alors}{sinon si}{sinon}{}
+\SetKwInput{Input}{Entrée}
+\SetKwInput{Output}{Sortie}
+\SetKwProg{myproc}{Procédure}{:}{}
+\SetKw{Return}{retourner}
+\SetKwComment{tcc}{(*}{*)}
+\SetKwFor{Tq}{tant que}{faire}{}
+\SetKwRepeat{Repeter}{répéter}{jusqu’à}
+
+%================== AUTRES ==============================
+\usepackage[clock]{ifsym}

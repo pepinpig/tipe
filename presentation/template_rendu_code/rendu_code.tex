@@ -1,0 +1,51 @@
+\documentclass[12pt,a4paper,fleqn]{article}
+
+%%%%%%%%%%%%%%%%%%%%%% LES PACKAGES
+\input{packages_MPI.tex}
+
+%%%%%%%%%%%%%%%%%%%%%% MISE EN FORME
+\colorlet{expli}{gray}
+\input{mise_en_forme_MPI.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\pagestyle{fancy} %active les pieds de pages
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titreRenduCode{Titre du TIPE sur Jeux et Sports}{Juillet 2024}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\input{conseils.tex} % ligne à commenter pour votre rendu 
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Code sur la première partie}
+%======================================
+\subsection{Code du fichier \mintinline{text}{nom_fichier.c}}
+\textcolor{red}{ici, on insère le fichier entier, tel quel, pas forcément adapté.}
+\inputminted{c}{code/triangle.c}
+
+
+%======================================
+\subsection{Code du fichier \mintinline{text}{nom_fichier.c}}
+\textcolor{red}{
+ici, on insère le fichier par bloc, de telle ligne à telle ligne. 
+On utilise même \mintinline{latex}{\newpage} pour éviter que le bloc du\texttt{main} soit à cheval sur deux pages}
+\inputminted[firstline=1,lastline=20]{c}{code/triangle.c}
+\inputminted[firstline=25,lastline=27]{c}{code/triangle.c}
+\inputminted[firstline=35,lastline=37]{c}{code/triangle.c}
+\inputminted[firstline=55,lastline=102]{c}{code/triangle.c}
+\newpage
+\inputminted[firstline=105,lastline=148]{c}{code/triangle.c}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Code de la deuxième partie}
+%======================================
+\subsection{Code du fichier \mintinline{text}{nom_fichier.ml}}
+
+\inputminted{ocaml}{code/oppose.ml}
+
+\end{document}

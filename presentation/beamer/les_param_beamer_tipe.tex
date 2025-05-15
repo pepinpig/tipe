@@ -1,0 +1,88 @@
+\usetheme{Montpellier}
+\usecolortheme{seahorse}
+
+%--------marges
+\setbeamersize{text margin left= 0.7cm}
+\setbeamersize{text margin right= 0.7cm}
+
+%--------tête et pieds
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{headline}{
+  %la premiere ligne
+  	\begin{beamercolorbox}[ht=0.42cm, vmode]{section in head/foot}
+	\hspace{0.4cm} \insertshorttitle 
+	\hspace*{0.1cm}- \initiales - {\insertshortdate}
+	\vspace*{0.08cm} 
+  	\end{beamercolorbox}
+  %la deuxième ligne
+	\begin{beamercolorbox}[ht=0.4cm, vmode]{subsection in head/foot}
+	%titre de la section si elle est pas 0
+		\ifnum\value{section}=0{} 
+		\else{ \hspace{0.8cm} \thesection - \insertsectionhead }
+		\fi
+	%séparateur + titre de la sous-section si elle est pas 0
+		\ifnum\value{subsection}=0{} 
+		\else{ 
+			\hspace*{0.1cm} \couleur{$\bullet$} \hspace*{0.1cm} 
+			\thesection.\thesubsection \, \insertsubsectionhead
+		}
+		\fi
+		\vspace*{0.12cm}
+\end{beamercolorbox}
+%\vspace*{-0.03cm} %pour pas qu'il y ait d'espace avec la ligne de frametitle
+ }
+%\setbeamertemplate{frametitleheigth}{4cm}
+\setbeamertemplate{frametitle}{
+	\vspace*{-0.04cm} 
+	\begin{beamercolorbox}[ht=0.8cm,wd=\paperwidth, vmode]{frametitle}
+		\hspace{0.3cm} \insertframetitle \vspace*{0.1cm}
+	\end{beamercolorbox}
+}
+
+%commande pour ajuster l'alignement vertical des titres sans lettres descendantes
+%\newcommand{\esp}{\\[0.1cm]} %--version qui marche sans le package minted
+\newcommand{\esp}{\\[-0.5cm]} %--version qui marche avec le package minted
+
+
+%--------couleurs
+\setbeamercolor{structure}{fg=turquoiseFonce!70!black} 
+
+\setbeamercolor{block title}{fg=turquoiseFonce!70!black,bg=vertdEau}
+\setbeamercolor{block body}{bg=vertdEau!10!white}
+
+\setbeamercolor{block title alerted}{bg=vertdEau!85!white,fg=turquoiseFonce!80!black}
+\setbeamercolor{block body alerted}{bg=vertdEau!8!white}
+%\setbeamercolor{alerted text}{fg=red}
+
+\setbeamercolor{block title example}{bg=vertdEau,fg=turquoiseFonce}
+\setbeamercolor{block body example}{bg=vertdEau!10!white}
+\setbeamercolor{example text}{fg=blue!20!turquoise}
+
+%-------- TOC
+\setbeamertemplate{section in toc}[sections numbered]
+
+%-----------------------------------------------
+%Plan qui s'affiche au début de chaque section %|
+\AtBeginSection[]{                             %|
+\begin{frame}[plain]                           %|
+\frametitle{Plan\\[0.1cm]}                     %|
+\tableofcontents[                              %|
+currentsection,                                %|
+hideothersubsections,                          %|
+subsubsectionstyle=hide]                       %|
+\addtocounter{framenumber}{-1}                 %|
+\end{frame}}                                   %|
+%-----------------------------------------------
+
+
+
+
+%-------- commande pour les ref sur les slides
+\newcommand{\bandeauREF}[1]{
+\noindent\makebox[\textwidth][l]{%
+\hspace{-\dimexpr\oddsidemargin+1in}%
+\colorbox{expli!20!white}{%
+\parbox{\dimexpr\paperwidth-2\fboxsep}{
+\footnotesize\textcolor{expli!80!black}{#1}
+}}}}

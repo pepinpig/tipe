@@ -1,0 +1,94 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Selection et Appariement]{Selection et Appariement}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Titre d'une slide avant la sous-section\esp}
+	Ici on n'a pas encore de titre de sous-section dans le badeau du haut.
+	\label{slides_hors_subsec}
+\end{frame}
+
+
+%++++++++++++++++++++++++++++++++++++++++++++++++
+\subsection{Selection}
+%++++++++++++++++++++++++++++++++++++++++++++++++
+%------------------------------------------------
+\begin{frame}
+\frametitle{Algorithme type \lin{Moravec}}
+\[
+\mathrm{Var}_{(dx, dy)}(x, y) = \frac{1}{N} \sum_{i=-w}^{w} I(x + i \cdot dx,\ y + i \cdot dy)^2 - \left( \frac{1}{N} \sum_{i=-w}^{w} I(x + i \cdot dx,\ y + i \cdot dy) \right)^2
+\]
+
+où :
+\begin{itemize}
+  \item $I(x + i \cdot dx,\ y + i \cdot dy)$ est l’intensité du $i$eme pixel dans la direction $(dx, dy)$,
+  \item $N$ est le nombre de pixels valides (dans l’image) dans la fenêtre centrée en $(x, y)$,
+  \item $w$ est le demi-rayon de la fenêtre .
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Algorithme type \lin{Moravec}}
+
+\vspace{0.5em}
+Le score du pixel : \textbf{minimum des variances dans 4 directions} :
+\[
+\text{score}(x, y) = \min \left\{ \mathrm{Var}_{(0,1)},\ \mathrm{Var}_{(1,0)},\ \mathrm{Var}_{(1,1)},\ \mathrm{Var}_{(1,-1)} \right\}
+\]
+
+Un pixel est considéré comme un \textbf{point d’intérêt} si :
+\[
+\text{score}(x, y) > T
+\]
+avec $T$ un seuil fixé.
+\end{frame}
+
+
+\begin{frame}{Animation stable et centrée}
+  \begin{center}
+    \begin{tikzpicture}[remember picture, scale=1]
+      \only<1>{\input{donnees/s1/tikz1_1.tex}}
+      \only<2>{\input{donnees/s1/tikz1_2.tex}}
+      \only<3>{\input{donnees/s1/tikz1_3.tex}}
+      \only<4>{\input{donnees/s1/tikz1_4.tex}}
+      \only<5>{\input{donnees/s1/tikz1_5.tex}}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\small
+\frametitle{Algorithme type \lin{Moravec}}
+\begin{algorithm}[H]
+    \caption{\textsf{Moravec (minimum des variances)}}
+    \Input{Image d’intensité \texttt{image}}
+    \Output{Liste des coins détectés}
+    \BlankLine
+    \ForEach{pixel $(x, y)$ dans l’image}{
+        $scores \gets$ liste vide\;
+        \ForEach{direction $(dx, dy)$ parmi : verticale, horizontale, diagonales}{
+            Calculer la variance locale autour de $(x, y)$ dans la direction $(dx, dy)$\;
+            Ajouter la variance à $scores$\;
+        }
+        $score \gets \min(scores)$\;
+        \If{$score >$ \texttt{SEUIL}}{
+            Marquer $(x, y)$ comme coin
+        }
+    }
+    \Return{Liste des points marqués}
+\end{algorithm}
+
+
+\end{frame}
+
+
+%++++++++++++++++++++++++++++++++++++++++++++++++
+\subsection{Appariement}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Titre de la slide sans lettre descendant sous la baseline}
+	Pour régler ce problème, utiliser la commande \lin{\esp} à la fin du titre, \textit{Cf.} slide suivante
+\end{frame}
+
+

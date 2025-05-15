@@ -1,0 +1,82 @@
+\documentclass[compress]{beamer} %en animé
+%\documentclass[trans]{beamer} %en superposé
+
+%%%%%%%%%%%%%% LES PACKAGES
+\input{les_packages_pour_beamer.tex}
+%%%%%%%%%%%%%% THEME BEAMER
+%votre nom court qui apparaîtra dans l'en tête
+\newcommand{\initiales}{Petit Nom }
+\input{les_param_beamer_tipe}
+
+
+%%%%%%%%%%%%%% MA PALETTE DE COULEURS
+\input{la_palette.tex}
+\definecolor{hellseahorse}{RGB}{204, 204, 255}
+\definecolor{seahorse}{RGB}{204,180, 255}
+\definecolor{darkseahorse}{RGB}{83, 74, 196}
+
+%symboles pratiques
+\newcommand{\flch}{\item[$\rightarrow$]}
+\newcommand{\dc}{{\usebeamercolor[fg]{structure}$\hookrightarrow$}}
+\newcommand{\ok}{\textcolor{vert}{\checkmark}}
+\newcommand{\point}{{\usebeamercolor[fg]{structure}$\bullet\enskip$}}
+\newcommand{\Point}{{\usebeamercolor[fg]{structure}$\bullet\enskip$}}
+
+
+%styles
+\newcommand{\couleur}[1]{{\usebeamercolor[fg]{structure}#1}}
+\newcommand{\important}[1]{\couleur{\textbf{#1}}}
+\newcommand{\remarque}[1]{\textit{\textrm{#1}}}
+
+%pour le template
+\newcommand{\lin}[1]{\mintinline{latex}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A COMPLETER 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%entre crochet le titre court pour l'en tête puis le vrai titre
+\title[Gros titre : et sous titre (version courte)]{
+Le titre de votre TIPE :\\
+{\large avec éventuellement un sous titre }
+}
+
+\author{
+\large 
+Présentation de \important{Prénom-Composé NOM}\\[0.2cm]
+\footnotesize
+travail réalisé avec \couleur{binôme}\\[0.4cm]
+\vspace*{-1.2cm}
+} 
+
+%entre crochet la short date pour l'en-tête
+\date[Juillet 2023]{}
+
+\institute{}
+
+
+%------------------------------------------------
+\begin{frame}[plain]
+\titlepage 
+\addtocounter{framenumber}{-1} 
+\end{frame}
+
+%------------------------------------------------
+\title[Gros titre : et sous titre (version courte)]{
+Une page de titre avec logos :\\
+{\large mais sans les affectations détaillées des auteurs }
+}
+
+%------------------------------------------------
+
+
+\input{section_haut.tex}
+\input{section_corps.tex}
+\input{section_animation.tex}
+\input{section_bas.tex}
+
+
+\end{document}
