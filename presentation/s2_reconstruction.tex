@@ -1,26 +1,164 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[Reconstruction]{Reconstruction}
 %------------------------------------------------
-\begin{frame}
-\frametitle{Titre d'une slide avant la sous-section}
-    Ici on n'a pas encore de titre de sous-section dans le bandeau du haut.
-    \label{slides_hors_subsec}
-\end{frame}
-
 %++++++++++++++++++++++++++++++++++++++++++++++++
 \subsection{Modélisation théorique}
 %++++++++++++++++++++++++++++++++++++++++++++++++
+
 \begin{frame}
 \frametitle{Les différents repères}
-  \begin{minipage}{0.58\textwidth}
-        \scalebox{0.65}{\input{donnees/s2_1.tex}}
-  \end{minipage}
+
+\begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{capture/cube_tikz.pdf}
+    \vspace{0.5em}
+    
+    {\footnotesize\textbf{Représentation du cube (vue 3D)}}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{capture/cube_repere.png}
+    \vspace{0.5em}
+
+    {\footnotesize\textbf{Cube sur une image}}
+\end{minipage}
+
 \end{frame}
+
+
+\begin{frame}
+\frametitle{Les différents repères}
+
+\begin{minipage}[c]{0.48\linewidth}
+  \centering
+  \begin{overlayarea}{0.9\linewidth}{4cm}
+    \hspace*{-1cm}
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1, scale=0.6]
+    \only<1>{\input{donnees/s2_1.tex}}
+    \only<2>{\input{donnees/s2_2.tex}}
+    \only<3>{\input{donnees/s2_3.tex}}
+    \only<4>{\input{donnees/s2_4.tex}}
+    \only<5>{\input{donnees/s2_5.tex}}
+    \only<6>{\input{donnees/s2_6.tex}}
+    \only<7>{\input{donnees/s2_7.tex}}
+    \only<8>{\input{donnees/s2_8.tex}}
+    \end{tikzpicture}
+  \end{overlayarea}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\linewidth}
+  \vspace*{\fill}
+  \begin{itemize}
+    \item<2-> $M$ : point réel
+    \item<3-> $W$ : origine du repère du monde
+    \item<4-> $(u', v')$ : coordonnées dans le plan image en pixels
+    \item<5-> $m$ : projection de $M$ dans le plan image
+    \item<6-> $C$ : origine du repère de la caméra
+    \item<8-> $C'$ : origine du repère de l'image par projection de C
+  \end{itemize}
+  \vspace*{\fill}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Projection d’un point 3D sur le plan image}
+\begin{minipage}[c]{0.48\linewidth}
+  \begin{overlayarea}{\linewidth}{5cm}
+    \only<1>{
+      Par le théorème de Thalès (projection perspective) \\[0.3em]
+      $\begin{array}{rcl}
+      u &=& f x_c \\
+      v &=& f y_c \\
+      w &=& z_c
+      \end{array}$
+    }
+
+    \only<2>{
+      Par le théorème de Thalès (projection perspective) \\[0.3em]
+      $\begin{array}{rcl}
+      u &=& f x_c \\
+      v &=& f y_c \\
+      w &=& z_c
+      \end{array}$
+      \\[0.5em]
+      $\displaystyle
+      \begin{bmatrix}
+      u \\ v \\ w
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+      f & 0 & 0 & 0 \\
+      0 & f & 0 & 0 \\
+      0 & 0 & 1 & 0
+      \end{bmatrix}
+      \begin{bmatrix}
+      x_c \\ y_c \\ z_c \\ 1
+      \end{bmatrix}
+      $
+    }
+
+    \only<3>{
+      Le changement de repère s’écrit avec une transformation homogène :\\[0.5em]
+      $\displaystyle
+      \begin{bmatrix}
+      x_c \\ y_c \\ z_c \\ 1
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+      R & T \\
+      0 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+      X_w \\ Y_w \\ Z_w \\ 1
+      \end{bmatrix}
+      $
+  
+      Où $R \in \mathbb{R}^{3\times3}$ est une rotation, $T \in \mathbb{R}^3$ une translation.
+    }
+  \end{overlayarea}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\linewidth}
+  \centering
+  \begin{overlayarea}{0.9\linewidth}{4cm}
+    \hspace*{-1cm}
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1, scale=0.6]
+      \input{donnees/s2_9.tex}
+    \end{tikzpicture}
+  \end{overlayarea}
+\end{minipage}
+\end{frame}
+
+
+\begin{frame}{Projection d’un point 3D sur le plan image}
+  \centering
+    $\displaystyle
+    \begin{bmatrix}
+    u \\ v \\ w
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    f & 0 & 0 & 0 \\
+    0 & f & 0 & 0 \\
+    0 & 0 & 1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    R & T \\
+    0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+    X_w \\ Y_w \\ Z_w \\ 1
+    \end{bmatrix}
+    $
+\end{frame}
+
 %-----------------------------------------------
 \begin{frame}
 \frametitle{Les différents repères}
+
 \[
-\lambda_i \begin{pmatrix}
+\lambda_i 
+\begin{pmatrix}
 u^{(i)} \\
 v^{(i)} \\
 1
@@ -39,96 +177,122 @@ z_C^{(i)} \\
 \end{pmatrix}
 \]
 \end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Ce qui apparaît dans l'en-tête}
-{\tiny
-\[
-\begin{pmatrix}
-x_C^{(1)} & y_C^{(1)} & z_C^{(1)} & 1 & 0 & 0 & 0 & 0 & -u^{(1)}x_C^{(1)} & -u^{(1)}y_C^{(1)} & -u^{(1)}z_C^{(1)} & -u^{(1)} \\
-0 & 0 & 0 & 0 & x_C^{(1)} & y_C^{(1)} & z_C^{(1)} & 1 & -v^{(1)}x_C^{(1)} & -v^{(1)}y_C^{(1)} & -v^{(1)}z_C^{(1)} & -v^{(1)} \\
-\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-x_C^{(6)} & y_C^{(6)} & z_C^{(6)} & 1 & 0 & 0 & 0 & 0 & -u^{(6)}x_C^{(6)} & -u^{(6)}y_C^{(6)} & -u^{(6)}z_C^{(6)} & -u^{(6)} \\
-0 & 0 & 0 & 0 & x_C^{(6)} & y_C^{(6)} & z_C^{(6)} & 1 & -v^{(6)}x_C^{(6)} & -v^{(6)}y_C^{(6)} & -v^{(6)}z_C^{(6)} & -v^{(6)}
-\end{pmatrix}
-\begin{pmatrix}
-p_{11}\\p_{12}\\p_{13}\\p_{14}\\
-p_{21}\\p_{22}\\p_{23}\\p_{24}\\
-p_{31}\\p_{32}\\p_{33}\\p_{34}
-\end{pmatrix}
-=
-\begin{pmatrix}
-0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0
-\end{pmatrix}
-\]
-}
-\begin{center}
-    soit \( AP = 0 \)
-\end{center}
-\end{frame}
-%++++++++++++++++++++++++++++++++++++++++++++++++
-\subsection{Résolution}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Titre de la slide sans lettre descendant sous la baseline}
 
-On souhaite résoudre le système en évitant la solution triviale \( P = 0 \).  
-Sachant que la matrice \( P \) ne peut être déterminée qu'à un facteur près, on peut imposer arbitrairement \( \|P\|^2 = 1 \), et reformuler le système comme un problème d'optimisation :
 
-\[
-\min_{\|p\|^2 = 1} \|Ap\|^2 = \min_{\|p\|^2 = 1} p^T A^T A p
-\]
+\begin{frame}{Modèle de projection — Matrice \( P \)}
 
-On introduit :
-- \( f(p) = p^T A^T A p \)
-- \( g(p) = p^T p - 1 \)
+\begin{itemize}
+  \item<1-> On considère un point 3D \( M = (X, Y, Z) \)
+  \item<2-> Il se projette sur un point image \( m = (u, v) \)
 
-D’après le théorème d’optimisation sous contrainte, au point optimal \( P^* \), il existe un scalaire \( \lambda \) tel que :
+  \item<3-> On cherche une relation linéaire homogène :
+  \[
+  \lambda
+  \begin{bmatrix}
+  u \cr v \cr 1
+  \end{bmatrix}
+  P
+  =
+  \begin{bmatrix}
+  X \cr Y \cr Z \cr 1
+  \end{bmatrix}
+  \]
 
-\[
-\nabla f(P^*) = \lambda \nabla g(P^*)
-\]
-
-En posant \( M = A^T A \), alors :
-
-\[
-f(p) = \sum_{i=1}^n \sum_{j=1}^n p_i M_{ij} p_j
-\]
-
-\[
-\frac{\partial f}{\partial p_k} = \sum_{j=1}^n M_{kj} p_j + \sum_{i=1}^n p_i M_{ik} = (Mp)_k + (M^T p)_k
-\]
-
-\[
-\frac{\partial f}{\partial p} = 2Mp \quad \text{(car \( M \) est symétrique)}
-\]
-
-\[
-\frac{\partial g}{\partial p} = 2p
-\]
-
-On a alors :
-
-\[
-\frac{\partial f}{\partial p} = \lambda \frac{\partial g}{\partial p} \quad \Rightarrow \quad \boxed{A^T A p = \lambda p}
-\]
-
-C’est une équation aux valeurs propres : \( p \) est un vecteur propre de \( A^T A \), et \( \lambda \) la valeur propre associée.
+  \item<4-> \( P \) est une matrice \( 3 \times 4 \), avec 12 inconnues
+  \item<5-> En développant les lignes :
+  \[
+  \lambda u = p_{11}X + p_{12}Y + p_{13}Z + p_{14}
+  \]
+  \[
+  \lambda v = p_{21}X + p_{22}Y + p_{23}Z + p_{24}
+  \]
+  \[
+  \lambda   = p_{31}X + p_{32}Y + p_{33}Z + p_{34}
+  \]
+\end{itemize}
 \end{frame}
 
-%------------------------------------------------
-\begin{frame}
-\frametitle{Titre de la slide sans lettre descendant sous la baseline}
-    Ici c'est mieux non?
+%------------------------
+
+\begin{frame}{Équations sans \(\lambda\) et système matriciel}
+
+\begin{itemize}
+  \item<1-> Pour un point donné, on élimine \( \lambda \) :
+  
+  \[
+  u (p_{31}X + p_{32}Y + p_{33}Z + p_{34}) = p_{11}X + p_{12}Y + p_{13}Z + p_{14}
+  \]
+  \[
+  v (p_{31}X + p_{32}Y + p_{33}Z + p_{34}) = p_{21}X + p_{22}Y + p_{23}Z + p_{24}
+  \]
+
+  \vspace{0.5em}
+   \item<2-> Cela donne un système homogène ...
+   \[
+   \scriptsize
+   \begin{cases}
+0= & p_{11} x_{C} +p_{12} y_{C}  +p_{13} z_{C} +p_{14} -p_{31} u x_{C} -p_{32} u  z_{C}  -p_{33} u  z_{C}  -p_{34} u \\
+0= &  p_{21} x_{C}  +p_{22} y_{C}  +p_{23} z_{C}  +p_{24} -p_{31} v  x_{C}  -p_{32} v  z_{C}  -p_{33} v  z_{C}  -p_{34} v 
+\end{cases}
+   \]
+  \item<3-> En faisant cela pour n points on obtient un système ...
+\end{itemize}
+
 \end{frame}
 
-%------------------------------------------------
-\begin{frame}[fragile]
-\frametitle{Titre de la slide qui marche tout seul grâce au q et au g}
+\begin{frame}{Équations sans \(\lambda\) et système matriciel}
+  \input{donnees/big_matrice.tex}
 \end{frame}
 
-%++++++++++++++++++++++++++++++++++++++++++++++++
-\subsection{Résolution de système surdéterminé}
-\subsubsection{SVD}
-\subsubsection{Solution approchée}
-\subsection{Reconstruction des points}
+\subsection{En pratiques}
+
+\begin{frame}{Shootin photo : importance de la prise de vue}
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.48\linewidth]{capture/dodec0.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodec1.jpg} \\
+      \includegraphics[width=0.48\linewidth]{capture/dodec2.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodec3.jpg}
+      {\footnotesize\textbf{Vues initiales}}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.48\linewidth]{capture/dodecf0.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodecf1.jpg} \\
+      \includegraphics[width=0.48\linewidth]{capture/dodecf2.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodecf3.jpg}
+      {\footnotesize\textbf{Vues améliorées}}
+    \end{figure}
+  \end{minipage}
+\end{frame}
+
+
+\begin{frame}{Calibration}
+ \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.7\linewidth]{capture/cube_calibrage.jpg}%
+      \caption{Cube calibrage}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\linewidth]{capture/selection.png}%
+      \caption{Selection des points}
+    \end{figure}
+  \end{minipage}
+\end{frame}
+
+

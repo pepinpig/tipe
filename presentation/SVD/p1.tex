@@ -1,0 +1,26 @@
+\begin{frame}{Pipeline de l'implémentation de la SVD}
+\centering
+\begin{tikzpicture}[node distance=0.9cm, every node/.style={font=\small}]
+  \node (A) [draw, rectangle, rounded corners, minimum width=2.3cm] {\( A \)};
+
+  \pause
+  \node (AtA) [draw, rectangle, rounded corners, below=0.9cm of A] {\( A^T A \)};
+  \draw[->, shorten >=1pt, shorten <=1pt] (A) -- (AtA);
+
+  \pause
+  \node (QR) [draw, rectangle, rounded corners, below=0.9cm of AtA] {Décomp. QR};
+  \draw[->, shorten >=1pt, shorten <=1pt] (AtA) -- (QR);
+
+  \pause
+  \node (S_V) [draw, rectangle, rounded corners, below=0.9cm of QR] {\( \Sigma^2, V \)};
+  \draw[->, shorten >=1pt, shorten <=1pt] (QR) -- (S_V);
+
+  \pause
+  \node (U) [draw, rectangle, rounded corners, below=0.9cm of S_V] {Calcul de \( U \)};
+  \draw[->, shorten >=1pt, shorten <=1pt] (S_V) -- (U);
+
+  \pause
+  \node (res) [below=0.9cm of U] {\( A = U \Sigma V^T \)};
+  \draw[->, shorten >=1pt, shorten <=1pt] (U) -- (res);
+\end{tikzpicture}
+\end{frame}SVD/p1.tex

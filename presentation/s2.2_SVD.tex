@@ -1,0 +1,253 @@
+%------------------------------------------
+\subsection{Résolution}
+%------------------------------------------------
+\begin{frame}{Équations sans \(\lambda\) et système matriciel}
+  \input{donnees/big_matrice.tex}
+\end{frame}
+
+\begin{frame}
+\frametitle{Système d’optimisation à contrainte unitaire}
+
+On souhaite résoudre le système en évitant la solution triviale \( P = 0 \).  
+\pause
+
+Sachant que la matrice \( P \) ne peut être déterminée qu’à un facteur près, on peut imposer :
+\[
+\|P\|^2 = 1
+\]
+et reformuler le système comme un problème d’optimisation :
+\pause
+\[
+\min_{\|p\|^2 = 1} \|Ap\|^2 = \min_{\|p\|^2 = 1} p^T A^T A p
+\]
+\pause
+On introduit les fonctions :
+\begin{itemize}
+  \item \( f(p) = p^T A^T A p \)
+  \item \( g(p) = p^T p - 1 \)
+\end{itemize}
+\pause
+D’après le théorème d’optimisation sous contrainte (Lagrange), au point optimal \( P^* \), il existe \( \lambda \in \mathbb{R} \) tel que :
+\[
+\nabla f(P^*) = \lambda \nabla g(P^*)
+\]
+\end{frame}
+
+
+\begin{frame}{Lien avec les valeurs propres}
+
+Posons \( M = A^T A \).  
+Alors :
+\[
+f(p) = \sum_{i=1}^n \sum_{j=1}^n p_i M_{ij} p_j
+\]
+\pause
+
+Comme \( M \) est symétrique :
+\[
+\frac{\partial f}{\partial p} = 2Mp
+\quad \text{et} \quad
+\frac{\partial g}{\partial p} = 2p
+\]
+\pause
+
+On a donc :
+\[
+\frac{\partial f}{\partial p} = \lambda \frac{\partial g}{\partial p}
+\quad \Rightarrow \quad
+\boxed{A^T A p = \lambda p}
+\]
+\pause
+
+C’est une équation aux valeurs propres :
+\begin{itemize}
+  \item \( p \) est un vecteur propre de \( A^T A \)
+  \item \( \lambda \) est la valeur propre associée
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Minimisation par SVD}
+
+\begin{itemize}
+  \item<1-> Pour minimiser \( \|AP\|^2 = p^T A^T A p \),  
+  il faut choisir \( p \) comme vecteur propre associé à la plus petite valeur propre de \( A^T A \).
+  
+  \item<2-> Ce problème se résout efficacement par la décomposition en valeurs singulières (SVD) de la matrice \( A \).
+
+  \item<3-> Une solution consiste à calculer :
+  \[
+  A = U \Sigma V^T
+  \]
+  où :
+  \begin{itemize}
+    \item<4-> \( U \in \mathbb{R}^{m \times m} \) est une matrice orthogonale (vecteurs singuliers à gauche),
+    \item<5-> \( \Sigma \in \mathbb{R}^{m \times n} \) est une matrice diagonale contenant les valeurs singulières \( \sigma_i \),
+    \item<6-> \( V \in \mathbb{R}^{n \times n} \) est une matrice orthogonale (vecteurs singuliers à droite).
+  \end{itemize}
+  
+  \item<7-> Le vecteur \( p \) recherché correspond à la dernière colonne de \( V \), associée à la plus petite valeur singulière.
+\end{itemize}
+\end{frame}
+
+%++++++++++++++++++++++++++++++++++++++++++++++++
+\subsection{Implémentation}
+
+\begin{frame}{Décomposition SVD : idée générale}
+  \begin{minipage}[t][0.8\textheight][t]{0.45\textwidth}
+    \vspace*{\fill}
+    \textbf{Étapes principales :}
+    \begin{itemize}
+      \item<1-> \textbf{1.} Calculer \( A^T A \)
+      \item<2-> \textbf{2.} Appliquer QR à \( A^T A \)
+      \item<3-> \textbf{3.} Extraire valeurs propres \( \sigma_i^2 \)
+      \item<4-> \textbf{4.} Déduire \( V \) puis \( U = \frac{1}{\sigma} A v \)
+    \end{itemize}
+    \vspace*{\fill}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.52\textwidth}
+    \vspace*{\fill}
+    \only<1>{
+      \textbf{1. Produit symétrique :}
+      \[
+        A^T A \text{ est symétrique, de taille } n \times n
+      \]
+      \vspace{1em}
+      On peut chercher ses valeurs propres via QR.
+    }
+
+    \only<2>{
+      \textbf{2. Algorithme QR :}
+      \[
+        A_k = R_k Q_k \Rightarrow A_{k+1} = Q_k^T A_k Q_k
+      \]
+      \vspace{1em}
+      Converge vers matrice diagonale contenant \( \sigma_i^2 \).
+    }
+
+    \only<3>{
+      \textbf{3. Valeurs singulières :}
+      \[
+        \sigma_i = \sqrt{\lambda_i}, \quad \text{avec } \lambda_i \text{ valeur propre}
+      \]
+      \vspace{1em}
+      On range les \( \sigma_i \) du plus grand au plus petit.
+    }
+
+    \only<4>{
+      \textbf{4. Vecteurs singuliers :}
+   \[
+  v_i \text{ propre de } A^T A \quad \Rightarrow \quad u_i = \textstyle\frac{1}{\sigma_i} A v_i
+\]
+
+      \vspace{1em}
+      On normalise chaque \( u_i \) pour obtenir \( U \).
+    }
+    \vspace*{\fill}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \scriptsize
+    \begin{algorithm}[H]
+\DontPrintSemicolon
+\Input{$A \in \mathbb{R}^{m \times n}$}
+\Output{$Q \in \mathbb{R}^{m \times n}$, $R \in \mathbb{R}^{n \times n}$ tels que $A = QR$}
+\BlankLine
+
+\For{$j \gets 1$ \KwTo $n$}{
+  $v_j \gets A_{:,j}$ \tcc*[r]{Copie de la $j^{\text{\`e}me}$ colonne de $A$}
+  \For{$i \gets 1$ \KwTo $j-1$}{
+    $R_{i,j} \gets \langle Q_{:,i}, A_{:,j} \rangle$ \;
+    $v_j \gets v_j - R_{i,j} Q_{:,i}$ \;
+  }
+  $R_{j,j} \gets \|v_j\|$ \;
+  \Si{$R_{j,j} > \varepsilon$}{
+    $Q_{:,j} \gets \frac{v_j}{R_{j,j}}$
+  }
+  \Sinon{
+    $Q_{:,j} \gets 0$
+  }
+}
+\Return{$Q, R$}
+\caption{Décomposition QR via Gram-Schmidt}
+\end{algorithm}
+\end{frame}
+
+%------------------------
+
+\begin{frame}
+\scriptsize
+\begin{algorithm}[H]
+\DontPrintSemicolon
+\Input{$B \in \mathbb{R}^{n \times n}$ symétrique}
+\Output{$\Sigma^2$, $V$ tels que $B = V \Sigma^2 V^T$}
+
+\BlankLine
+$Q_{\text{acc}} \gets I_n$ \tcc*[r]{Accumule les produits de $Q$}
+\BlankLine
+%$\varepsilon \gets 10^{-12}$ \;
+$\delta \gets 1$, $k_{\text{max}} \gets 1000$, $k \gets 0$\;
+
+\Tq{$\delta > 10^{-9}$ et $k < k_{\text{max}}$}{
+  $Q, R \gets$ décomposition QR de $B$\;
+  $B_{\text{nouveau}} \gets R \cdot Q$\;
+  $Q_{\text{acc}} \gets Q_{\text{acc}} \cdot Q$\;
+
+  $\delta \gets \sum_i |\text{diag}(B_{\text{nouveau}})_i - \text{diag}(B)_i|$\;
+
+  $A \gets B_{\text{nouveau}}$\;
+  $k \gets k + 1$\;
+}
+
+\BlankLine
+\For{$i=1$ à $n$}{
+  \Si{$1[i, i] > \varepsilon$}{
+    $\Sigma^2[i, i] \gets V[i, i]$
+  }
+  \Sinon{
+    $\Sigma^2[i, i] \gets 0$
+  }
+}
+
+\Return{$\Sigma^2$,$Q_{\text{acc}}$ }
+
+\caption{algorithme QR}
+\end{algorithm}
+\end{frame}
+
+\begin{frame}
+\scriptsize  
+\begin{algorithm}[H]
+\DontPrintSemicolon
+\Input{$A \in \mathbb{R}^{m \times n}$}
+\Output{$U, \Sigma, V$ tels que $A \approx U \Sigma V^T$}
+
+\BlankLine
+$A^T \gets$ transposée de $A$\;
+$A^T A \gets A^T \cdot A$ \tcc*[r]{Symétrique et définie positive}
+
+\BlankLine
+\texttt{algorithme\_QR}($A^T A$, $\Sigma^2$, $V$) \tcc*[r]{$\Sigma^2$ diagonale, $V$ orthogonale}
+
+\BlankLine
+\For{$i \gets 1$ \KwTo $n$}{
+    $\sigma^2 \gets \Sigma^2[i, i]$\;
+    \Si{$\sigma^2 < 10^{-12}$}{
+        \textbf{continuer} \tcc*[r]{Ignorer valeur singulière nulle}
+    }
+
+    $\sigma \gets \sqrt{\sigma^2}$\;
+    $\Sigma[i, i] \gets \sigma$ \tcc*[r]{Met à jour la vraie valeur singulière}
+
+    $v_i \gets$ $i^{\text{e}}$ colonne de $V$\;
+    $u_i \gets A \cdot v_i$ \tcc*[r]{$u_i$ non normalisé}
+    $u_i \gets u_i / \sigma$\;
+    normaliser $u_i$\;
+    insérer $u_i$ comme $i^{\text{e}}$ colonne de $U$\;
+}
+
+\caption{SVD via algorithme QR sur \( A^T A \)}
+\end{algorithm}
+\end{frame}
+

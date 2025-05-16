@@ -1,0 +1,34 @@
+\scriptsize
+\begin{algorithm}[H]
+\DontPrintSemicolon
+\Input{Points $P_1$ sur image 1, Points $P_2$ sur image 2, Matrice fondamentale $F$}
+\Output{Liste de correspondances fiables}
+\BlankLine
+\textbf{Pré-tri des points sur image 1} \;
+\ForEach{$p \in P_1$}{
+    \Si{$p$ n'est pas un coin}{
+        retirer $p$ \tcp*{suppression non maximale locale}
+    }
+}
+
+\BlankLine
+\textbf{Filtrage épipolaire} \;
+\ForEach{$p_1 \in P_1$}{
+    $l \gets F \cdot p_1$ \tcp*{droite épipolaire dans image 2}
+    $C(p_1) \gets \{p_2 \in P_2 \mid \text{distance}(p_2, l) < \varepsilon\}$ \;
+}
+
+\BlankLine
+\textbf{Comparaison des descripteurs BRIEF} \;
+\ForEach{$p_1 \in P_1$}{
+    $d_1 \gets \text{BRIEF}(p_1)$ \;
+    \ForEach{$p_2 \in C(p_1)$}{
+        $d_2 \gets \text{BRIEF}(p_2)$ \;
+        $h \gets \text{distance\_Hamming}(d_1, d_2)$ \;
+        enregistrer $(p_1, p_2, h)$ \;
+    }
+}
+
+\Return{paires $(p_1, p_2)$ avec plus petite distance de Hamming}
+\caption{Appariement basé sur BRIEF et filtrage épipolaire}
+\end{algorithm}

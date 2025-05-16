@@ -1,0 +1,49 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+\begin{document}
+% Vue orientée vers la face verte
+\tdplotsetmaincoords{70}{300} 
+\begin{tikzpicture}[tdplot_main_coords, scale=1]
+
+% Taille d'une case
+\def\s{1}
+
+% Couleurs
+\definecolor{rubikgreen}{RGB}{100,200,100}
+\definecolor{rubikorange}{RGB}{255,180,60}
+\definecolor{rubikwhite}{RGB}{240,240,240}
+
+% Face avant (YZ) - verte
+\foreach \i in {0,1,2} {
+  \foreach \j in {0,1,2} {
+    \fill[rubikorange] (0,\i*\s,\j*\s) -- ++(0,\s,0) -- ++(0,0,\s) -- ++(0,-\s,0) -- cycle;
+  }
+}
+
+% Face droite (XZ) - orange
+\foreach \i in {0,1,2} {
+  \foreach \j in {0,1,2} {
+    \fill[rubikorange] (\i*\s,0,\j*\s) -- ++(\s,0,0) -- ++(0,0,\s) -- ++(-\s,0,0) -- cycle;
+  }
+}
+
+% Face du dessus (XY) - blanche
+\foreach \i in {0,1,2} {
+  \foreach \j in {0,1,2} {
+    \fill[rubikwhite] (\i*\s,\j*\s,3*\s) -- ++(\s,0,0) -- ++(0,\s,0) -- ++(-\s,0,0) -- cycle;
+  }
+}
+
+% Repère en bas à droite entre orange et verte
+\draw[->, thick] (0,0,0) -- ++(1,0,0) node[xshift=17pt, yshift=1pt, anchor=north east] {$X_w$};
+\draw[->, thick] (0,0,0) -- ++(0,1,0) node[anchor=south west] {$Y_w$};
+\draw[->, thick] (0,0,0) -- ++(0,0,1) node[anchor=south] {$Z_w$};
+\node at (0,-0.1,-0.17) {$W$};
+
+% Bille bleue au centre de la face verte
+\fill[blue] (0,\s,\s) circle[radius=2pt];
+
+\end{tikzpicture}
+\end{document}

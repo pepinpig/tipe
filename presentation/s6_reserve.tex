@@ -1,0 +1,143 @@
+
+%++++++++++++++++++++++++++++++++++++++++++++++++
+\subsection{Implémentation}
+
+\begin{frame}{Implémentation générale du projet}
+\vspace{-0.5em}
+\begin{block}{Pipeline de reconstruction 3D}
+\begin{itemize}
+  \item Détection de points d’intérêt (Moravec)
+  \pause
+  \item Appariement des points (BRIEF + distance épipolaire)
+  \pause
+  \item Calibration de la caméra (DLT + SVD)
+  \pause
+  \item Triangulation et reconstruction 3D
+  \pause
+  \item Construction de l’enveloppe triangulée
+\end{itemize}
+\end{block}
+
+\vspace{-0.5em}
+\pause
+\begin{block}{Organisation du projet}
+\begin{itemize}
+  \item \texttt{*.c / *.h} : Modules spécialisés (matrices, appariement, calibration, etc.)
+  \pause
+  \item \texttt{test\_*.c} : Tests unitaires
+  \pause
+  \item \texttt{points/} : Données d’entrée et résultats 3D
+  \pause
+  \item Scripts Python : Visualisation, correspondances, etc.
+\end{itemize}
+\end{block}
+
+\vspace{-0.5em}
+\pause
+\begin{block}{Exécution}
+\texttt{make menu} puis \texttt{./menu}
+\end{block}
+\end{frame}
+
+\subsubsection{SVD}
+\begin{frame}{Calcul de la décomposition SVD}
+\pause
+\begin{block}{Méthode choisie}
+\begin{itemize}
+  \item \textbf{Approche indirecte} : SVD par décomposition spectrale de \( A^T A \)
+  \pause
+  \item Calcul des valeurs propres (\( \sigma^2 \)) via l'\textbf{algorithme QR}
+  \pause
+  \item Calcul des vecteurs propres \( V \), puis \( U = \frac{1}{\sigma} A v \)
+\end{itemize}
+\end{block}
+
+\pause
+\begin{block}{Implémentation du QR}
+\begin{itemize}
+  \item \textbf{Householder} pour plus de stabilité numérique
+  \pause
+  \item Vérification explicite de l’orthogonalité : \( Q^T Q = I \)
+\end{itemize}
+\end{block}
+
+\pause
+\begin{block}{Précautions}
+\begin{itemize}
+  \item Normalisation des vecteurs (\texttt{normaliser\_colonne})
+  \pause
+  \item Seuils de convergence et gestion des très petites valeurs propres
+  \pause
+  \item \texttt{\#define precision 1e-18} pour limiter les erreurs numériques
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}{SVD }
+\begin{minipage}[t][0.8\textheight][t]{0.45\textwidth}
+  \begin{itemize}
+    \item[\textcolor{gray!40}{$\bullet$}] \alt<1>{\textbf{1. Approche indirecte via \( A^T A \)}}{\textcolor{gray!40}{1. Approche indirecte via \( A^T A \)}}
+    \item[\textcolor{gray!40}{$\bullet$}] \alt<2>{\textbf{2. Décomposition QR}}{\textcolor{gray!40}{2. Décomposition QR}}
+    \item[\textcolor{gray!40}{$\bullet$}] \alt<3>{\textbf{3. Valeurs propres par QR}}{\textcolor{gray!40}{3. Valeurs propres par QR}}
+    \item[\textcolor{gray!40}{$\bullet$}] \alt<4>{\textbf{4. Vecteurs propres et \( U = \frac{1}{\sigma} A v \)}}{\textcolor{gray!40}{4. Vecteurs propres et \( U = \frac{1}{\sigma} A v \)}}
+    \item[\textcolor{gray!40}{$\bullet$}] \alt<5>{\textbf{5. Précautions numériques}}{\textcolor{gray!40}{5. Précautions numériques}}
+  \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.52\textwidth}
+  \only<1>{
+    \begin{itemize}
+      \item Objectif : \( A^T A = Q R \)
+      \item Deux méthodes testées :
+      \begin{itemize}
+        \item Gram-Schmidt classique → \xmark instable
+        \item Réflexions de Householder → \cmark retenu
+      \end{itemize}
+      \item Propriétés : \( Q \) orthogonale, \( R \) triangulaire
+      \item Utilisé dans l'algorithme QR pour les valeurs propres
+    \end{itemize}
+  }
+
+  \only<2>{
+    \begin{itemize}
+      \item Toute matrice \( A \) admet une décomposition : \( A = QR \)
+      \item \( Q \) est orthogonale, \( R \) est triangulaire supérieure
+      \item Utilisée pour diagonaliser \( A \) par itération :
+      \begin{enumerate}
+        \item \( A = Q_0 R_0 \)
+        \item \( A_1 = R_0 Q_0 \)
+        \item \( A_2 = R_1 Q_1 \), ...
+      \end{enumerate}
+      \item Convergence vers une matrice diagonale si \( A \) symétrique
+    \end{itemize}
+  }
+
+  \only<3>{
+    \begin{itemize}
+      \item On applique QR à \( A^T A \)
+      \item Valeurs propres \( \lambda_i = \sigma_i^2 \)
+      \item Tri des valeurs pour ordonner les \( \sigma_i \)
+    \end{itemize}
+  }
+
+  \only<4>{
+    \begin{itemize}
+      \item Vecteurs propres de \( A^T A \) forment \( V \)
+      \item Pour chaque \( \sigma_i \), \( u_i = \frac{1}{\sigma_i} A v_i \)
+      \item Normalisation des vecteurs \( u_i \)
+    \end{itemize}
+  }
+
+  \only<5>{
+    \begin{itemize}
+      \item Seuil de convergence : \( \varepsilon = 10^{-12} \)
+      \item Vérification explicite de \( Q^T Q = I \)
+      \item Normalisation des vecteurs avec \texttt{normaliser\_colonne}
+      \item Limite fixée sur le nombre d’itérations
+    \end{itemize}
+  }
+\end{minipage}
+\end{frame}

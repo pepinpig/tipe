@@ -1,0 +1,32 @@
+
+\begin{frame}{De la décomposition QR à la SVD}
+\begin{itemize}
+  \item \textbf{Décomposition QR} : toute matrice \( A \in \mathbb{R}^{n \times n} \) peut s’écrire :
+  \[
+    A = QR
+  \]
+  où :
+  \begin{itemize}
+    \pause
+    \item \( Q \) est orthogonale \pause
+    \item \( R \) est triangulaire supérieure
+  \end{itemize}
+
+  \pause
+  \item \textbf{Algorithme QR} : utilisé pour diagonaliser \( A \)
+  \begin{enumerate}
+    \item Appliquer \( A = Q_0 R_0 \) \pause
+    \item Reformer : \( A_1 = R_0 Q_0 \) \pause
+    \item Répéter : \( A_{k+1} = R_k Q_k \) \pause
+    \item Les \( A_k \) convergent vers une matrice diagonale si \( A \) est symétrique
+  \end{enumerate}
+
+  \pause
+  \item \textbf{Vers la SVD} :
+  \begin{itemize}
+    \item On applique l'algorithme QR à \( A^T A \) \pause
+    \item Les valeurs propres \( \lambda_i \) donnent les \( \sigma_i^2 \) \pause
+    \item Les vecteurs propres forment \( V \), et \( U = \frac{1}{\sigma_i} A v_i \)
+  \end{itemize}
+\end{itemize}
+\end{frame}

@@ -1,0 +1,247 @@
+%++++++++++++++++++++++++++++++++++++++++++++++++
+\subsection{Appariement}
+%------------------------------------------------
+\begin{frame}{Le problème de l'appariement}
+
+\centering
+\begin{tikzpicture}[scale=1]
+
+% Boîtes des images
+\draw[thick] (0,0) rectangle (3,4) node[midway] {Image 1};
+\draw[thick] (6,0) rectangle (9,4) node[midway] {Image 2};
+
+% Points en gris par défaut
+\fill[gray] (0.8,3.5) circle (2pt); % rouge
+\fill[gray] (1.2,2.7) circle (2pt); % vert
+\fill[gray] (1.5,1.8) circle (2pt); % bleu foncé
+\fill[gray] (1.0,1.0) circle (2pt); % bleu clair
+\fill[gray] (1.4,1.4) circle (2pt);
+
+\fill[gray] (7.5,3.3) circle (2pt);
+\fill[gray] (7.8,2.5) circle (2pt);
+\fill[gray] (7.4,3.0) circle (2pt);
+\fill[gray] (8.4,1.0) circle (2pt);
+\fill[gray] (8.0,1.6) circle (2pt);
+\fill[gray] (8.6,3.6) circle (2pt);
+\fill[gray] (8.3,3.1) circle (2pt);
+\fill[gray] (7.3,0.9) circle (2pt);
+\fill[gray] (6.3,0.6) circle (2pt);
+
+% Paire 1 - rouge
+\only<2->{%
+  \fill[red]   (0.8,3.5) circle (2pt);
+  \fill[red]   (7.5,3.3) circle (2pt);
+  \draw[->,red,thick]   (0.8,3.5) -- (7.5,3.3);
+}
+
+% Paire 2 - vert foncé
+\only<3->{%
+  \fill[green!50!black] (1.2,2.7) circle (2pt);
+  \fill[green!50!black] (7.8,2.5) circle (2pt);
+  \draw[->,green!50!black,thick] (1.2,2.7) -- (7.8,2.5);
+}
+
+% Paire 3 - bleu foncé
+\only<4->{%
+  \fill[blue!70!black]  (1.5,1.8) circle (2pt);
+  \fill[blue!70!black]  (8.0,1.6) circle (2pt);
+  \draw[->,blue!70!black,thick]  (1.5,1.8) -- (8.0,1.6);
+}
+
+% Paire 4 - bleu clair
+\only<5->{%
+  \fill[cyan]  (1.0,1.0) circle (2pt);
+  \fill[cyan]  (7.3,0.9) circle (2pt);
+  \draw[->,cyan,thick]  (1.0,1.0) -- (7.3,0.9);
+}
+
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{geometrie epipolaire et matrice fondamental}
+\end{frame}
+
+%-------sommaire 1-----------------------------
+\begin{frame}{Appariement BRIEF avec filtrage épipolaire}
+\scriptsize
+
+\textbf{Entrée :} Points $P_1$ (image 1), Points $P_2$ (image 2), Matrice fondamentale $F$ \\
+\textbf{Sortie :} Liste de correspondances fiables
+
+\pause
+\vspace{0.3em}
+\textbf{1. Pré-tri des points sur l'image 1} \\
+\hspace{1em}• On ne garde que les coins détectés (suppression non maximale locale)
+
+\pause
+\vspace{0.3em}
+\textbf{2. Filtrage épipolaire} \\
+\hspace{1em}• Pour chaque point $p_1 \in P_1$ : \\
+\hspace{2em}– Calcul de la droite épipolaire $l = F \cdot p_1$ dans l'image 2 \\
+\hspace{2em}– Filtrage des points $p_2 \in P_2$ proches de $l$ : $\text{distance}(p_2, l) < \varepsilon$
+\end{frame}
+
+
+\begin{frame}{Filtrage epipolaire}
+  \includegraphics[width=\linewidth]{capture/corresp.png}\\[0.5em]
+  \captionof*{figure}{Droite epipolaire}
+\end{frame}
+
+
+%---sommaire2----
+\begin{frame}{Appariement BRIEF avec filtrage épipolaire}
+\scriptsize
+
+\textbf{Entrée :} Points $P_1$ (image 1), Points $P_2$ (image 2), Matrice fondamentale $F$ \\
+\textbf{Sortie :} Liste de correspondances fiables
+
+\vspace{0.3em}
+\textbf{1. Pré-tri des points sur l'image 1} \\
+\hspace{1em}• On ne garde que les coins détectés (suppression non maximale locale)
+
+\vspace{0.3em}
+\textbf{2. Filtrage épipolaire} \\
+\hspace{1em}• Pour chaque point $p_1 \in P_1$ : \\
+\hspace{2em}– Calcul de la droite épipolaire $l = F \cdot p_1$ dans l'image 2 \\
+\hspace{2em}– Filtrage des points $p_2 \in P_2$ proches de $l$ : $\text{distance}(p_2, l) < \varepsilon$
+\pause
+\vspace{0.3em}\\
+\textbf{3. Comparaison des descripteurs BRIEF} \\
+\hspace{1em}• Pour chaque $p_1 \in P_1$ et $p_2 \in C(p_1)$ : \\
+\hspace{2em}– Calcul descripteurs BRIEF $d_1$, $d_2$ \\
+\hspace{2em}– Distance de Hamming $h = \text{distance\_Hamming}(d_1, d_2)$ \\
+\hspace{2em}– Enregistrement des paires avec leur score $h$
+
+\end{frame}
+
+%---------BRIEF--------------
+
+\begin{frame}{Descripteur BRIEF : Principe}
+\begin{minipage}{0.45\linewidth}
+\begin{tikzpicture}[x=1pt,y=1pt,yscale=-1,xscale=1, scale= 0.6]
+    % Grille gauche
+    \draw[step=20,gray!30,thin] (100,20) grid (320,240);
+    \fill[black] (200,120) rectangle ++(20,20);
+
+    % Étape 1 : Choix de paires de pixels
+    \only<2->{\fill[blue]     (100,60)  rectangle ++(20,20);}
+    \only<3->{\fill[green]    (180,220) rectangle ++(20,20);}
+    \only<4->{\fill[orange]   (200,100) rectangle ++(20,20);}
+    \only<4->{\fill[violet]   (140,100) rectangle ++(20,20);}
+    \only<5->{\fill[pink]     (240,60)  rectangle ++(20,20);}
+    \only<5->{\fill[teal]     (260,140) rectangle ++(20,20);}
+    \only<6->{\fill[yellow]   (140,180) rectangle ++(20,20);}
+    \only<6->{\fill[magenta]  (220,180) rectangle ++(20,20);}
+    \only<7->{\fill[cyan]     (240,200) rectangle ++(20,20);}
+    \only<7->{\fill[red]      (280,20)  rectangle ++(20,20);}
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+\small
+\textbf{Comparaisons binaires :}
+\begin{tabbing}
+\only<3->{\textcolor{blue}{Bleu} < \textcolor{green}{Vert} \quad \= ~~~~$\Rightarrow$ \texttt{1} \kill} % pour alignement
+\only<3->{\textcolor{blue}{Bleu} < \textcolor{green}{Vert} \> ~~~~$\Rightarrow$ \texttt{1}}\\
+\only<4->{\textcolor{orange}{Orange} > \textcolor{violet}{Violet} \> ~~~~$\Rightarrow$ \texttt{0}}\\
+\only<5->{\textcolor{pink}{Rose} < \textcolor{teal}{Turquoise} \> ~~~~$\Rightarrow$ \texttt{1}}\\
+\only<6->{\textcolor{yellow}{Jaune} > \textcolor{magenta}{Magenta} \> ~~~~$\Rightarrow$ \texttt{0}}\\
+\only<7->{\textcolor{cyan}{Cyan} < \textcolor{red}{Rouge} \> ~~~~$\Rightarrow$ \texttt{1}}
+\end{tabbing}
+
+\vspace{1em}
+\only<8->{%
+\textbf{Descripteur final :}\\
+\texttt{1 0 1 0 1}
+}
+\end{minipage}
+\vspace{1em}
+
+\begin{itemize}
+  \item<1-> On considère une fenêtre autour d’un point clé.
+  \item<2-> On choisit aléatoirement un pixel (ex: \textcolor{blue}{bleu}).
+  \item<3-> On la compare à un autre (ex: \textcolor{green}{vert}) : \\
+           $\text{BRIEF}_1 = 1$ si intensité(bleu) < intensité(vert)
+  \item<4-> On répète avec d'autres paires (ex: \textcolor{orange}{orange} vs \textcolor{violet}{violet})...
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Comparaison de descripteurs BRIEF : distance de Hamming}
+\centering
+\small
+
+\textbf{Descripteur 1 (image gauche)} \par
+\texttt{1 0 1 0 1}
+\pause
+
+\vspace{0.5em}
+\textbf{Descripteur 2 (image droite)} \par
+\texttt{1 1 0 0 1}
+\pause
+
+\vspace{1em}
+\textbf{Comparaison bit à bit :}\\[0.5em]
+\begin{tabular}{c c c c c}
+1 & 0 & 1 & 0 & 1 \\
+\texttt{\color{gray}-} & \texttt{\color{gray}-} & \texttt{\color{gray}-} & \texttt{\color{gray}-} & \texttt{\color{gray}-} \\
+1 & 1 & 0 & 0 & 1 \\
+\hline
+\textcolor{green}{0} & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{green}{0} & \textcolor{green}{0}
+\end{tabular}
+\pause
+
+\vspace{1em}
+\textbf{Distance de Hamming = nombre de bits différents = } \texttt{2}
+\pause
+
+\vspace{1em}
+\textit{Plus la distance est faible, plus les points sont similaires.}
+
+\end{frame}
+
+\begin{frame}{Amélioration progressive du descripteur BRIEF}
+\small
+
+\textbf{1. BRIEF (intensité)} \\
+\hspace{1em}• Comparaison d’intensité de pixels en niveaux de gris \\
+\hspace{1em}• \textit{Simple et rapide, mais perte d'information sur la couleur} \\
+
+\pause
+\vspace{0.5em}
+\textbf{2. BRIEF RGB} \\
+\hspace{1em}• Comparaison faite indépendamment sur les 3 canaux : R, G, B \\
+\hspace{1em}• \textit{Capture la couleur, mais très sensible aux variations de lumière} \\
+
+\pause
+\vspace{0.5em}
+\textbf{3. BRIEF Lab} \\
+\hspace{1em}• Comparaison dans l’espace Lab : \\
+\hspace{2em}– $L$ : luminosité (luminance) \\
+\hspace{2em}– $a$, $b$ : composantes de couleur perceptuelles \\
+\hspace{1em}• \textit{Plus robuste aux variations de luminosité et plus proche de la perception humaine} \\
+
+\pause
+\vspace{1em}
+\textbf{Amélioration globale :} \\
+\hspace{1em}• \textit{Robustesse et précision accrues à chaque étape} \\
+\hspace{1em}• \textit{BRIEF Lab permet de meilleures correspondances entre images variées (éclairage, couleur)}
+\end{frame}
+
+
+%-------algo-----------------------------
+\begin{frame}[fragile]{Pseudo-code : Appariement de points}
+  \input{donnees/algo_ap.tex}
+\end{frame}
+
+
+%--------RESULTAT-----------------------------------
+\begin{frame}{Resultat : Filtrage epipolaire}
+  \hspace*{-1cm}
+  \includegraphics[width=1.1\linewidth]{capture/sans_brief.png}\\[0.5em]
+\end{frame}
+
+\begin{frame}{Resultat : droite epipolaire + BRIEF lab}
+  \hspace*{-1cm}
+  \includegraphics[width=1.1\linewidth]{capture/avec_brief.png}\\[0.5em]
+\end{frame}

@@ -1,6 +1,7 @@
 \usetheme{Montpellier}
 \usecolortheme{seahorse}
 
+
 %--------marges
 \setbeamersize{text margin left= 0.7cm}
 \setbeamersize{text margin right= 0.7cm}
@@ -86,3 +87,19 @@ subsubsectionstyle=hide]                       %|
 \parbox{\dimexpr\paperwidth-2\fboxsep}{
 \footnotesize\textcolor{expli!80!black}{#1}
 }}}}
+% Commandes utilitaires
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\newcommand{\imageFrame}{
+  \draw [line width=0.75] (261.98,12.03) -- (262.02,142.84) -- (150.52,236.47) -- (150.47,105.66) -- cycle ;
+}
+\newcommand{\lin}[1]{\texttt{#1}} % Évite minted si pas nécessaire
+\newcommand{\flch}{\item[$\rightarrow$]}
+\newcommand{\dc}{{\usebeamercolor[fg]{structure}$\hookrightarrow$}}
+\newcommand{\ok}{\textcolor{green}{\checkmark}}
+\newcommand{\point}{{\usebeamercolor[fg]{structure}$\bullet\enskip$}}
+\newcommand{\Point}{\point}
+\newcommand{\couleur}[1]{{\usebeamercolor[fg]{structure}#1}}
+\newcommand{\important}[1]{\couleur{\textbf{#1}}}
+\newcommand{\remarque}[1]{\textit{\textrm{#1}}}
+\newcommand{\cmark}{\ding{51}\xspace} % check ✓
+\newcommand{\xmark}{\ding{55}\xspace} % cross ✗

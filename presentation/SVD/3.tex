@@ -1,0 +1,40 @@
+% \textbf{Amélioration d'implémentation pour QR}
+% \begin{itemize}
+%   \item \textbf{Objectif} : obtenir la SVD d'une matrice \( A \in \mathbb{R}^{m \times n} \)
+%   \pause
+%   \item \textbf{Étape clé} : décomposition QR de \( A^T A \)
+%   \pause
+%   \item \textbf{Deux méthodes testées pour la QR} :
+%   \begin{itemize}
+%     \item \textbf{Gram-Schmidt} classique \\
+%     \hspace{1em}  \xmark sensible aux erreurs d'arrondi \\
+%     \hspace{1em}  \xmark instable numériquement
+%     \pause
+%     \item \textbf{Réflexions de Householder} \\
+%     \hspace{1em}  \cmark plus stable numériquement \\
+%     \hspace{1em}  \cmark meilleure orthogonalité garantie
+%   \end{itemize}
+%   \pause
+%   \item \textbf{Conclusion} : Householder utilisé dans la version finale
+%   \pause
+%   \item Autres choix :
+%   \begin{itemize}
+%     \item Seuil de convergence \( \varepsilon = 10^{-12} \)
+%     \item Maximum d’itérations fixé à 1000
+%     \item Normalisation explicite de chaque colonne de \( U \)
+%   \end{itemize}
+% \end{itemize}
+\textbf{Détail : Décomposition QR}
+
+\vspace{0.5em}
+
+\begin{itemize}
+  \item Objectif : \( A^T A = Q R \)
+  \item Deux méthodes testées :
+  \begin{itemize}
+    \item Gram-Schmidt classique → \xmark instable
+    \item Réflexions de Householder → \cmark retenu
+  \end{itemize}
+  \item Propriétés : \( Q \) orthogonale, \( R \) triangulaire
+  \item Utilisé dans l'algorithme QR pour les valeurs propres
+\end{itemize}

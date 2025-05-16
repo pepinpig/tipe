@@ -1,21 +1,9 @@
 \documentclass[compress]{beamer}
-
 % Inclusion des packages
 \input{les_packages_pour_beamer.tex}
 
 % Définir les initiales pour affichage dans l'en-tête (à utiliser dans thème perso si besoin)
 \newcommand{\initiales}{L.-H. Cuingnet}
-
-% Commandes utilitaires
-\newcommand{\lin}[1]{\texttt{#1}} % Évite minted si pas nécessaire
-\newcommand{\flch}{\item[$\rightarrow$]}
-\newcommand{\dc}{{\usebeamercolor[fg]{structure}$\hookrightarrow$}}
-\newcommand{\ok}{\textcolor{green}{\checkmark}}
-\newcommand{\point}{{\usebeamercolor[fg]{structure}$\bullet\enskip$}}
-\newcommand{\Point}{\point}
-\newcommand{\couleur}[1]{{\usebeamercolor[fg]{structure}#1}}
-\newcommand{\important}[1]{\couleur{\textbf{#1}}}
-\newcommand{\remarque}[1]{\textit{\textrm{#1}}}
 
 % Paramètres Beamer et thème (à personnaliser dans ce fichier)
 \input{les_param_beamer_tipe}
@@ -26,26 +14,56 @@
 \definecolor{seahorse}{RGB}{204,180, 255}
 \definecolor{darkseahorse}{RGB}{83, 74, 196}
 
+\title[Reconstruction 3D]{Reconstruction d’objets convexes à partir de photographies}
+\author{
+  \texorpdfstring{
+    \large Présentation de \important{Lucie-Hélène Cuingnet}\\[0.2cm]
+    \footnotesize Travail réalisé avec \couleur{Barnabé Baruchel}
+    }{Lucie-Hélène Cuingnet et Barnabé Baruchel}
+}
+\date[Mai 2025]{TIPE 2025}
+
 %================== DÉBUT DU DOCUMENT ===================
 \begin{document}
 
-\title[Reconstruction 3D]{Reconstruction d’objets convexes à partir de photographies}
-\author{
-  \large Présentation de \important{Lucie-Hélène Cuingnet}\\[0.2cm]
-  \footnotesize Travail réalisé avec \couleur{Barnabé Baruchel}
-}
-\date[Mai 2025]{}
 
 \begin{frame}[plain]
   \titlepage
   \addtocounter{framenumber}{-1}
 \end{frame}
 
+\begin{frame}{Définition du problème}
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.48\linewidth]{capture/dodecf0.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodecf1.jpg} \\
+      \includegraphics[width=0.48\linewidth]{capture/dodecf2.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodecf3.jpg}
+      {\footnotesize\textbf{Données}}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=\linewidth]{capture/dodecaedre_objectif.png}
+      {\footnotesize\textbf{Objectif}}
+    \end{figure}
+  \end{minipage}
+\end{frame}
+
 % Slides principales (actives selon les fichiers présents)
-\input{s1_selection.tex}
+%\input{s1_selection.tex}
+\input{s1.2_appariement.tex}
 \input{s2_reconstruction.tex}
-\input{s3_triangulation.tex}
-\input{s4_resultat}
+\input{s2.2_SVD.tex}
+\input{s2.3_reconstruction.tex}
+%\input{s3_triangulation.tex}
+%\input{s4_resultat}
 
 % Slide de test/conclusion
 \begin{frame}
