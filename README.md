@@ -61,11 +61,11 @@ Contient les fichiers d’entrée et de sortie.
 
 ---
 ## Utilitaire Python 
-| `save_points.py` | Selectionnées les points pour le calibrage et les sauvegardés dans un fichier texte (usage : python3 save_points.py <img1>.jpg <img2>.jpg <c) |
+| `save_points.py` | Selectionnées les points pour le calibrage et les sauvegardés dans un fichier texte (usage : python3 select_deux.py <img1>.jpg <img2>.jpg <c) |
 | `jpg_to_txt.py` | Utilitaire pour lire les images par pixel|
 | `correspondance.py` | Affichage des droites epipolaires|
 | `rassemble_points.py` | |
-| `plot_appariement_un.py` | affiche les points du fichier arg2 sur l image arg1 |
+| `plot_detect_un.py` | affiche les points du fichier arg2 sur l image arg1 |
 
 
 ## Compilation et Exécution

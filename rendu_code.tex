@@ -1,0 +1,36 @@
+\documentclass[12pt,a4paper,fleqn]{article}
+
+%%%%%%%%%%%%%%%%%%%%%% LES PACKAGES
+\input{rendu_code/packages_MPI.tex} %
+%%%%%%%%%%%%%%%%%%%%%% MISE EN FORME
+\colorlet{expli}{gray}
+\input{rendu_code/mise_en_forme_MPI.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\pagestyle{fancy} % Active les pieds de pages
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titreRenduCode{Reconstruction}{Juillet 2024}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Code sur la première partie}
+%======================================
+
+\subsection{Code du fichier }
+\textcolor{red}{Ici, on insère le fichier entier, tel quel, pas forcément adapté.}
+\inputminted{c}{triangle.c}
+
+%======================================
+\subsection{Code du fichier \texorpdfstring{\mintinline{text}{nom_fichier.c}}{nom\_fichier.c}}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Code de la deuxième partie}
+%======================================
+
+\subsection{Code du fichier }
+\inputminted[firstline=1,lastline=20]{c}{triangle.c}
+\end{document}

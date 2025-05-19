@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "reconstruction.h": "c"
+        "reconstruction.h": "c",
+        "camera_calibration.h": "c"
     }
 }

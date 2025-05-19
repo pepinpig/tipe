@@ -14,10 +14,10 @@ double norme_vecteur_colonne(matrice a, int colonne);
 
 int verifier_orthogonalite(matrice* M);
 
-void decomposition_QR_householder(matrice* A, matrice* Q, matrice* R) ;
 
-// Décomposition QR (Gram-Schmidt)
+// Décomposition QR 
 void decomposition_QR(matrice* A, matrice* Q, matrice* R);
+void decomposition_QR_householder(matrice* A, matrice* Q, matrice* R) ;
 
 
 void qr_algorithm(matrice *A, matrice* S);

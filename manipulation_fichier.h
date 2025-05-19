@@ -6,6 +6,7 @@
 #include <math.h>
 #include <assert.h>
 #include "matrice.h"
+#define MAX_FILENAME 256
 
 //Teste l'existence du fichier filename
 bool file_exists(const char *filename);
@@ -33,3 +34,7 @@ void read_matrice_from_file_dimension(matrice** mtx, char* filename);
 void read_matrice_from_file(matrice *A, const char *filename);
 //Créer chaine de caractère <matrix_name>-<image_name>.txt
 void nom_fichier(char* filename, char* matrix_name, char* image_name);
+
+matrice* read_jpg(char* filename);
+
+matrice* read_jpg_color(char* filename, char* color);

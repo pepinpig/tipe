@@ -133,32 +133,27 @@ bool* keeptrig(triangle* l, unsigned long int ntrig, int size, double** point) {
 
         prod(v1, v2,n);
         
-        if (norme(n) < Seuil_triangle) {
-            res[i] = false;
-        } else {
-            barycentre(l[i], bary, point);
-            res[i] = true;
+        barycentre(l[i], bary, point);
+        res[i] = true;
+    
+        int signe = 0;
+        for (int j = 0; j < size; j++) {
+            sub(bary, point[j], v);
+            double s = scalaire(n, v);
             
-            int signe = 0;
-            for (int j = 0; j < size; j++) {
-                sub(bary, point[j], v);
-                double s = scalaire(n, v);
-                
-                if (fabs(s) < Seuil_triangle) {
-                    s = 0;
-                }
-                if (s != 0) {
-                    if (signe == 0) {
-                        signe = (s > 0) ? 1 : -1;
-                    } else if (signe * s < 0) {
-                        res[i] = false;
-                        break;
-                    }
+            if (fabs(s) < 0.01) {
+                s = 0;
+            }
+            if (s != 0) {
+                if (signe == 0) {
+                    signe = (s > 0) ? 1 : -1;
+                } else if (signe * s < 0) {
+                    res[i] = false;
+                    break;
                 }
             }
         }
     }
-    printf("keeptrig fin calcul\n");
     fflush(stdout);
     
     return res;
@@ -206,19 +201,19 @@ void stl_generate(char* filename, double** point, triangle* l, unsigned long int
     char complete_fn[256];
     snprintf(complete_fn, 256, "stltest/%s", filename);
     
-    printf("ouverture stl fichier\n");
     fflush(stdout);
     FILE* file = fopen(complete_fn, "w");
     assert(file != NULL);
 
-    printf("ecriture debut\n");
     fflush(stdout);
     fprintf(file, "solid \n");
     double v1[3];
     double v2[3];
     double n[3];
+    int count=0;
     for (unsigned long int i = 0; i < ntrig; i++) {
       if (garde[i]){
+        count++;
         sub(point[l[i].b], point[l[i].a],v1);
         sub(point[l[i].c], point[l[i].a],v2);
 
@@ -230,6 +225,7 @@ void stl_generate(char* filename, double** point, triangle* l, unsigned long int
         fprintf(file, "        endloop\n    endfacet\n");
       }
     }
+    printf("nb triangles : %d\n", count);
     fprintf(file, "endsolid \n");
     fclose(file);
     printf("stl generated : %s\n", filename);

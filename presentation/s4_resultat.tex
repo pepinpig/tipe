@@ -2,26 +2,111 @@
 \section[Analyse des résultats]{Analyse des résultats}
 
 %------------------------------------------------
-\begin{frame}
-\frametitle{Titre d'une slide avant la sous-section}
-Ici, on n’a pas encore de titre de sous-section dans le bandeau du haut.\\
-\end{frame}
-
-
-%++++++++++++++++++++++++++++++++++++++++++++++++
 \subsection{Quelques exemples}
-
 %------------------------------------------------
-\begin{frame}{Aspect pratique}
-Ici, on a un titre de sous-section, contrairement à la slide.\\[1.5cm]
-Voir le code ici pour référencer une slide avec et la citer avec son numéro via .
+
+\begin{frame}{Le dodécahèdre}
+\begin{minipage}{0.40\textwidth}
+    \centering
+    \setlength{\tabcolsep}{0pt}
+    \renewcommand{\arraystretch}{0}
+    \begin{tabular}{cc}
+        \includegraphics[width=0.36\textwidth]{capture/dodecf0.jpg} &
+        \includegraphics[width=0.36\textwidth]{capture/dodecf1.jpg} \\
+        \includegraphics[width=0.36\textwidth]{capture/dodecf2.jpg} &
+        \includegraphics[width=0.36\textwidth]{capture/dodecf3.jpg} \\
+        \includegraphics[width=0.36\textwidth]{capture/dodecf4.jpg} &
+        \includegraphics[width=0.36\textwidth]{capture/dodecf5.jpg} \\
+        \includegraphics[width=0.36\textwidth]{capture/dodecf6.jpg} &
+        \includegraphics[width=0.36\textwidth]{capture/dodecf7.jpg} \\
+    \end{tabular}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.60\textwidth}
+    \centering
+    \setlength{\tabcolsep}{0pt}
+    \renewcommand{\arraystretch}{0}
+    \begin{tabular}{c}
+        \includegraphics[width=0.72\textwidth]{capture/dodec_vrai.png} \\
+    \end{tabular}
+    \vspace{0.5em}
+
+    {\tiny \textit{visualisation sur viewstl.com}}
+\end{minipage}
+\end{frame}
+
+
+\begin{frame}{La pyramide}
+\begin{minipage}{0.40\textwidth}
+    \centering
+    \setlength{\tabcolsep}{0pt}
+    \renewcommand{\arraystretch}{0}
+    \begin{tabular}{cc}
+        \includegraphics[width=0.36\textwidth]{capture/pyra0.jpg} &
+        \includegraphics[width=0.36\textwidth]{capture/pyra1.jpg} \\ 
+        \includegraphics[width=0.36\textwidth]{capture/pyra2.jpg} &
+        \includegraphics[width=0.36\textwidth]{capture/pyra3.jpg} \\
+        \includegraphics[width=0.36\textwidth]{capture/pyra4.jpg} &
+        \includegraphics[width=0.36\textwidth]{capture/pyra5.jpg} \\
+        \includegraphics[width=0.36\textwidth]{capture/pyra6.jpg} &
+        \includegraphics[width=0.36\textwidth]{capture/pyra7.jpg} \\
+    \end{tabular}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.60\textwidth}
+    \centering
+    \setlength{\tabcolsep}{0pt}
+    \renewcommand{\arraystretch}{0}
+    \begin{tabular}{cc}
+        \includegraphics[width=0.40\textwidth]{capture/face1.png} &
+        \includegraphics[width=0.40\textwidth]{capture/face2.png} \\
+        \includegraphics[width=0.40\textwidth]{capture/face3.png} &
+        \includegraphics[width=0.40\textwidth]{capture/profil.png} \\
+    \end{tabular}
+    \vspace{0.2em}
+
+    {\tiny \textit{visualisation sur 3dviewer.net}}
+\end{minipage}
 \end{frame}
 
 %++++++++++++++++++++++++++++++++++++++++++++++++
-\subsection{Critiques}
+\subsection{Des pistes d'amélioration}
 
 %------------------------------------------------
-\begin{frame}
-\frametitle{Titre sans lettre descendant sous la baseline}
-Ici c'est mieux, non ?
+
+%++++++++++++++++++++++++++++++++++++++++++++++++
+\subsection{Limite de la méthode}
+
+%------------------------------------------------
+\begin{frame}{Une importante sensibilité aux erreurs}
+\centering
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[anchor=south west, inner sep=0] (img1) at (0,0) {\includegraphics[width=\linewidth]{capture/reconstruit_pyra.png}};
+        \begin{scope}[x={(img1.south east)}, y={(img1.north west)}]
+            \draw[red, thick] (0.28,0.35) circle [radius=0.03]; % Ajuste les coordonnées
+        \end{scope}
+    \end{tikzpicture}
+    
+    \vspace{0.3em}
+
+    \small\textit{points localisés par le programme}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[anchor=south west, inner sep=0] (img1) at (0,0) {\includegraphics[width=\linewidth]{capture/erreur.png}};
+        \begin{scope}[x={(img1.south east)}, y={(img1.north west)}]
+            \draw[red, thick] (0.04,0.42) circle [radius=0.03]; % Ajuste les coordonnées
+        \end{scope}
+    \end{tikzpicture}
+    
+    \vspace{0.3em}
+  \begin{flushleft}
+    \small\textit{enveloppe convexe visualisé avec 3dview.net}
+  \end{flushleft}
+
+\end{minipage}
 \end{frame}

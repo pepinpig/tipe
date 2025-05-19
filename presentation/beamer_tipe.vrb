@@ -1,2 +1,31 @@
-\frametitle{Pseudo-code : Appariement de points}
-\input{donnees/algo_ap.tex}
+\frametitle{Le format \texttt{STL}}
+
+  \begin{columns}
+    \column{0.45\textwidth}
+    \scriptsize
+\begin{verbatim}
+solid cube
+  facet normal 0 0 1 // Face supérieure
+    outer loop
+      vertex 0 0 1
+      vertex 1 0 1
+      vertex 0 1 1
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 1 0 1
+      vertex 1 1 1
+      vertex 0 1 1
+    endloop
+  endfacet
+  // Autres faces...
+endsolid cube
+\end{verbatim}
+    \column{0.55\textwidth}
+    \begin{figure}
+      \centering
+      \includegraphics[width=3.5cm]{capture/cubestl.png} % Remplace par ton image
+      \caption{\tiny fichier STL visualisé avec viewstl.com}
+    \end{figure}
+  \end{columns}

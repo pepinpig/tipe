@@ -139,13 +139,11 @@ void qr_algorithm(matrice *A, matrice* S) {
     matrice* At = transposee(A);
     matrice* AtA = produit(At, A);
     matrice* Q_accum = matrice_identite(AtA->n);
- /*   print_matrice(AtA);*/
     matrice* B = AtA;
     int iters = 0;
     long double diff = 1e9; 
     while ((diff > precision)&&(iters<1e3)) {
         matrice *Q, *R;
-        /*print_matrice(B);*/
         decomposition_QR_householder(B, Q, R);
         Q_accum = produit(Q_accum, Q);
         matrice* B_new = produit(R, Q);
@@ -171,10 +169,8 @@ void qr_algorithm(matrice *A, matrice* S) {
 
 void eigen_decomposition(matrice* AtA, matrice* S, matrice* V) {
     int n = AtA->n;
-    // B = copie de AtA pour itérer
     matrice* B = matrice_nulle(n, n);
     copie_matrice(AtA, B);
-    // Q_accum contient les vecteurs propres (colonnes)
     matrice* Q_accum = matrice_identite(n);
 
     double epsilon = 1e-12;
@@ -205,13 +201,11 @@ void eigen_decomposition(matrice* AtA, matrice* S, matrice* V) {
         iters++;
     }
 
-    // Stocke les valeurs propres (pas encore racine)
     for (int i = 0; i < n && i < S->m && i < S->n; i++) {
         double lambda = B->mat[i][i];
         S->mat[i][i] = (lambda > epsilon) ? lambda : 0.0;
     }
 
-    // Stocke les vecteurs propres (colonnes de V)
     copie_matrice(Q_accum, V);
 
     free_matrice(B);
@@ -219,29 +213,21 @@ void eigen_decomposition(matrice* AtA, matrice* S, matrice* V) {
 }
 
 void qr_algorithm_SVD(matrice* A, matrice* U, matrice* S, matrice* V) {
-    int m = A->m;
     int n = A->n;
-
-    // Étape 1 : AtA = A^T * A
     matrice* At = transposee(A);
     matrice* AtA = produit(At, A);
-
-    // Étape 2 : décomposition de AtA → valeurs propres dans S, vecteurs propres dans V
-    
-    eigen_decomposition(AtA, S, V);  // S contiendra σ² ici
-    // Étape 3 : construire U et racine des valeurs propres
+    eigen_decomposition(AtA, S, V);  
     for (int i = 0; i < n; i++) {
         double sigma2 = S->mat[i][i];
         if (sigma2 < 1e-12) continue;
 
         double sigma = sqrt(sigma2);
-        S->mat[i][i] = sigma;  // mettre à jour avec σ
+        S->mat[i][i] = sigma;  
 
-        matrice* v_i = matrice_colonne(V, i);         // vecteur v_i
-        matrice* u_i = produit(A, v_i); // u_i = A v_i
-        multiplication_scalaire(u_i, 1.0 / sigma);    // u_i /= σ
-        normaliser_colonne(u_i);                      // normaliser
-
+        matrice* v_i = matrice_colonne(V, i);         
+        matrice* u_i = produit(A, v_i); 
+        multiplication_scalaire(u_i, 1.0 / sigma);   
+        normaliser_colonne(u_i);                    
         set_colonne(U, i, u_i);
 
         free_matrice(v_i);

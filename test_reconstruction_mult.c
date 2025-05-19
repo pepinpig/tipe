@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
 
     matrice* matrice_output;
     int nb_points =reconstruction4(image_name1, image_name2,image_name3, image_name4,image_name5, image_name6,image_name7, image_name8, &matrice_output);
+    assert(nb_points>0);
     char export[128];
     snprintf(export, sizeof(export), "points_3d_%s_all.txt", image_name1);
     save_matrice_to_file(matrice_output,export );

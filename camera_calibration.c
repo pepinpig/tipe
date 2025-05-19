@@ -31,95 +31,103 @@ matrice* construction_A(double* X, double* Y, double* Z, double* u, double* v, i
 }
 
 void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* R, matrice* T) {
-    // Étape 1 : Calcul de la décomposition SVD de A
+    // Étape 1 : Décomposition SVD de A
     matrice* S = matrice_nulle(A->n, A->m);
     matrice* V = matrice_nulle(A->m, A->m);
     matrice* U = matrice_nulle(A->n, A->n);
     qr_algorithm_SVD(A, U, S, V);
 
-    // Trouver le vecteur singulier droit unitaire associé à la plus petite valeur singulière
+    // Étape 2 : Extraire le vecteur p (solution homogène de Ap=0)
     int index_min = S->n - 1;
-    while (S->mat[index_min][index_min]<EPSILON) {
-        index_min --;
-        assert(index_min>=0);
+    while (S->mat[index_min][index_min] < EPSILON) {
+        index_min--;
+        assert(index_min >= 0);
     }
     matrice *p = matrice_nulle(V->m, 1);
     for (int i = 0; i < V->m; i++) {
         p->mat[i][0] = V->mat[i][index_min];
     }
 
-    // Libérer U, S 
+    // Étape 3 : Construire la matrice de projection P (3x4)
+    for (int i = 0; i < 12; i++) {
+        P->mat[i / 4][i % 4] = p->mat[i][0];
+    }
+
     free_matrice(U);
     free_matrice(S);
     free_matrice(V);
-    // Étape 3 : Construire la matrice P
-
-    for (int i = 0; i < 4; i++) { // Ligne 1
-        P->mat[0][i] = p->mat[i][0];
-    }
-    for (int i = 4; i < 8; i++) { // Ligne 2
-        P->mat[1][i-4] = p->mat[i][0];
-    }
-    for (int i = 8; i < 12; i++) { // Ligne 3
-        P->mat[2][i-8] = p->mat[i][0];
-    }
-    // Libération du vecteur p
     free_matrice(p);
-/*
-    // Étape 4 : Calcul de la décomposition SVD de P
+
+    // Étape 4 : Extraire le noyau droit de P pour obtenir le centre C*
+    matrice* U2 = matrice_nulle(P->n, P->n);
     matrice* S2 = matrice_nulle(P->n, P->m);
     matrice* V2 = matrice_nulle(P->m, P->m);
-    matrice* U2 = matrice_nulle(P->n, P->n);
     qr_algorithm_SVD(P, U2, S2, V2);
-
-    // Extraction du vecteur singulier droit associé à la plus petite valeur singulière
-    index_min = fmin(P->n - 1,P->m-1);
-
-    matrice *C_approx = matrice_nulle(V2->m, 1);
+    index_min = fmin(P->n - 1, P->m - 1);
+    matrice *C_star = matrice_nulle(V2->m, 1);
     for (int i = 0; i < V2->m; i++) {
-        C_approx->mat[i][0] = V2->mat[i][index_min];
+        C_star->mat[i][0] = V2->mat[i][index_min];
     }
-    // Normalisation de C pour que le dernier élément soit 1
-    double scale = C_approx->mat[C_approx->n - 1][0];
-    for (int i = 0; i < C_approx->n; i++) {
-        C_approx->mat[i][0] /= scale;
+    // Homogénéisation
+    double scale = C_star->mat[C_star->n - 1][0];
+    for (int i = 0; i < C_star->n; i++) {
+        C_star->mat[i][0] /= scale;
     }
+    // Étape 5 : QR de M = P[0:3, 0:3]⁻¹
+    matrice* M = matrice_nulle(3, 3);
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
+            M->mat[i][j] = P->mat[i][j];
 
-   // Étape 5 : QR factorisation de P(1:3, 1:3)^-1
-    matrice* P_extract=matrice_nulle(3,3);
-    for (int i = 0; i < 3; ++i){
-        for (int j = 0; j < 3; ++j){
-            P_extract->mat[i][j]=P->mat[i][j];
-        }
+    matrice* M_inv = inverser_matrice(M);
+    matrice* Q = matrice_nulle(3, 3);
+    matrice* R_temp = matrice_nulle(3, 3);
+    decomposition_QR_householder(M_inv, Q, R_temp);
+    copie_matrice(R_temp, R);
+    // Étape 6 : Extraire R et K
+    copie_matrice(R_temp, R); // R temporaire devient R
+    matrice* R_inv = inverser_matrice(R);
+    matrice* K_temp = produit(R_inv, M); // K = R⁻¹ · M
+    multiplication_scalaire(K_temp, 1.0 / K_temp->mat[2][2]); // normalisation
+    copie_matrice(K_temp, K);
+
+    // Étape 7 : Calcul de T = -R · C*
+    matrice* C_euclidienne = matrice_nulle(3, 1);
+    for (int i = 0; i < 3; ++i) {
+        C_euclidienne->mat[i][0] = C_star->mat[i][0];
     }
-    matrice* P_inv = inverser_matrice(P_extract);
-    matrice *Q = matrice_nulle(P_inv->n,P_inv->n);
+    matrice* RC = produit(R, C_euclidienne);
+    multiplication_scalaire(RC, -1.0);
+    for (int i = 0; i < 3; ++i)
+        T->mat[i][0] = RC->mat[i][0];
 
-    decomposition_QR_householder(P_inv, Q, R);
-
-    // Étape 6 : Calcul de K, R et T
-    K = inverser_matrice(R);
-    matrice* R_inv = inverser_matrice(Q);
-    multiplication_scalaire(K, 1.0 / K->mat[2][2]); // Normalisation de K(3,3) = 1
-
-    T = produit(K, R_inv);
-    multiplication_scalaire(T, -1); // T = -RC*/
-
-    // Libération de la mémoire
-/*    free_matrice(P_inv);
-    free_matrice(Q);
-    free_matrice(R)
-    free_matrice(K);
-    free_matrice(R_inv);
-    free_matrice(T);
-    free_matrice(C_approx);
-    free_matrice(U);
+    free_matrice(U2);
     free_matrice(S2);
-    free_matrice(V2);*/
+    free_matrice(V2);
+    free_matrice(C_star);
+    free_matrice(M);
+    free_matrice(M_inv);
+    free_matrice(Q);
+    free_matrice(R_temp);
+    free_matrice(R_inv);
+    free_matrice(K_temp);
+    free_matrice(RC);
 }
 
 
-matrice* compute_E(matrice* R, matrice* T){
-    return produit_vectoriel(T,R);
+matrice* compute_F(matrice* K1 ,matrice* R1, matrice* T1, matrice* K2, matrice* R2, matrice* T2){
+    //F=(K2​t2​−K2​R2​(K1​R1​)−1K1​t1​)∧(K2​R2​(K1​R1​)−1)
+    matrice* KR1 = produit(K1, R1);
+    matrice* KR1_inv = inverser_matrice(KR1);
+    matrice* temp = produit(K2, R2);      
+    matrice* M = produit(temp, KR1_inv);  
+    free_matrice(temp);
+    matrice* K1T1 = produit(K1, T1);
+    matrice* inter = produit(KR1_inv, K1T1);
+    matrice* R2_K1T1 = produit(R2, inter);
+    matrice* neg_term = produit(K2, R2_K1T1);
+    multiplication_scalaire(neg_term, -1); 
+    matrice* K2T2 = produit(K2, T2);
+    matrice* v = somme(neg_term, K2T2);
+    return produit_vectoriel(v, M);
 }
-

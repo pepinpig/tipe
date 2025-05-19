@@ -47,17 +47,13 @@ int distance(int i,int j,int k , int l){
 matrice* compute_score(matrice* plan, int** actif, int size){ //size est la taille d'actif
                                                           // actif est un tableau de couple d'entier correspondant au support de plan
   matrice* score = matrice_nulle(plan->n,plan->m);
-  printf("size = %d \n",size);
   for(int i = 0; i < size; i++){
     for(int j = i+1; j < size; j++){
       if(distance(actif[i][0],actif[i][1],actif[j][0],actif[j][1])<Dist_tc*Dist_tc && !au_bord(plan,actif[i][0],actif[i][1]) && !au_bord(plan,actif[j][0],actif[j][1])){ //On ne traite pas de points trop au bord
-																			//		printf("%d",j);
         update_score(plan,score,actif[i][0],actif[i][1],actif[j][0],actif[j][1]);
       }
     }
   }
-  printf("debug");
-  fflush(stdout);
   return score;
 }
   
@@ -82,15 +78,6 @@ int filtre_mat(matrice* input, int** actif, int size){
 	}
 	free_matrice(tmp);
   return s;
-  /*for(int i = 0;i<input->n;i++){
-    for(int j = 0;j<input->m;j++){
-      if(au_bord(input,i,j))
-      input->mat[i][j]=1;
-      else input->mat[i][j]=0;
-    }
-  }
-  update_score(input,input,20,input->m-20,20,20);*/
-
 }
 
 int pretty_mat(matrice* input, int** actif, int size){

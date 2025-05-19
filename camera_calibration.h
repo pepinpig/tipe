@@ -15,11 +15,5 @@ matrice* construction_A(double* X, double* Y, double* Z, double* u, double* v, i
 // Fonction pour résoudre la calibration de la caméra
 void camera_calibration_resolution(matrice* P, matrice* A, matrice* K, matrice* R, matrice* T);
 
-//Calcule la matrice fondamental E associé à l'image
-matrice* compute_E(matrice* R, matrice* T);
-
-//Calcule la matrice fondamental F associé à l'image
-// matrice* compute_F_aux(matrice* K , matrice* R, matrice* T);
-
-// matrice* compute_F(char* filename1,char*  filename2);
-// int compute_matrice_caract(char* image_name,char* cl, matrice* P, matrice* A, matrice* K, matrice* R, matrice* T);
+//Calcule la matrice fondamental F associé aux images
+matrice* compute_F(matrice* K1 ,matrice* R1, matrice* T1, matrice* K2, matrice* R2, matrice* T2);

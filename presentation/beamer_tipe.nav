@@ -114,37 +114,65 @@
 \headcommand {\beamer@framepages {101}{101}}
 \headcommand {\beamer@sectionpages {94}{101}}
 \headcommand {\beamer@subsectionpages {94}{101}}
-\headcommand {\sectionentry {5}{[}{102}{[}{0}}
-\headcommand {\slideentry {5}{0}{1}{102/104}{}{0}}
-\headcommand {\beamer@framepages {102}{104}}
-\headcommand {\slideentry {5}{0}{2}{105/109}{}{0}}
-\headcommand {\beamer@framepages {105}{109}}
-\headcommand {\slideentry {5}{0}{3}{110/110}{}{0}}
-\headcommand {\beamer@framepages {110}{110}}
-\headcommand {\slideentry {5}{0}{4}{111/111}{}{0}}
-\headcommand {\beamer@framepages {111}{111}}
-\headcommand {\slideentry {5}{0}{5}{112/119}{}{0}}
-\headcommand {\beamer@framepages {112}{119}}
-\headcommand {\slideentry {5}{0}{6}{120/122}{}{0}}
-\headcommand {\beamer@framepages {120}{122}}
-\headcommand {\slideentry {5}{0}{7}{123/124}{}{0}}
-\headcommand {\beamer@framepages {123}{124}}
-\headcommand {\slideentry {5}{0}{8}{125/125}{}{0}}
-\headcommand {\beamer@framepages {125}{125}}
-\headcommand {\slideentry {5}{0}{9}{126/130}{}{0}}
-\headcommand {\beamer@framepages {126}{130}}
-\headcommand {\slideentry {5}{0}{10}{131/134}{}{0}}
-\headcommand {\beamer@framepages {131}{134}}
-\headcommand {\slideentry {5}{0}{11}{135/139}{}{0}}
-\headcommand {\beamer@framepages {135}{139}}
-\headcommand {\slideentry {5}{0}{12}{140/140}{}{0}}
-\headcommand {\beamer@framepages {140}{140}}
-\headcommand {\slideentry {5}{0}{13}{141/141}{}{0}}
-\headcommand {\beamer@framepages {141}{141}}
-\headcommand {\beamer@partpages {1}{142}}
-\headcommand {\beamer@subsectionpages {102}{142}}
-\headcommand {\beamer@sectionpages {102}{142}}
-\headcommand {\beamer@documentpages {142}}
-\headcommand {\gdef \inserttotalframenumber {48}}
-\headcommand {\slideentry {5}{0}{14}{142/142}{}{0}}
-\headcommand {\beamer@framepages {142}{142}}
+\headcommand {\sectionentry {5}{Triangulation}{102}{Enveloppe Convexe}{0}}
+\headcommand {\slideentry {5}{0}{1}{102/102}{}{0}}
+\headcommand {\beamer@framepages {102}{102}}
+\headcommand {\beamer@subsectionpages {102}{102}}
+\headcommand {\beamer@subsectionentry {0}{5}{1}{103}{Définition du problème}}
+\headcommand {\slideentry {5}{1}{1}{103/103}{Définition du problème}{0}}
+\headcommand {\beamer@framepages {103}{103}}
+\headcommand {\slideentry {5}{1}{2}{104/104}{Définition du problème}{0}}
+\headcommand {\beamer@framepages {104}{104}}
+\headcommand {\beamer@sectionpages {102}{104}}
+\headcommand {\beamer@subsectionpages {103}{104}}
+\headcommand {\sectionentry {6}{Analyse des résultats}{105}{Analyse des résultats}{0}}
+\headcommand {\slideentry {6}{0}{1}{105/105}{}{0}}
+\headcommand {\beamer@framepages {105}{105}}
+\headcommand {\beamer@subsectionpages {105}{105}}
+\headcommand {\beamer@subsectionentry {0}{6}{1}{106}{Quelques exemples}}
+\headcommand {\slideentry {6}{1}{1}{106/106}{Quelques exemples}{0}}
+\headcommand {\beamer@framepages {106}{106}}
+\headcommand {\slideentry {6}{1}{2}{107/107}{Quelques exemples}{0}}
+\headcommand {\beamer@framepages {107}{107}}
+\headcommand {\beamer@subsectionpages {106}{107}}
+\headcommand {\beamer@subsectionentry {0}{6}{2}{108}{Des pistes d'amélioration}}
+\headcommand {\beamer@subsectionpages {108}{107}}
+\headcommand {\beamer@subsectionentry {0}{6}{3}{108}{Limite de la méthode}}
+\headcommand {\slideentry {6}{3}{1}{108/108}{Limite de la méthode}{0}}
+\headcommand {\beamer@framepages {108}{108}}
+\headcommand {\beamer@sectionpages {105}{108}}
+\headcommand {\beamer@subsectionpages {108}{108}}
+\headcommand {\sectionentry {7}{[}{109}{[}{0}}
+\headcommand {\slideentry {7}{0}{1}{109/111}{}{0}}
+\headcommand {\beamer@framepages {109}{111}}
+\headcommand {\slideentry {7}{0}{2}{112/116}{}{0}}
+\headcommand {\beamer@framepages {112}{116}}
+\headcommand {\slideentry {7}{0}{3}{117/117}{}{0}}
+\headcommand {\beamer@framepages {117}{117}}
+\headcommand {\slideentry {7}{0}{4}{118/118}{}{0}}
+\headcommand {\beamer@framepages {118}{118}}
+\headcommand {\slideentry {7}{0}{5}{119/126}{}{0}}
+\headcommand {\beamer@framepages {119}{126}}
+\headcommand {\slideentry {7}{0}{6}{127/129}{}{0}}
+\headcommand {\beamer@framepages {127}{129}}
+\headcommand {\slideentry {7}{0}{7}{130/131}{}{0}}
+\headcommand {\beamer@framepages {130}{131}}
+\headcommand {\slideentry {7}{0}{8}{132/132}{}{0}}
+\headcommand {\beamer@framepages {132}{132}}
+\headcommand {\slideentry {7}{0}{9}{133/137}{}{0}}
+\headcommand {\beamer@framepages {133}{137}}
+\headcommand {\slideentry {7}{0}{10}{138/141}{}{0}}
+\headcommand {\beamer@framepages {138}{141}}
+\headcommand {\slideentry {7}{0}{11}{142/146}{}{0}}
+\headcommand {\beamer@framepages {142}{146}}
+\headcommand {\slideentry {7}{0}{12}{147/147}{}{0}}
+\headcommand {\beamer@framepages {147}{147}}
+\headcommand {\slideentry {7}{0}{13}{148/148}{}{0}}
+\headcommand {\beamer@framepages {148}{148}}
+\headcommand {\slideentry {7}{0}{14}{149/149}{}{0}}
+\headcommand {\beamer@framepages {149}{149}}
+\headcommand {\beamer@partpages {1}{149}}
+\headcommand {\beamer@subsectionpages {109}{149}}
+\headcommand {\beamer@sectionpages {109}{149}}
+\headcommand {\beamer@documentpages {149}}
+\headcommand {\gdef \inserttotalframenumber {53}}

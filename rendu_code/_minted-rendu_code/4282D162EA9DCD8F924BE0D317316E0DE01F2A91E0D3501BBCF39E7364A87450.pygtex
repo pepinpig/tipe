@@ -1,0 +1,128 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{let} \PYG{n}{oppose} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:}\PYG{k+kt}{int} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{int} \PYG{k+kt}{list} \PYG{o}{=}
+	\PYG{k}{let} \PYG{k}{rec} \PYG{n}{aux} \PYG{o}{(}\PYG{n}{ll}\PYG{o}{:}\PYG{k+kt}{int} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{lres}\PYG{o}{:}\PYG{k+kt}{int} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{int} \PYG{k+kt}{list} \PYG{o}{=}
+		\PYG{k}{match} \PYG{n}{ll} \PYG{k}{with}
+		\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{lres}
+		\PYG{o}{|} \PYG{n}{a}\PYG{o}{::}\PYG{n}{q} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{aux} \PYG{n}{q} \PYG{o}{((\PYGZhy{}}\PYG{n}{a}\PYG{o}{)::}\PYG{n}{lres}\PYG{o}{)}
+	\PYG{k}{in} \PYG{n+nn}{List}\PYG{p}{.}\PYG{n}{rev} \PYG{o}{(}\PYG{n}{aux} \PYG{n}{l} \PYG{n+nb+bp}{[]}\PYG{o}{)}
+	
+\PYG{k}{let} \PYG{n}{test\PYGZus{}oppose} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{=}
+	\PYG{k}{assert}\PYG{o}{(}\PYG{n}{oppose} \PYG{n+nb+bp}{[]} \PYG{o}{=} \PYG{n+nb+bp}{[]}\PYG{o}{);}
+	\PYG{k}{assert}\PYG{o}{(}\PYG{n}{oppose} \PYG{o}{[\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{;} \PYG{l+m+mi}{4}\PYG{o}{;} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{;} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{3}\PYG{o}{;} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{4}\PYG{o}{;} \PYG{l+m+mi}{5}\PYG{o}{]);}
+	\PYG{k}{assert}\PYG{o}{(}\PYG{n}{oppose} \PYG{o}{[}\PYG{l+m+mi}{10}\PYG{o}{;} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{10}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{10}\PYG{o}{;} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{o}{])}
+
+
+\PYG{k}{let} \PYG{n}{intervertit} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:} \PYG{o}{(}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{*}\PYG{k}{\PYGZsq{}}\PYG{n}{b}\PYG{o}{)} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{o}{(}\PYG{k}{\PYGZsq{}}\PYG{n}{b}\PYG{o}{*}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{)} \PYG{k+kt}{list} \PYG{o}{=}
+	\PYG{k}{let} \PYG{k}{rec} \PYG{n}{aux} \PYG{o}{(}\PYG{n}{ll}\PYG{o}{:(}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{*}\PYG{k}{\PYGZsq{}}\PYG{n}{b}\PYG{o}{)} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{lres}\PYG{o}{:(}\PYG{k}{\PYGZsq{}}\PYG{n}{b}\PYG{o}{*}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{)} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{o}{(}\PYG{k}{\PYGZsq{}}\PYG{n}{b}\PYG{o}{*}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{)} \PYG{k+kt}{list}  \PYG{o}{=}
+		\PYG{k}{match} \PYG{n}{ll} \PYG{k}{with}
+		\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{lres}
+		\PYG{o}{|} \PYG{o}{(}\PYG{n}{x}\PYG{o}{,}\PYG{n}{y}\PYG{o}{)::}\PYG{n}{q} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{aux} \PYG{n}{q} \PYG{o}{((}\PYG{n}{y}\PYG{o}{,}\PYG{n}{x}\PYG{o}{)::}\PYG{n}{lres}\PYG{o}{)}
+	\PYG{k}{in} \PYG{n+nn}{List}\PYG{p}{.}\PYG{n}{rev} \PYG{o}{(}\PYG{n}{aux} \PYG{n}{l} \PYG{n+nb+bp}{[]}\PYG{o}{)}
+	
+\PYG{k}{let} \PYG{n}{test\PYGZus{}intervertit} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{=}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{intervertit} \PYG{n+nb+bp}{[]} \PYG{o}{=} \PYG{n+nb+bp}{[]}\PYG{o}{);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{intervertit} \PYG{o}{[(}\PYG{l+m+mi}{1}\PYG{o}{,}\PYG{l+m+mi}{2}\PYG{o}{);} \PYG{o}{(}\PYG{l+m+mi}{3}\PYG{o}{,}\PYG{l+m+mi}{4}\PYG{o}{)]} \PYG{o}{=} \PYG{o}{[(}\PYG{l+m+mi}{2}\PYG{o}{,}\PYG{l+m+mi}{1}\PYG{o}{);} \PYG{o}{(}\PYG{l+m+mi}{4}\PYG{o}{,}\PYG{l+m+mi}{3}\PYG{o}{)]);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{intervertit} \PYG{o}{[(}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{1}\PYG{o}{);} \PYG{o}{(}\PYG{l+s+sc}{\PYGZsq{}b\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{3}\PYG{o}{);} \PYG{o}{(}\PYG{l+s+sc}{\PYGZsq{}z\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{18}\PYG{o}{)]} \PYG{o}{=} \PYG{o}{[(}\PYG{l+m+mi}{1}\PYG{o}{,}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{);} \PYG{o}{(}\PYG{l+m+mi}{3}\PYG{o}{,}\PYG{l+s+sc}{\PYGZsq{}b\PYGZsq{}}\PYG{o}{);} \PYG{o}{(}\PYG{l+m+mi}{18}\PYG{o}{,}\PYG{l+s+sc}{\PYGZsq{}z\PYGZsq{}}\PYG{o}{)]} \PYG{o}{)}
+	
+	
+\PYG{k}{let} \PYG{n}{demultiplie} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:} \PYG{o}{(}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{*}\PYG{k+kt}{int}\PYG{o}{)} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{k+kt}{list} \PYG{o}{=}
+	\PYG{k}{let} \PYG{k}{rec} \PYG{n}{aux} \PYG{o}{(}\PYG{n}{ll}\PYG{o}{:(}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{*}\PYG{k+kt}{int}\PYG{o}{)} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{lres}\PYG{o}{:}\PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{k+kt}{list}  \PYG{o}{=}
+		\PYG{k}{match} \PYG{n}{ll} \PYG{k}{with}
+		\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{lres}
+		\PYG{o}{|} \PYG{o}{(}\PYG{n}{elem}\PYG{o}{,}\PYG{n}{k}\PYG{o}{)::}\PYG{n}{q} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{if} \PYG{n}{k}\PYG{o}{\PYGZlt{}=}\PYG{l+m+mi}{0} \PYG{k}{then} \PYG{n}{aux} \PYG{n}{q} \PYG{n}{lres} \PYG{k}{else} \PYG{n}{aux} \PYG{o}{((}\PYG{n}{elem}\PYG{o}{,}\PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{)::}\PYG{n}{q}\PYG{o}{)} \PYG{o}{(}\PYG{n}{elem}\PYG{o}{::}\PYG{n}{lres}\PYG{o}{)}
+	\PYG{k}{in} \PYG{n+nn}{List}\PYG{p}{.}\PYG{n}{rev} \PYG{o}{(}\PYG{n}{aux} \PYG{n}{l} \PYG{n+nb+bp}{[]}\PYG{o}{)}
+	
+	
+\PYG{k}{let} \PYG{n}{test\PYGZus{}demultiplie} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{=} 
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{demultiplie} \PYG{n+nb+bp}{[]} \PYG{o}{=} \PYG{n+nb+bp}{[]}\PYG{o}{);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{demultiplie} \PYG{o}{[(}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{0}\PYG{o}{)]} \PYG{o}{=} \PYG{n+nb+bp}{[]}\PYG{o}{);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{demultiplie} \PYG{o}{[(}\PYG{n+nb+bp}{true}\PYG{o}{,}\PYG{l+m+mi}{3}\PYG{o}{)]} \PYG{o}{=} \PYG{o}{[}\PYG{n+nb+bp}{true}\PYG{o}{;} \PYG{n+nb+bp}{true}\PYG{o}{;} \PYG{n+nb+bp}{true}\PYG{o}{]);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{demultiplie} \PYG{o}{[(}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{1}\PYG{o}{);} \PYG{o}{(}\PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{3}\PYG{o}{);} \PYG{o}{(}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{2}\PYG{o}{)]} \PYG{o}{=} \PYG{o}{[}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{])}
+	 
+	
+\PYG{k}{let} \PYG{n}{compresse} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:}\PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{o}{(}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{*}\PYG{k+kt}{int}\PYG{o}{)} \PYG{k+kt}{list} \PYG{o}{=}
+	\PYG{c}{(*hyp : l \PYGZlt{}\PYGZgt{} [] *)}
+	\PYG{k}{let} \PYG{k}{rec} \PYG{n}{aux} \PYG{o}{(}\PYG{n}{ll}\PYG{o}{:}\PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{lres}\PYG{o}{:(}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{*}\PYG{k+kt}{int}\PYG{o}{)} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{elem}\PYG{o}{:} \PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{)} \PYG{o}{(}\PYG{n}{nb}\PYG{o}{:}\PYG{k+kt}{int}\PYG{o}{)} \PYG{o}{:} \PYG{o}{(}\PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{*}\PYG{k+kt}{int}\PYG{o}{)} \PYG{k+kt}{list}  \PYG{o}{=}
+		\PYG{k}{match} \PYG{n}{ll} \PYG{k}{with}
+		\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{o}{(}\PYG{n}{elem}\PYG{o}{,}\PYG{n}{nb}\PYG{o}{)::}\PYG{n}{lres}
+		\PYG{o}{|} \PYG{n}{a}\PYG{o}{::}\PYG{n}{q} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{if} \PYG{n}{a}\PYG{o}{=}\PYG{n}{elem} \PYG{k}{then} \PYG{n}{aux} \PYG{n}{q} \PYG{n}{lres} \PYG{n}{elem} \PYG{o}{(}\PYG{n}{nb}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{o}{)} \PYG{k}{else} \PYG{n}{aux} \PYG{n}{q} \PYG{o}{((}\PYG{n}{elem}\PYG{o}{,}\PYG{n}{nb}\PYG{o}{)::}\PYG{n}{lres}\PYG{o}{)} \PYG{n}{a} \PYG{l+m+mi}{1}
+	\PYG{k}{in} \PYG{k}{match} \PYG{n}{l} \PYG{k}{with} 
+	\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{failwith} \PYG{l+s+s2}{\PYGZdq{}on ne compresse pas la liste vide\PYGZdq{}}
+	\PYG{o}{|} \PYG{n}{e1}\PYG{o}{::}\PYG{n}{l1} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nn}{List}\PYG{p}{.}\PYG{n}{rev} \PYG{o}{(}\PYG{n}{aux} \PYG{n}{l1} \PYG{n+nb+bp}{[]} \PYG{n}{e1} \PYG{l+m+mi}{1}\PYG{o}{)}
+	
+\PYG{k}{let} \PYG{n}{test\PYGZus{}compresse} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{=} 
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{compresse} \PYG{o}{[}\PYG{n+nb+bp}{true}\PYG{o}{;} \PYG{n+nb+bp}{true}\PYG{o}{;} \PYG{n+nb+bp}{true}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[(}\PYG{n+nb+bp}{true}\PYG{o}{,}\PYG{l+m+mi}{3}\PYG{o}{)]} \PYG{o}{);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{compresse} \PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[(}\PYG{l+m+mi}{1}\PYG{o}{,}\PYG{l+m+mi}{2}\PYG{o}{);} \PYG{o}{(}\PYG{l+m+mi}{2}\PYG{o}{,}\PYG{l+m+mi}{3}\PYG{o}{);} \PYG{o}{(}\PYG{l+m+mi}{3}\PYG{o}{,}\PYG{l+m+mi}{2}\PYG{o}{)]} \PYG{o}{);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{compresse} \PYG{o}{[}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{;} \PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[(}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{1}\PYG{o}{);} \PYG{o}{(}\PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{3}\PYG{o}{);} \PYG{o}{(}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{o}{,}\PYG{l+m+mi}{2}\PYG{o}{)]} \PYG{o}{)}
+
+
+
+\PYG{k}{let} \PYG{n}{moyenne} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:}\PYG{k+kt}{int} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{float} \PYG{o}{=}
+	\PYG{c}{(*hyp : l \PYGZlt{}\PYGZgt{} [] *)}
+	\PYG{k}{let} \PYG{k}{rec} \PYG{n}{aux} \PYG{o}{(}\PYG{n}{ll}\PYG{o}{:}\PYG{k+kt}{int} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{somme}\PYG{o}{:}\PYG{k+kt}{int}\PYG{o}{)} \PYG{o}{(}\PYG{n}{cpt}\PYG{o}{:}\PYG{k+kt}{int}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{int}\PYG{o}{*}\PYG{k+kt}{int}  \PYG{o}{=}
+		\PYG{k}{match} \PYG{n}{ll} \PYG{k}{with}
+		\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{o}{(}\PYG{n}{somme}\PYG{o}{,} \PYG{n}{cpt}\PYG{o}{)}
+		\PYG{o}{|} \PYG{n}{a}\PYG{o}{::}\PYG{n}{q} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{aux} \PYG{n}{q} \PYG{o}{(}\PYG{n}{somme}\PYG{o}{+}\PYG{n}{a}\PYG{o}{)} \PYG{o}{(}\PYG{n}{cpt}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{o}{)}
+	\PYG{k}{in} \PYG{k}{let} \PYG{n}{s}\PYG{o}{,}\PYG{n}{c} \PYG{o}{=} \PYG{n}{aux} \PYG{n}{l} \PYG{l+m+mi}{0} \PYG{l+m+mi}{0}
+	\PYG{k}{in} \PYG{n}{float\PYGZus{}of\PYGZus{}int}\PYG{o}{(}\PYG{n}{s}\PYG{o}{)/.}\PYG{n}{float\PYGZus{}of\PYGZus{}int}\PYG{o}{(}\PYG{n}{c}\PYG{o}{)}
+	
+	
+\PYG{k}{let} \PYG{n}{test\PYGZus{}moyenne} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{=}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyenne}\PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{o}{.);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyenne}\PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{]} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{o}{.);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyenne}\PYG{o}{[\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{5}\PYG{o}{]} \PYG{o}{=} \PYG{o}{(}\PYG{l+m+mi}{5}\PYG{o}{./.}\PYG{l+m+mi}{3}\PYG{o}{.))}
+	
+\PYG{k}{let} \PYG{n}{moyennes\PYGZus{}listes} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:} \PYG{k+kt}{int} \PYG{k+kt}{list} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{float} \PYG{k+kt}{list} \PYG{o}{=} 
+	\PYG{c}{(*hyp : les éléments de l sont non vides *)}
+	\PYG{k}{let} \PYG{k}{rec} \PYG{n}{aux} \PYG{o}{(}\PYG{n}{ll}\PYG{o}{:} \PYG{k+kt}{int} \PYG{k+kt}{list} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{lres}\PYG{o}{:}\PYG{k+kt}{float} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{float} \PYG{k+kt}{list}  \PYG{o}{=}
+		\PYG{k}{match} \PYG{n}{ll} \PYG{k}{with}
+		\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{lres}
+		\PYG{o}{|} \PYG{n}{a}\PYG{o}{::}\PYG{n}{q} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{aux} \PYG{n}{q} \PYG{o}{((}\PYG{n}{moyenne} \PYG{n}{a}\PYG{o}{)::}\PYG{n}{lres}\PYG{o}{)}
+	\PYG{k}{in} \PYG{n+nn}{List}\PYG{p}{.}\PYG{n}{rev} \PYG{o}{(}\PYG{n}{aux} \PYG{n}{l} \PYG{n+nb+bp}{[]}\PYG{o}{)}
+	
+\PYG{k}{let} \PYG{n}{test\PYGZus{}moyennes\PYGZus{}listes} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{=}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes}\PYG{n+nb+bp}{[]} \PYG{o}{=} \PYG{n+nb+bp}{[]}\PYG{o}{);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes} \PYG{o}{[[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{;}\PYG{l+m+mi}{3}\PYG{o}{]]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.}\PYG{l+m+mi}{5}\PYG{o}{]);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes} \PYG{o}{[[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{3}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{]]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.]);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes}\PYG{o}{[[\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{5}\PYG{o}{]]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{5}\PYG{o}{./.}\PYG{l+m+mi}{3}\PYG{o}{.])}
+
+
+\PYG{k}{let} \PYG{n}{moyenne\PYGZus{}bis} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:}\PYG{k+kt}{int} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{float} \PYG{n}{option} \PYG{o}{=}
+	\PYG{k}{match} \PYG{n}{l} \PYG{k}{with}
+	\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nc}{None}
+	\PYG{o}{|} \PYG{o}{\PYGZus{}} \PYG{o}{\PYGZhy{}\PYGZgt{}} 
+		\PYG{k}{let} \PYG{k}{rec} \PYG{n}{aux} \PYG{o}{(}\PYG{n}{ll}\PYG{o}{:}\PYG{k+kt}{int} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{somme}\PYG{o}{:}\PYG{k+kt}{int}\PYG{o}{)} \PYG{o}{(}\PYG{n}{cpt}\PYG{o}{:}\PYG{k+kt}{int}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{int}\PYG{o}{*}\PYG{k+kt}{int}  \PYG{o}{=}
+			\PYG{k}{match} \PYG{n}{ll} \PYG{k}{with}
+			\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{o}{(}\PYG{n}{somme}\PYG{o}{,} \PYG{n}{cpt}\PYG{o}{)}
+			\PYG{o}{|} \PYG{n}{a}\PYG{o}{::}\PYG{n}{q} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{aux} \PYG{n}{q} \PYG{o}{(}\PYG{n}{somme}\PYG{o}{+}\PYG{n}{a}\PYG{o}{)} \PYG{o}{(}\PYG{n}{cpt}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{o}{)}
+		\PYG{k}{in} \PYG{k}{let} \PYG{n}{s}\PYG{o}{,}\PYG{n}{c} \PYG{o}{=} \PYG{n}{aux} \PYG{n}{l} \PYG{l+m+mi}{0} \PYG{l+m+mi}{0}
+		\PYG{k}{in} \PYG{n+nc}{Some} \PYG{o}{(}\PYG{n}{float\PYGZus{}of\PYGZus{}int}\PYG{o}{(}\PYG{n}{s}\PYG{o}{)/.}\PYG{n}{float\PYGZus{}of\PYGZus{}int}\PYG{o}{(}\PYG{n}{c}\PYG{o}{))}
+
+
+\PYG{k}{let} \PYG{n}{moyennes\PYGZus{}listes\PYGZus{}bis} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:} \PYG{k+kt}{int} \PYG{k+kt}{list} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{float} \PYG{k+kt}{list} \PYG{o}{=} 
+	\PYG{c}{(*hyp : les éléments de l sont non vides *)}
+	\PYG{k}{let} \PYG{k}{rec} \PYG{n}{aux} \PYG{o}{(}\PYG{n}{ll}\PYG{o}{:} \PYG{k+kt}{int} \PYG{k+kt}{list} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{(}\PYG{n}{lres}\PYG{o}{:}\PYG{k+kt}{float} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{float} \PYG{k+kt}{list}  \PYG{o}{=}
+		\PYG{k}{match} \PYG{n}{ll} \PYG{k}{with}
+		\PYG{o}{|} \PYG{n+nb+bp}{[]} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{lres}
+		\PYG{o}{|} \PYG{n}{a}\PYG{o}{::}\PYG{n}{q} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{let} \PYG{n}{m} \PYG{o}{=} \PYG{o}{(}\PYG{n}{moyenne\PYGZus{}bis} \PYG{n}{a}\PYG{o}{)} \PYG{k}{in} 
+			\PYG{k}{match} \PYG{n}{m} \PYG{k}{with} 
+			\PYG{o}{|}	\PYG{n+nc}{None} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{aux} \PYG{n}{q} \PYG{n}{lres}
+			\PYG{o}{|} \PYG{n+nc}{Some} \PYG{n}{moy} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{aux} \PYG{n}{q} \PYG{o}{(}\PYG{n}{moy}\PYG{o}{::}\PYG{n}{lres}\PYG{o}{)}
+	\PYG{k}{in} \PYG{n+nn}{List}\PYG{p}{.}\PYG{n}{rev} \PYG{o}{(}\PYG{n}{aux} \PYG{n}{l} \PYG{n+nb+bp}{[]}\PYG{o}{)}	
+
+
+\PYG{k}{let} \PYG{n}{test\PYGZus{}moyennes\PYGZus{}listes\PYGZus{}bis} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{=}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes\PYGZus{}bis}\PYG{n+nb+bp}{[]} \PYG{o}{=} \PYG{n+nb+bp}{[]}\PYG{o}{);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes\PYGZus{}bis} \PYG{o}{[[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{];} \PYG{n+nb+bp}{[]}\PYG{o}{;}  \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{;}\PYG{l+m+mi}{3}\PYG{o}{]]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.}\PYG{l+m+mi}{5}\PYG{o}{]);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes\PYGZus{}bis} \PYG{o}{[[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{3}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{];} \PYG{n+nb+bp}{[]}\PYG{o}{;}\PYG{n+nb+bp}{[]}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.]);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes\PYGZus{}bis}\PYG{o}{[[\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{5}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{0}\PYG{o}{];} \PYG{n+nb+bp}{[]}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{5}\PYG{o}{./.}\PYG{l+m+mi}{3}\PYG{o}{.;} \PYG{l+m+mi}{0}\PYG{o}{.])}	
+
+\PYG{k}{let} \PYG{n}{moyennes\PYGZus{}listes\PYGZus{}ter} \PYG{o}{(}\PYG{n}{l}\PYG{o}{:} \PYG{k+kt}{int} \PYG{k+kt}{list} \PYG{k+kt}{list}\PYG{o}{)} \PYG{o}{:} \PYG{k+kt}{float} \PYG{k+kt}{list} \PYG{o}{=}
+	\PYG{n+nn}{List}\PYG{p}{.}\PYG{n}{filter\PYGZus{}map} \PYG{n}{moyenne\PYGZus{}bis} \PYG{n}{l}
+	
+\PYG{k}{let} \PYG{n}{test\PYGZus{}moyennes\PYGZus{}listes\PYGZus{}ter} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{=}	
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes\PYGZus{}ter}\PYG{n+nb+bp}{[]} \PYG{o}{=} \PYG{n+nb+bp}{[]}\PYG{o}{);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes\PYGZus{}ter} \PYG{o}{[[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{];} \PYG{n+nb+bp}{[]}\PYG{o}{;}  \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{;}\PYG{l+m+mi}{3}\PYG{o}{]]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.}\PYG{l+m+mi}{5}\PYG{o}{]);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes\PYGZus{}ter} \PYG{o}{[[}\PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{3}\PYG{o}{;} \PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{;} \PYG{l+m+mi}{1}\PYG{o}{;} \PYG{l+m+mi}{3}\PYG{o}{];} \PYG{n+nb+bp}{[]}\PYG{o}{;}\PYG{n+nb+bp}{[]}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.;} \PYG{l+m+mi}{2}\PYG{o}{.]);}
+	\PYG{k}{assert} \PYG{o}{(}\PYG{n}{moyennes\PYGZus{}listes\PYGZus{}ter}\PYG{o}{[[\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{10}\PYG{o}{;} \PYG{l+m+mi}{5}\PYG{o}{];} \PYG{o}{[}\PYG{l+m+mi}{0}\PYG{o}{];} \PYG{n+nb+bp}{[]}\PYG{o}{]} \PYG{o}{=} \PYG{o}{[}\PYG{l+m+mi}{5}\PYG{o}{./.}\PYG{l+m+mi}{3}\PYG{o}{.;} \PYG{l+m+mi}{0}\PYG{o}{.])}	
+\end{Verbatim}

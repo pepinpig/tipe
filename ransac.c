@@ -57,21 +57,14 @@ void detect_lines_and_extremities(matrice* points) {
                     end2[1] = y;
                 }
             }
-
-            //printf("\nDroite trouvée avec %d points alignés :", inlier_count);
-            //printf(" extrémités = (%.2f, %.2f) et (%.2f, %.2f)\n", end1[0], end1[1], end2[0], end2[1]);
-
             for (int i = 0; i < inlier_count; ++i) {
                 int idx = inliers[i];
                 double x = points->mat[idx][0];
                 double y = points->mat[idx][1];
 
                 if (!((x == end1[0] && y == end1[1]) || (x == end2[0] && y == end2[1]))) {
-                    //printf(" - Suppression point (%.2f, %.2f)\n", x, y);
                     points->mat[idx][0] = -1;
                     points->mat[idx][1] = -1;
-                } else {
-                    //printf(" - Conservation point (%.2f, %.2f)\n", x, y);
                 }
             }
 

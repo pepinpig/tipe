@@ -1,0 +1,150 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}stdio.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}stdbool.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}assert.h\PYGZgt{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{type\PYGZus{}simple\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)\PYGZob{}}
+\PYG{c+c1}{//hyp : a\PYGZgt{}=0 \PYGZam{}\PYGZam{} b\PYGZgt{}=0 \PYGZam{}\PYGZam{} c\PYGZgt{}=0}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{==}\PYG{n}{b}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{		}\PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{o}{==}\PYG{n}{c}\PYG{p}{)}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}équilatéral\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{		}\PYG{k}{else}\PYG{+w}{	}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{k}{else}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{k}{if}\PYG{p}{((}\PYG{n}{b}\PYG{o}{==}\PYG{n}{c}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{==}\PYG{n}{c}\PYG{p}{))}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{		}\PYG{k}{else}
+\PYG{+w}{			}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}scalène\PYGZdq{}}\PYG{p}{);}\PYG{+w}{	}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+
+
+
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{est\PYGZus{}triangle}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{\PYGZlt{}=}\PYG{n}{b}\PYG{o}{+}\PYG{n}{c}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{o}{\PYGZlt{}=}\PYG{n}{a}\PYG{o}{+}\PYG{n}{c}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZlt{}=}\PYG{n}{a}\PYG{o}{+}\PYG{n}{b}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+
+
+
+
+
+
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{est\PYGZus{}plat}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{==}\PYG{n}{b}\PYG{o}{+}\PYG{n}{c}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{o}{==}\PYG{n}{a}\PYG{o}{+}\PYG{n}{c}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{c}\PYG{o}{==}\PYG{n}{a}\PYG{o}{+}\PYG{n}{b}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+
+
+
+
+
+
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{est\PYGZus{}rectangle}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{*}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{o}{*}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{c}\PYG{o}{*}\PYG{n}{c}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{o}{*}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{c}\PYG{o}{*}\PYG{n}{c}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{a}\PYG{o}{*}\PYG{n}{a}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{*}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{c}\PYG{o}{*}\PYG{n}{c}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{b}\PYG{o}{*}\PYG{n}{b}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+
+
+
+
+
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{est\PYGZus{}triangle}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{c}\PYG{p}{))}
+\PYG{+w}{		}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Ces longueurs ne sont les 3 côtés d\PYGZsq{}un même triangle}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k}{else}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{==}\PYG{n}{b}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{			}\PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{o}{==}\PYG{n}{c}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{				 }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{c+c1}{// alors a=b=c=0}
+\PYG{+w}{				 	}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}équilatéral plat = réduit à un point\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{				 }\PYG{k}{else}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}équilatéral\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{				}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{			}\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{b}\PYG{o}{*}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{c}\PYG{o}{*}\PYG{n}{c}\PYG{p}{)}\PYG{+w}{	}\PYG{c+c1}{// dans ce cas a²+b²=c²}
+\PYG{+w}{				}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle rectangle\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{			}\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{+}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)}
+\PYG{+w}{				}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle plat\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{			}\PYG{k}{else}
+\PYG{+w}{				}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{		}\PYG{k}{else}\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// ici on sait que a!=b}
+\PYG{+w}{			}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{				}\PYG{k}{if}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{b}\PYG{o}{*}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{a}\PYG{o}{*}\PYG{n}{a}\PYG{p}{)}\PYG{+w}{	}\PYG{c+c1}{// dans ce cas c²+b²=a²}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle rectangle\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{				}\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{o}{+}\PYG{n}{c}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{)}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle plat\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{				}\PYG{k}{else}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{			}\PYG{p}{\PYGZcb{}}\PYG{+w}{		}
+\PYG{+w}{			}\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{				}\PYG{c+c1}{// ici on sait que a!=b et b!=c et a=c}
+\PYG{+w}{				}\PYG{k}{if}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{a}\PYG{o}{*}\PYG{n}{a}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{b}\PYG{o}{*}\PYG{n}{b}\PYG{p}{)}\PYG{+w}{	}\PYG{c+c1}{// dans ce cas a²+c²=b²}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle rectangle\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{				}\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{a}\PYG{o}{+}\PYG{n}{c}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{)}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle plat\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{				}\PYG{k}{else}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}isocèle\PYGZdq{}}\PYG{p}{);}\PYG{+w}{		}
+\PYG{+w}{			}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{			}\PYG{k}{else}\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// ici on sait que a!=b et b!c et a!=c}
+\PYG{+w}{				}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{est\PYGZus{}plat}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{c}\PYG{p}{))}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}plat\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{				}\PYG{k}{else}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{est\PYGZus{}rectangle}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{c}\PYG{p}{))}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}rectangle\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{				}\PYG{k}{else}
+\PYG{+w}{					}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}scalène\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{			}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{		}\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}\PYG{+w}{	}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{()\PYGZob{}}
+\PYG{+w}{	}\PYG{c+c1}{// jeu de test de type\PYGZus{}triangle}
+\PYG{+w}{	}\PYG{n}{type\PYGZus{}simple\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//equi}
+\PYG{+w}{	}\PYG{n}{type\PYGZus{}simple\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//iso}
+\PYG{+w}{	}\PYG{n}{type\PYGZus{}simple\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//iso}
+\PYG{+w}{	}\PYG{n}{type\PYGZus{}simple\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//iso}
+\PYG{+w}{	}\PYG{n}{type\PYGZus{}simple\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//scalene}
+\PYG{+w}{	}
+\PYG{+w}{	}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{// jeu de test de est\PYGZus{}triangle}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{n}{est\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{));}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{n}{est\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{));}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{n}{est\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{));}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{o}{!}\PYG{n}{est\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{15}\PYG{p}{));}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{o}{!}\PYG{n}{est\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{15}\PYG{p}{));}
+
+\PYG{+w}{	}
+\PYG{+w}{	}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{// jeu de test de est\PYGZus{}plat}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{n}{est\PYGZus{}plat}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{));}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{o}{!}\PYG{n}{est\PYGZus{}plat}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{));}
+\PYG{+w}{	}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{// jeu de test de est\PYGZus{}rectangle}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{o}{!}\PYG{n}{est\PYGZus{}rectangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{));}
+\PYG{+w}{	}\PYG{n}{assert}\PYG{p}{(}\PYG{n}{est\PYGZus{}rectangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{));}
+
+
+\PYG{+w}{	}\PYG{c+c1}{// jeu de test de affiche\PYGZus{}type\PYGZus{}triangle}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//equi}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// equi plat = pt}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//iso plat}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//iso plat}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//iso plat}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//iso}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//plat}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//rectangle}
+\PYG{+w}{	}\PYG{n}{affiche\PYGZus{}type\PYGZus{}triangle}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{//scalène}
+\PYG{+w}{	}\PYG{c+c1}{//isocèle rectangle n\PYGZsq{}arrive pas avec des longueurs entières}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

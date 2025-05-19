@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
     char export_char[32];
     snprintf(export_char, 32, "points_ap_%s.txt",filename);
     save_matrice_to_file(points, export_char);
-    snprintf(command, sizeof(command), "python3 plot_appariement_un.py %s %s",image_name, export_char);
+    snprintf(command, sizeof(command), "python3 plot_detect_un.py %s %s",image_name, export_char);
     //system(command);
     printf("nb_points : %d",nb_points);
     free_matrice(input);

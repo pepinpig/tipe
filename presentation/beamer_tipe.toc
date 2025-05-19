@@ -14,3 +14,9 @@
 \beamer@subsectionintoc {3}{3}{Resolution système homogène}{82}{0}{3}
 \beamer@subsectionintoc {3}{4}{Implémentation}{90}{0}{3}
 \beamer@sectionintoc {4}{Reconstruction des points}{94}{0}{4}
+\beamer@sectionintoc {5}{Enveloppe Convexe}{102}{0}{5}
+\beamer@subsectionintoc {5}{1}{Définition du problème}{103}{0}{5}
+\beamer@sectionintoc {6}{Analyse des résultats}{105}{0}{6}
+\beamer@subsectionintoc {6}{1}{Quelques exemples}{106}{0}{6}
+\beamer@subsectionintoc {6}{2}{Des pistes d'amélioration}{108}{0}{6}
+\beamer@subsectionintoc {6}{3}{Limite de la méthode}{108}{0}{6}

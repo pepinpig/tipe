@@ -14,7 +14,6 @@ int reconstruction4(const char* in1, const char* in2,  const char* in3,  const c
 }
 
 int reconstruction1(const  char* image_name1, const char* image_name2,  matrice** mat){
-    int points_ecrits = 0;
     char file_points1[256], file_points2[256];
     snprintf(file_points1, sizeof(file_points1), "points/donnees/points_ap_%s.txt", image_name1);
     snprintf(file_points2, sizeof(file_points2), "points/donnees/points_ap_%s.txt", image_name2);
@@ -57,7 +56,6 @@ int reconstruction1_aux(matrice* P1, matrice* P2,const char* file_points1, const
 
     printf("Reconstruction des points 3D ...\n");
     double u1, v1, u2, v2;
-    fscanf(f1, "%lf %lf", &u1, &v1) == 2 && fscanf(f2, "%lf %lf", &u2, &v2); //on ignore les dimensions
     while (fscanf(f1, "%lf %lf", &u1, &v1) == 2 && fscanf(f2, "%lf %lf", &u2, &v2) == 2) {
         matrice* A = matrice_nulle(4, 4);
         for (int j = 0; j < 4; ++j) {
@@ -83,7 +81,6 @@ int reconstruction1_aux(matrice* P1, matrice* P2,const char* file_points1, const
         }
 
         if (((p->mat[2][0])>1.2)&&(filtre(p))){
-        //if (true){
             fprintf(output, "%f %f %f\n", p->mat[0][0], p->mat[1][0], p->mat[2][0]);
             points_ecrits++;
         }
@@ -92,12 +89,9 @@ int reconstruction1_aux(matrice* P1, matrice* P2,const char* file_points1, const
         free_matrice(A); free_matrice(S); free_matrice(V); free_matrice(U); free_matrice(p);
     }
     fclose(output);
-    printf("pointsecrits : %d", points_ecrits);
     *mat=matrice_nulle(points_ecrits, 3);
     snprintf(output_file, sizeof(output_file), "points_3d_%s.txt", image_name1);
     read_matrice_from_file(*mat,output_file);
-    print_matrice(*mat);
-    //printf("Points reconstruits écrits dans : %s\n", output_file);
     fclose(f1);
     fclose(f2);
     return points_ecrits;

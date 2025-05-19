@@ -69,7 +69,7 @@ def main(image1_name, image2_name, points1_name, points2_name):
 
 if __name__ == '__main__':
     if len(sys.argv) != 5:
-        print("Usage: python plot_points_ap.py <image1_name> <image2_name> <points1_name> <points2_name>")
+        print("Usage: python plot_detect.py <image1_name> <image2_name> <points1_name> <points2_name>")
         sys.exit(1)
     
     image1_name = sys.argv[1]

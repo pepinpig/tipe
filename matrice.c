@@ -1,42 +1,5 @@
 #include "matrice.h"
 
-bool infxy(matrice* mat,int i,int j){
-  if (mat->mat[i][0]<mat->mat[j][0])
-    return true;
-  return (mat->mat[i][0]==mat->mat[j][0]&&mat->mat[i][1]<=mat->mat[j][1]);
-}
-
-void swapl(matrice* mat,int i,int j){
-  for(int k = 0 ; k < mat->m;k++){
-    int tmp = mat->mat[i][k];
-    mat->mat[i][k]=mat->mat[j][k];
-    mat->mat[j][k]=tmp;
-  }
-}
-
-int partitionne(matrice* mat, int deb, int fin){
-  int j = deb;
-  for(int i = deb;i<fin;i++){
-    if(infxy(mat,i,fin-1)){
-      swapl(mat,i,j);
-      j++;
-    }
-  }
-  return j-1;
-}
-
-void sortxy_rec(matrice* mat,int deb, int fin){
-  if (fin-deb>1){
-    int pivot = partitionne(mat,deb,fin);
-    sortxy_rec(mat,deb,pivot-1);
-    sortxy_rec(mat,pivot+1,fin);
-  }
-}
-
-void sortxy(matrice* mat){
-  sortxy_rec(mat,0,mat->n);
-}
-
 matrice* matrice_nulle(int n, int m) {
     matrice* M = (matrice*) malloc(sizeof(matrice));
     assert(M != NULL);
@@ -252,24 +215,6 @@ matrice* matrice_colonne(matrice* A, int j) {
     return col;
 }
 
-
-
-/*Le pivot partiel consiste à rechercher, dans la colonne en cours 
-(à partir de la ligne actuelle et en dessous), l'élément ayant la plus grande valeur absolue, 
-puis à permuter les lignes pour que cet élément devienne le pivot.
-Cela permet d'éviter les divisions par de petites valeurs, ce qui stabilise numériquement le processus.*/
-
-int choix_pivot_naif(matrice *a, int j) {
-    int n = a->n;
-    for (int k = j; k < n; k++) {
-        if (fabs(a->mat[k][j]) > EPSILON) {
-            return k;
-        }
-    }
-    return -1;
-}
-
-// Choix du pivot : recherche de l'élément maximum en valeur absolue dans la colonne j à partir de la ligne j
 int choix_pivot_partiel(matrice *a, int j) {
     int n = a->n;
     int max_index = j;
@@ -291,69 +236,6 @@ int choix_pivot_partiel(matrice *a, int j) {
 }
 
 
-// Algorithme de Gauss-Jordan
-void Gauss_Jordan(matrice* a) {
-    int n = a->n; // nombre de ligne
-    int r = a->m;
-    if (r > n){ r = n ;}
-    // r = min(n, m)
-    for (int j = 0; j < n; ++j) { 
-        int pivot_index = choix_pivot_partiel(a, j);  // Choix du pivot
-        if (pivot_index != -1) {
-            echange_ligne(a, j, pivot_index);  // Remontée de la ligne du pivot
-            double pivot_value = a->mat[j][j];  // Unitarisation du pivot
-            multiplication_ligne(a, j, 1. / pivot_value);  
-            // Élimination dans les autres lignes
-            for (int k = 0; k < n; ++k) {  // Utiliser n pour itérer sur les lignes
-                if (k != j) {
-                    double lambda = -a->mat[k][j];
-                    ajout_ligne(a, k, j, lambda); 
-                }
-            }
-        } 
-    }
-}
-
-// Fonction Gauss-Jordan avec affichage réduit pour débogage
-
-// Fonction principale de Gauss-Jordan
-void Gauss_Jordan_print(matrice* a) {
-    int n = a->n; // nombre de lignes
-    int m = a->m; // nombre de colonnes
-    int r = m;
-    if (r > n){ r = n ;}
-    // r = min(n, m)
-
-    for (int j = 0; j < r; ++j) {  // Itération sur les colonnes
-        // Choix du pivot
-        int pivot_index = choix_pivot_partiel(a, j);
-        if (pivot_index != -1) {
-            // Remontée de la ligne du pivot si nécessaire
-            if (pivot_index != j) {
-                echange_ligne(a, j, pivot_index);
-            }
-
-            // Unitarisation du pivot
-            double pivot_value = a->mat[j][j];
-            if (pivot_value != 0) { // Évite la division par zéro
-                multiplication_ligne(a, j, 1. / pivot_value);
-            }
-
-
-            // Élimination dans les autres lignes
-            for (int k = 0; k < n; ++k) {
-                if (k != j && j < m) { // Assurer que j est dans les limites des colonnes
-                    double lambda = -a->mat[k][j];
-                    if (lambda != 0) {
-                        ajout_ligne(a, k, j, lambda);
-                    }
-                }
-            }
-            print_matrice(a);
-        }
-    }
-    print_matrice(a);
-}
 
 matrice* inverser_matrice(matrice* a) {
     if (a->n != a->m) {
@@ -361,155 +243,74 @@ matrice* inverser_matrice(matrice* a) {
         exit(EXIT_FAILURE);
     }
 
-    int n = a->n;  // Nombre de lignes (ou colonnes, car carrée)
-    matrice* inv = matrice_nulle(n, n);  // Crée une matrice pour l'inverse
-    
-    // Initialisation de la matrice identité
-    for (int i = 0; i < n; i++) {
-        inv->mat[i][i] = 1;
-    }
+    int n = a->n;
+    matrice* copie = matrice_nulle(n, n);  
+    matrice* inv = matrice_nulle(n, n);   
 
-    for (int j = 0; j < n; ++j) { 
-        // Choix du pivot : recherche du maximum en valeur absolue
-        int pivot_index = choix_pivot_partiel(a, j);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            copie->mat[i][j] = a->mat[i][j];
+
+    // Initialisation de inv à l'identité
+    for (int i = 0; i < n; i++)
+        inv->mat[i][i] = 1;
+
+    for (int j = 0; j < n; ++j) {
+        int pivot_index = choix_pivot_partiel(copie, j);
         if (pivot_index == -1) {
             printf("Erreur : la matrice est singulière, donc non inversible.\n");
             exit(EXIT_FAILURE);
         }
 
-        // Échange des lignes si nécessaire
         if (pivot_index != j) {
-            echange_ligne(a, j, pivot_index);
+            echange_ligne(copie, j, pivot_index);
             echange_ligne(inv, j, pivot_index);
         }
 
-        // Unitarisation de la ligne du pivot
-        double pivot_value = a->mat[j][j];
-        if (fabs(pivot_value) < EPSILON) {  // Gestion d'une valeur pivot trop petite
-            printf("Erreur : Pivot presque nul, la matrice est singulière->\n");
+        double pivot_value = copie->mat[j][j];
+        if (fabs(pivot_value) < EPSILON) {
+            printf("Erreur : Pivot presque nul, la matrice est singulière.\n");
             exit(EXIT_FAILURE);
         }
 
-        multiplication_ligne(a, j, 1. / pivot_value);
+        multiplication_ligne(copie, j, 1. / pivot_value);
         multiplication_ligne(inv, j, 1. / pivot_value);
 
-        // Élimination des autres lignes
         for (int k = 0; k < n; ++k) {
             if (k != j) {
-                double lambda = -a->mat[k][j];
-                ajout_ligne(a, k, j, lambda);
+                double lambda = -copie->mat[k][j];
+                ajout_ligne(copie, k, j, lambda);
                 ajout_ligne(inv, k, j, lambda);
             }
         }
     }
 
+    free_matrice(copie);  
     return inv;
 }
 
 
+matrice* produit_vectoriel(matrice* v, matrice* b) {
+    assert(v->n == 3 && v->m == 1); 
+    matrice* ax = matrice_nulle(3, 3);
 
-matrice* pseudo_inverser_matrice(matrice* a) {  
-    matrice* at = transposee(a);
-    matrice* at_a = produit(at,a);
-    matrice* at_a_inv = inverser_matrice(at_a);
-    matrice* pseudoinv = produit(at_a_inv,at);
-    return pseudoinv;
-}
+    double v1 = v->mat[0][0];
+    double v2 = v->mat[1][0];
+    double v3 = v->mat[2][0];
 
+    ax->mat[0][1] = -v3;
+    ax->mat[0][2] = v2;
+    ax->mat[1][0] = v3;
+    ax->mat[1][2] = -v1;
+    ax->mat[2][0] = -v2;
+    ax->mat[2][1] = v1;
 
-matrice* resolution_systeme(matrice* A, matrice* V) {
-    int n = A->n;
-    int m = A->m;
-    // Création de la matrice augmentée [A | V]
-    matrice* Augmente = matrice_nulle(n, m + 1);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            Augmente->mat[i][j] = A->mat[i][j];
-        }
-        Augmente->mat[i][m] = V->mat[i][0];  // Colonne augmentée avec V
-    }
-    Gauss_Jordan(Augmente);
-    // Extrairere la solution U (les colonnes après la matrice A)
-    matrice* U = matrice_nulle(n, 1);
-    for (int i = 0; i < n; i++) {
-        U->mat[i][0] = Augmente->mat[i][n];
-    }
+    matrice* res = produit(ax, b);
 
-    return U;
-}
-
-
-// Fonction principale pour résoudre un système d'équations
-matrice* resolution_systeme_print(matrice* A, matrice* V) {
-    int n = A->n;
-    int m = A->m;
-
-    printf("Matrice A initiale :\n");
-    print_matrice(A);  // Print de la matrice A
-
-    printf("Vecteur V initial :\n");
-    print_matrice(V);  // Print du vecteur V
-
-    // Création de la matrice augmentée [A | V]
-    matrice* Augmente = matrice_nulle(n, m + 1);  // A avec une colonne supplémentaire
-
-    if (Augmente == NULL) {
-        printf("Erreur d'allocation mémoire pour la matrice augmentée->\n");
-        exit(1);  // Sortir si l'allocation échoue
-    }
-
-    printf("Création de la matrice augmentée [A | V]->->->\n");
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            Augmente->mat[i][j] = A->mat[i][j];  // Copier chaque élément de A
-        }
-        
-        // Vérification des dimensions de V
-        if (i < V->n && V->m == 1) {  // V est supposé être un vecteur colonne
-            Augmente->mat[i][m] = V->mat[i][0];  // Ajouter V comme colonne supplémentaire
-        } else {
-            printf("Erreur : Incohérence de dimensions entre A et V->\n");
-            exit(1);  // Sortir si les dimensions ne sont pas compatibles
-        }
-    }
-
-    printf("Matrice augmentée [A | V] avant Gauss-Jordan :\n");
-    print_matrice(Augmente);  // Print de la matrice augmentée
-
-    // Appliquer Gauss-Jordan
-    Gauss_Jordan_print(Augmente);  // Il est supposé que cette fonction modifie la matrice augmentée
-
-    printf("Matrice augmentée [A | V] après Gauss-Jordan :\n");
-    print_matrice(Augmente);  // Print de la matrice augmentée après Gauss-Jordan
-
-    // Extraire la solution U (les colonnes après la matrice A)
-    matrice* U = matrice_nulle(n, 1);
-    printf("Extraction de la solution U :\n");
-    for (int i = 0; i < n; i++) {
-        U->mat[i][0] = Augmente->mat[i][m];
-        printf("U[%d][0] = %lf\n", i, U->mat[i][0]);  // Print chaque élément de la solution U
-    }
-
-    // Libération de la mémoire
-    free(Augmente->mat);
-    free(Augmente);
-    
-    return U;
-}
-
-matrice* produit_vectoriel(matrice* v, matrice* b){
-    matrice* ax = matrice_nulle(3,3);
-    ax->mat[0][1]=-(v->mat[3][0]);
-    ax->mat[0][2]=(v->mat[2][0]);
-    ax->mat[1][0]=(v->mat[3][0]);
-    ax->mat[1][2]=-(v->mat[1][0]);
-    ax->mat[2][0]=-(v->mat[2][0]);
-    ax->mat[2][1]=(v->mat[1][0]);
-    matrice* res = matrice_nulle(3,3);
-    res = produit(ax, b);
+    free_matrice(ax);
     return res;
 }
+
 
 matrice* coo_vect(double x, double y){
     matrice* res=matrice_nulle(3,1);
@@ -526,11 +327,8 @@ matrice* coo_vect_inv(double x, double y){
     return res;
 }
 double determinant_matrice(matrice* M) {
-    assert(M->n == M->m); // Matrice carrée
-
+    assert(M->n == M->m); 
     int n = M->n;
-
-    // Cas de base
     if (n == 1) {
         return M->mat[0][0];
     } else if (n == 2) {
