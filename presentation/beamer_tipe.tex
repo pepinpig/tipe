@@ -1,4 +1,5 @@
 \documentclass[compress]{beamer}
+
 % Inclusion des packages
 \input{les_packages_pour_beamer.tex}
 
@@ -22,26 +23,34 @@
     }{Lucie-Hélène Cuingnet et Barnabé Baruchel}
 }
 \date[Mai 2025]{TIPE 2025}
-
+\setbeameroption{show notes on second screen=right}
 %================== DÉBUT DU DOCUMENT ===================
 \begin{document}
 
 
 \begin{frame}[plain]
+  \note{
+  Pour ce TIPE je suis me suis donnée pour objectif de comprendre et surtout expérimenter comment on peut, à partir de simple photo, 
+    retrouver la géométrie complète d'un objet.
+  }
   \titlepage
   \addtocounter{framenumber}{-1}
 \end{frame}
 
 \begin{frame}{Définition du problème}
+  \note{
+Ainsi, à partir d'un jeux de photo qui constituera mes données 
+je souhaite reconstruire un fichier 3D de ce dernier prêt pour une impression 3D. 
+}
   \centering
   \begin{minipage}{0.48\linewidth}
     \centering
     \begin{figure}
       \centering
-      \includegraphics[width=0.48\linewidth]{capture/dodecf0.jpg}%
-      \includegraphics[width=0.48\linewidth]{capture/dodecf1.jpg} \\
-      \includegraphics[width=0.48\linewidth]{capture/dodecf2.jpg}%
-      \includegraphics[width=0.48\linewidth]{capture/dodecf3.jpg}
+      \includegraphics[width=0.48\linewidth]{capture/dod2(2).jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dod3(2).jpg} \\
+      \includegraphics[width=0.48\linewidth]{capture/dod4(2).jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dod5(2).jpg}
       {\footnotesize\textbf{Données}}
     \end{figure}
   \end{minipage}
@@ -50,24 +59,21 @@
     \centering
     \begin{figure}
       \centering
+      \pause
       \includegraphics[width=\linewidth]{capture/dodecaedre_objectif.png}
       {\footnotesize\textbf{Objectif}}
     \end{figure}
   \end{minipage}
 \end{frame}
 
+
 % Slides principales (actives selon les fichiers présents)
 %\input{s1_selection.tex}
-\input{s1.2_appariement.tex}
-\input{s2_reconstruction.tex}
-\input{s2.2_SVD.tex}
-\input{s2.3_reconstruction.tex}
-%\input{s3_triangulation.tex}
-%\input{s4_resultat}
-
-% Slide de test/conclusion
-\begin{frame}
-  test
-\end{frame}
-
+%\input{s1.2_appariement.tex}
+%\input{s2_reconstruction.tex}
+%\input{s2.2_SVD.tex}
+%\input{s2.3_reconstruction.tex}
+\input{s3_triangulation.tex}
+\input{s4_resultat}
+\input{appendix.tex}
 \end{document}

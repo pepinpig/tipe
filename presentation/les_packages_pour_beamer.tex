@@ -27,9 +27,12 @@
   shadows.blur,
   shapes,
   positioning,
-  decorations.pathreplacing
+  decorations.pathreplacing,
+  matrix
 }
-\usepackage{xcolor} 
+\usepackage{tikz-3dplot}
+\usepackage{asymptote}
+\usepackage{xcolor}
 
 %================== MISE EN PAGE ========================
 \usepackage{changepage}
@@ -40,6 +43,9 @@
 \usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
 \usepackage{adjustbox}
 \usepackage{caption}
+\usepackage{beamerappendixnote}
+\usepackage{bookmark}
+
 
 %================== ALGORITHMIQUE =======================
 \usepackage[ruled,vlined]{algorithm2e}
@@ -56,7 +62,7 @@
 \SetKwComment{tcc}{(*}{*)}
 \SetKwFor{Tq}{tant que}{faire}{}
 \SetKwRepeat{Repeter}{répéter}{jusqu’à}
-
+\renewcommand{\thealgocf}{}
 %================== AUTRES ==============================
 \usepackage[clock]{ifsym}
 

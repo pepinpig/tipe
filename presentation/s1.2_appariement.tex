@@ -1,7 +1,25 @@
 %++++++++++++++++++++++++++++++++++++++++++++++++
-\subsection{Appariement}
+\section{Appariement}
 %------------------------------------------------
 \begin{frame}{Le problème de l'appariement}
+  \note{
+     Une fois les coins détectés dans deux images différentes, l’objectif est de retrouver les correspondances entre eux.
+C’est ce qu’on appelle l’appariement.
+  }
+  \begin{minipage}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{capture/test_detection_img2_1_moravec_2_500.jpeg}  
+  \end{minipage}
+  \hfill
+    \begin{minipage}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{capture/test_detection_1_moravec_2_500.jpeg}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}{Le problème de l'appariement}
+    \note{
+  Par exemple si l'on a deux images avec les points detectés comme ceci
+  On remarque par ailleurs qu'il n'y a ni injectivité, ni surjectivité. Notre but est certe de garder un maximum de points mais le plus important est d'éviter tout erreur d'appariement qui peut completement fausser la reconstrution dans le calcul de l'enveloppe convexe.
+  }
 
 \centering
 \begin{tikzpicture}[scale=1]
@@ -42,14 +60,14 @@
 }
 
 % Paire 3 - bleu foncé
-\only<4->{%
+\only<3->{%
   \fill[blue!70!black]  (1.5,1.8) circle (2pt);
   \fill[blue!70!black]  (8.0,1.6) circle (2pt);
   \draw[->,blue!70!black,thick]  (1.5,1.8) -- (8.0,1.6);
 }
 
 % Paire 4 - bleu clair
-\only<5->{%
+\only<3->{%
   \fill[cyan]  (1.0,1.0) circle (2pt);
   \fill[cyan]  (7.3,0.9) circle (2pt);
   \draw[->,cyan,thick]  (1.0,1.0) -- (7.3,0.9);
@@ -58,30 +76,145 @@
 \end{tikzpicture}
 
 \end{frame}
-
-\begin{frame}{geometrie epipolaire et matrice fondamental}
+%===========================
+\subsection{Pré-traitement}
+%===========================
+\begin{frame}{Pré-traitement}
+  \note{
+     une première étape consiste à effectuer un traitement des points détecter par Moravec
+  Ce traitement est réalisé à l'aide d'un premier algorithme "trouve coin" basé sur la rechercche d'extrema locaux implémenté par mon camarade
+  Un second algorithme de type Ransac permet d'identifier les points alignés et d'éliminer ceux sur une même droite
+  }
+  \begin{minipage}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{capture/test_detection_img2_1_moravec_2_500.jpeg}  
+  \end{minipage}
+  \hfill
+    \begin{minipage}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{capture/test_detection_1_moravec_2_500.jpeg}
+  \end{minipage}
 \end{frame}
 
-%-------sommaire 1-----------------------------
-\begin{frame}{Appariement BRIEF avec filtrage épipolaire}
-\scriptsize
+\begin{frame}{Ransac}
+  \note{}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1]
 
-\textbf{Entrée :} Points $P_1$ (image 1), Points $P_2$ (image 2), Matrice fondamentale $F$ \\
-\textbf{Sortie :} Liste de correspondances fiables
+                % --- Tous les points initiaux ---
+                \only<1-3>{
+                    \foreach \x/\y in {
+                        0.5/1.0, 1.0/1.2, 1.5/1.3, 2.0/1.7, 2.5/2.1, 3.0/2.1, 3.5/2.4, 4.0/2.8,
+                        1.0/3.5, 2.0/3.7, 3.0/3.9, 4.0/4.2
+                    } {
+                        \filldraw[blue!70!black] (\x,\y) circle (2pt);
+                    }
+                }
 
-\pause
-\vspace{0.3em}
-\textbf{1. Pré-tri des points sur l'image 1} \\
-\hspace{1em}• On ne garde que les coins détectés (suppression non maximale locale)
+                % --- Points restants (extrémités et bruit) ---
+                \only<4->{
+                    \foreach \x/\y in {
+                        1.0/3.5, 2.0/3.7, 3.0/3.9, 4.0/4.2
+                    } {
+                        \filldraw[blue!70!black] (\x,\y) circle (2pt);
+                    }
+                }
 
-\pause
-\vspace{0.3em}
-\textbf{2. Filtrage épipolaire} \\
-\hspace{1em}• Pour chaque point $p_1 \in P_1$ : \\
-\hspace{2em}– Calcul de la droite épipolaire $l = F \cdot p_1$ dans l'image 2 \\
-\hspace{2em}– Filtrage des points $p_2 \in P_2$ proches de $l$ : $\text{distance}(p_2, l) < \varepsilon$
+                % Droite testée
+                \only<3->{
+                    \draw[thick, red, dashed] (0.3,0.8) -- (4.5,3.0);
+                }
+
+                % Points choisis
+                \only<2-3>{
+                    \filldraw[red] (1.5,1.3) circle (3pt);
+                    \filldraw[red] (3.0,2.1) circle (3pt);
+                }
+
+                % Inliers détectés
+                \only<3>{
+                    \foreach \x/\y in {
+                        0.5/1.0, 1.0/1.2, 2.0/1.7, 2.5/2.1, 3.5/2.4, 4.0/2.8
+                    } {
+                        \filldraw[green!50!black] (\x,\y) circle (2.5pt);
+                    }
+                }
+
+                % Points supprimés
+                \only<4>{
+                    \foreach \x/\y in {
+                        1.0/1.2, 2.0/1.7, 2.5/2.1, 3.5/2.4
+                    } {
+                        \node[draw=red, cross out, thick, minimum size=6pt, inner sep=0pt] at (\x,\y) {};
+                    }
+                }
+
+                % Points extrémités conservés (surlignés)
+                \only<4->{
+                    \filldraw[black] (0.5,1.0) circle (3pt);
+                    \filldraw[black] (4.0,2.8) circle (3pt);
+                }
+
+            \end{tikzpicture}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \small
+            \begin{itemize}
+                \item<1-> Points d’entrée dans le nuage
+                \item<2-> Sélection de deux points pour estimer une droite
+                \item<3-> Inliers détectés à proximité de la droite
+                \item<4-> Suppression des points internes, on garde les extrémités
+            \end{itemize}
+
+            \vspace{0.5em}
+            \only<4>{
+                \textcolor{red}{\small $\Rightarrow$ Nettoyage effectué : seuls les segments visibles sont conservés}
+            }
+        \end{column}
+    \end{columns}
 \end{frame}
 
+\begin{frame}{Résultats pré-traitement}
+
+    \begin{center}
+    \begin{minipage}{0.32\textwidth}
+        \onslide<1->{\includegraphics[width=\linewidth]{capture/test_detection_1_moravec_2_500.jpeg}\\
+        \centering\scriptsize Moravec}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \onslide<2->{\includegraphics[width=\linewidth]{capture/test_detection_2_trouve_coin_10_500.jpeg}\\
+        \centering\scriptsize Trouve coin}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+        \onslide<3->{\includegraphics[width=\linewidth]{capture/test_detection_3_ransac_1000_6_5.jpeg}\\
+        \centering\scriptsize Ransac}
+    \end{minipage}
+    \end{center}
+
+\end{frame}
+
+%===========================
+\subsection{Filtrage epipolaire}
+%===========================
+
+\begin{frame}{Geometrie epipolaire}
+\note{J’introduis ici la géométrie épipolaire : lorsque deux caméras observent une même scène, les points correspondants sont contraints de vérifier une relation géométrique.
+Les deux caméras ont pour centres optiques respectifs C1 et C2 et pour plans-images P1 et P2. Pour des raisons de lisibilité, les plans-
+images sont placés dans ce schéma devant les centres optiques. Un point M de la scène
+se projette sur le plan-image de la caméra 1 (resp. 2) en m1 (resp. m2). Le point e1
+(resp. e2) est l’image de C2 (resp. C1) sur P1 (resp. P2). Les points e1 et e2 sont appelés
+épipoles. La droite l1 (resp. l2) joignant les points e1 et m1 (resp. e2 et m2) est appelée
+droite épipolaire associée à m2 (resp. m1).
+C’est cette contrainte qui nous permettra de filtrer les correspondances incorrectes.
+Elle est encodé sous forme d'une matrice qu'on détermine à l'étape de calibration expliquéé ultérieurement}
+\includegraphics[width=\linewidth]{capture/geom-epipolaire.png}\\[0.5em]
+\tiny
+Source image: Quelques problèmes géométriques
+en vision par ordinateur - Frédéric SUR
+\end{frame}
 
 \begin{frame}{Filtrage epipolaire}
   \includegraphics[width=\linewidth]{capture/corresp.png}\\[0.5em]
@@ -89,33 +222,9 @@
 \end{frame}
 
 
-%---sommaire2----
-\begin{frame}{Appariement BRIEF avec filtrage épipolaire}
-\scriptsize
-
-\textbf{Entrée :} Points $P_1$ (image 1), Points $P_2$ (image 2), Matrice fondamentale $F$ \\
-\textbf{Sortie :} Liste de correspondances fiables
-
-\vspace{0.3em}
-\textbf{1. Pré-tri des points sur l'image 1} \\
-\hspace{1em}• On ne garde que les coins détectés (suppression non maximale locale)
-
-\vspace{0.3em}
-\textbf{2. Filtrage épipolaire} \\
-\hspace{1em}• Pour chaque point $p_1 \in P_1$ : \\
-\hspace{2em}– Calcul de la droite épipolaire $l = F \cdot p_1$ dans l'image 2 \\
-\hspace{2em}– Filtrage des points $p_2 \in P_2$ proches de $l$ : $\text{distance}(p_2, l) < \varepsilon$
-\pause
-\vspace{0.3em}\\
-\textbf{3. Comparaison des descripteurs BRIEF} \\
-\hspace{1em}• Pour chaque $p_1 \in P_1$ et $p_2 \in C(p_1)$ : \\
-\hspace{2em}– Calcul descripteurs BRIEF $d_1$, $d_2$ \\
-\hspace{2em}– Distance de Hamming $h = \text{distance\_Hamming}(d_1, d_2)$ \\
-\hspace{2em}– Enregistrement des paires avec leur score $h$
-
-\end{frame}
-
-%---------BRIEF--------------
+%===========================
+\subsection{Brief}
+%===========================
 
 \begin{frame}{Descripteur BRIEF : Principe}
 \begin{minipage}{0.45\linewidth}
@@ -228,14 +337,14 @@
 \hspace{1em}• \textit{BRIEF Lab permet de meilleures correspondances entre images variées (éclairage, couleur)}
 \end{frame}
 
+%===========================
+\subsection{Algorithme}
+%===========================
 
-%-------algo-----------------------------
 \begin{frame}[fragile]{Pseudo-code : Appariement de points}
   \input{donnees/algo_ap.tex}
 \end{frame}
 
-
-%--------RESULTAT-----------------------------------
 \begin{frame}{Resultat : Filtrage epipolaire}
   \hspace*{-1cm}
   \includegraphics[width=1.1\linewidth]{capture/sans_brief.png}\\[0.5em]
@@ -244,4 +353,56 @@
 \begin{frame}{Resultat : droite epipolaire + BRIEF lab}
   \hspace*{-1cm}
   \includegraphics[width=1.1\linewidth]{capture/avec_brief.png}\\[0.5em]
+\end{frame}
+
+%===========================
+\subsection{Resultat}
+%===========================
+
+\begin{frame}{Résultats pré-traitement}
+
+    \begin{center}
+    \begin{minipage}{0.32\textwidth}
+        \onslide<1->{\includegraphics[width=\linewidth]{capture/app_complet_1.jpeg}\\
+        \centering\scriptsize Moravec}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.64\textwidth}
+        \onslide<2->{\includegraphics[width=\linewidth]{capture/app_complet_2.jpeg}\\
+        \centering\scriptsize Trouve coin}
+    \end{minipage}
+    \end{center}
+    \appxnote{constantes}{Appariement:\\
+int Distance_seuil = 4;
+int Hamming_seuil = 45;\\ \\
+
+Detection\\
+int Window = 4;
+int Seuil_moravec = 800;\\
+
+
+Ransac \\
+int RANSAC_ITER = 1000;
+int DIST_THRESHOLD=1.0;
+int MIN_INLIERS=5;\\\\
+
+Trouve coin\\
+int Seuil_tc =40;
+int Dist_tc = 10;
+}
+
+\end{frame}
+\begin{frame}{comparaison avec SIFT opencv}
+  \note{sift est vraiment nulle comparé à notre algo}
+\begin{center}
+    \begin{minipage}{0.48\textwidth}
+        \onslide<1->{\includegraphics[width=\linewidth]{capture/app_complet_2.jpeg}\\
+        \centering\scriptsize SIFT}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \onslide<2->{\includegraphics[width=\linewidth]{capture/sift.png}\\
+        \centering\scriptsize Algorithme personnalisé}
+    \end{minipage}
+    \end{center}
 \end{frame}

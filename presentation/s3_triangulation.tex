@@ -2,56 +2,39 @@
 \section[Triangulation]{Triangulation}
 %------------------------------------------------
 \begin{frame}
-\frametitle{Titre d'une slide avant la sous-section\esp}
-	Ici on n'a pas encore de titre de sous-section dans le badeau du haut.
+\frametitle{Triangulation}
+\note{la dernière étape consiste à effectuer une triangulation des points}
+\centering
+\begin{tikzpicture}[scale=2, every node/.style={circle, fill=black, inner sep=1pt}]
+  % Points
+  \node (A) at (0,0) {};
+  \node (B) at (1,0.2) {};
+  \node (C) at (0.5,0.8) {};
+  \node (D) at (1.5,0.6) {};
+  \node (E) at (1.2,1.2) {};
+  \node (F) at (0.2,1.3) {};
+  \node (G) at (0.8,1.8) {};
+
+  % Triangles
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+  \draw[thick] (B) -- (C) -- (D) -- cycle;
+  \draw[thick] (C) -- (D) -- (E) -- cycle;
+  \draw[thick] (C) -- (E) -- (F) -- cycle;
+  \draw[thick] (C) -- (F) -- (G) -- cycle;
+  \draw[thick] (C) -- (G) -- (E) -- cycle;
+
+  % Optional: labels
+  \node[anchor=north east] at (A) {A};
+  \node[anchor=north west] at (B) {B};
+  \node[anchor=south east] at (C) {C};
+  \node[anchor=south west] at (D) {D};
+  \node[anchor=south west] at (E) {E};
+  \node[anchor=north] at (F) {F};
+  \node[anchor=south] at (G) {G};
+\end{tikzpicture}
+
+\vspace{0.5em}
+\textit{Exemple de triangulation d’un ensemble de points en 2D.}
 \end{frame}
 
 
-%++++++++++++++++++++++++++++++++++++++++++++++++
-\subsection{Selection}
-%++++++++++++++++++++++++++++++++++++++++++++++++
-\begin{frame}
-\frametitle{Titre d'une slide dans la sous-section\esp}
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Ce qui apparaît dans l'en-tête}
-	Dans la \important{première ligne}:
-	\begin{itemize}
-	\flch la version courte du titre, précisée en option  de  \lin{\title}\\
-	\remarque{( en option = entre crochets, avant les accolades)}
-	\flch la version courte du nom, voire des initiales, redéfinir la commande
-	\lin{\initiales}
-	\flch la version courte de la date, précisée en option de \lin{\date}\\
-	\end{itemize}
-	\bigskip
-	Dans la \important{deuxième ligne}:
-	\begin{itemize}
-	\flch le numéro et le titre de la section, sauf si le numéro est nul\\
-\end{itemize}
-
-\end{frame}
-
-
-%++++++++++++++++++++++++++++++++++++++++++++++++
-\subsection{Appariement}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Titre de la slide sans lettre descendant sous la baseline}
-	Pour régler ce problème, utiliser la commande \lin{\esp} à la fin du titre, \textit{Cf.} slide suivante
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{Titre de la slide sans lettre descendant sous la baseline\esp}
-	Ici c'est mieux non?
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}[fragile]
-\frametitle{Titre de la slide qui marche tout seul grâce au q et au g}
-\end{frame}

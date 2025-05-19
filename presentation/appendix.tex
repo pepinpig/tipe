@@ -1,0 +1,417 @@
+\section*[Appendix]{Appendix}
+%===============================================
+\begin{frame}{Exemple Moravec}
+  \label{moravec-appendix}
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.5\textwidth]{capture/rub_rouge.jpg}};
+    \only<2>{\draw[red, thick] (1,4.5) rectangle (2,5.5);}     % rectangle cible
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+  \note{
+    Voici une animation de l’évolution de la détection avec l’algorithme de Moravec.
+
+    On visualise étape par étape comment les coins apparaissent au fur et à mesure.
+
+    Ce genre de visualisation aide à comprendre la sensibilité de l’algorithme selon l’image et les paramètres.
+  }
+  \centering
+  \begin{overlayarea}{0.9\linewidth}{4cm}
+    \vspace*{-1cm}
+    \hspace*{-1cm}
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1, scale=2]
+      \only<1>{\input{donnees/m1.tex}}
+      \only<2>{\input{donnees/m2.tex}}
+      \only<3>{\input{donnees/m3.tex}}
+      \only<4>{\input{donnees/m4.tex}}
+      \only<5>{\input{donnees/m5.tex}}
+    \end{tikzpicture}
+  \end{overlayarea}
+\end{frame}
+
+\begin{frame}
+      \hyperlink{algo-moravec}{
+    \beamerbutton{Voir le schéma détaillé}
+  }
+
+\end{frame}
+
+\begin{frame}
+    \label{moravec-code}
+\end{frame}
+
+
+\begin{frame}
+  \label{projection-appendix}
+\frametitle{Les différents repères}
+
+\begin{minipage}[c]{0.48\linewidth}
+  \centering
+  \begin{overlayarea}{0.9\linewidth}{4cm}
+    \hspace*{-1cm}
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1, scale=0.6]
+    \only<1>{\input{donnees/s2_1.tex}}
+    \only<2>{\input{donnees/s2_2.tex}}
+    \only<3>{\input{donnees/s2_3.tex}}
+    \only<4>{\input{donnees/s2_4.tex}}
+    \only<5>{\input{donnees/s2_5.tex}}
+    \only<6>{\input{donnees/s2_6.tex}}
+    \only<7>{\input{donnees/s2_7.tex}}
+    \only<8>{\input{donnees/s2_8.tex}}
+    \end{tikzpicture}
+  \end{overlayarea}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\linewidth}
+  \vspace*{\fill}
+  \begin{itemize}
+    \item<2-> $M$ : point réel
+    \item<3-> $W$ : origine du repère du monde
+    \item<4-> $(u', v')$ : coordonnées dans le plan image en pixels
+    \item<5-> $m$ : projection de $M$ dans le plan image
+    \item<6-> $C$ : origine du repère de la caméra
+    \item<8-> $C'$ : origine du repère de l'image par projection de C
+  \end{itemize}
+  \vspace*{\fill}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Projection d’un point 3D sur le plan image}
+\begin{minipage}[c]{0.48\linewidth}
+  \begin{overlayarea}{\linewidth}{5cm}
+    \only<1>{
+      Par le théorème de Thalès (projection perspective) \\[0.3em]
+      $\begin{array}{rcl}
+      u &=& f x_c \\
+      v &=& f y_c \\
+      w &=& z_c
+      \end{array}$
+    }
+
+    \only<2>{
+      Par le théorème de Thalès (projection perspective) \\[0.3em]
+      $\begin{array}{rcl}
+      u &=& f x_c \\
+      v &=& f y_c \\
+      w &=& z_c
+      \end{array}$
+      \\[0.5em]
+      $\displaystyle
+      \begin{bmatrix}
+      u \\ v \\ w
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+      f & 0 & 0 & 0 \\
+      0 & f & 0 & 0 \\
+      0 & 0 & 1 & 0
+      \end{bmatrix}
+      \begin{bmatrix}
+      x_c \\ y_c \\ z_c \\ 1
+      \end{bmatrix}
+      $
+    }
+
+    \only<3>{
+      Le changement de repère s’écrit avec une transformation homogène :\\[0.5em]
+      $\displaystyle
+      \begin{bmatrix}
+      x_c \\ y_c \\ z_c \\ 1
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+      R & T \\
+      0 & 1
+      \end{bmatrix}
+      \begin{bmatrix}
+      X_w \\ Y_w \\ Z_w \\ 1
+      \end{bmatrix}
+      $
+  
+      Où $R \in \mathbb{R}^{3\times3}$ est une rotation, $T \in \mathbb{R}^3$ une translation.
+    }
+  \end{overlayarea}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\linewidth}
+  \centering
+  \begin{overlayarea}{0.9\linewidth}{4cm}
+    \hspace*{-1cm}
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1, scale=0.6]
+      \input{donnees/s2_9.tex}
+    \end{tikzpicture}
+  \end{overlayarea}
+\end{minipage}
+\end{frame}
+
+
+\begin{frame}{Projection d’un point 3D sur le plan image}
+  \centering
+  \[
+    \begin{bmatrix}
+    u \\ v \\ w
+    \end{bmatrix}
+    =
+    \underbrace{
+    \begin{bmatrix}
+    f & 0 & 0 & 0 \\
+    0 & f & 0 & 0 \\
+    0 & 0 & 1 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    R & T \\
+    0 & 1
+    \end{bmatrix}
+    }_{\text{chaîne de projection}}
+    \begin{bmatrix}
+    X_w \\ Y_w \\ Z_w \\ 1
+    \end{bmatrix}
+  \]
+  
+  \pause
+  \[
+    \begin{bmatrix}
+    u \\ v \\ w
+    \end{bmatrix}
+    =
+    P
+    \begin{bmatrix}
+    X_w \\ Y_w \\ Z_w \\ 1
+    \end{bmatrix}
+    \quad \text{avec} \quad
+    P \in \mathcal{M}_{3 \times 4}(\mathbb{R})
+  \]
+\end{frame}
+
+
+
+%-----------------------------------------------
+\begin{frame}
+\frametitle{Les différents repères}
+
+\[
+\lambda_i 
+\begin{pmatrix}
+u^{(i)} \\
+v^{(i)} \\
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+p_{11} & p_{12} & p_{13} & p_{14} \\
+p_{21} & p_{22} & p_{23} & p_{24} \\
+p_{31} & p_{32} & p_{33} & p_{34}
+\end{pmatrix}
+\begin{pmatrix}
+x_C^{(i)} \\
+y_C^{(i)} \\
+z_C^{(i)} \\
+1
+\end{pmatrix}
+\]
+\end{frame}
+
+\begin{frame}
+\frametitle{Système d’optimisation à contrainte unitaire}
+\label{optimisation-appendix}
+On souhaite résoudre le système en évitant la solution triviale \( P = 0 \).  
+\pause
+
+Sachant que la matrice \( P \) ne peut être déterminée qu’à un facteur près, on peut imposer :
+\[
+\|P\|^2 = 1
+\]
+et reformuler le système comme un problème d’optimisation :
+\pause
+\[
+\min_{\|p\|^2 = 1} \|Ap\|^2 = \min_{\|p\|^2 = 1} p^T A^T A p
+\]
+\pause
+On introduit les fonctions :
+\begin{itemize}
+  \item \( f(p) = p^T A^T A p \)
+  \item \( g(p) = p^T p - 1 \)
+\end{itemize}
+\pause
+D’après le théorème d’optimisation sous contrainte (Lagrange), au point optimal \( P^* \), il existe \( \lambda \in \mathbb{R} \) tel que :
+\[
+\nabla f(P^*) = \lambda \nabla g(P^*)
+\]
+\end{frame}
+
+
+
+\begin{frame}{Lien avec les valeurs propres}
+
+Posons \( M = A^T A \).  
+Alors :
+\[
+f(p) = \sum_{i=1}^n \sum_{j=1}^n p_i M_{ij} p_j
+\]
+\pause
+
+Comme \( M \) est symétrique :
+\[
+\frac{\partial f}{\partial p} = 2Mp
+\quad \text{et} \quad
+\frac{\partial g}{\partial p} = 2p
+\]
+\pause
+
+On a donc :
+\[
+\frac{\partial f}{\partial p} = \lambda \frac{\partial g}{\partial p}
+\quad \Rightarrow \quad
+\boxed{A^T A p = \lambda p}
+\]
+\pause
+
+C’est une équation aux valeurs propres :
+\begin{itemize}
+  \item \( p \) est un vecteur propre de \( A^T A \)
+  \item \( \lambda \) est la valeur propre associée
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Triangulation : formulation du système}
+\vspace*{-0.5em}
+\begin{itemize}
+  \item<1-> \( P_1 \) et \( P_2 \) déterminées
+  \item<2-> On cherche les coordonnées \( X = (x_C, y_C, z_C, 1)^T \)
+  \item<3-> Pour chaque paire \( (x_1, x_2) \) de projections
+  \item<4-> On élimine \( \lambda_1, \lambda_2 \) et on écrit un système homogène
+  \item<5-> Système sous la forme \( A X = 0 \)
+\end{itemize}
+
+\vspace{1em}
+
+\pause
+\pause
+\pause
+\pause
+\begin{center}
+\scriptsize
+\[
+A =
+\left(
+\begin{array}{cccc}
+p_{31}^{1} u_1 - p_{11}^{1} & p_{32}^{1} u_1 - p_{12}^{1} & p_{33}^{1} u_1 - p_{13}^{1} & p_{34}^{1} u_1 - p_{14}^{1} \\
+p_{31}^{1} v_1 - p_{21}^{1} & p_{32}^{1} v_1 - p_{22}^{1} & p_{33}^{1} v_1 - p_{23}^{1} & p_{34}^{1} v_1 - p_{24}^{1} \\
+p_{31}^{2} u_2 - p_{11}^{2} & p_{32}^{2} u_2 - p_{12}^{2} & p_{33}^{2} u_2 - p_{13}^{2} & p_{34}^{2} u_2 - p_{14}^{2} \\
+p_{31}^{2} v_2 - p_{21}^{2} & p_{32}^{2} v_2 - p_{22}^{2} & p_{33}^{2} v_2 - p_{23}^{2} & p_{34}^{2} v_2 - p_{24}^{2}
+\end{array}
+\right)
+\]
+\vspace*{1cm}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+    \scriptsize
+    \begin{algorithm}[H]
+\DontPrintSemicolon
+\Input{$A \in \mathbb{R}^{m \times n}$}
+\Output{$Q \in \mathbb{R}^{m \times n}$, $R \in \mathbb{R}^{n \times n}$ tels que $A = QR$}
+\BlankLine
+
+\For{$j \gets 1$ \KwTo $n$}{
+  $v_j \gets A_{:,j}$ \tcc*[r]{Copie de la $j^{\text{\`e}me}$ colonne de $A$}
+  \For{$i \gets 1$ \KwTo $j-1$}{
+    $R_{i,j} \gets \langle Q_{:,i}, A_{:,j} \rangle$ \;
+    $v_j \gets v_j - R_{i,j} Q_{:,i}$ \;
+  }
+  $R_{j,j} \gets \|v_j\|$ \;
+  \Si{$R_{j,j} > \varepsilon$}{
+    $Q_{:,j} \gets \frac{v_j}{R_{j,j}}$
+  }
+  \Sinon{
+    $Q_{:,j} \gets 0$
+  }
+}
+\Return{$Q, R$}
+\caption{Décomposition QR via Gram-Schmidt}
+\end{algorithm}
+\end{frame}
+
+%------------------------
+
+\begin{frame}
+  \label{SVD-appendix}
+\scriptsize
+\begin{algorithm}[H]
+\DontPrintSemicolon
+\Input{$B \in \mathbb{R}^{n \times n}$ symétrique}
+\Output{$\Sigma^2$, $V$ tels que $B = V \Sigma^2 V^T$}
+
+\BlankLine
+$Q_{\text{acc}} \gets I_n$ \tcc*[r]{Accumule les produits de $Q$}
+\BlankLine
+%$\varepsilon \gets 10^{-12}$ \;
+$\delta \gets 1$, $k_{\text{max}} \gets 1000$, $k \gets 0$\;
+
+\Tq{$\delta > 10^{-9}$ et $k < k_{\text{max}}$}{
+  $Q, R \gets$ décomposition QR de $B$\;
+  $B_{\text{nouveau}} \gets R \cdot Q$\;
+  $Q_{\text{acc}} \gets Q_{\text{acc}} \cdot Q$\;
+
+  $\delta \gets \sum_i |\text{diag}(B_{\text{nouveau}})_i - \text{diag}(B)_i|$\;
+
+  $A \gets B_{\text{nouveau}}$\;
+  $k \gets k + 1$\;
+}
+
+\BlankLine
+\For{$i=1$ à $n$}{
+  \Si{$1[i, i] > \varepsilon$}{
+    $\Sigma^2[i, i] \gets V[i, i]$
+  }
+  \Sinon{
+    $\Sigma^2[i, i] \gets 0$
+  }
+}
+
+\Return{$\Sigma^2$,$Q_{\text{acc}}$ }
+
+\caption{algorithme QR}
+\end{algorithm}
+\end{frame}
+
+\begin{frame}
+\scriptsize  
+\begin{algorithm}[H]
+\DontPrintSemicolon
+\Input{$A \in \mathbb{R}^{m \times n}$}
+\Output{$U, \Sigma, V$ tels que $A \approx U \Sigma V^T$}
+
+\BlankLine
+$A^T \gets$ transposée de $A$\;
+$A^T A \gets A^T \cdot A$ \tcc*[r]{Symétrique et définie positive}
+
+\BlankLine
+\texttt{algorithme\_QR}($A^T A$, $\Sigma^2$, $V$) \tcc*[r]{$\Sigma^2$ diagonale, $V$ orthogonale}
+
+\BlankLine
+\For{$i \gets 1$ \KwTo $n$}{
+    $\sigma^2 \gets \Sigma^2[i, i]$\;
+    \Si{$\sigma^2 < 10^{-12}$}{
+        \textbf{continuer} \tcc*[r]{Ignorer valeur singulière nulle}
+    }
+
+    $\sigma \gets \sqrt{\sigma^2}$\;
+    $\Sigma[i, i] \gets \sigma$ \tcc*[r]{Met à jour la vraie valeur singulière}
+
+    $v_i \gets$ $i^{\text{e}}$ colonne de $V$\;
+    $u_i \gets A \cdot v_i$ \tcc*[r]{$u_i$ non normalisé}
+    $u_i \gets u_i / \sigma$\;
+    normaliser $u_i$\;
+    insérer $u_i$ comme $i^{\text{e}}$ colonne de $U$\;
+}
+
+\caption{SVD via algorithme QR sur \( A^T A \)}
+\end{algorithm}
+\end{frame}
+
