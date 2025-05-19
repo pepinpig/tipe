@@ -34,7 +34,7 @@ int reconstruction1(const  char* image_name1, const char* image_name2,  matrice*
 }
 
 bool filtre (matrice* p){
-    if ((p->mat[0][0]>1.5)||(p->mat[1][0]>1.5)||(p->mat[0][0]<-0.5)||(p->mat[1][0]<-0.5)||(p->mat[2][0]>3)){
+    if ((p->mat[0][0]>1.5)||(p->mat[1][0]>1.5)||(p->mat[0][0]<-0.4)||(p->mat[1][0]<-0.4)||(p->mat[2][0]>3)){
         return false;
     }
     return true;
@@ -82,7 +82,7 @@ int reconstruction1_aux(matrice* P1, matrice* P2,const char* file_points1, const
             p->mat[i][0] /= p->mat[3][0];
         }
 
-        if (((p->mat[2][0])>0.95)&&(filtre(p))){
+        if (((p->mat[2][0])>1.2)&&(filtre(p))){
         //if (true){
             fprintf(output, "%f %f %f\n", p->mat[0][0], p->mat[1][0], p->mat[2][0]);
             points_ecrits++;
