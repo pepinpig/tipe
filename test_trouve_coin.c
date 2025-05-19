@@ -19,13 +19,14 @@ int main(int argc, char* argv[]) {
     read_matrice_from_file_dimension(&input, input_name);
     int** actif=NULL;
     int nb_points=moravec_arr(input,&actif);
+    char parametre[256];
+    snprintf(parametre, sizeof(parametre), "fichier:%s, seuil:%d, fenetre:%d, param:%d", filename, Seuil_moravec, Window, PARAM);
+    save_matrice_pbm(input, input_name, parametre);
     printf("nb_points : %d\n",nb_points);
     output=compute_score(input,actif,nb_points);
     printf("gardé : %d",pretty_mat(output,actif,nb_points));
     char output_name[128];
-    char parametre[256];
     printf("test\n");
-    snprintf(parametre, sizeof(parametre), "fichier:%s, seuil:%d, fenetre:%d, param:%d", filename, Seuil_moravec, Window, PARAM);
     snprintf(output_name, sizeof(output_name), "%s-mv-%d-%d-%d-tc.pbm", filename, Seuil_moravec, Window, PARAM);
     save_matrice_pbm(output, output_name, parametre);
     save_matrice_to_file(output, filename);

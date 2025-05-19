@@ -34,7 +34,7 @@ int reconstruction1(const  char* image_name1, const char* image_name2,  matrice*
 }
 
 bool filtre (matrice* p){
-    if ((fabs(p->mat[0][0])>1.25)||(fabs(p->mat[1][0]))>1.25||(fabs(p->mat[2][0])>1.25)){
+    if ((p->mat[0][0]>1.5)||(p->mat[1][0]>1.5)||(p->mat[0][0]<-0.5)||(p->mat[1][0]<-0.5)||(p->mat[2][0]>3)){
         return false;
     }
     return true;
@@ -57,6 +57,7 @@ int reconstruction1_aux(matrice* P1, matrice* P2,const char* file_points1, const
 
     printf("Reconstruction des points 3D ...\n");
     double u1, v1, u2, v2;
+    fscanf(f1, "%lf %lf", &u1, &v1) == 2 && fscanf(f2, "%lf %lf", &u2, &v2); //on ignore les dimensions
     while (fscanf(f1, "%lf %lf", &u1, &v1) == 2 && fscanf(f2, "%lf %lf", &u2, &v2) == 2) {
         matrice* A = matrice_nulle(4, 4);
         for (int j = 0; j < 4; ++j) {
@@ -81,7 +82,8 @@ int reconstruction1_aux(matrice* P1, matrice* P2,const char* file_points1, const
             p->mat[i][0] /= p->mat[3][0];
         }
 
-        if (((p->mat[2][0])>1)&&(filtre(p))){
+        if (((p->mat[2][0])>0.95)&&(filtre(p))){
+        //if (true){
             fprintf(output, "%f %f %f\n", p->mat[0][0], p->mat[1][0], p->mat[2][0]);
             points_ecrits++;
         }
