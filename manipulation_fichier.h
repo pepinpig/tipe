@@ -25,6 +25,7 @@ void save_matrice_to_file(matrice* matrix, char* filename);
 //Comme save_matrice to file mais elimine les lignes commençant par -1
 int save_matrice_to_file_clean(matrice* matrix, char* filename);
 
+int save_matrice_to_file_clean_dimension(matrice *A, char* filename);
 //Lis la matrice dans filename avec les dimension sur le première ligne et fait pointer vers mtx
 void read_matrice_from_file_dimension(matrice** mtx, char* filename);
 

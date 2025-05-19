@@ -26,7 +26,10 @@ int main(int argc, char* argv[]) {
     snprintf(points_image_file, sizeof(points_image_file), "points/donnees/points_calibrage_%s.txt", image_name);
     snprintf(points_reel_file, sizeof(points_reel_file), "points/donnees/points_reels_%s.txt", cl);
     load_all_points_images(points_image_file, u, v, n); 
+    printf("%s\n", points_reel_file);
+    printf("points_reels_BO.txt\n");
     load_all_points_reels(points_reel_file, X, Y, Z, n);
+    printf("test\n");
     matrice* A = construction_A(X, Y, Z, u, v, n);
     char fn[100];
     nom_fichier(fn, "A", image_name);

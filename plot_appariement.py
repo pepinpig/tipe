@@ -27,7 +27,7 @@ def plot_images_with_points(image1, image2, points1, points2):
     # Affichage de l'image 2
     ax[1].imshow(image2, cmap='gray')
     
-    for i in range(min(len(points1), len(points2))):
+    for i in range(1,(min(len(points1), len(points2)))):
         color = np.random.rand(3,)
         ax[0].scatter(points1[i, 0], points1[i, 1], color=color, label='Points Image 1' if i == 0 else "")
         ax[1].scatter(points2[i, 0], points2[i, 1], color=color, label='Points Image 2' if i == 0 else "")

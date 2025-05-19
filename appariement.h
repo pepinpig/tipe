@@ -12,7 +12,7 @@
 
 
 // Définitions des constantes
-#define PATCH_SIZE 41   // Taille du patch utilisée
+#define PATCH_SIZE 51   // Taille du patch utilisée
 #define NUM_PAIRS 256  
 
 typedef struct uint256{
@@ -25,7 +25,6 @@ typedef struct uint256{
 typedef struct {
     uint8_t r, g, b;
 } pixel_rgb;
-
 
 // Déclaration des fonctions
 // Générer des paires de tests BRIEF avec des paramètres pour la taille de patch et le nombre de bits

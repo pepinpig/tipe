@@ -153,7 +153,7 @@ int hamming_distance(uint256_t* d1, uint256_t* d2) {
     uint64_t xor2 = d1->low1 ^ d2->low1;
     uint64_t xor3 = d1->high2 ^ d2->high2;
     uint64_t xor4 = d1->low2 ^ d2->low2;
-    return one_count(xor1) + one_count(xor2) + one_count(xor3) + one_count(xor4);
+    return 2*one_count(xor1) + 2*one_count(xor2) + 2*one_count(xor3) + one_count(xor4);
 }
 
 matrice* epipolar_line(matrice* F, matrice* X) {

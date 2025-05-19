@@ -70,18 +70,22 @@ matrice* selection_moravec(char* filename, int* nbp, matrice* input){
     return points;
 }
 
-
-
 void init_img_moravec(matrice** img1, matrice** img2, char* filename1, char* filename2, matrice* input1, matrice* input2){
   char points_file1[MAX_FILENAME], points_file2[MAX_FILENAME];
   snprintf(points_file1, sizeof(points_file1), "points_%s.txt", filename1);
   snprintf(points_file2, sizeof(points_file2), "points_%s.txt", filename2);
-  int** actif = NULL;
-  int nbp1= moravec_arr(input1,&actif);
+  char command[256];
+  int nbp1;
   int nbp2;
+  *img1 =selection_moravec(filename1, &nbp1, input1);
   *img2 = selection_moravec(filename2, &nbp2, input2);
-  save_matrice_to_file_dimension(*img2, points_file2);
-  //filtrage sur la premiere image
+  save_matrice_to_file_dimension(*img1, points_file1);
+  snprintf(command, sizeof(command), "python3 plot_appariement_un.py %s.jpg points_%s.txt", filename1,  filename1);
+  //system(command);
+
+  //trouve coin
+  int** actif = NULL;
+  nbp1= moravec_arr(input1,&actif);
   matrice* output1;
   output1=compute_score(input1,actif,nbp1);
   int nbp1bis = filtre_mat(output1,actif,nbp1);
@@ -91,7 +95,14 @@ void init_img_moravec(matrice** img1, matrice** img2, char* filename1, char* fil
   free(actif);
   *img1 = bit_image_to_points(output1,nbp1bis);
   free_matrice(output1);
-  save_matrice_to_file(*img1, points_file1);
+  save_matrice_to_file_dimension(*img1, points_file1);
+  //system(command);
+
+  //filtrage sur la premiere image
+  detect_lines_and_extremities(*img1);
+  save_matrice_to_file_clean_dimension(*img1, points_file1);
+  save_matrice_to_file_dimension(*img2, points_file2);
+  //system(command);
 }
 
 void init_img_select(matrice** img1, matrice** img2, char* filename1, char* filename2){
@@ -143,31 +154,31 @@ matrice* corresp (matrice* img1, matrice* img2, matrice* input1, matrice* input2
     int h_min = Hamming_seuil;
     for (int j = 0; j < nbp2; j++) {
       //printf("xprec = %d\n",xprec);
-      if (img2->mat[j][0]>=xprec-MARGEX){
-        matrice* X2 = coo_vect(img2->mat[j][0], img2->mat[j][1]);
-        //printf("j : \n",j);
-        //printf("X2 : \n");
-        //print_matrice(X2);
-        if (point_line_distance(l, X2) < Distance_seuil) {
-          found++;
-          if (found==1){
-            count++;
-            //printf("\n-----------\n");
-            //printf("point img1 %d de coordonnéees %d %d :\n", count, (int)img1->mat[i][0], (int)img1->mat[i][1]);
-            //print_matrice(l);
-          }
-          //printf("point img2 %d de coordonnéees %d %d :", j, (int)img2->mat[j][0], (int)img2->mat[j][1]);
-          //printf("distance %f / hamming %d \n", point_line_distance(l, X2), hamming_distance(img2_descripteur[j], img1_descripteur[i]));
-          int h = hamming_distance(img2_descripteur[j], img1_descripteur[i]);
-          if (h < h_min) {
-            retenus->mat[i][0] = img2->mat[j][0];
-            retenus->mat[i][1] = img2->mat[j][1];
-            retenus_dh->mat[i][0] = h;
-            h_min = h;
-          }
+      matrice* X2 = coo_vect(img2->mat[j][0], img2->mat[j][1]);
+      //printf("j : \n",j);
+      //printf("X2 : \n");
+      //print_matrice(X2);
+      if (point_line_distance(l, X2) < Distance_seuil) {
+        found++;
+        if (found==1){
+          count++;
+          //printf("\n-----------\n");
+          //printf("point img1 %d de coordonnéees %d %d :\n", count, (int)img1->mat[i][0], (int)img1->mat[i][1]);
+          //print_matrice(l);
         }
-        free_matrice(X2);
+        //printf("point img2 %d de coordonnéees %d %d :", j, (int)img2->mat[j][0], (int)img2->mat[j][1]);
+        //printf("distance %f / hamming %d \n", point_line_distance(l, X2), hamming_distance(img2_descripteur[j], img1_descripteur[i]));
+        int h = hamming_distance(img2_descripteur[j], img1_descripteur[i]);
+        if (h < h_min) {
+          printf("\n\n\n\n");
+          retenus->mat[i][0] = img2->mat[j][0];
+          retenus->mat[i][1] = img2->mat[j][1];
+          retenus_dh->mat[i][0] = h;
+          h_min = h;
+        }
       }
+      free_matrice(X2);
+    
     }
     free_matrice(X1);
     free_matrice(l);
@@ -225,13 +236,13 @@ matrice* corresp_color (matrice* img1, matrice* img2, matrice* input1_r,matrice*
           if (found==1){
             count++;
             //printf("\n-----------\n");
-            printf("point img1 %d de coordonnéees %d %d :\n", count, (int)img1->mat[i][0], (int)img1->mat[i][1]);
+            //printf("point img1 %d de coordonnéees %d %d :\n", count, (int)img1->mat[i][0], (int)img1->mat[i][1]);
             //print_matrice(l);
           }
           int h = hamming_distance(img2_descripteur[j], img1_descripteur[i]);
           if (h < h_min) {
-            printf("point img2 %d de coordonnéees %d %d :", j, (int)img2->mat[j][0], (int)img2->mat[j][1]);
-            printf("distance %f / hamming %d \n", point_line_distance(l, X2), hamming_distance(img2_descripteur[j], img1_descripteur[i]));
+            //printf("point img2 %d de coordonnéees %d %d :", j, (int)img2->mat[j][0], (int)img2->mat[j][1]);
+            //printf("distance %f / hamming %d \n", point_line_distance(l, X2), hamming_distance(img2_descripteur[j], img1_descripteur[i]));
             retenus->mat[i][0] = img2->mat[j][0];
             retenus->mat[i][1] = img2->mat[j][1];
             retenus_dh->mat[i][0] = h;

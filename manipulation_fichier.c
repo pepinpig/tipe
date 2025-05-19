@@ -59,23 +59,6 @@ void save_matrice_to_file_dimension(matrice* matrix, char* filename) {
     printf("Matrice enregistrée dans %s\n", filename);
 }
 
-void save_matrice_to_file_dimension_inv(matrice* matrix, char* filename) {
-    char complete_fn[256];
-    snprintf(complete_fn, 256, "points/donnees/%s", filename);
-    FILE* file = fopen(complete_fn, "w");
-    assert(file != NULL);
-
-    fprintf(file, "%d %d", matrix->n, matrix->m);
-    fprintf(file, "\n");
-    for (int i = 0; i < matrix->n; ++i) {
-        fprintf(file, "%lf ", matrix->mat[i][1]);
-        fprintf(file, "%lf ", matrix->mat[i][0]);
-        fprintf(file, "\n");
-    }
-
-    fclose(file);
-    printf("Matrice enregistrée dans %s\n", filename);
-}
 
 void save_matrice_pbm(matrice* matrix, char* filename, char* parametre) {
     char complete_fn[256];
@@ -135,6 +118,30 @@ int save_matrice_to_file_clean(matrice *A, char* filename) {
     return nb_points;
 }
 
+
+int save_matrice_to_file_clean_dimension(matrice *A, char* filename) {
+    char complete_fn[256];
+    snprintf(complete_fn, 256, "points/donnees/%s", filename);
+    FILE* file = fopen(complete_fn, "w");
+    assert(file != NULL);
+    fprintf(file, "%d %d", A->n, A->m);
+    fprintf(file, "\n");
+    int nb_points=0;
+    for (int i = 0; i < A->n; i++) {
+        if (A->mat[i][0]!=-1){
+            nb_points++;
+            for (int j = 0; j < A->m; j++) {
+                fprintf(file, "%lf ", A->mat[i][j]);
+            }
+            fprintf(file, "\n");
+        }
+    }
+
+    fclose(file);
+    printf("Matrice enregistrée dans %s\n", filename);
+    return nb_points;
+}
+
 void read_matrice_from_file(matrice* A, const char *filename) {
     char complete_fn[256];
     snprintf(complete_fn, 256, "points/donnees/%s", filename);
@@ -166,6 +173,7 @@ void load_all_points_images(const char* filename, double* u, double*v, int n) {
 
 void load_all_points_reels(const char* filename, double* X, double* Y, double* Z, int n) {
     FILE *file = fopen(filename, "r");
+    assert(file != NULL);
     double Xi, Yi, Zi;
     for (int i = 0; i < n; i++) {
         fscanf(file, "%lf %lf %lf", &Xi, &Yi, &Zi);

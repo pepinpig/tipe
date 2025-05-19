@@ -55,7 +55,7 @@ def lire_et_tracer_points(fichiers):
         ax.set_ylabel('Y')
         ax.set_zlabel('Z')
         plt.title('Points 3D')
-        plt.legend()
+        #plt.legend()
         plt.show()
 
     except FileNotFoundError as e:

@@ -16,6 +16,9 @@ int main(int argc, char* argv[]) {
 
     matrice* matrice_output;
     int nb_points =reconstruction4(image_name1, image_name2,image_name3, image_name4,image_name5, image_name6,image_name7, image_name8, &matrice_output);
+    char export[128];
+    snprintf(export, sizeof(export), "points_3d_%s_all.txt", image_name1);
+    save_matrice_to_file(matrice_output,export );
     char command[256];
     snprintf(command, sizeof(command), "python3 plot_points_3D.py points_3d_%s points_3d_%s points_3d_%s points_3d_%s", image_name1, image_name3, image_name5, image_name7);
     system(command);

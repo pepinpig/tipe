@@ -2,7 +2,7 @@
 #include "appariement.h"
 #include "trouve_coin.h"
 #include "camera_calibration.h"
-
+#include "ransac.h"
 #define MAX_FILENAME 256
 #define MARGEX 0
 

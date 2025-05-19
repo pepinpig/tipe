@@ -171,11 +171,9 @@ void qr_algorithm(matrice *A, matrice* S) {
 
 void eigen_decomposition(matrice* AtA, matrice* S, matrice* V) {
     int n = AtA->n;
-
     // B = copie de AtA pour itérer
     matrice* B = matrice_nulle(n, n);
     copie_matrice(AtA, B);
-
     // Q_accum contient les vecteurs propres (colonnes)
     matrice* Q_accum = matrice_identite(n);
 
@@ -229,8 +227,8 @@ void qr_algorithm_SVD(matrice* A, matrice* U, matrice* S, matrice* V) {
     matrice* AtA = produit(At, A);
 
     // Étape 2 : décomposition de AtA → valeurs propres dans S, vecteurs propres dans V
+    
     eigen_decomposition(AtA, S, V);  // S contiendra σ² ici
-
     // Étape 3 : construire U et racine des valeurs propres
     for (int i = 0; i < n; i++) {
         double sigma2 = S->mat[i][i];
