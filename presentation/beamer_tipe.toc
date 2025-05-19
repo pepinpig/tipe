@@ -1,4 +1,16 @@
-\beamer@sectionintoc {1}{Triangulation}{4}{0}{1}
-\beamer@sectionintoc {2}{Analyse des résultats}{6}{0}{2}
-\beamer@subsectionintoc {2}{1}{Quelques exemples}{8}{0}{2}
-\beamer@subsectionintoc {2}{2}{Critiques}{9}{0}{2}
+\beamer@sectionintoc {1}{Selection}{4}{0}{1}
+\beamer@subsectionintoc {1}{1}{Points d'intérêts}{5}{0}{1}
+\beamer@subsectionintoc {1}{2}{Algorithme}{11}{0}{1}
+\beamer@subsectionintoc {1}{3}{Implémentation}{22}{0}{1}
+\beamer@sectionintoc {2}{Appariement}{27}{0}{2}
+\beamer@subsectionintoc {2}{1}{Pré-traitement}{32}{0}{2}
+\beamer@subsectionintoc {2}{2}{Filtrage epipolaire}{40}{0}{2}
+\beamer@subsectionintoc {2}{3}{Brief}{42}{0}{2}
+\beamer@subsectionintoc {2}{4}{Algorithme}{59}{0}{2}
+\beamer@subsectionintoc {2}{5}{Resultat}{65}{0}{2}
+\beamer@sectionintoc {3}{Calibration}{69}{0}{3}
+\beamer@subsectionintoc {3}{1}{Système de calibrage}{70}{0}{3}
+\beamer@subsectionintoc {3}{2}{En pratiques}{80}{0}{3}
+\beamer@subsectionintoc {3}{3}{Resolution système homogène}{82}{0}{3}
+\beamer@subsectionintoc {3}{4}{Implémentation}{90}{0}{3}
+\beamer@sectionintoc {4}{Reconstruction des points}{94}{0}{4}
