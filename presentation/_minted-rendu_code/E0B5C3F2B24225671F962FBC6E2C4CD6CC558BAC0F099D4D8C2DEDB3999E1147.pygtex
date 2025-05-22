@@ -1,0 +1,73 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{matplotlib}\PYG{p}{.}\PYG{n}{pyplot}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{plt}
+\PYG{n}{from}\PYG{+w}{ }\PYG{n}{mpl\PYGZus{}toolkits}\PYG{p}{.}\PYG{n}{mplot3d}\PYG{+w}{ }\PYG{n}{import}\PYG{+w}{ }\PYG{n}{Axes3D}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{sys}
+
+\PYG{n}{def}\PYG{+w}{ }\PYG{n}{lire\PYGZus{}et\PYGZus{}tracer\PYGZus{}points}\PYG{p}{(}\PYG{n}{fichiers}\PYG{p}{)}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n+nl}{try}\PYG{p}{:}
+\PYG{+w}{        }\PYG{c+cp}{\PYGZsh{} Initialiser la figure 3D}
+\PYG{+w}{        }\PYG{n}{fig}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{plt}\PYG{p}{.}\PYG{n}{figure}\PYG{p}{()}
+\PYG{+w}{        }\PYG{n}{ax}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{fig}\PYG{p}{.}\PYG{n}{add\PYGZus{}subplot}\PYG{p}{(}\PYG{l+m+mi}{111}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{projection}\PYG{o}{=}\PYG{err}{\PYGZsq{}}\PYG{l+m+mi}{3}\PYG{n}{d}\PYG{err}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{+w}{        }\PYG{c+cp}{\PYGZsh{} Couleurs pour différencier les fichiers}
+\PYG{+w}{        }\PYG{n}{couleurs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+s+sc}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}g\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}c\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}m\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}y\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}k\PYGZsq{}}\PYG{p}{]}
+
+\PYG{+w}{        }\PYG{c+cp}{\PYGZsh{} Initialiser les bornes pour garder un repère orthonormé}
+\PYG{+w}{        }\PYG{n}{x\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x\PYGZus{}max}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kt}{float}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{inf}\PYG{err}{\PYGZsq{}}\PYG{p}{),}\PYG{+w}{ }\PYG{k+kt}{float}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{o}{\PYGZhy{}}\PYG{n}{inf}\PYG{err}{\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{y\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}max}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kt}{float}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{inf}\PYG{err}{\PYGZsq{}}\PYG{p}{),}\PYG{+w}{ }\PYG{k+kt}{float}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{o}{\PYGZhy{}}\PYG{n}{inf}\PYG{err}{\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{z\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z\PYGZus{}max}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kt}{float}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{inf}\PYG{err}{\PYGZsq{}}\PYG{p}{),}\PYG{+w}{ }\PYG{k+kt}{float}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{o}{\PYGZhy{}}\PYG{n}{inf}\PYG{err}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{index}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fichier}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{enumerate}\PYG{p}{(}\PYG{n}{fichiers}\PYG{p}{)}\PYG{o}{:}
+\PYG{+w}{            }\PYG{n}{x\PYGZus{}coords}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[]}
+\PYG{+w}{            }\PYG{n}{y\PYGZus{}coords}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[]}
+\PYG{+w}{            }\PYG{n}{z\PYGZus{}coords}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[]}
+\PYG{+w}{            }\PYG{n}{complete\PYGZus{}name}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{f}\PYG{err}{\PYGZsq{}}\PYG{n}{points}\PYG{o}{/}\PYG{n}{donnees}\PYG{o}{/}\PYG{p}{\PYGZob{}}\PYG{n}{fichier}\PYG{p}{\PYGZcb{}.}\PYG{n}{txt}\PYG{err}{\PYGZsq{}}
+\PYG{+w}{            }\PYG{n}{with}\PYG{+w}{ }\PYG{n}{open}\PYG{p}{(}\PYG{n}{complete\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{f}\PYG{o}{:}
+\PYG{+w}{                }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{ligne}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{f}\PYG{o}{:}
+\PYG{+w}{                    }\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{map}\PYG{p}{(}\PYG{k+kt}{float}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ligne}\PYG{p}{.}\PYG{n}{strip}\PYG{p}{().}\PYG{n}{split}\PYG{p}{())}
+\PYG{+w}{                    }\PYG{n}{x\PYGZus{}coords}\PYG{p}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+\PYG{+w}{                    }\PYG{n}{y\PYGZus{}coords}\PYG{p}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)}
+\PYG{+w}{                    }\PYG{n}{z\PYGZus{}coords}\PYG{p}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{z}\PYG{p}{)}
+
+\PYG{+w}{            }\PYG{c+cp}{\PYGZsh{} Mettre à jour les bornes}
+\PYG{+w}{            }\PYG{n}{x\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x\PYGZus{}max}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{min}\PYG{p}{(}\PYG{n}{x\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{min}\PYG{p}{(}\PYG{n}{x\PYGZus{}coords}\PYG{p}{)),}\PYG{+w}{ }\PYG{n}{max}\PYG{p}{(}\PYG{n}{x\PYGZus{}max}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max}\PYG{p}{(}\PYG{n}{x\PYGZus{}coords}\PYG{p}{))}
+\PYG{+w}{            }\PYG{n}{y\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}max}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{min}\PYG{p}{(}\PYG{n}{y\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{min}\PYG{p}{(}\PYG{n}{y\PYGZus{}coords}\PYG{p}{)),}\PYG{+w}{ }\PYG{n}{max}\PYG{p}{(}\PYG{n}{y\PYGZus{}max}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max}\PYG{p}{(}\PYG{n}{y\PYGZus{}coords}\PYG{p}{))}
+\PYG{+w}{            }\PYG{n}{z\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z\PYGZus{}max}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{min}\PYG{p}{(}\PYG{n}{z\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{min}\PYG{p}{(}\PYG{n}{z\PYGZus{}coords}\PYG{p}{)),}\PYG{+w}{ }\PYG{n}{max}\PYG{p}{(}\PYG{n}{z\PYGZus{}max}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max}\PYG{p}{(}\PYG{n}{z\PYGZus{}coords}\PYG{p}{))}
+
+\PYG{+w}{            }\PYG{c+cp}{\PYGZsh{} Choisir une couleur pour ce fichier}
+\PYG{+w}{            }\PYG{n}{couleur}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{couleurs}\PYG{p}{[}\PYG{n}{index}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{n}{len}\PYG{p}{(}\PYG{n}{couleurs}\PYG{p}{)]}
+\PYG{+w}{            }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{x\PYGZus{}coords}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}coords}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z\PYGZus{}coords}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{c}\PYG{o}{=}\PYG{n}{couleur}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{marker}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}o\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{label}\PYG{o}{=}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Fichier \PYGZob{}fichier\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+
+\PYG{+w}{            }\PYG{c+cp}{\PYGZsh{} Ajouter des étiquettes pour chaque point}
+\PYG{+w}{            }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{enumerate}\PYG{p}{(}\PYG{n}{zip}\PYG{p}{(}\PYG{n}{x\PYGZus{}coords}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}coords}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z\PYGZus{}coords}\PYG{p}{))}\PYG{o}{:}
+\PYG{+w}{                }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{text}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}i\PYGZcb{}\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{color}\PYG{o}{=}\PYG{n}{couleur}\PYG{p}{)}
+
+\PYG{+w}{        }\PYG{c+cp}{\PYGZsh{} Définir les mêmes échelles pour chaque axe}
+\PYG{+w}{        }\PYG{n}{max\PYGZus{}range}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{max}\PYG{p}{(}\PYG{n}{x\PYGZus{}max}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{x\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y\PYGZus{}max}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{y\PYGZus{}min}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{z\PYGZus{}max}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{z\PYGZus{}min}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{2.0}
+\PYG{+w}{        }\PYG{n}{mid\PYGZus{}x}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{x\PYGZus{}max}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{x\PYGZus{}min}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{2.0}
+\PYG{+w}{        }\PYG{n}{mid\PYGZus{}y}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{y\PYGZus{}max}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{y\PYGZus{}min}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{2.0}
+\PYG{+w}{        }\PYG{n}{mid\PYGZus{}z}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{z\PYGZus{}max}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{z\PYGZus{}min}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{2.0}
+\PYG{+w}{        }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{set\PYGZus{}xlim}\PYG{p}{(}\PYG{n}{mid\PYGZus{}x}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{max\PYGZus{}range}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mid\PYGZus{}x}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{max\PYGZus{}range}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{set\PYGZus{}ylim}\PYG{p}{(}\PYG{n}{mid\PYGZus{}y}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{max\PYGZus{}range}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mid\PYGZus{}y}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{max\PYGZus{}range}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{set\PYGZus{}zlim}\PYG{p}{(}\PYG{n}{mid\PYGZus{}z}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{max\PYGZus{}range}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mid\PYGZus{}z}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{max\PYGZus{}range}\PYG{p}{)}
+
+\PYG{+w}{        }\PYG{c+cp}{\PYGZsh{} Ajouter des étiquettes des axes}
+\PYG{+w}{        }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{set\PYGZus{}xlabel}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}X\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{set\PYGZus{}ylabel}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}Y\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{ax}\PYG{p}{.}\PYG{n}{set\PYGZus{}zlabel}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}Z\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{plt}\PYG{p}{.}\PYG{n}{title}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{Points}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{n}{D}\PYG{err}{\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{plt}\PYG{p}{.}\PYG{n}{legend}\PYG{p}{()}
+\PYG{+w}{        }\PYG{n}{plt}\PYG{p}{.}\PYG{n}{show}\PYG{p}{()}
+
+\PYG{+w}{    }\PYG{n}{except}\PYG{+w}{ }\PYG{n}{FileNotFoundError}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{e}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Erreur : Le fichier est introuvable : \PYGZob{}e\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{except}\PYG{+w}{ }\PYG{n}{ValueError}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{e}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Erreur de format dans un des fichiers : \PYGZob{}e\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{o}{:}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{len}\PYG{p}{(}\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Usage : plot\PYGZus{}points.py \PYGZlt{}nom\PYGZus{}du\PYGZus{}fichier1\PYGZgt{} \PYGZlt{}nom\PYGZus{}du\PYGZus{}fichier2\PYGZgt{} ...\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n+nl}{else}\PYG{p}{:}
+\PYG{+w}{        }\PYG{n}{fichiers}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{p}{]}
+\PYG{+w}{        }\PYG{n}{lire\PYGZus{}et\PYGZus{}tracer\PYGZus{}points}\PYG{p}{(}\PYG{n}{fichiers}\PYG{p}{)}
+\end{Verbatim}

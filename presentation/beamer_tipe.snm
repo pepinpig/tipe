@@ -1,7 +1,10 @@
-\beamer@slide {algo-moravec}{11}
-\beamer@slide {ban-back-1}{65}
-\beamer@slide {moravec-appendix}{109}
-\beamer@slide {moravec-code}{118}
-\beamer@slide {projection-appendix}{119}
-\beamer@slide {optimisation-appendix}{133}
-\beamer@slide {SVD-appendix}{148}
+\beamer@slide {algo-moravec}{6}
+\beamer@slide {sift-appendix}{101}
+\beamer@slide {moravec-appendix}{103}
+\beamer@slide {moravec-code}{111}
+\beamer@slide {projection-appendix}{112}
+\beamer@slide {optimisation-appendix}{126}
+\beamer@slide {SVD-appendix}{141}
+\beamer@slide {ransac-appendix}{143}
+\beamer@slide {convex-appendix}{147}
+\beamer@slide {brief-appendix}{153}

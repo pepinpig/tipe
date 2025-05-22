@@ -1,5 +1,86 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Analyse des résultats]{Analyse des résultats}
+\section[Considérations pratiques et résultats]{Considérations pratiques et résultats}
+\subsection{En pratique}
+
+\begin{frame}{Implémentation}
+\begin{itemize}
+  \item Cœur du projet en \textbf{C} : traitement, calculs, reconstruction.
+\end{itemize}
+\pause
+\vspace{0.5em}
+\tiny{
+\renewcommand{\arraystretch}{1.5} % augmente l’espacement vertical
+\setlength{\tabcolsep}{4pt} % réduit l’espacement horizontal des colonnes
+\begin{tabular}{|>{\ttfamily}l|p{8cm}|}
+\hline
+\textbf{Fichier} & \textbf{Rôle} \\
+\hline
+matrice.c & Implémente les opérations sur les matrices. \\
+\hline
+selection.c & Sélectionne des points d'intérêt. \\
+\hline
+trouve\_coin.c & Raffine les points détectés. \\
+\hline
+ransac.c & Second raffinement des points par RANSAC. \\
+\hline
+appariement.c & Calcule le descripteur BRIEF et la distance à la droite épipolaire. \\
+\hline
+detection.c & Regroupe détection, tri et appariement pour un couple d’images. \\
+\hline
+camera\_calibration.c & Calibre la caméra à partir des correspondances 2D. \\
+\hline
+SVD.c & Fonctions pour la décomposition SVD et résolution de systèmes. \\
+\hline
+reconstruction.c & Reconstruit les coordonnées 3D à partir des points 2D. \\
+\hline
+triangles.c & Détermine les triangles pour reconstruire l'enveloppe 3D. \\
+\hline
+manipulation\_fichier.c & Utilitaires de lecture/écriture de matrices. \\
+\hline
+constante.c & Gère les paramètres de reconstruction. \\
+\hline
+\end{tabular}
+}
+\pause
+\normalsize
+\vspace{0.5em}
+\begin{itemize}
+  \item Interface utilisateur et affichage en \textbf{Python}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Shooting photo : importance de la prise de vue}
+  \note{
+    au depart : on tourne autour/ faire tourner rubiks 
+    fond unis mieux pour la Calibration
+    face recouverte de papier pour etre unis et limiter les points inutiles
+  }
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.48\linewidth]{capture/dodec0.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodec1.jpg} \\
+      \includegraphics[width=0.48\linewidth]{capture/dodec2.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodec3.jpg}
+      {\footnotesize\textbf{Vues initiales}}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.48\linewidth]{capture/dodecf0.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodecf1.jpg} \\
+      \includegraphics[width=0.48\linewidth]{capture/dodecf2.jpg}%
+      \includegraphics[width=0.48\linewidth]{capture/dodecf3.jpg}
+      {\footnotesize\textbf{Vues améliorées}}
+    \end{figure}
+  \end{minipage}
+\end{frame}
+
 
 %------------------------------------------------
 \subsection{Quelques exemples}

@@ -1,0 +1,61 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{cv2}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{numpy}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{np}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{sys}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{os}
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{len}\PYG{p}{(}\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Usage: python script.py \PYGZlt{}image\PYGZgt{}.jpg\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{n}{image\PYGZus{}path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+\PYG{n}{input\PYGZus{}dir}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}points/images/\PYGZdq{}}
+\PYG{n}{output\PYGZus{}dir}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}points/donnees/\PYGZdq{}}
+\PYG{n}{input\PYGZus{}path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{input\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}path}\PYG{p}{)}
+
+\PYG{n}{image\PYGZus{}rgb}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cv2}\PYG{p}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{n}{input\PYGZus{}path}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{cv2}\PYG{p}{.}\PYG{n}{IMREAD\PYGZus{}COLOR}\PYG{p}{)}
+\PYG{n}{image}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cv2}\PYG{p}{.}\PYG{n}{cvtColor}\PYG{p}{(}\PYG{n}{image\PYGZus{}rgb}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{cv2}\PYG{p}{.}\PYG{n}{COLOR\PYGZus{}BGR2LAB}\PYG{p}{)}
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{image}\PYG{+w}{ }\PYG{n}{is}\PYG{+w}{ }\PYG{n}{None}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Error: Image \PYGZsq{}\PYGZob{}input\PYGZus{}path\PYGZcb{}\PYGZsq{} not found or cannot be read!\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{n}{height}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{width}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{image}\PYG{p}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{o}{:}\PYG{l+m+mi}{2}\PYG{p}{]}
+\PYG{n}{image\PYGZus{}name}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{splitext}\PYG{p}{(}\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{basename}\PYG{p}{(}\PYG{n}{image\PYGZus{}path}\PYG{p}{))[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{n}{os}\PYG{p}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exist\PYGZus{}ok}\PYG{o}{=}\PYG{n}{True}\PYG{p}{)}
+\PYG{n}{output\PYGZus{}path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}image\PYGZus{}name\PYGZcb{}\PYGZus{}r.txt\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{with}\PYG{+w}{ }\PYG{n}{open}\PYG{p}{(}\PYG{n}{output\PYGZus{}path}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{f}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}width\PYGZcb{} \PYGZob{}height\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{row}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{image}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{row\PYGZus{}data}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}pixel[2]\PYGZcb{}\PYGZdq{}}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{pixel}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{]}
+\PYG{+w}{        }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{row\PYGZus{}data}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Image converted successfully to \PYGZsq{}\PYGZob{}output\PYGZus{}path\PYGZcb{}\PYGZsq{}!\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{height}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{width}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{image}\PYG{p}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{o}{:}\PYG{l+m+mi}{2}\PYG{p}{]}
+\PYG{n}{image\PYGZus{}name}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{splitext}\PYG{p}{(}\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{basename}\PYG{p}{(}\PYG{n}{image\PYGZus{}path}\PYG{p}{))[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{n}{os}\PYG{p}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exist\PYGZus{}ok}\PYG{o}{=}\PYG{n}{True}\PYG{p}{)}
+\PYG{n}{output\PYGZus{}path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}image\PYGZus{}name\PYGZcb{}\PYGZus{}g.txt\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{with}\PYG{+w}{ }\PYG{n}{open}\PYG{p}{(}\PYG{n}{output\PYGZus{}path}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{f}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}width\PYGZcb{} \PYGZob{}height\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{row}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{image}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{row\PYGZus{}data}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}pixel[1]\PYGZcb{}\PYGZdq{}}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{pixel}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{]}
+\PYG{+w}{        }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{row\PYGZus{}data}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Image converted successfully to \PYGZsq{}\PYGZob{}output\PYGZus{}path\PYGZcb{}\PYGZsq{}!\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{height}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{width}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{image}\PYG{p}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{o}{:}\PYG{l+m+mi}{2}\PYG{p}{]}
+\PYG{n}{image\PYGZus{}name}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{splitext}\PYG{p}{(}\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{basename}\PYG{p}{(}\PYG{n}{image\PYGZus{}path}\PYG{p}{))[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{n}{os}\PYG{p}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exist\PYGZus{}ok}\PYG{o}{=}\PYG{n}{True}\PYG{p}{)}
+\PYG{n}{output\PYGZus{}path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}image\PYGZus{}name\PYGZcb{}\PYGZus{}b.txt\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{with}\PYG{+w}{ }\PYG{n}{open}\PYG{p}{(}\PYG{n}{output\PYGZus{}path}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{f}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}width\PYGZcb{} \PYGZob{}height\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{row}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{image}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{row\PYGZus{}data}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}pixel[0]\PYGZcb{}\PYGZdq{}}\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{pixel}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{]}
+\PYG{+w}{        }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{row\PYGZus{}data}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Image converted successfully to \PYGZsq{}\PYGZob{}output\PYGZus{}path\PYGZcb{}\PYGZsq{}!\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

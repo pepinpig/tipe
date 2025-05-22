@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{cv2}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{numpy}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{np}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{sys}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{os}
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{len}\PYG{p}{(}\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Usage: python script.py \PYGZlt{}image\PYGZgt{}.jpg\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{n}{image\PYGZus{}path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sys}\PYG{p}{.}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+\PYG{n}{input\PYGZus{}dir}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}points/images/\PYGZdq{}}
+\PYG{n}{output\PYGZus{}dir}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}points/donnees/\PYGZdq{}}
+\PYG{n}{input\PYGZus{}path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{input\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}path}\PYG{p}{)}
+
+
+\PYG{n}{image}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cv2}\PYG{p}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{n}{input\PYGZus{}path}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{cv2}\PYG{p}{.}\PYG{n}{IMREAD\PYGZus{}GRAYSCALE}\PYG{p}{)}
+
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{image}\PYG{+w}{ }\PYG{n}{is}\PYG{+w}{ }\PYG{n}{None}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Error: Image \PYGZsq{}\PYGZob{}input\PYGZus{}path\PYGZcb{}\PYGZsq{} not found or cannot be read!\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{n}{height}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{width}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{image}\PYG{p}{.}\PYG{n}{shape}
+
+\PYG{n}{image\PYGZus{}name}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{splitext}\PYG{p}{(}\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{basename}\PYG{p}{(}\PYG{n}{image\PYGZus{}path}\PYG{p}{))[}\PYG{l+m+mi}{0}\PYG{p}{]}
+
+\PYG{n}{os}\PYG{p}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{exist\PYGZus{}ok}\PYG{o}{=}\PYG{n}{True}\PYG{p}{)}\PYG{+w}{ }
+\PYG{n}{output\PYGZus{}path}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}image\PYGZus{}name\PYGZcb{}.txt\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{with}\PYG{+w}{ }\PYG{n}{open}\PYG{p}{(}\PYG{n}{output\PYGZus{}path}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{f}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}width\PYGZcb{} \PYGZob{}height\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{+w}{  }\PYG{err}{\PYGZsh{}}\PYG{+w}{ }\PYG{n}{Écrire}\PYG{+w}{ }\PYG{n}{les}\PYG{+w}{ }\PYG{n}{dimensions}\PYG{+w}{ }\PYG{n}{sur}\PYG{+w}{ }\PYG{n}{la}\PYG{+w}{ }\PYG{n}{première}\PYG{+w}{ }\PYG{n}{ligne}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{row}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{image}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{row\PYGZus{}str}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}}\PYG{p}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{map}\PYG{p}{(}\PYG{n}{str}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{row}\PYG{p}{))}\PYG{+w}{  }\PYG{err}{\PYGZsh{}}\PYG{+w}{ }\PYG{n}{Convertir}\PYG{+w}{ }\PYG{n}{chaque}\PYG{+w}{ }\PYG{n}{pixel}\PYG{+w}{ }\PYG{n}{en}\PYG{+w}{ }\PYG{n}{string}
+\PYG{+w}{        }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{row\PYGZus{}str}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}\PYG{+w}{  }\PYG{err}{\PYGZsh{}}\PYG{+w}{ }\PYG{n}{Écrire}\PYG{+w}{ }\PYG{n}{la}\PYG{+w}{ }\PYG{n}{ligne}\PYG{+w}{ }\PYG{n}{dans}\PYG{+w}{ }\PYG{n}{le}\PYG{+w}{ }\PYG{n}{fichier}
+
+\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Image converted successfully to \PYGZsq{}\PYGZob{}output\PYGZus{}path\PYGZcb{}\PYGZsq{}!\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

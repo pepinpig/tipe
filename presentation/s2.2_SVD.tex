@@ -1,13 +1,10 @@
 %------------------------------------------
-\subsection{Resolution système homogène}
+\subsection{Résolution système}
 %------------------------------------------------
-\note{
-  Le système issu de la calibration est homogène, donc la matrice nulle est toujours solution, mais cette solution n’a aucun sens géométrique. Pour éviter cette solution triviale, on cherche une solution non nulle, à un facteur près, qu’on trouve en utilisant la SVD.
-}
-\begin{frame}{Équations sans \(\lambda\) et système matriciel}
+
+\begin{frame}{Résolution système}
   \input{donnees/big_matrice.tex}
 \end{frame}
-
 
 \begin{frame}{Problème d’optimisation sous contrainte}
 \note{
@@ -35,54 +32,37 @@ On reformule le problème comme une minimisation sous contrainte :
   \hyperlink{optimisation-appendix}{
     \beamerbutton{Compléments calcul}
   }
-
-\end{frame}
-
-\begin{frame}{Lien avec les valeurs propres}
-
-\begin{itemize}
-  \item \( A^T A \) est symétrique : ses vecteurs propres forment une base.
-  \pause
-  \item La solution \( p \) est le vecteur propre associé à la plus petite valeur propre.
-  \pause
-  \item Cela minimise \( \|Ap\| \), donc l’erreur de projection.
-\end{itemize}
-
 \vspace{1em}
+\pause
 \[
-\boxed{\min \|Ap\| \Rightarrow p = \text{vecteur propre de plus petite valeur propre de } A^T A}
+\boxed{\min \|Ap\| \Rightarrow p = \text{un v.p. associé à la plus petite va.p. de } A^T A}
 \]
 
-\note{
-La matrice \( A^T A \) est symétrique, ce qui garantit qu'elle est diagonalisable et possède une base orthonormée de vecteurs propres.
-
-La solution optimale \( p \) est donc un vecteur propre. Pour minimiser \( \|Ap\| \), il faut prendre celui associé à la plus petite valeur propre.
-
-C’est exactement la direction dans laquelle l’application de \( A \) est la moins « amplifiée ».
-}
 \end{frame}
 
-\begin{frame}{Résolution par SVD}
-
+\begin{frame}{Décomposition en valeurs singulières (SVD)}
 \begin{itemize}
   \item On factorise \( A \) : 
   \[
   A = U \Sigma V^T
   \]
   \pause
-  \item La solution \( p \) est la dernière colonne de \( V \),
-  associée à la plus petite valeur singulière \( \sigma_n \).
+  \item \( U \) : matrice orthogonale de \( \mathbb{R}^{m \times m} \)
+  \pause
+  \item \( \Sigma \) : matrice diagonale \( \mathbb{R}^{m \times n} \) contenant les valeurs singulières \( \sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_n \geq 0 \)
+  \pause
+  \item \( V \) : matrice orthogonale de \( \mathbb{R}^{n \times n} \), ses colonnes sont les vecteurs propres de \( A^T A \), tels que :
+  \[
+  A^T A v_i = \sigma_i^2 v_i
+  \]
 \end{itemize}
-
-\vspace{1em}
-\[
-\boxed{p = v_n \quad \text{tel que} \quad \sigma_n = \min \Sigma}
-\]
 
 \note{
 La décomposition en valeurs singulières, ou SVD, permet de factoriser n’importe quelle matrice \( A \) en trois matrices : deux orthogonales \( U \) et \( V \), et une diagonale \( \Sigma \) contenant les valeurs singulières.
 
-Ces valeurs sont les racines carrées des valeurs propres de \( A^T A \).
+Ces valeurs sont les racines carrées des valeurs propres de \( A^T A \), classées par ordre décroissant.
+
+\( U \) contient les vecteurs propres de \( AA^T \), \( V \) ceux de \( A^T A \). Autrement dit, chaque colonne \( v_i \) de \( V \) vérifie : \( A^T A v_i = \sigma_i^2 v_i \).
 
 La dernière colonne de \( V \), associée à la plus petite valeur singulière, donne donc directement le vecteur \( p \) recherché.
 
@@ -94,60 +74,72 @@ C’est une méthode très stable numériquement.
 %++++++++++++++++++++++++++++++++++++++++++++++++
 \subsection{Implémentation}
 
-\begin{frame}{Décomposition SVD : idée générale}
-  \begin{minipage}[t][0.8\textheight][t]{0.45\textwidth}
-    \vspace*{\fill}
-      \hyperlink{SVD-appendix}{
-    \beamerbutton{Pseudo code}
-  }\\
-    \textbf{Étapes principales :}
-    \begin{itemize}
-      \item<1-> \textbf{1.} Calculer \( A^T A \)
-      \item<2-> \textbf{2.} Appliquer QR à \( A^T A \)
-      \item<3-> \textbf{3.} Extraire valeurs propres \( \sigma_i^2 \)
-      \item<4-> \textbf{4.} Déduire \( V \) puis \( U = \frac{1}{\sigma} A v \)
-    \end{itemize}
-    \vspace*{\fill}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.52\textwidth}
-    \vspace*{\fill}
-    \only<1>{
-      \textbf{1. Produit symétrique :}
-      \[
-        A^T A \text{ est symétrique, de taille } n \times n
-      \]
-      \vspace{1em}
-      On peut chercher ses valeurs propres via QR.
-    }
-
-    \only<2>{
-      \textbf{2. Algorithme QR :}
-      \[
-        A_k = R_k Q_k \Rightarrow A_{k+1} = Q_k^T A_k Q_k
-      \]
-      \vspace{1em}
-      Converge vers matrice diagonale contenant \( \sigma_i^2 \).
-    }
-
-    \only<3>{
-      \textbf{3. Valeurs singulières :}
-      \[
-        \sigma_i = \sqrt{\lambda_i}, \quad \text{avec } \lambda_i \text{ valeur propre}
-      \]
-      \vspace{1em}
-      On range les \( \sigma_i \) du plus grand au plus petit.
-    }
-
-    \only<4>{
-      \textbf{4. Vecteurs singuliers :}
-   \[
-  v_i \text{ propre de } A^T A \quad \Rightarrow \quad u_i = \textstyle\frac{1}{\sigma_i} A v_i
+\begin{frame}{Algorithme QR : principe de convergence}
+\scriptsize
+\begin{minipage}[t][0.8\textheight][t]{\textwidth}
+\vspace*{\fill}
+\textbf{Décomposition QR pour l’itération :}
+\begin{itemize}
+  \item Si \( A = QR \), avec :
+  \begin{itemize}
+    \scriptsize
+    \item \( Q \) une matrice orthogonale (\( Q^T Q = I \)),
+    \item \( R \) une matrice triangulaire supérieure,
+  \end{itemize}
+  \pause
+  alors on définit :
+  \[
+    A' = RQ
+  \]
+  \pause
+  \vspace{-1em}
+  \item \( A' \) est \textbf{semblable} à \( A \), car :
+  \[
+    Q^T A Q = Q^T Q R Q = R Q = A'
+  \]
+\end{itemize}
+\pause
+\vspace{-0.3em}
+\textbf{Construction de la suite :}
+\[
+\begin{cases}
+A_0 = A \\
+\text{À chaque itération : } A_k = Q_k R_k \\
+A_{k+1} = R_k Q_k
+\end{cases}
 \]
+\vspace{-0.3em}
+\pause
+\begin{itemize}
+  \item Cette suite \( (A_k) \) converge vers une matrice triangulaire.
+  \item Les valeurs propres de \( A_k \) sont identiques à celles de \( A \).
+\end{itemize}
 
-      \vspace{1em}
-      On normalise chaque \( u_i \) pour obtenir \( U \).
-    }
-    \vspace*{\fill}
-  \end{minipage}
+\vspace*{\fill}
+\end{minipage}
+
+\end{frame}
+
+
+\begin{frame}{Résolution avec SVD}
+\hyperlink{SVD-appendix}{\beamerbutton{Pseudo-code détaillé}}
+\begin{itemize}
+  \item Produit symétrique : \( A^T A \in \mathbb{R}^{n \times n} \)
+  \pause
+  \item Décomposition QR : 
+  \[
+    A^TA = Q_{k-1} \cdots Q_0 \, A_k \, Q_0^T \cdots Q_{k-1}^T
+  \]
+  \pause
+  \item Matrice des vecteurs propres : 
+  \[
+    V = Q_0 Q_1 \cdots Q_{k-1}
+  \]
+  \pause
+  \item Extraction du vecteur propre associé à la plus petite valeur propre non nulle :
+  \[
+    v_{i_0} \in V
+  \]
+\end{itemize}
+
 \end{frame}

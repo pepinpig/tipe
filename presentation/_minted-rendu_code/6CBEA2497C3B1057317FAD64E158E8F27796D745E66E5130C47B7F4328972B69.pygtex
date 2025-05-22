@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}reconstruction.h\PYGZdq{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[])}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{argc}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{stderr}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Usage: \PYGZpc{}s \PYGZlt{}nom\PYGZus{}image\PYGZgt{}*8}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]);}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name4}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name5}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name6}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name7}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name8}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{8}\PYG{p}{];}
+
+\PYG{+w}{    }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{matrice\PYGZus{}output}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{nb\PYGZus{}points}\PYG{+w}{ }\PYG{o}{=}\PYG{n}{reconstruction4}\PYG{p}{(}\PYG{n}{image\PYGZus{}name1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name2}\PYG{p}{,}\PYG{n}{image\PYGZus{}name3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name4}\PYG{p}{,}\PYG{n}{image\PYGZus{}name5}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name6}\PYG{p}{,}\PYG{n}{image\PYGZus{}name7}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name8}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{matrice\PYGZus{}output}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{assert}\PYG{p}{(}\PYG{n}{nb\PYGZus{}points}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{export}\PYG{p}{[}\PYG{l+m+mi}{128}\PYG{p}{];}
+\PYG{+w}{    }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{export}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{export}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}points\PYGZus{}3d\PYGZus{}\PYGZpc{}s\PYGZus{}all.txt\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name1}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{save\PYGZus{}matrice\PYGZus{}to\PYGZus{}file}\PYG{p}{(}\PYG{n}{matrice\PYGZus{}output}\PYG{p}{,}\PYG{n}{export}\PYG{+w}{ }\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{command}\PYG{p}{[}\PYG{l+m+mi}{256}\PYG{p}{];}
+\PYG{+w}{    }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{command}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{command}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}python3 plot\PYGZus{}points\PYGZus{}3D.py points\PYGZus{}3d\PYGZus{}\PYGZpc{}s points\PYGZus{}3d\PYGZus{}\PYGZpc{}s points\PYGZus{}3d\PYGZus{}\PYGZpc{}s points\PYGZus{}3d\PYGZus{}\PYGZpc{}s\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name5}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name7}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{system}\PYG{p}{(}\PYG{n}{command}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

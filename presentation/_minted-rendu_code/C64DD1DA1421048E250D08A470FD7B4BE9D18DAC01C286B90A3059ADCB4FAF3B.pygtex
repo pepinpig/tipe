@@ -1,0 +1,43 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}detection.h\PYGZdq{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[])}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{command}\PYG{p}{[}\PYG{l+m+mi}{500}\PYG{p}{];}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{argc}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{stderr}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Usage: \PYGZpc{}s \PYGZlt{}nom\PYGZus{}image1\PYGZgt{} \PYGZlt{}nom\PYGZus{}image2\PYGZgt{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]);}
+\PYG{+w}{      }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{export\PYGZus{}char}\PYG{p}{[}\PYG{l+m+mi}{64}\PYG{p}{];}
+\PYG{+w}{  }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{filename1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+\PYG{+w}{  }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{filename2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{read\PYGZus{}jpg}\PYG{p}{(}\PYG{n}{filename1}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{read\PYGZus{}jpg}\PYG{p}{(}\PYG{n}{filename2}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input1\PYGZus{}r}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{read\PYGZus{}jpg\PYGZus{}color}\PYG{p}{(}\PYG{n}{filename1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}r\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input1\PYGZus{}g}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{read\PYGZus{}jpg\PYGZus{}color}\PYG{p}{(}\PYG{n}{filename1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}g\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input1\PYGZus{}b}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{read\PYGZus{}jpg\PYGZus{}color}\PYG{p}{(}\PYG{n}{filename1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}b\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input2\PYGZus{}r}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{read\PYGZus{}jpg\PYGZus{}color}\PYG{p}{(}\PYG{n}{filename2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}r\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input2\PYGZus{}g}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{read\PYGZus{}jpg\PYGZus{}color}\PYG{p}{(}\PYG{n}{filename2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}g\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input2\PYGZus{}b}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{read\PYGZus{}jpg\PYGZus{}color}\PYG{p}{(}\PYG{n}{filename2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}b\PYGZdq{}}\PYG{p}{);}
+
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{img1}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{img2}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{init\PYGZus{}img\PYGZus{}moravec}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{img1}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{img2}\PYG{p}{,}\PYG{n}{filename1}\PYG{p}{,}\PYG{n}{filename2}\PYG{p}{,}\PYG{n}{input1}\PYG{p}{,}\PYG{n}{input2}\PYG{p}{);}
+
+\PYG{+w}{  }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{nbp1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{img1}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{n}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{nbp2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{img2}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{n}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{retenus}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{corresp\PYGZus{}color}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{img1}\PYG{p}{,}\PYG{n}{img2}\PYG{p}{,}\PYG{n}{input1\PYGZus{}r}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{input1\PYGZus{}g}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{input1\PYGZus{}b}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{input2\PYGZus{}r}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{input2\PYGZus{}g}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{input2\PYGZus{}b}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{nbp1}\PYG{p}{,}\PYG{n}{nbp2}\PYG{p}{,}\PYG{n}{filename1}\PYG{p}{,}\PYG{n}{filename2}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{export\PYGZus{}char}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{export\PYGZus{}char}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}points\PYGZus{}ap\PYGZus{}\PYGZpc{}s.txt\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename1}\PYG{p}{);}
+\PYG{+w}{  }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n1}\PYG{o}{=}\PYG{n}{save\PYGZus{}matrice\PYGZus{}to\PYGZus{}file\PYGZus{}clean}\PYG{p}{(}\PYG{n}{img1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{export\PYGZus{}char}\PYG{p}{);}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{n1}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{o}{||}\PYG{n}{n1}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{stderr}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Erreur : pas de points détéctés.}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{exit}\PYG{p}{(}\PYG{n}{EXIT\PYGZus{}FAILURE}\PYG{p}{);}\PYG{+w}{ }
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{export\PYGZus{}char}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{export\PYGZus{}char}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}points\PYGZus{}ap\PYGZus{}\PYGZpc{}s.txt\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename2}\PYG{p}{);}
+\PYG{+w}{  }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n2}\PYG{o}{=}\PYG{n}{save\PYGZus{}matrice\PYGZus{}to\PYGZus{}file\PYGZus{}clean}\PYG{p}{(}\PYG{n}{retenus}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{export\PYGZus{}char}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{assert}\PYG{p}{(}\PYG{n}{n1}\PYG{o}{==}\PYG{n}{n2}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{command}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{command}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}python3 plot\PYGZus{}points\PYGZus{}ap.py \PYGZpc{}s.jpg \PYGZpc{}s.jpg points\PYGZus{}ap\PYGZus{}\PYGZpc{}s.txt points\PYGZus{}ap\PYGZus{}\PYGZpc{}s.txt\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename2}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{system}\PYG{p}{(}\PYG{n}{command}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{free\PYGZus{}matrice}\PYG{p}{(}\PYG{n}{retenus}\PYG{p}{);}
+\PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

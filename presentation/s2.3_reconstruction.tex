@@ -1,40 +1,23 @@
 \section{Reconstruction des points}
 \begin{frame}{Reconstruction : retrouver les coordonnées 3D}
-\begin{minipage}[t]{0.48\textwidth}
   \vspace*{\fill}
   \begin{itemize}
     \item<1-> On connaît les matrices de projection \( P_1 \) et \( P_2 \)
     \item<2-> Deux points image correspondants :
     \vspace*{-0.5em}
     \[
-      x_1 = (u_1, v_1),\quad x_2 = (u_2, v_2)
+      m_1 = (u_1, v_1),\quad m_2 = (u_2, v_2)
     \]
-    \item<3-> Inconnue : coordonnées 3D  \( X , Y, Z \)
+    \item<3-> Point 3D inconnu :  \( M= (X , Y, Z) \)
     \item<4-> On a :
     \vspace*{-0.5em}
     \[
-      \lambda_1 x_1 = P_1 X,\quad \lambda_2 x_2 = P_2 X
+      \lambda_1 m_1 = P_1 M,\quad \lambda_2 m_2 = P_2 M
     \]
     \item<5-> Système de 6 équations linéaires homogènes
     \item<6-> Résolution par SVD
   \end{itemize}
   \vspace*{\fill}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.50\textwidth}
-  \only<4->{
-  \[
-  \begin{cases}
-  \lambda_1 u_1 = p_{11}^{1} x_C + \dots + p_{14}^{1} \\
-  \lambda_1 v_1 = p_{21}^{1} x_C + \dots + p_{24}^{1} \\
-  \lambda_1 = p_{31}^{1} x_C + \dots + p_{34}^{1} \\
-  \lambda_2 u_2 = p_{11}^{2} x_C + \dots + p_{14}^{2} \\
-  \lambda_2 v_2 = p_{21}^{2} x_C + \dots + p_{24}^{2} \\
-  \lambda_2 = p_{31}^{2} x_C + \dots + p_{34}^{2}
-  \end{cases}
-  \]
-  }
-\end{minipage}
 \end{frame}
 
 

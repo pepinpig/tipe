@@ -1,15 +1,14 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.5.17)  19 MAY 2025 18:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.5.17)  22 MAY 2025 18:12
 entering extended mode
- restricted \write18 enabled.
- file:line:error style messages enabled.
+ \write18 enabled.
  %&-line parsing enabled.
-**/home/clusterf/tipe/presentation/beamer_tipe.tex
+**/home/clusterf/tipe/presentation/beamer_tipe
 (/home/clusterf/tipe/presentation/beamer_tipe.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2022/01/21 v3.65 A class for typesetting presentations
-(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasemodes.sty (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasemodes.sty (./etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count185
 )
 \beamer@tempbox=\box50
@@ -618,7 +617,7 @@ LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
 File: upsy.fd 2001/06/04 font definitions for U/psy.
 )) (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
-) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/appendixnumberbeamer/appendixnumberbeamer.sty) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 \TX@col@width=\dimen292
 \TX@old@table=\dimen293
@@ -803,45 +802,68 @@ Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
 )
 \openout6 = `beamer_tipe.pre'.
 
-) (/usr/share/texlive/texmf-dist/tex/latex/changepage/changepage.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count357
+\lst@gtempboxa=\box115
+\lst@token=\toks51
+\lst@length=\count358
+\lst@currlwidth=\dimen333
+\lst@column=\count359
+\lst@pos=\count360
+\lst@lostspace=\dimen334
+\lst@width=\dimen335
+\lst@newlines=\count361
+\lst@lineno=\count362
+\lst@maxwidth=\dimen336
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count363
+\lst@skipnumbers=\count364
+\lst@framebox=\box116
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+ (/usr/share/texlive/texmf-dist/tex/latex/changepage/changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count357
-\cp@tempcnt=\count358
+\c@cp@cntr=\count365
+\cp@tempcnt=\count366
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count359
-\calc@Bcount=\count360
-\calc@Adimen=\dimen333
-\calc@Bdimen=\dimen334
+\calc@Acount=\count367
+\calc@Bcount=\count368
+\calc@Adimen=\dimen337
+\calc@Bdimen=\dimen338
 \calc@Askip=\skip68
 \calc@Bskip=\skip69
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count361
+\calc@Ccount=\count369
 \calc@Cskip=\skip70
 ) (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen335
-\captionmargin@=\dimen336
-\captionwidth=\dimen337
-\caption@tempdima=\dimen338
-\caption@indent=\dimen339
-\caption@parindent=\dimen340
-\caption@hangindent=\dimen341
+\captionmargin=\dimen339
+\captionmargin@=\dimen340
+\captionwidth=\dimen341
+\caption@tempdima=\dimen342
+\caption@indent=\dimen343
+\caption@parindent=\dimen344
+\caption@hangindent=\dimen345
 Package caption Info: beamer document class detected.
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption-beamer.sto
 File: caption-beamer.sto 2020/08/22 v2.0 Adaption of the caption package to the beamer document classes (AR)
 ))
-\c@caption@flags=\count362
-\c@continuedfloat=\count363
+\c@caption@flags=\count370
+\c@continuedfloat=\count371
 Package caption Info: changepage package is loaded.
-\caption@adjustwidth@hsize=\dimen342
-\caption@adjustwidth@linewidth=\dimen343
+\caption@adjustwidth@hsize=\dimen346
+\caption@adjustwidth@linewidth=\dimen347
 Package caption Info: hyperref package is loaded.
 Package caption Info: Hyperref support is turned off
 (caption)             because hyperref has stopped early.
+Package caption Info: listings package is loaded.
 ) (/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
 Package: ragged2e 2021/12/15 v3.1 ragged2e Package
 \CenteringLeftskip=\skip71
@@ -863,26 +885,26 @@ Package: mathtools 2021/02/02 v1.28 mathematical typesetting tools
  (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count364
-\l_MT_multwidth_dim=\dimen344
+\g_MT_multlinerow_int=\count372
+\l_MT_multwidth_dim=\dimen348
 \origjot=\skip85
-\l_MT_shortvdotswithinadjustabove_dim=\dimen345
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen346
-\l_MT_above_intertext_sep=\dimen347
-\l_MT_below_intertext_sep=\dimen348
-\l_MT_above_shortintertext_sep=\dimen349
-\l_MT_below_shortintertext_sep=\dimen350
-\xmathstrut@box=\box115
-\xmathstrut@dim=\dimen351
+\l_MT_shortvdotswithinadjustabove_dim=\dimen349
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen350
+\l_MT_above_intertext_sep=\dimen351
+\l_MT_below_intertext_sep=\dimen352
+\l_MT_above_shortintertext_sep=\dimen353
+\l_MT_below_shortintertext_sep=\dimen354
+\xmathstrut@box=\box117
+\xmathstrut@dim=\dimen355
 ) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
 Package: adjustbox 2020/08/19 v1.3 Adjusting TeX boxes (trim, clip, ...)
  (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
  (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks51
-\XKV@tempa@toks=\toks52
+\XKV@toks=\toks52
+\XKV@tempa@toks=\toks53
 )
-\XKV@depth=\count365
+\XKV@depth=\count373
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
@@ -890,34 +912,34 @@ Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-
 Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
  (/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
-\collectedbox=\box116
+\collectedbox=\box118
 )
-\tc@llx=\dimen352
-\tc@lly=\dimen353
-\tc@urx=\dimen354
-\tc@ury=\dimen355
+\tc@llx=\dimen356
+\tc@lly=\dimen357
+\tc@urx=\dimen358
+\tc@ury=\dimen359
 Package trimclip Info: Using driver 'tc-pdftex.def'.
  (/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
-\adjbox@Width=\dimen356
-\adjbox@Height=\dimen357
-\adjbox@Depth=\dimen358
-\adjbox@Totalheight=\dimen359
-\adjbox@pwidth=\dimen360
-\adjbox@pheight=\dimen361
-\adjbox@pdepth=\dimen362
-\adjbox@ptotalheight=\dimen363
+\adjbox@Width=\dimen360
+\adjbox@Height=\dimen361
+\adjbox@Depth=\dimen362
+\adjbox@Totalheight=\dimen363
+\adjbox@pwidth=\dimen364
+\adjbox@pheight=\dimen365
+\adjbox@pdepth=\dimen366
+\adjbox@ptotalheight=\dimen367
  (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count366
+\c@checkoddpage=\count374
 LaTeX Info: Redefining \checkoddpage on input line 45.
 ) (/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box117
-\sift@deathcycles=\count367
-\@vwid@loff=\dimen364
-\@vwid@roff=\dimen365
+\@vwid@box=\box119
+\sift@deathcycles=\count375
+\@vwid@loff=\dimen368
+\@vwid@roff=\dimen369
 )) (/usr/share/texlive/texmf-dist/tex/latex/beamerappendixnote/beamerappendixnote.sty
 Package: beamerappendixnote 2020/07/01 v1.2.0 backposition option
 Package: beamerappendixnote 2020/07/01 v1.2.0 Create notes in appendix frames
@@ -927,10 +949,30 @@ Package: xparse 2022-01-12 L3 Experimental document command parser
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
  (/usr/share/texlive/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
-\BKM@id=\count368
-)) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+\BKM@id=\count376
+)) (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2022/01/29 v0.5u Insert pages of external PDF documents (AM)
+ (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen370
+\ESO@tempdimb=\dimen371
+)
+\AM@pagewidth=\dimen372
+\AM@pageheight=\dimen373
+\AM@fboxrule=\dimen374
+ (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2022/01/29 v0.5u Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count377
+\AM@pagebox=\box120
+\AM@global@opts=\toks54
+\AM@pagecnt=\count378
+\AM@toc@title=\toks55
+\c@AM@survey=\count379
+\AM@templatesizebox=\box121
+) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count369
+\c@AlgoLine=\count380
 \algocf@hangindent=\skip86
  (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
@@ -943,38 +985,247 @@ Package: relsize 2013/03/29 ver 4.1
 \skiplength=\skip92
 \algomargin=\skip93
 \skipalgocfslide=\skip94
-\algowidth=\dimen366
-\inoutsize=\dimen367
-\inoutindent=\dimen368
-\interspacetitleruled=\dimen369
-\interspacealgoruled=\dimen370
-\interspacetitleboxruled=\dimen371
+\algowidth=\dimen375
+\inoutsize=\dimen376
+\inoutindent=\dimen377
+\interspacetitleruled=\dimen378
+\interspacealgoruled=\dimen379
+\interspacetitleboxruled=\dimen380
 \algocf@ruledwidth=\skip95
-\algocf@inoutbox=\box118
-\algocf@inputbox=\box119
+\algocf@inoutbox=\box122
+\algocf@inputbox=\box123
 \AlCapSkip=\skip96
 \AlCapHSkip=\skip97
 \algoskipindent=\skip98
-\algocf@nlbox=\box120
-\algocf@hangingbox=\box121
-\algocf@untilbox=\box122
+\algocf@nlbox=\box124
+\algocf@hangingbox=\box125
+\algocf@untilbox=\box126
 \algocf@skipuntil=\skip99
-\algocf@capbox=\box123
+\algocf@capbox=\box127
 \algocf@lcaptionbox=\skip100
 \algoheightruledefault=\skip101
 \algoheightrule=\skip102
 \algotitleheightruledefault=\skip103
 \algotitleheightrule=\skip104
-\c@algocfline=\count370
-\c@algocfproc=\count371
-\c@algocf=\count372
-\algocf@algoframe=\box124
-\algocf@algobox=\box125
+\c@algocfline=\count381
+\c@algocfproc=\count382
+\c@algocf=\count383
+\algocf@algoframe=\box128
+\algocf@algobox=\box129
 ) (/usr/share/texlive/texmf-dist/tex/latex/ifsym/ifsym.sty
 Package: ifsym 2000/04/18 I.Kloeckl
-\c@ifsymcnt=\count373
-)) (./les_param_beamer_tipe.tex (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerthemeMontpellier.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemetree.sty)) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemeseahorse.sty)) (./la_palette.tex)
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 28.
+\c@ifsymcnt=\count384
+) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2022/01/26 3.70 The Babel package
+\babel@savecnt=\count385
+\U@D=\dimen381
+\l@unhyphenated=\language9
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read3
+LaTeX Info: Redefining \textlatin on input line 3967.
+\bbl@dirlevel=\count386
+ (/usr/share/texlive/texmf-dist/tex/generic/babel-french/french.ldf
+Language: french 2021/07/20 v3.5m French support from the babel system
+Package babel Info: Hyphen rules for 'acadian' set to \l@french
+(babel)             (\language8). Reported on input line 91.
+Package babel Info: Hyphen rules for 'canadien' set to \l@french
+(babel)             (\language8). Reported on input line 92.
+\FB@nonchar=\count387
+Package babel Info: Making : an active character on input line 430.
+Package babel Info: Making ; an active character on input line 431.
+Package babel Info: Making ! an active character on input line 432.
+Package babel Info: Making ? an active character on input line 433.
+\FBguill@level=\count388
+\FBold@everypar=\toks56
+\FB@Mht=\dimen382
+\mc@charclass=\count389
+\mc@charfam=\count390
+\mc@charslot=\count391
+\std@mcc=\count392
+\dec@mcc=\count393
+\listindentFB=\dimen383
+\descindentFB=\dimen384
+\labelindentFB=\dimen385
+\labelwidthFB=\dimen386
+\leftmarginFB=\dimen387
+\parindentFFN=\dimen388
+\FBfnindent=\dimen389
+)) (/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+Package french.ldf Info: No list customisation for the beamer class,
+(french.ldf)             reported on input line 73.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (/usr/share/texlive/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2021/12/24 v2.6 Yet another Pygments shim for LaTeX
+ (/usr/share/texlive/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
+ (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2021/12/21 4.1b verbatim text (tvz,hv)
+\FV@CodeLineNo=\count394
+\FV@InFile=\read4
+\FV@TabBox=\box130
+\c@FancyVerbLine=\count395
+\FV@StepNumber=\count396
+\FV@OutFile=\write7
+) (/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
+) (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count397
+\output=\toks57
+\linenoprevgraf=\count398
+\linenumbersep=\dimen390
+\linenumberwidth=\dimen391
+\c@linenumber=\count399
+\c@pagewiselinenumber=\count400
+\c@LN@truepage=\count401
+\c@internallinenumber=\count402
+\c@internallinenumbers=\count403
+\quotelinenumbersep=\dimen392
+\bframerule=\dimen393
+\bframesep=\dimen394
+\bframebox=\box131
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count404
+\c@FV@TrueTabCounter=\count405
+\FV@TabBox@Group=\box132
+\FV@TmpLength=\skip105
+\c@FV@HighlightLinesStart=\count406
+\c@FV@HighlightLinesStop=\count407
+\FV@LoopCount=\count408
+\FV@NCharsBox=\box133
+\FV@BreakIndent=\dimen395
+\FV@BreakIndentNChars=\count409
+\FV@BreakSymbolSepLeft=\dimen396
+\FV@BreakSymbolSepLeftNChars=\count410
+\FV@BreakSymbolSepRight=\dimen397
+\FV@BreakSymbolSepRightNChars=\count411
+\FV@BreakSymbolIndentLeft=\dimen398
+\FV@BreakSymbolIndentLeftNChars=\count412
+\FV@BreakSymbolIndentRight=\dimen399
+\FV@BreakSymbolIndentRightNChars=\count413
+\c@FancyVerbLineBreakLast=\count414
+\FV@LineBox=\box134
+\FV@LineIndentBox=\box135
+\FV@LineWidth=\dimen400
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+) (/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+runsystem(uname -s > "beamer_tipe.w18")...executed.
+
+ (./beamer_tipe.w18)
+runsystem(rm -- "beamer_tipe.w18")...executed.
+
+) (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count415
+\decimalpart=\count416
+)
+Package: xstring 2021/07/21 v1.84 String manipulations (CT)
+) (/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip106
+\fb@frw=\dimen401
+\fb@frh=\dimen402
+\FrameRule=\dimen403
+\FrameSep=\dimen404
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count417
+\float@exts=\toks58
+\float@box=\box136
+\@float@everytoks=\toks59
+\@floatcapt=\box137
+)
+\minted@appexistsfile=\read5
+\minted@bgbox=\box138
+\minted@code=\write8
+\c@minted@FancyVerbLineTemp=\count418
+\c@minted@pygmentizecounter=\count419
+\@float@every@listing=\toks60
+\c@listing=\count420
+)
+runsystem(mkdir -p _minted-beamer_tipe)...executed.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
+\c@tracingmulticols=\count421
+\mult@box=\box139
+\multicol@leftmargin=\dimen405
+\c@unbalance=\count422
+\c@collectmore=\count423
+\doublecol@number=\count424
+\multicoltolerance=\count425
+\multicolpretolerance=\count426
+\full@width=\dimen406
+\page@free=\dimen407
+\premulticols=\dimen408
+\postmulticols=\dimen409
+\multicolsep=\skip107
+\multicolbaselineskip=\skip108
+\partial@page=\box140
+\last@line=\box141
+\maxbalancingoverflow=\dimen410
+\mult@rightbox=\box142
+\mult@grightbox=\box143
+\mult@firstbox=\box144
+\mult@gfirstbox=\box145
+\@tempa=\box146
+\@tempa=\box147
+\@tempa=\box148
+\@tempa=\box149
+\@tempa=\box150
+\@tempa=\box151
+\@tempa=\box152
+\@tempa=\box153
+\@tempa=\box154
+\@tempa=\box155
+\@tempa=\box156
+\@tempa=\box157
+\@tempa=\box158
+\@tempa=\box159
+\@tempa=\box160
+\@tempa=\box161
+\@tempa=\box162
+\@tempa=\box163
+\@tempa=\box164
+\@tempa=\box165
+\@tempa=\box166
+\@tempa=\box167
+\@tempa=\box168
+\@tempa=\box169
+\@tempa=\box170
+\@tempa=\box171
+\@tempa=\box172
+\@tempa=\box173
+\@tempa=\box174
+\@tempa=\box175
+\@tempa=\box176
+\@tempa=\box177
+\@tempa=\box178
+\@tempa=\box179
+\@tempa=\box180
+\@tempa=\box181
+\c@minrows=\count427
+\c@columnbadness=\count428
+\c@finalcolumnbadness=\count429
+\last@try=\dimen411
+\multicolovershoot=\dimen412
+\multicolundershoot=\dimen413
+\mult@nat@firstbox=\box182
+\colbreak@box=\box183
+\mc@col@check@num=\count430
+)) (./les_param_beamer_tipe.tex (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerthemeCambridgeUS.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemebeaver.sty)) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemeseahorse.sty)) (./la_palette.tex)
+runsystem(which pygmentize && touch beamer_tipe.aex)...executed.
+
+runsystem(rm beamer_tipe.aex)...executed.
+
  (./beamer_tipe.aux)
 \openout1 = `beamer_tipe.aux'.
 
@@ -1033,17 +1284,17 @@ LaTeX Font Info:    ... okay on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count374
-\scratchdimen=\dimen372
-\scratchbox=\box126
-\nofMPsegments=\count375
-\nofMParguments=\count376
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count377
-\MPscratchDim=\dimen373
-\MPnumerator=\count378
-\makeMPintoPDFobject=\count379
-\everyMPtoPDFconversion=\toks54
+\scratchcounter=\count431
+\scratchdimen=\dimen414
+\scratchbox=\box184
+\nofMPsegments=\count432
+\nofMParguments=\count433
+\everyMPshowfont=\toks61
+\MPscratchCnt=\count434
+\MPscratchDim=\dimen415
+\MPnumerator=\count435
+\makeMPintoPDFobject=\count436
+\everyMPtoPDFconversion=\toks62
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1058,7 +1309,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count380
+\c@section@level=\count437
 )
 LaTeX Info: Redefining \ref on input line 28.
 LaTeX Info: Redefining \pageref on input line 28.
@@ -1128,10 +1379,10 @@ Dictionary: translator-months-dictionary, Language: English
 Dictionary: translator-numbers-dictionary, Language: English 
 ) (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
-) (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
-File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
+) (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-french.trsl
+File: translations-basic-dictionary-french.trsl (french translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 28.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `french'. on input line 28.
 \symgns@font=\mathgroup9
 LaTeX Font Info:    Overwriting symbol font `gns@font' in version `bold'
 (Font)                  TS1/cmss/m/n --> TS1/cmss/b/n on input line 28.
@@ -1143,93 +1394,150 @@ LaTeX Info: Redefining \ohm on input line 28.
 Package gensymb Info: Using \textohm for \ohm on input line 28.
 LaTeX Info: Redefining \micro on input line 28.
 Package gensymb Info: Using \textmu for \micro on input line 28.
+\c@lstlisting=\count438
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: french babel package is loaded.
+Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
- (./beamer_tipe.nav) [1
+ (/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+LaTeX Info: Redefining \degres on input line 28.
+
+
+Package french.ldf Warning: Please load the "listings" package
+(french.ldf)                AFTER babel/french; reported on input line 28.
+
+LaTeX Info: Redefining \up on input line 28.
+(./beamer_tipe.nav) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<capture/dod2(2).jpg, id=49, 642.4pt x 642.4pt>
-File: capture/dod2(2).jpg Graphic file (type jpg)
-<use capture/dod2(2).jpg>
-Package pdftex.def Info: capture/dod2(2).jpg  used on input line 67.
-(pdftex.def)             Requested size: 74.7316pt x 74.72234pt.
-<capture/dod3(2).jpg, id=50, 642.4pt x 642.4pt>
-File: capture/dod3(2).jpg Graphic file (type jpg)
-<use capture/dod3(2).jpg>
-Package pdftex.def Info: capture/dod3(2).jpg  used on input line 67.
-(pdftex.def)             Requested size: 74.7316pt x 74.72234pt.
-<capture/dod4(2).jpg, id=51, 642.4pt x 642.4pt>
-File: capture/dod4(2).jpg Graphic file (type jpg)
-<use capture/dod4(2).jpg>
-Package pdftex.def Info: capture/dod4(2).jpg  used on input line 67.
-(pdftex.def)             Requested size: 74.7316pt x 74.72234pt.
-<capture/dod5(2).jpg, id=52, 642.4pt x 642.4pt>
-File: capture/dod5(2).jpg Graphic file (type jpg)
-<use capture/dod5(2).jpg>
-Package pdftex.def Info: capture/dod5(2).jpg  used on input line 67.
-(pdftex.def)             Requested size: 74.7316pt x 74.72234pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 67.
+<capture/dod1.jpg, id=61, 1517.67pt x 1517.67pt>
+File: capture/dod1.jpg Graphic file (type jpg)
+<use capture/dod1.jpg>
+Package pdftex.def Info: capture/dod1.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+<capture/dod2.jpg, id=62, 1517.67pt x 1517.67pt>
+File: capture/dod2.jpg Graphic file (type jpg)
+<use capture/dod2.jpg>
+Package pdftex.def Info: capture/dod2.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+<capture/dod3.jpg, id=63, 1517.67pt x 1517.67pt>
+File: capture/dod3.jpg Graphic file (type jpg)
+<use capture/dod3.jpg>
+Package pdftex.def Info: capture/dod3.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+<capture/dod4.jpg, id=64, 1517.67pt x 1517.67pt>
+File: capture/dod4.jpg Graphic file (type jpg)
+<use capture/dod4.jpg>
+Package pdftex.def Info: capture/dod4.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+<capture/dod5.jpg, id=65, 1517.67pt x 1517.67pt>
+File: capture/dod5.jpg Graphic file (type jpg)
+<use capture/dod5.jpg>
+Package pdftex.def Info: capture/dod5.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+<capture/dod6.jpg, id=66, 1517.67pt x 1517.67pt>
+File: capture/dod6.jpg Graphic file (type jpg)
+<use capture/dod6.jpg>
+Package pdftex.def Info: capture/dod6.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+<capture/dod7.jpg, id=67, 1517.67pt x 1517.67pt>
+File: capture/dod7.jpg Graphic file (type jpg)
+<use capture/dod7.jpg>
+Package pdftex.def Info: capture/dod7.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+<capture/dod8.jpg, id=68, 1517.67pt x 1517.67pt>
+File: capture/dod8.jpg Graphic file (type jpg)
+<use capture/dod8.jpg>
+Package pdftex.def Info: capture/dod8.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 73.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 67.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 73.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OMX+yhex on input line 67.
+LaTeX Font Info:    Trying to load font information for OMX+yhex on input line 73.
  (/usr/share/texlive/texmf-dist/tex/latex/yhmath/OMXyhex.fd
 File: OMXyhex.fd 
 File: OMXyhex.fd 2013/07/03 v1.1 YH's humble contribution to TeX maths (NP)
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 67.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 73.
  (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
-LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 67.
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 73.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-<capture/dodecaedre_objectif.png, id=53, 381.425pt x 276.03125pt>
+<capture/dodecaedre_objectif.png, id=69, 381.425pt x 276.03125pt>
 File: capture/dodecaedre_objectif.png Graphic file (type png)
 <use capture/dodecaedre_objectif.png>
-Package pdftex.def Info: capture/dodecaedre_objectif.png  used on input line 67.
+Package pdftex.def Info: capture/dodecaedre_objectif.png  used on input line 73.
 (pdftex.def)             Requested size: 155.69221pt x 112.67232pt.
  [2
 
- <./capture/dod2(2).jpg> <./capture/dod3(2).jpg> <./capture/dod4(2).jpg> <./capture/dod5(2).jpg> <./capture/dodecaedre_objectif.png>]
-File: capture/dod2(2).jpg Graphic file (type jpg)
-<use capture/dod2(2).jpg>
-Package pdftex.def Info: capture/dod2(2).jpg  used on input line 67.
-(pdftex.def)             Requested size: 74.7316pt x 74.72234pt.
-File: capture/dod3(2).jpg Graphic file (type jpg)
-<use capture/dod3(2).jpg>
-Package pdftex.def Info: capture/dod3(2).jpg  used on input line 67.
-(pdftex.def)             Requested size: 74.7316pt x 74.72234pt.
-File: capture/dod4(2).jpg Graphic file (type jpg)
-<use capture/dod4(2).jpg>
-Package pdftex.def Info: capture/dod4(2).jpg  used on input line 67.
-(pdftex.def)             Requested size: 74.7316pt x 74.72234pt.
-File: capture/dod5(2).jpg Graphic file (type jpg)
-<use capture/dod5(2).jpg>
-Package pdftex.def Info: capture/dod5(2).jpg  used on input line 67.
-(pdftex.def)             Requested size: 74.7316pt x 74.72234pt.
+ <./capture/dod1.jpg> <./capture/dod2.jpg> <./capture/dod3.jpg> <./capture/dod4.jpg> <./capture/dod5.jpg> <./capture/dod6.jpg> <./capture/dod7.jpg> <./capture/dod8.jpg> <./capture/dodecaedre_objectif.png>]
+File: capture/dod1.jpg Graphic file (type jpg)
+<use capture/dod1.jpg>
+Package pdftex.def Info: capture/dod1.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+File: capture/dod2.jpg Graphic file (type jpg)
+<use capture/dod2.jpg>
+Package pdftex.def Info: capture/dod2.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+File: capture/dod3.jpg Graphic file (type jpg)
+<use capture/dod3.jpg>
+Package pdftex.def Info: capture/dod3.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+File: capture/dod4.jpg Graphic file (type jpg)
+<use capture/dod4.jpg>
+Package pdftex.def Info: capture/dod4.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+File: capture/dod5.jpg Graphic file (type jpg)
+<use capture/dod5.jpg>
+Package pdftex.def Info: capture/dod5.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+File: capture/dod6.jpg Graphic file (type jpg)
+<use capture/dod6.jpg>
+Package pdftex.def Info: capture/dod6.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+File: capture/dod7.jpg Graphic file (type jpg)
+<use capture/dod7.jpg>
+Package pdftex.def Info: capture/dod7.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
+File: capture/dod8.jpg Graphic file (type jpg)
+<use capture/dod8.jpg>
+Package pdftex.def Info: capture/dod8.jpg  used on input line 73.
+(pdftex.def)             Requested size: 37.36697pt x 37.35344pt.
 File: capture/dodecaedre_objectif.png Graphic file (type png)
 <use capture/dodecaedre_objectif.png>
-Package pdftex.def Info: capture/dodecaedre_objectif.png  used on input line 67.
+Package pdftex.def Info: capture/dodecaedre_objectif.png  used on input line 73.
 (pdftex.def)             Requested size: 155.69221pt x 112.67232pt.
  [3
 
 ] (./s1_selection.tex (./beamer_tipe.toc) [4
 
 ]
-<capture/rub.jpg, id=91, 213.79875pt x 214.8025pt>
+<capture/rub.jpg, id=109, 1517.67pt x 1517.67pt>
 File: capture/rub.jpg Graphic file (type jpg)
 <use capture/rub.jpg>
-Package pdftex.def Info: capture/rub.jpg  used on input line 12.
-(pdftex.def)             Requested size: 194.61897pt x 195.53285pt.
+Package pdftex.def Info: capture/rub.jpg  used on input line 17.
+(pdftex.def)             Requested size: 194.61897pt x 194.61772pt.
  [5
 
- <./capture/rub.jpg>] [6
+ <./capture/rub.jpg>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 57.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [6
 
 ] [7
 
@@ -1239,11 +1547,7 @@ Package pdftex.def Info: capture/rub.jpg  used on input line 12.
 
 ] [10
 
-]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 115.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [11
+] [11
 
 ] [12
 
@@ -1255,187 +1559,203 @@ File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 
 ] [16
 
-] [17
-
-] [18
-
-] [19
-
-] [20
-
-] [21
-
 ]
-<capture/dodecf0.jpg, id=266, 144.54pt x 144.54pt>
+<capture/dodecf0.jpg, id=233, 144.54pt x 144.54pt>
 File: capture/dodecf0.jpg Graphic file (type jpg)
 <use capture/dodecf0.jpg>
-Package pdftex.def Info: capture/dodecf0.jpg  used on input line 147.
+Package pdftex.def Info: capture/dodecf0.jpg  used on input line 89.
 (pdftex.def)             Requested size: 131.36469pt x 131.37057pt.
 
-Overfull \hbox (35.37149pt too wide) in paragraph at lines 147--147
+Overfull \hbox (35.37149pt too wide) in paragraph at lines 89--89
  [][] 
  []
 
-[22
+[17
 
  <./capture/dodecf0.jpg>]
-<capture/dodecf0-mv-2000-4-1.jpg, id=275, 602.25pt x 602.25pt>
+<capture/dodecf0-mv-2000-4-1.jpg, id=242, 602.25pt x 602.25pt>
 File: capture/dodecf0-mv-2000-4-1.jpg Graphic file (type jpg)
 <use capture/dodecf0-mv-2000-4-1.jpg>
-Package pdftex.def Info: capture/dodecf0-mv-2000-4-1.jpg  used on input line 191.
+Package pdftex.def Info: capture/dodecf0-mv-2000-4-1.jpg  used on input line 133.
 (pdftex.def)             Requested size: 126.10898pt x 126.10864pt.
 
-Overfull \vbox (16.37766pt too high) detected at line 191
+Overfull \vbox (16.37766pt too high) detected at line 133
  []
 
-[23
+[18
 
  <./capture/dodecf0-mv-2000-4-1.jpg>]
-<capture/dodecf0-mv-2000-6-1.jpg, id=285, 602.25pt x 602.25pt>
+<capture/dodecf0-mv-2000-6-1.jpg, id=251, 602.25pt x 602.25pt>
 File: capture/dodecf0-mv-2000-6-1.jpg Graphic file (type jpg)
 <use capture/dodecf0-mv-2000-6-1.jpg>
-Package pdftex.def Info: capture/dodecf0-mv-2000-6-1.jpg  used on input line 191.
+Package pdftex.def Info: capture/dodecf0-mv-2000-6-1.jpg  used on input line 133.
 (pdftex.def)             Requested size: 126.10898pt x 126.10864pt.
 
-Overfull \vbox (16.37766pt too high) detected at line 191
+Overfull \vbox (16.37766pt too high) detected at line 133
  []
 
-[24
+[19
 
  <./capture/dodecf0-mv-2000-6-1.jpg>]
-<capture/dodecf0-mv-4000-10-1.jpg, id=295, 602.25pt x 602.25pt>
+<capture/dodecf0-mv-4000-10-1.jpg, id=261, 602.25pt x 602.25pt>
 File: capture/dodecf0-mv-4000-10-1.jpg Graphic file (type jpg)
 <use capture/dodecf0-mv-4000-10-1.jpg>
-Package pdftex.def Info: capture/dodecf0-mv-4000-10-1.jpg  used on input line 191.
+Package pdftex.def Info: capture/dodecf0-mv-4000-10-1.jpg  used on input line 133.
 (pdftex.def)             Requested size: 126.10898pt x 126.10864pt.
 
-Overfull \vbox (16.37766pt too high) detected at line 191
+Overfull \vbox (16.37766pt too high) detected at line 133
  []
 
-[25
+[20
 
  <./capture/dodecf0-mv-4000-10-1.jpg>]
-<capture/dodecf0-mv-500-2-1.jpg, id=305, 602.25pt x 602.25pt>
+<capture/dodecf0-mv-500-2-1.jpg, id=270, 602.25pt x 602.25pt>
 File: capture/dodecf0-mv-500-2-1.jpg Graphic file (type jpg)
 <use capture/dodecf0-mv-500-2-1.jpg>
-Package pdftex.def Info: capture/dodecf0-mv-500-2-1.jpg  used on input line 191.
+Package pdftex.def Info: capture/dodecf0-mv-500-2-1.jpg  used on input line 133.
 (pdftex.def)             Requested size: 126.10898pt x 126.10864pt.
 
-Overfull \vbox (16.37766pt too high) detected at line 191
+Overfull \vbox (16.37766pt too high) detected at line 133
  []
 
-[26
+[21
 
- <./capture/dodecf0-mv-500-2-1.jpg>]) (./s1.2_appariement.tex (./beamer_tipe.toc) [27
+ <./capture/dodecf0-mv-500-2-1.jpg>]) (./s1.2_appariement.tex (./beamer_tipe.toc) [22
 
 ]
-<capture/test_detection_img2_1_moravec_2_500.jpeg, id=335, 401.5pt x 451.6875pt>
-File: capture/test_detection_img2_1_moravec_2_500.jpeg Graphic file (type jpg)
-<use capture/test_detection_img2_1_moravec_2_500.jpeg>
-Package pdftex.def Info: capture/test_detection_img2_1_moravec_2_500.jpeg  used on input line 16.
-(pdftex.def)             Requested size: 155.69221pt x 175.15804pt.
-<capture/test_detection_1_moravec_2_500.jpeg, id=336, 401.5pt x 451.6875pt>
+<capture/test_detection_1_moravec_2_500.jpeg, id=300, 401.5pt x 451.6875pt>
 File: capture/test_detection_1_moravec_2_500.jpeg Graphic file (type jpg)
 <use capture/test_detection_1_moravec_2_500.jpeg>
 Package pdftex.def Info: capture/test_detection_1_moravec_2_500.jpeg  used on input line 16.
 (pdftex.def)             Requested size: 155.69221pt x 175.15804pt.
- [28
-
- <./capture/test_detection_img2_1_moravec_2_500.jpeg> <./capture/test_detection_1_moravec_2_500.jpeg>] [29
-
-] [30
-
-] [31
-
-]
+<capture/test_detection_img2_1_moravec_2_500.jpeg, id=301, 401.5pt x 451.6875pt>
 File: capture/test_detection_img2_1_moravec_2_500.jpeg Graphic file (type jpg)
 <use capture/test_detection_img2_1_moravec_2_500.jpeg>
-Package pdftex.def Info: capture/test_detection_img2_1_moravec_2_500.jpeg  used on input line 95.
+Package pdftex.def Info: capture/test_detection_img2_1_moravec_2_500.jpeg  used on input line 16.
 (pdftex.def)             Requested size: 155.69221pt x 175.15804pt.
-File: capture/test_detection_1_moravec_2_500.jpeg Graphic file (type jpg)
-<use capture/test_detection_1_moravec_2_500.jpeg>
-Package pdftex.def Info: capture/test_detection_1_moravec_2_500.jpeg  used on input line 95.
-(pdftex.def)             Requested size: 155.69221pt x 175.15804pt.
- [32
+ [23
 
-] [33
+ <./capture/test_detection_1_moravec_2_500.jpeg> <./capture/test_detection_img2_1_moravec_2_500.jpeg>] [24
 
-] [34
+] [25
 
-] [35
+] [26
 
-] [36
+] [27
+
+] [28
 
 ]
 File: capture/test_detection_1_moravec_2_500.jpeg Graphic file (type jpg)
 <use capture/test_detection_1_moravec_2_500.jpeg>
-Package pdftex.def Info: capture/test_detection_1_moravec_2_500.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_1_moravec_2_500.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
-<capture/test_detection_2_trouve_coin_10_500.jpeg, id=406, 401.5pt x 451.6875pt>
+<capture/test_detection_2_trouve_coin_10_500.jpeg, id=346, 401.5pt x 451.6875pt>
 File: capture/test_detection_2_trouve_coin_10_500.jpeg Graphic file (type jpg)
 <use capture/test_detection_2_trouve_coin_10_500.jpeg>
-Package pdftex.def Info: capture/test_detection_2_trouve_coin_10_500.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_2_trouve_coin_10_500.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
-<capture/test_detection_3_ransac_1000_6_5.jpeg, id=407, 401.5pt x 451.6875pt>
+<capture/test_detection_3_ransac_1000_6_5.jpeg, id=347, 401.5pt x 451.6875pt>
 File: capture/test_detection_3_ransac_1000_6_5.jpeg Graphic file (type jpg)
 <use capture/test_detection_3_ransac_1000_6_5.jpeg>
-Package pdftex.def Info: capture/test_detection_3_ransac_1000_6_5.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_3_ransac_1000_6_5.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
- [37
+ [29
 
  <./capture/test_detection_2_trouve_coin_10_500.jpeg> <./capture/test_detection_3_ransac_1000_6_5.jpeg>]
 File: capture/test_detection_1_moravec_2_500.jpeg Graphic file (type jpg)
 <use capture/test_detection_1_moravec_2_500.jpeg>
-Package pdftex.def Info: capture/test_detection_1_moravec_2_500.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_1_moravec_2_500.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
 File: capture/test_detection_2_trouve_coin_10_500.jpeg Graphic file (type jpg)
 <use capture/test_detection_2_trouve_coin_10_500.jpeg>
-Package pdftex.def Info: capture/test_detection_2_trouve_coin_10_500.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_2_trouve_coin_10_500.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
 File: capture/test_detection_3_ransac_1000_6_5.jpeg Graphic file (type jpg)
 <use capture/test_detection_3_ransac_1000_6_5.jpeg>
-Package pdftex.def Info: capture/test_detection_3_ransac_1000_6_5.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_3_ransac_1000_6_5.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
- [38
+ [30
 
 ]
 File: capture/test_detection_1_moravec_2_500.jpeg Graphic file (type jpg)
 <use capture/test_detection_1_moravec_2_500.jpeg>
-Package pdftex.def Info: capture/test_detection_1_moravec_2_500.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_1_moravec_2_500.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
 File: capture/test_detection_2_trouve_coin_10_500.jpeg Graphic file (type jpg)
 <use capture/test_detection_2_trouve_coin_10_500.jpeg>
-Package pdftex.def Info: capture/test_detection_2_trouve_coin_10_500.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_2_trouve_coin_10_500.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
 File: capture/test_detection_3_ransac_1000_6_5.jpeg Graphic file (type jpg)
 <use capture/test_detection_3_ransac_1000_6_5.jpeg>
-Package pdftex.def Info: capture/test_detection_3_ransac_1000_6_5.jpeg  used on input line 197.
+Package pdftex.def Info: capture/test_detection_3_ransac_1000_6_5.jpeg  used on input line 109.
 (pdftex.def)             Requested size: 103.79811pt x 116.77432pt.
- [39
+ [31
 
 ]
-<capture/geom-epipolaire.png, id=435, 706.64pt x 426.59375pt>
+File: capture/test_detection_3_ransac_1000_6_5.jpeg Graphic file (type jpg)
+<use capture/test_detection_3_ransac_1000_6_5.jpeg>
+Package pdftex.def Info: capture/test_detection_3_ransac_1000_6_5.jpeg  used on input line 123.
+(pdftex.def)             Requested size: 155.69221pt x 175.15804pt.
+File: capture/test_detection_img2_1_moravec_2_500.jpeg Graphic file (type jpg)
+<use capture/test_detection_img2_1_moravec_2_500.jpeg>
+Package pdftex.def Info: capture/test_detection_img2_1_moravec_2_500.jpeg  used on input line 123.
+(pdftex.def)             Requested size: 155.69221pt x 175.15804pt.
+ [32
+
+]
+<capture/geom-epipolaire.png, id=386, 706.64pt x 426.59375pt>
 File: capture/geom-epipolaire.png Graphic file (type png)
 <use capture/geom-epipolaire.png>
-Package pdftex.def Info: capture/geom-epipolaire.png  used on input line 217.
+Package pdftex.def Info: capture/geom-epipolaire.png  used on input line 142.
 (pdftex.def)             Requested size: 324.36168pt x 195.8124pt.
- [40
+ [33
 
  <./capture/geom-epipolaire.png>]
-<capture/ligne.png, id=444, 1077.02374pt x 565.11125pt>
+<capture/ligne.png, id=395, 1077.02374pt x 565.11125pt>
 File: capture/ligne.png Graphic file (type png)
 <use capture/ligne.png>
-Package pdftex.def Info: capture/ligne.png  used on input line 222.
+Package pdftex.def Info: capture/ligne.png  used on input line 147.
 (pdftex.def)             Requested size: 324.36168pt x 170.19002pt.
- [41
 
- <./capture/ligne.png>] [42
+Overfull \vbox (3.7376pt too high) detected at line 147
+ []
 
-] [43
+[34
 
-] [44
+ <./capture/ligne.png>] [35
 
-] [45
+] [36
+
+] [37
+
+] [38
+
+] [39
+
+] [40
+
+] [41
+
+] [42
+
+]
+Overfull \vbox (4.60196pt too high) detected at line 300
+ []
+
+[43
+
+]
+Overfull \vbox (4.60196pt too high) detected at line 300
+ []
+
+[44
+
+]
+Overfull \vbox (4.60196pt too high) detected at line 300
+ []
+
+[45
 
 ] [46
 
@@ -1445,148 +1765,93 @@ Package pdftex.def Info: capture/ligne.png  used on input line 222.
 
 ] [49
 
-] [50
-
-] [51
-
-] [52
-
-] [53
-
-] [54
-
-]
-Overfull \vbox (2.00208pt too high) detected at line 338
- []
-
-[55
-
-]
-Overfull \vbox (2.00208pt too high) detected at line 338
- []
-
-[56
-
-]
-Overfull \vbox (2.00208pt too high) detected at line 338
- []
-
-[57
-
-]
-Overfull \vbox (2.00208pt too high) detected at line 338
- []
-
-[58
-
 ]
 \openout4 = `beamer_tipe.vrb'.
 
- (./beamer_tipe.vrb (./donnees/algo_ap.tex)) [59
+ (./beamer_tipe.vrb (./donnees/algo_ap.tex)) [50
 
-] (./beamer_tipe.vrb (./donnees/algo_ap.tex)) [60
-
-] (./beamer_tipe.vrb (./donnees/algo_ap.tex))
-Overfull \vbox (7.68732pt too high) detected at line 346
- []
-
-[61
+] (./beamer_tipe.vrb (./donnees/algo_ap.tex)) [51
 
 ] (./beamer_tipe.vrb (./donnees/algo_ap.tex))
-Overfull \vbox (15.68732pt too high) detected at line 346
+Overfull \vbox (7.68732pt too high) detected at line 340
  []
 
-[62
+[52
 
-]
-<capture/sans_brief.png, id=636, 867.24pt x 433.62pt>
-File: capture/sans_brief.png Graphic file (type png)
-<use capture/sans_brief.png>
-Package pdftex.def Info: capture/sans_brief.png  used on input line 351.
-(pdftex.def)             Requested size: 356.79982pt x 178.40068pt.
-
-Overfull \hbox (6.40318pt too wide) in paragraph at lines 351--351
-[]|  []  
+] (./beamer_tipe.vrb (./donnees/algo_ap.tex))
+Overfull \vbox (15.68732pt too high) detected at line 340
  []
 
-[63
-
- <./capture/sans_brief.png>]
-<capture/avec_brief.png, id=646, 867.24pt x 433.62pt>
-File: capture/avec_brief.png Graphic file (type png)
-<use capture/avec_brief.png>
-Package pdftex.def Info: capture/avec_brief.png  used on input line 356.
-(pdftex.def)             Requested size: 356.79982pt x 178.40068pt.
-
-Overfull \hbox (6.40318pt too wide) in paragraph at lines 356--356
-[]|  []  
- []
-
-[64
-
- <./capture/avec_brief.png>]
-<capture/app_complet_1.jpeg, id=656, 401.5pt x 441.65pt>
-File: capture/app_complet_1.jpeg Graphic file (type jpg)
-<use capture/app_complet_1.jpeg>
-Package pdftex.def Info: capture/app_complet_1.jpeg  used on input line 394.
-(pdftex.def)             Requested size: 103.79811pt x 114.17934pt.
-<capture/app_complet_2.jpeg, id=657, 828.09375pt x 441.65pt>
-File: capture/app_complet_2.jpeg Graphic file (type jpg)
-<use capture/app_complet_2.jpeg>
-Package pdftex.def Info: capture/app_complet_2.jpeg  used on input line 394.
-(pdftex.def)             Requested size: 207.59126pt x 110.71547pt.
- [65
-
- <./capture/app_complet_1.jpeg> <./capture/app_complet_2.jpeg>]
-File: capture/app_complet_1.jpeg Graphic file (type jpg)
-<use capture/app_complet_1.jpeg>
-Package pdftex.def Info: capture/app_complet_1.jpeg  used on input line 394.
-(pdftex.def)             Requested size: 103.79811pt x 114.17934pt.
-File: capture/app_complet_2.jpeg Graphic file (type jpg)
-<use capture/app_complet_2.jpeg>
-Package pdftex.def Info: capture/app_complet_2.jpeg  used on input line 394.
-(pdftex.def)             Requested size: 207.59126pt x 110.71547pt.
- [66
+[53
 
 ]
+<capture/app_complet_2.jpeg, id=573, 828.09375pt x 441.65pt>
 File: capture/app_complet_2.jpeg Graphic file (type jpg)
 <use capture/app_complet_2.jpeg>
-Package pdftex.def Info: capture/app_complet_2.jpeg  used on input line 408.
-(pdftex.def)             Requested size: 155.69221pt x 83.03156pt.
-<capture/sift.png, id=680, 867.24pt x 433.62pt>
-File: capture/sift.png Graphic file (type png)
-<use capture/sift.png>
-Package pdftex.def Info: capture/sift.png  used on input line 408.
-(pdftex.def)             Requested size: 155.69221pt x 77.84311pt.
- [67
+Package pdftex.def Info: capture/app_complet_2.jpeg  used on input line 357.
+(pdftex.def)             Requested size: 324.36168pt x 172.99757pt.
+ [54
 
- <./capture/sift.png>]
-File: capture/app_complet_2.jpeg Graphic file (type jpg)
-<use capture/app_complet_2.jpeg>
-Package pdftex.def Info: capture/app_complet_2.jpeg  used on input line 408.
-(pdftex.def)             Requested size: 155.69221pt x 83.03156pt.
-File: capture/sift.png Graphic file (type png)
-<use capture/sift.png>
-Package pdftex.def Info: capture/sift.png  used on input line 408.
-(pdftex.def)             Requested size: 155.69221pt x 77.84311pt.
- [68
-
-]) (./s2_reconstruction.tex (./beamer_tipe.toc) [69
+ <./capture/app_complet_2.jpeg>]) (./s2_reconstruction.tex (./beamer_tipe.toc) [55
 
 ]
-<capture/cube_tikz.pdf, id=718, 126.60197pt x 131.87268pt>
+<capture/cube_tikz.pdf, id=604, 126.60197pt x 131.87268pt>
 File: capture/cube_tikz.pdf Graphic file (type pdf)
 <use capture/cube_tikz.pdf>
 Package pdftex.def Info: capture/cube_tikz.pdf  used on input line 27.
 (pdftex.def)             Requested size: 155.69221pt x 162.1823pt.
-<capture/cube_repere.png, id=719, 218.8175pt x 193.72375pt>
+<capture/cube_repere.png, id=605, 218.8175pt x 193.72375pt>
 File: capture/cube_repere.png Graphic file (type png)
 <use capture/cube_repere.png>
 Package pdftex.def Info: capture/cube_repere.png  used on input line 27.
 (pdftex.def)             Requested size: 155.69221pt x 137.83745pt.
- [70
+ [56
 
- <./capture/cube_tikz.pdf> <./capture/cube_repere.png>] [71
+ <./capture/cube_tikz.pdf> <./capture/cube_repere.png>] [57
+
+] [58
+
+] [59
+
+] [60
+
+] [61
+
+] (./donnees/big_matrice.tex) [62
+
+]
+<capture/cube_tuto.JPG, id=686, 642.4pt x 624.3325pt>
+File: capture/cube_tuto.JPG Graphic file (type jpg)
+<use capture/cube_tuto.JPG>
+Package pdftex.def Info: capture/cube_tuto.JPG  used on input line 85.
+(pdftex.def)             Requested size: 93.41766pt x 90.78787pt.
+<capture/BO.png, id=687, 255.95625pt x 213.79875pt>
+File: capture/BO.png Graphic file (type png)
+<use capture/BO.png>
+Package pdftex.def Info: capture/BO.png  used on input line 85.
+(pdftex.def)             Requested size: 93.41766pt x 78.03099pt.
+<capture/selection.png, id=688, 602.25pt x 602.25pt>
+File: capture/selection.png Graphic file (type png)
+<use capture/selection.png>
+Package pdftex.def Info: capture/selection.png  used on input line 85.
+(pdftex.def)             Requested size: 175.15588pt x 175.15344pt.
+ [63
+
+ <./capture/cube_tuto.JPG> <./capture/BO.png> <./capture/selection.png>]) (./s2.2_SVD.tex (./donnees/big_matrice.tex) [64
+
+] [65
+
+] [66
+
+] [67
+
+] [68
+
+] [69
+
+] [70
+
+] [71
 
 ] [72
 
@@ -1596,82 +1861,19 @@ Package pdftex.def Info: capture/cube_repere.png  used on input line 27.
 
 ] [75
 
-]
+] [76
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+] [77
 
-[76
+] [78
 
-]
+] [79
 
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+] [80
 
-[77
+]) (./s2.3_reconstruction.tex (./beamer_tipe.toc) [81
 
-]
-
-LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
-
-[78
-
-] (./donnees/big_matrice.tex) [79
-
-]
-<capture/cube_calibrage.jpg, id=827, 311.1625pt x 321.2pt>
-File: capture/cube_calibrage.jpg Graphic file (type jpg)
-<use capture/cube_calibrage.jpg>
-Package pdftex.def Info: capture/cube_calibrage.jpg  used on input line 123.
-(pdftex.def)             Requested size: 108.98407pt x 112.50009pt.
-<capture/selection.png, id=828, 506.89375pt x 580.1675pt>
-File: capture/selection.png Graphic file (type png)
-<use capture/selection.png>
-Package pdftex.def Info: capture/selection.png  used on input line 123.
-(pdftex.def)             Requested size: 124.55424pt x 142.55392pt.
- [80
-
- <./capture/cube_calibrage.jpg> <./capture/selection.png>]
-<capture/dodec0.jpg, id=837, 642.4pt x 481.8pt>
-File: capture/dodec0.jpg Graphic file (type jpg)
-<use capture/dodec0.jpg>
-Package pdftex.def Info: capture/dodec0.jpg  used on input line 156.
-(pdftex.def)             Requested size: 74.7316pt x 56.04175pt.
-<capture/dodec1.jpg, id=838, 642.4pt x 481.8pt>
-File: capture/dodec1.jpg Graphic file (type jpg)
-<use capture/dodec1.jpg>
-Package pdftex.def Info: capture/dodec1.jpg  used on input line 156.
-(pdftex.def)             Requested size: 74.7316pt x 56.04175pt.
-<capture/dodec2.jpg, id=839, 642.4pt x 481.8pt>
-File: capture/dodec2.jpg Graphic file (type jpg)
-<use capture/dodec2.jpg>
-Package pdftex.def Info: capture/dodec2.jpg  used on input line 156.
-(pdftex.def)             Requested size: 74.7316pt x 56.04175pt.
-<capture/dodec3.jpg, id=840, 642.4pt x 481.8pt>
-File: capture/dodec3.jpg Graphic file (type jpg)
-<use capture/dodec3.jpg>
-Package pdftex.def Info: capture/dodec3.jpg  used on input line 156.
-(pdftex.def)             Requested size: 74.7316pt x 56.04175pt.
-File: capture/dodecf0.jpg Graphic file (type jpg)
-<use capture/dodecf0.jpg>
-Package pdftex.def Info: capture/dodecf0.jpg  used on input line 156.
-(pdftex.def)             Requested size: 74.7316pt x 74.73114pt.
-<capture/dodecf1.jpg, id=841, 144.54pt x 144.54pt>
-File: capture/dodecf1.jpg Graphic file (type jpg)
-<use capture/dodecf1.jpg>
-Package pdftex.def Info: capture/dodecf1.jpg  used on input line 156.
-(pdftex.def)             Requested size: 74.7316pt x 74.73114pt.
-<capture/dodecf2.jpg, id=842, 144.54pt x 144.54pt>
-File: capture/dodecf2.jpg Graphic file (type jpg)
-<use capture/dodecf2.jpg>
-Package pdftex.def Info: capture/dodecf2.jpg  used on input line 156.
-(pdftex.def)             Requested size: 74.7316pt x 74.73114pt.
-<capture/dodecf3.jpg, id=843, 144.54pt x 144.54pt>
-File: capture/dodecf3.jpg Graphic file (type jpg)
-<use capture/dodecf3.jpg>
-Package pdftex.def Info: capture/dodecf3.jpg  used on input line 156.
-(pdftex.def)             Requested size: 74.7316pt x 74.73114pt.
- [81
-
- <./capture/dodec0.jpg> <./capture/dodec1.jpg> <./capture/dodec2.jpg> <./capture/dodec3.jpg> <./capture/dodecf1.jpg> <./capture/dodecf2.jpg> <./capture/dodecf3.jpg>]) (./s2.2_SVD.tex (./donnees/big_matrice.tex) [82
+] [82
 
 ] [83
 
@@ -1683,143 +1885,96 @@ Package pdftex.def Info: capture/dodecf3.jpg  used on input line 156.
 
 ] [87
 
-] [88
-
-] [89
-
-] [90
-
-] [91
-
-] [92
-
-] [93
-
-]) (./s2.3_reconstruction.tex (./beamer_tipe.toc) [94
-
 ]
-Overfull \vbox (5.94756pt too high) detected at line 38
- []
-
-[95
-
-]
-Overfull \vbox (5.94756pt too high) detected at line 38
- []
-
-[96
-
-]
-Overfull \vbox (5.94756pt too high) detected at line 38
- []
-
-[97
-
-]
-Overfull \vbox (5.94756pt too high) detected at line 38
- []
-
-[98
-
-]
-Overfull \vbox (5.94756pt too high) detected at line 38
- []
-
-[99
-
-]
-Overfull \vbox (5.94756pt too high) detected at line 38
- []
-
-[100
-
-]
-<capture/cloud.png, id=1013, 462.528pt x 346.896pt>
+<capture/cloud.png, id=904, 462.528pt x 346.896pt>
 File: capture/cloud.png Graphic file (type png)
 <use capture/cloud.png>
-Package pdftex.def Info: capture/cloud.png  used on input line 63.
+Package pdftex.def Info: capture/cloud.png  used on input line 46.
 (pdftex.def)             Requested size: 194.61897pt x 145.96527pt.
+<capture/dodecf1.jpg, id=905, 144.54pt x 144.54pt>
 File: capture/dodecf1.jpg Graphic file (type jpg)
 <use capture/dodecf1.jpg>
-Package pdftex.def Info: capture/dodecf1.jpg  used on input line 63.
+Package pdftex.def Info: capture/dodecf1.jpg  used on input line 46.
 (pdftex.def)             Requested size: 38.92319pt x 38.92265pt.
+<capture/dodecf3.jpg, id=906, 144.54pt x 144.54pt>
 File: capture/dodecf3.jpg Graphic file (type jpg)
 <use capture/dodecf3.jpg>
-Package pdftex.def Info: capture/dodecf3.jpg  used on input line 63.
+Package pdftex.def Info: capture/dodecf3.jpg  used on input line 46.
 (pdftex.def)             Requested size: 38.92319pt x 38.92265pt.
-<capture/dodecf5.jpg, id=1014, 144.54pt x 144.54pt>
+<capture/dodecf5.jpg, id=907, 144.54pt x 144.54pt>
 File: capture/dodecf5.jpg Graphic file (type jpg)
 <use capture/dodecf5.jpg>
-Package pdftex.def Info: capture/dodecf5.jpg  used on input line 63.
+Package pdftex.def Info: capture/dodecf5.jpg  used on input line 46.
 (pdftex.def)             Requested size: 38.92319pt x 38.92265pt.
-<capture/dodecf7.jpg, id=1015, 144.54pt x 144.54pt>
+<capture/dodecf7.jpg, id=908, 144.54pt x 144.54pt>
 File: capture/dodecf7.jpg Graphic file (type jpg)
 <use capture/dodecf7.jpg>
-Package pdftex.def Info: capture/dodecf7.jpg  used on input line 63.
+Package pdftex.def Info: capture/dodecf7.jpg  used on input line 46.
 (pdftex.def)             Requested size: 38.92319pt x 38.92265pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 63--63
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 46--46
 [][][][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 63--63
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 46--46
 [][][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 63--63
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 46--46
 [][][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 63--63
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 46--46
 [][][] 
  []
 
 File: capture/dodecf0.jpg Graphic file (type jpg)
 <use capture/dodecf0.jpg>
-Package pdftex.def Info: capture/dodecf0.jpg  used on input line 63.
+Package pdftex.def Info: capture/dodecf0.jpg  used on input line 46.
 (pdftex.def)             Requested size: 38.92319pt x 38.92265pt.
+<capture/dodecf2.jpg, id=909, 144.54pt x 144.54pt>
 File: capture/dodecf2.jpg Graphic file (type jpg)
 <use capture/dodecf2.jpg>
-Package pdftex.def Info: capture/dodecf2.jpg  used on input line 63.
+Package pdftex.def Info: capture/dodecf2.jpg  used on input line 46.
 (pdftex.def)             Requested size: 38.92319pt x 38.92265pt.
-<capture/dodecf4.jpg, id=1016, 144.54pt x 144.54pt>
+<capture/dodecf4.jpg, id=910, 144.54pt x 144.54pt>
 File: capture/dodecf4.jpg Graphic file (type jpg)
 <use capture/dodecf4.jpg>
-Package pdftex.def Info: capture/dodecf4.jpg  used on input line 63.
+Package pdftex.def Info: capture/dodecf4.jpg  used on input line 46.
 (pdftex.def)             Requested size: 38.92319pt x 38.92265pt.
-<capture/dodecf6.jpg, id=1017, 144.54pt x 144.54pt>
+<capture/dodecf6.jpg, id=911, 144.54pt x 144.54pt>
 File: capture/dodecf6.jpg Graphic file (type jpg)
 <use capture/dodecf6.jpg>
-Package pdftex.def Info: capture/dodecf6.jpg  used on input line 63.
+Package pdftex.def Info: capture/dodecf6.jpg  used on input line 46.
 (pdftex.def)             Requested size: 38.92319pt x 38.92265pt.
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 63--63
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 46--46
 [][][][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 63--63
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 46--46
 [][][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 63--63
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 46--46
 [][][] 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 63--63
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 46--46
 [][][] 
  []
 
-[101
+[88
 
- <./capture/cloud.png> <./capture/dodecf5.jpg> <./capture/dodecf7.jpg> <./capture/dodecf4.jpg> <./capture/dodecf6.jpg>]) (./s3_triangulation.tex (./beamer_tipe.toc) [102
+ <./capture/cloud.png> <./capture/dodecf1.jpg> <./capture/dodecf3.jpg> <./capture/dodecf5.jpg> <./capture/dodecf7.jpg> <./capture/dodecf2.jpg> <./capture/dodecf4.jpg> <./capture/dodecf6.jpg>]) (./s3_triangulation.tex (./beamer_tipe.toc) [89
 
-] [103
+] [90
 
 ]
 \openout4 = `beamer_tipe.vrb'.
@@ -1829,328 +1984,412 @@ Overfull \hbox (19.74777pt too wide) in paragraph at lines 24--24
 []  \T1/cmtt/m/n/8 facet normal 0 0 1 // Face supérieure[] 
  []
 
-<capture/cubestl.png, id=1049, 558.085pt x 575.14874pt>
+<capture/cubestl.png, id=939, 558.085pt x 575.14874pt>
 File: capture/cubestl.png Graphic file (type png)
 <use capture/cubestl.png>
 Package pdftex.def Info: capture/cubestl.png  used on input line 28.
 (pdftex.def)             Requested size: 99.58464pt x 102.62714pt.
-) [104
+) [91
 
- <./capture/cubestl.png>]) (./s4_resultat.tex (./beamer_tipe.toc) [105
+ <./capture/cubestl.png>]) (./s4_resultat.tex (./beamer_tipe.toc) [92
 
 ]
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <6> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 49.
+ [93
+
+] [94
+
+] [95
+
+]
+<capture/dodec0.jpg, id=993, 642.4pt x 481.8pt>
+File: capture/dodec0.jpg Graphic file (type jpg)
+<use capture/dodec0.jpg>
+Package pdftex.def Info: capture/dodec0.jpg  used on input line 82.
+(pdftex.def)             Requested size: 74.7316pt x 56.04175pt.
+<capture/dodec1.jpg, id=994, 642.4pt x 481.8pt>
+File: capture/dodec1.jpg Graphic file (type jpg)
+<use capture/dodec1.jpg>
+Package pdftex.def Info: capture/dodec1.jpg  used on input line 82.
+(pdftex.def)             Requested size: 74.7316pt x 56.04175pt.
+<capture/dodec2.jpg, id=995, 642.4pt x 481.8pt>
+File: capture/dodec2.jpg Graphic file (type jpg)
+<use capture/dodec2.jpg>
+Package pdftex.def Info: capture/dodec2.jpg  used on input line 82.
+(pdftex.def)             Requested size: 74.7316pt x 56.04175pt.
+<capture/dodec3.jpg, id=996, 642.4pt x 481.8pt>
+File: capture/dodec3.jpg Graphic file (type jpg)
+<use capture/dodec3.jpg>
+Package pdftex.def Info: capture/dodec3.jpg  used on input line 82.
+(pdftex.def)             Requested size: 74.7316pt x 56.04175pt.
 File: capture/dodecf0.jpg Graphic file (type jpg)
 <use capture/dodecf0.jpg>
-Package pdftex.def Info: capture/dodecf0.jpg  used on input line 36.
+Package pdftex.def Info: capture/dodecf0.jpg  used on input line 82.
+(pdftex.def)             Requested size: 74.7316pt x 74.73114pt.
+File: capture/dodecf1.jpg Graphic file (type jpg)
+<use capture/dodecf1.jpg>
+Package pdftex.def Info: capture/dodecf1.jpg  used on input line 82.
+(pdftex.def)             Requested size: 74.7316pt x 74.73114pt.
+File: capture/dodecf2.jpg Graphic file (type jpg)
+<use capture/dodecf2.jpg>
+Package pdftex.def Info: capture/dodecf2.jpg  used on input line 82.
+(pdftex.def)             Requested size: 74.7316pt x 74.73114pt.
+File: capture/dodecf3.jpg Graphic file (type jpg)
+<use capture/dodecf3.jpg>
+Package pdftex.def Info: capture/dodecf3.jpg  used on input line 82.
+(pdftex.def)             Requested size: 74.7316pt x 74.73114pt.
+ [96
+
+ <./capture/dodec0.jpg> <./capture/dodec1.jpg> <./capture/dodec2.jpg> <./capture/dodec3.jpg>]
+File: capture/dodecf0.jpg Graphic file (type jpg)
+<use capture/dodecf0.jpg>
+Package pdftex.def Info: capture/dodecf0.jpg  used on input line 117.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
 File: capture/dodecf1.jpg Graphic file (type jpg)
 <use capture/dodecf1.jpg>
-Package pdftex.def Info: capture/dodecf1.jpg  used on input line 36.
+Package pdftex.def Info: capture/dodecf1.jpg  used on input line 117.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
 File: capture/dodecf2.jpg Graphic file (type jpg)
 <use capture/dodecf2.jpg>
-Package pdftex.def Info: capture/dodecf2.jpg  used on input line 36.
+Package pdftex.def Info: capture/dodecf2.jpg  used on input line 117.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
 File: capture/dodecf3.jpg Graphic file (type jpg)
 <use capture/dodecf3.jpg>
-Package pdftex.def Info: capture/dodecf3.jpg  used on input line 36.
+Package pdftex.def Info: capture/dodecf3.jpg  used on input line 117.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
 File: capture/dodecf4.jpg Graphic file (type jpg)
 <use capture/dodecf4.jpg>
-Package pdftex.def Info: capture/dodecf4.jpg  used on input line 36.
+Package pdftex.def Info: capture/dodecf4.jpg  used on input line 117.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
 File: capture/dodecf5.jpg Graphic file (type jpg)
 <use capture/dodecf5.jpg>
-Package pdftex.def Info: capture/dodecf5.jpg  used on input line 36.
+Package pdftex.def Info: capture/dodecf5.jpg  used on input line 117.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
 File: capture/dodecf6.jpg Graphic file (type jpg)
 <use capture/dodecf6.jpg>
-Package pdftex.def Info: capture/dodecf6.jpg  used on input line 36.
+Package pdftex.def Info: capture/dodecf6.jpg  used on input line 117.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
 File: capture/dodecf7.jpg Graphic file (type jpg)
 <use capture/dodecf7.jpg>
-Package pdftex.def Info: capture/dodecf7.jpg  used on input line 36.
+Package pdftex.def Info: capture/dodecf7.jpg  used on input line 117.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/dodec_vrai.png, id=1076, 400.49625pt x 289.08pt>
+<capture/dodec_vrai.png, id=1005, 400.49625pt x 289.08pt>
 File: capture/dodec_vrai.png Graphic file (type png)
 <use capture/dodec_vrai.png>
-Package pdftex.def Info: capture/dodec_vrai.png  used on input line 36.
+Package pdftex.def Info: capture/dodec_vrai.png  used on input line 117.
 (pdftex.def)             Requested size: 140.12589pt x 101.14421pt.
- [106
+ [97
 
  <./capture/dodec_vrai.png>]
-<capture/pyra0.jpg, id=1086, 144.54pt x 144.54pt>
+<capture/pyra0.jpg, id=1016, 144.54pt x 144.54pt>
 File: capture/pyra0.jpg Graphic file (type jpg)
 <use capture/pyra0.jpg>
-Package pdftex.def Info: capture/pyra0.jpg  used on input line 70.
+Package pdftex.def Info: capture/pyra0.jpg  used on input line 151.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/pyra1.jpg, id=1087, 144.54pt x 144.54pt>
+<capture/pyra1.jpg, id=1017, 144.54pt x 144.54pt>
 File: capture/pyra1.jpg Graphic file (type jpg)
 <use capture/pyra1.jpg>
-Package pdftex.def Info: capture/pyra1.jpg  used on input line 70.
+Package pdftex.def Info: capture/pyra1.jpg  used on input line 151.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/pyra2.jpg, id=1088, 144.54pt x 144.54pt>
+<capture/pyra2.jpg, id=1018, 144.54pt x 144.54pt>
 File: capture/pyra2.jpg Graphic file (type jpg)
 <use capture/pyra2.jpg>
-Package pdftex.def Info: capture/pyra2.jpg  used on input line 70.
+Package pdftex.def Info: capture/pyra2.jpg  used on input line 151.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/pyra3.jpg, id=1089, 144.54pt x 144.54pt>
+<capture/pyra3.jpg, id=1019, 144.54pt x 144.54pt>
 File: capture/pyra3.jpg Graphic file (type jpg)
 <use capture/pyra3.jpg>
-Package pdftex.def Info: capture/pyra3.jpg  used on input line 70.
+Package pdftex.def Info: capture/pyra3.jpg  used on input line 151.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/pyra4.jpg, id=1090, 144.54pt x 144.54pt>
+<capture/pyra4.jpg, id=1020, 144.54pt x 144.54pt>
 File: capture/pyra4.jpg Graphic file (type jpg)
 <use capture/pyra4.jpg>
-Package pdftex.def Info: capture/pyra4.jpg  used on input line 70.
+Package pdftex.def Info: capture/pyra4.jpg  used on input line 151.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/pyra5.jpg, id=1091, 144.54pt x 144.54pt>
+<capture/pyra5.jpg, id=1021, 144.54pt x 144.54pt>
 File: capture/pyra5.jpg Graphic file (type jpg)
 <use capture/pyra5.jpg>
-Package pdftex.def Info: capture/pyra5.jpg  used on input line 70.
+Package pdftex.def Info: capture/pyra5.jpg  used on input line 151.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/pyra6.jpg, id=1092, 144.54pt x 144.54pt>
+<capture/pyra6.jpg, id=1022, 144.54pt x 144.54pt>
 File: capture/pyra6.jpg Graphic file (type jpg)
 <use capture/pyra6.jpg>
-Package pdftex.def Info: capture/pyra6.jpg  used on input line 70.
+Package pdftex.def Info: capture/pyra6.jpg  used on input line 151.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/pyra7.jpg, id=1093, 144.54pt x 144.54pt>
+<capture/pyra7.jpg, id=1023, 144.54pt x 144.54pt>
 File: capture/pyra7.jpg Graphic file (type jpg)
 <use capture/pyra7.jpg>
-Package pdftex.def Info: capture/pyra7.jpg  used on input line 70.
+Package pdftex.def Info: capture/pyra7.jpg  used on input line 151.
 (pdftex.def)             Requested size: 46.70744pt x 46.70586pt.
-<capture/face1.png, id=1094, 144.54pt x 144.54pt>
+<capture/face1.png, id=1024, 144.54pt x 144.54pt>
 File: capture/face1.png Graphic file (type png)
 <use capture/face1.png>
-Package pdftex.def Info: capture/face1.png  used on input line 70.
+Package pdftex.def Info: capture/face1.png  used on input line 151.
 (pdftex.def)             Requested size: 77.84639pt x 77.8453pt.
-<capture/face2.png, id=1095, 144.54pt x 144.54pt>
+<capture/face2.png, id=1025, 144.54pt x 144.54pt>
 File: capture/face2.png Graphic file (type png)
 <use capture/face2.png>
-Package pdftex.def Info: capture/face2.png  used on input line 70.
+Package pdftex.def Info: capture/face2.png  used on input line 151.
 (pdftex.def)             Requested size: 77.84639pt x 77.8453pt.
-<capture/face3.png, id=1096, 144.54pt x 144.54pt>
+<capture/face3.png, id=1026, 144.54pt x 144.54pt>
 File: capture/face3.png Graphic file (type png)
 <use capture/face3.png>
-Package pdftex.def Info: capture/face3.png  used on input line 70.
+Package pdftex.def Info: capture/face3.png  used on input line 151.
 (pdftex.def)             Requested size: 77.84639pt x 77.8453pt.
-<capture/profil.png, id=1097, 144.54pt x 144.54pt>
+<capture/profil.png, id=1027, 144.54pt x 144.54pt>
 File: capture/profil.png Graphic file (type png)
 <use capture/profil.png>
-Package pdftex.def Info: capture/profil.png  used on input line 70.
+Package pdftex.def Info: capture/profil.png  used on input line 151.
 (pdftex.def)             Requested size: 77.84639pt x 77.8453pt.
- [107
+ [98
 
  <./capture/pyra0.jpg> <./capture/pyra1.jpg> <./capture/pyra2.jpg> <./capture/pyra3.jpg> <./capture/pyra4.jpg> <./capture/pyra5.jpg> <./capture/pyra6.jpg> <./capture/pyra7.jpg> <./capture/face1.png> <./capture/face2.png> <./capture/face3.png> <./capture/profil.png>]
-<capture/reconstruit_pyra.png, id=1110, 449.68pt x 333.245pt>
+<capture/reconstruit_pyra.png, id=1040, 449.68pt x 333.245pt>
 File: capture/reconstruit_pyra.png Graphic file (type png)
 <use capture/reconstruit_pyra.png>
-Package pdftex.def Info: capture/reconstruit_pyra.png  used on input line 112.
+Package pdftex.def Info: capture/reconstruit_pyra.png  used on input line 193.
 (pdftex.def)             Requested size: 145.96176pt x 108.16605pt.
-<capture/erreur.png, id=1111, 696.6025pt x 605.26125pt>
+<capture/erreur.png, id=1041, 696.6025pt x 605.26125pt>
 File: capture/erreur.png Graphic file (type png)
 <use capture/erreur.png>
-Package pdftex.def Info: capture/erreur.png  used on input line 112.
+Package pdftex.def Info: capture/erreur.png  used on input line 193.
 (pdftex.def)             Requested size: 145.96176pt x 126.8223pt.
- [108
+ [99
 
- <./capture/reconstruit_pyra.png> <./capture/erreur.png>]) (./appendix.tex
-<capture/rub_rouge.jpg, id=1123, 1324.95pt x 1324.95pt>
+ <./capture/reconstruit_pyra.png> <./capture/erreur.png>]) [100
+
+] (./rejected_frame.tex
+File: capture/app_complet_2.jpeg Graphic file (type jpg)
+<use capture/app_complet_2.jpeg>
+Package pdftex.def Info: capture/app_complet_2.jpeg  used on input line 16.
+(pdftex.def)             Requested size: 155.69221pt x 83.03156pt.
+<capture/sift.png, id=1061, 1059.96pt x 559.08875pt>
+File: capture/sift.png Graphic file (type png)
+<use capture/sift.png>
+Package pdftex.def Info: capture/sift.png  used on input line 16.
+(pdftex.def)             Requested size: 155.69221pt x 82.11937pt.
+ [101
+
+ <./capture/sift.png>]
+File: capture/app_complet_2.jpeg Graphic file (type jpg)
+<use capture/app_complet_2.jpeg>
+Package pdftex.def Info: capture/app_complet_2.jpeg  used on input line 16.
+(pdftex.def)             Requested size: 155.69221pt x 83.03156pt.
+File: capture/sift.png Graphic file (type png)
+<use capture/sift.png>
+Package pdftex.def Info: capture/sift.png  used on input line 16.
+(pdftex.def)             Requested size: 155.69221pt x 82.11937pt.
+ [102
+
+]
+<capture/rub_rouge.jpg, id=1081, 1324.95pt x 1324.95pt>
 File: capture/rub_rouge.jpg Graphic file (type jpg)
 <use capture/rub_rouge.jpg>
-Package pdftex.def Info: capture/rub_rouge.jpg  used on input line 10.
+Package pdftex.def Info: capture/rub_rouge.jpg  used on input line 25.
 (pdftex.def)             Requested size: 162.18083pt x 162.18144pt.
+ [103
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [109
-
-] [110 <./capture/rub_rouge.jpg>]
+ <./capture/rub_rouge.jpg>]
 File: capture/rub_rouge.jpg Graphic file (type jpg)
 <use capture/rub_rouge.jpg>
-Package pdftex.def Info: capture/rub_rouge.jpg  used on input line 10.
+Package pdftex.def Info: capture/rub_rouge.jpg  used on input line 25.
 (pdftex.def)             Requested size: 162.18083pt x 162.18144pt.
- [111
+ [104
 
 ] (./donnees/m1.tex)
-Overfull \hbox (45.79152pt too wide) in paragraph at lines 32--32
+Overfull \hbox (45.79152pt too wide) in paragraph at lines 47--47
 []|  []  
  []
 
 
-Overfull \vbox (318.7562pt too high) detected at line 32
+Overfull \vbox (318.7562pt too high) detected at line 47
+ []
+
+[105
+
+] (./donnees/m2.tex)
+Overfull \hbox (45.79152pt too wide) in paragraph at lines 47--47
+[]|  []  
+ []
+
+
+Overfull \vbox (318.7562pt too high) detected at line 47
+ []
+
+[106
+
+] (./donnees/m3.tex)
+Overfull \hbox (45.79152pt too wide) in paragraph at lines 47--47
+[]|  []  
+ []
+
+
+Overfull \vbox (72.0062pt too high) detected at line 47
+ []
+
+[107
+
+] (./donnees/m4.tex)
+Overfull \hbox (45.79152pt too wide) in paragraph at lines 47--47
+[]|  []  
+ []
+
+
+Overfull \vbox (72.0062pt too high) detected at line 47
+ []
+
+[108
+
+] (./donnees/m5.tex)
+Overfull \hbox (45.79152pt too wide) in paragraph at lines 47--47
+[]|  []  
+ []
+
+
+Overfull \vbox (72.0062pt too high) detected at line 47
+ []
+
+[109
+
+] [110
+
+] [111
+
+] (./donnees/s2_1.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 93--93
+[]|  []  
+ []
+
+
+Overfull \vbox (14.77026pt too high) detected at line 93
  []
 
 [112
 
-] (./donnees/m2.tex)
-Overfull \hbox (45.79152pt too wide) in paragraph at lines 32--32
+] (./donnees/s2_2.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 93--93
 []|  []  
  []
 
 
-Overfull \vbox (318.7562pt too high) detected at line 32
+Overfull \vbox (14.77026pt too high) detected at line 93
  []
 
 [113
 
-] (./donnees/m3.tex)
-Overfull \hbox (45.79152pt too wide) in paragraph at lines 32--32
+] (./donnees/s2_3.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 93--93
 []|  []  
  []
 
 
-Overfull \vbox (72.0062pt too high) detected at line 32
+Overfull \vbox (14.77026pt too high) detected at line 93
  []
 
 [114
 
-] (./donnees/m4.tex)
-Overfull \hbox (45.79152pt too wide) in paragraph at lines 32--32
+] (./donnees/s2_4.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 93--93
 []|  []  
  []
 
 
-Overfull \vbox (72.0062pt too high) detected at line 32
+Overfull \vbox (14.77026pt too high) detected at line 93
  []
 
 [115
 
-] (./donnees/m5.tex)
-Overfull \hbox (45.79152pt too wide) in paragraph at lines 32--32
+] (./donnees/s2_5.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 93--93
 []|  []  
  []
 
 
-Overfull \vbox (72.0062pt too high) detected at line 32
+Overfull \vbox (14.77026pt too high) detected at line 93
  []
 
 [116
 
-] [117
-
-] [118
-
-] (./donnees/s2_1.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 79--79
+] (./donnees/s2_6.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 93--93
 []|  []  
  []
 
 
-Overfull \vbox (14.77026pt too high) detected at line 79
+Overfull \vbox (14.77026pt too high) detected at line 93
+ []
+
+[117
+
+] (./donnees/s2_7.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 93--93
+[]|  []  
+ []
+
+
+Overfull \vbox (14.77026pt too high) detected at line 93
+ []
+
+[118
+
+] (./donnees/s2_8.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 93--93
+[]|  []  
+ []
+
+
+Overfull \vbox (14.77026pt too high) detected at line 93
  []
 
 [119
 
-] (./donnees/s2_2.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 79--79
+] (./donnees/s2_9.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 161--161
 []|  []  
  []
 
 
-Overfull \vbox (14.77026pt too high) detected at line 79
+Overfull \vbox (14.77026pt too high) detected at line 161
  []
 
 [120
 
-] (./donnees/s2_3.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 79--79
+] (./donnees/s2_9.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 161--161
 []|  []  
  []
 
 
-Overfull \vbox (14.77026pt too high) detected at line 79
+Overfull \vbox (14.77026pt too high) detected at line 161
  []
 
 [121
 
-] (./donnees/s2_4.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 79--79
+] (./donnees/s2_9.tex)
+Overfull \hbox (27.18596pt too wide) in paragraph at lines 161--161
 []|  []  
  []
 
 
-Overfull \vbox (14.77026pt too high) detected at line 79
+Overfull \vbox (14.77026pt too high) detected at line 161
  []
 
 [122
 
-] (./donnees/s2_5.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 79--79
-[]|  []  
- []
+] [123
 
+] [124
 
-Overfull \vbox (14.77026pt too high) detected at line 79
- []
+] [125
 
-[123
+] [126
 
-] (./donnees/s2_6.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 79--79
-[]|  []  
- []
+] [127
 
+] [128
 
-Overfull \vbox (14.77026pt too high) detected at line 79
- []
-
-[124
-
-] (./donnees/s2_7.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 79--79
-[]|  []  
- []
-
-
-Overfull \vbox (14.77026pt too high) detected at line 79
- []
-
-[125
-
-] (./donnees/s2_8.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 79--79
-[]|  []  
- []
-
-
-Overfull \vbox (14.77026pt too high) detected at line 79
- []
-
-[126
-
-] (./donnees/s2_9.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 147--147
-[]|  []  
- []
-
-
-Overfull \vbox (14.77026pt too high) detected at line 147
- []
-
-[127
-
-] (./donnees/s2_9.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 147--147
-[]|  []  
- []
-
-
-Overfull \vbox (14.77026pt too high) detected at line 147
- []
-
-[128
-
-] (./donnees/s2_9.tex)
-Overfull \hbox (27.18596pt too wide) in paragraph at lines 147--147
-[]|  []  
- []
-
-
-Overfull \vbox (14.77026pt too high) detected at line 147
- []
-
-[129
+] [129
 
 ] [130
 
@@ -2192,34 +2431,62 @@ Overfull \vbox (14.77026pt too high) detected at line 147
 
 ] [149
 
-])
-\tf@nav=\write7
-\openout7 = `beamer_tipe.nav'.
+] [150
 
-\tf@toc=\write8
-\openout8 = `beamer_tipe.toc'.
+] [151
 
-\tf@snm=\write9
-\openout9 = `beamer_tipe.snm'.
+] [152
+
+]
+<capture/sans_brief.png, id=1454, 867.24pt x 433.62pt>
+File: capture/sans_brief.png Graphic file (type png)
+<use capture/sans_brief.png>
+Package pdftex.def Info: capture/sans_brief.png  used on input line 616.
+(pdftex.def)             Requested size: 356.79982pt x 178.40068pt.
+
+Overfull \hbox (6.40318pt too wide) in paragraph at lines 616--616
+[]|  []  
+ []
+
+[153
+
+ <./capture/sans_brief.png>]
+<capture/avec_brief.png, id=1463, 867.24pt x 433.62pt>
+File: capture/avec_brief.png Graphic file (type png)
+<use capture/avec_brief.png>
+Package pdftex.def Info: capture/avec_brief.png  used on input line 621.
+(pdftex.def)             Requested size: 356.79982pt x 178.40068pt.
+
+Overfull \hbox (6.40318pt too wide) in paragraph at lines 621--621
+[]|  []  
+ []
+
+[154
+
+ <./capture/avec_brief.png>])
+\tf@nav=\write9
+\openout9 = `beamer_tipe.nav'.
+
+\tf@toc=\write10
+\openout10 = `beamer_tipe.toc'.
+
+\tf@snm=\write11
+\openout11 = `beamer_tipe.snm'.
 
  (./beamer_tipe.aux) ) 
 Here is how much of TeX's memory you used:
- 38926 strings out of 480145
- 834416 string characters out of 5893300
- 1074282 words of memory out of 5000000
- 55559 multiletter control sequences out of 15000+600000
- 515883 words of font info for 151 fonts, out of 8000000 for 9000
+ 45787 strings out of 480145
+ 966453 string characters out of 5893300
+ 1268956 words of memory out of 5000000
+ 62288 multiletter control sequences out of 15000+600000
+ 517350 words of font info for 154 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 128i,18n,122p,541b,1155s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{ban-2} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{ban-1} has been referenced but does not exist, replaced by a fixed one
-
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/yhmath/yhcmex.pfb>
-Output written on beamer_tipe.pdf (149 pages, 5249453 bytes).
+ 128i,18n,122p,565b,1154s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/yhmath/yhcmex.pfb>
+Output written on beamer_tipe.pdf (154 pages, 9203632 bytes).
 PDF statistics:
- 1742 PDF objects out of 2073 (max. 8388607)
- 1403 compressed objects within 15 object streams
- 331 named destinations out of 1000 (max. 500000)
- 598 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1790 PDF objects out of 2073 (max. 8388607)
+ 1432 compressed objects within 15 object streams
+ 343 named destinations out of 1000 (max. 500000)
+ 674 words of extra memory for PDF output out of 10000 (max. 10000000)
 

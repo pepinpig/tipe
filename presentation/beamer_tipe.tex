@@ -30,7 +30,7 @@
 
 \begin{frame}[plain]
   \note{
-  Pour ce TIPE je suis me suis donnée pour objectif de comprendre et surtout expérimenter comment on peut, à partir de simple photo, 
+  Pour ce TIPE nous nous sommes données pour objectif, avec mon camarade Baranabé, de comprendre et surtout expérimenter comment on peut, à partir de simple photo, 
     retrouver la géométrie complète d'un objet.
   }
   \titlepage
@@ -39,18 +39,24 @@
 
 \begin{frame}{Définition du problème}
   \note{
-Ainsi, à partir d'un jeux de photo qui constituera mes données 
-je souhaite reconstruire un fichier 3D de ce dernier prêt pour une impression 3D. 
+Ainsi, à partir d'un jeu de photos qui constituera nos données, 
+on a souhaité reconstruire un fichier 3D de ce dernier, prêt pour une impression 3D. 
+i.e. transition d'images en 2D au monde réel
 }
   \centering
   \begin{minipage}{0.48\linewidth}
     \centering
     \begin{figure}
       \centering
-      \includegraphics[width=0.48\linewidth]{capture/dod2(2).jpg}%
-      \includegraphics[width=0.48\linewidth]{capture/dod3(2).jpg} \\
-      \includegraphics[width=0.48\linewidth]{capture/dod4(2).jpg}%
-      \includegraphics[width=0.48\linewidth]{capture/dod5(2).jpg}
+      \includegraphics[width=0.24\linewidth]{capture/dod1.jpg}%
+      \includegraphics[width=0.24\linewidth]{capture/dod2.jpg}%
+      \includegraphics[width=0.24\linewidth]{capture/dod3.jpg}%
+      \includegraphics[width=0.24\linewidth]{capture/dod4.jpg} \\[0.5em]
+      \includegraphics[width=0.24\linewidth]{capture/dod5.jpg}%
+      \includegraphics[width=0.24\linewidth]{capture/dod6.jpg}%
+      \includegraphics[width=0.24\linewidth]{capture/dod7.jpg}%
+      \includegraphics[width=0.24\linewidth]{capture/dod8.jpg}
+      
       {\footnotesize\textbf{Données}}
     \end{figure}
   \end{minipage}
@@ -68,12 +74,19 @@ je souhaite reconstruire un fichier 3D de ce dernier prêt pour une impression 3
 
 
 % Slides principales (actives selon les fichiers présents)
-\input{s1_selection.tex}
+\input{s1_selection.tex}%
 \input{s1.2_appariement.tex}
 \input{s2_reconstruction.tex}
 \input{s2.2_SVD.tex}
 \input{s2.3_reconstruction.tex}
 \input{s3_triangulation.tex}
 \input{s4_resultat}
-\input{appendix.tex}
+\begin{frame}{Fin}
+  \center
+  Merci pour votre attention
+\end{frame}
+\section*{Appendix}
+\appendix
+\subsection*{Compléments}
+\input{rejected_frame.tex}
 \end{document}

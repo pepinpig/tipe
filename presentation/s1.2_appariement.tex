@@ -7,11 +7,11 @@
 C’est ce qu’on appelle l’appariement.
   }
   \begin{minipage}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{capture/test_detection_img2_1_moravec_2_500.jpeg}  
+    \includegraphics[width=\linewidth]{capture/test_detection_1_moravec_2_500.jpeg}  
   \end{minipage}
   \hfill
     \begin{minipage}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{capture/test_detection_1_moravec_2_500.jpeg}
+    \includegraphics[width=\linewidth]{capture/test_detection_img2_1_moravec_2_500.jpeg}
   \end{minipage}
 \end{frame}
 
@@ -60,14 +60,14 @@ C’est ce qu’on appelle l’appariement.
 }
 
 % Paire 3 - bleu foncé
-\only<3->{%
+\only<4->{%
   \fill[blue!70!black]  (1.5,1.8) circle (2pt);
   \fill[blue!70!black]  (8.0,1.6) circle (2pt);
   \draw[->,blue!70!black,thick]  (1.5,1.8) -- (8.0,1.6);
 }
 
 % Paire 4 - bleu clair
-\only<3->{%
+\only<5->{%
   \fill[cyan]  (1.0,1.0) circle (2pt);
   \fill[cyan]  (7.3,0.9) circle (2pt);
   \draw[->,cyan,thick]  (1.0,1.0) -- (7.3,0.9);
@@ -79,108 +79,16 @@ C’est ce qu’on appelle l’appariement.
 %===========================
 \subsection{Pré-traitement}
 %===========================
+
 \begin{frame}{Pré-traitement}
-  \note{
-     une première étape consiste à effectuer un traitement des points détecter par Moravec
+  \note{une première étape consiste à effectuer un traitement des points détecter par Moravec
   Ce traitement est réalisé à l'aide d'un premier algorithme "trouve coin" basé sur la rechercche d'extrema locaux implémenté par mon camarade
   Un second algorithme de type Ransac permet d'identifier les points alignés et d'éliminer ceux sur une même droite
   }
-  \begin{minipage}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{capture/test_detection_img2_1_moravec_2_500.jpeg}  
-  \end{minipage}
-  \hfill
-    \begin{minipage}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{capture/test_detection_1_moravec_2_500.jpeg}
-  \end{minipage}
-\end{frame}
-
-\begin{frame}{Ransac}
-  \note{}
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \centering
-            \begin{tikzpicture}[scale=1]
-
-                % --- Tous les points initiaux ---
-                \only<1-3>{
-                    \foreach \x/\y in {
-                        0.5/1.0, 1.0/1.2, 1.5/1.3, 2.0/1.7, 2.5/2.1, 3.0/2.1, 3.5/2.4, 4.0/2.8,
-                        1.0/3.5, 2.0/3.7, 3.0/3.9, 4.0/4.2
-                    } {
-                        \filldraw[blue!70!black] (\x,\y) circle (2pt);
-                    }
-                }
-
-                % --- Points restants (extrémités et bruit) ---
-                \only<4->{
-                    \foreach \x/\y in {
-                        1.0/3.5, 2.0/3.7, 3.0/3.9, 4.0/4.2
-                    } {
-                        \filldraw[blue!70!black] (\x,\y) circle (2pt);
-                    }
-                }
-
-                % Droite testée
-                \only<3->{
-                    \draw[thick, red, dashed] (0.3,0.8) -- (4.5,3.0);
-                }
-
-                % Points choisis
-                \only<2-3>{
-                    \filldraw[red] (1.5,1.3) circle (3pt);
-                    \filldraw[red] (3.0,2.1) circle (3pt);
-                }
-
-                % Inliers détectés
-                \only<3>{
-                    \foreach \x/\y in {
-                        0.5/1.0, 1.0/1.2, 2.0/1.7, 2.5/2.1, 3.5/2.4, 4.0/2.8
-                    } {
-                        \filldraw[green!50!black] (\x,\y) circle (2.5pt);
-                    }
-                }
-
-                % Points supprimés
-                \only<4>{
-                    \foreach \x/\y in {
-                        1.0/1.2, 2.0/1.7, 2.5/2.1, 3.5/2.4
-                    } {
-                        \node[draw=red, cross out, thick, minimum size=6pt, inner sep=0pt] at (\x,\y) {};
-                    }
-                }
-
-                % Points extrémités conservés (surlignés)
-                \only<4->{
-                    \filldraw[black] (0.5,1.0) circle (3pt);
-                    \filldraw[black] (4.0,2.8) circle (3pt);
-                }
-
-            \end{tikzpicture}
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \small
-            \begin{itemize}
-                \item<1-> Points d’entrée dans le nuage
-                \item<2-> Sélection de deux points pour estimer une droite
-                \item<3-> Inliers détectés à proximité de la droite
-                \item<4-> Suppression des points internes, on garde les extrémités
-            \end{itemize}
-
-            \vspace{0.5em}
-            \only<4>{
-                \textcolor{red}{\small $\Rightarrow$ Nettoyage effectué : seuls les segments visibles sont conservés}
-            }
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Résultats pré-traitement}
-
     \begin{center}
     \begin{minipage}{0.32\textwidth}
         \onslide<1->{\includegraphics[width=\linewidth]{capture/test_detection_1_moravec_2_500.jpeg}\\
-        \centering\scriptsize Moravec}
+        \centering\scriptsize Sélection}
     \end{minipage}
     \hfill
     \begin{minipage}{0.32\textwidth}
@@ -190,12 +98,29 @@ C’est ce qu’on appelle l’appariement.
     \hfill
     \begin{minipage}{0.32\textwidth}
         \onslide<3->{\includegraphics[width=\linewidth]{capture/test_detection_3_ransac_1000_6_5.jpeg}\\
-        \centering\scriptsize Ransac}
+        \centering\scriptsize Ransac
+        \hyperlink{ransac-appendix}{
+    \beamerbutton{Explication Ransac}
+  }}
+
     \end{minipage}
     \end{center}
 
 \end{frame}
 
+\begin{frame}{Appariement}
+  \note{
+    On ne traite que l image 1 pour ne pas enlever de potentiels match
+    On peut désormais effectuer l eppariement
+  }
+  \begin{minipage}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{capture/test_detection_3_ransac_1000_6_5.jpeg}  
+  \end{minipage}
+  \hfill
+    \begin{minipage}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{capture/test_detection_img2_1_moravec_2_500.jpeg}
+  \end{minipage}
+\end{frame}
 %===========================
 \subsection{Filtrage epipolaire}
 %===========================
@@ -223,27 +148,79 @@ en vision par ordinateur - Frédéric SUR
 
 
 %===========================
-\subsection{Brief}
+\subsection{Descripteur}
 %===========================
+
+% \begin{frame}{Descripteur BRIEF : Principe}
+% \begin{minipage}{0.45\linewidth}
+% \begin{tikzpicture}[x=1pt,y=1pt,yscale=-1,xscale=1, scale= 0.6]
+%     % Grille gauche
+%     \draw[step=20,gray!30,thin] (100,20) grid (320,240);
+%     \fill[black] (200,120) rectangle ++(20,20);
+
+%     % Étape 1 : Choix de paires de pixels
+%     \only<2->{\fill[blue]     (100,60)  rectangle ++(20,20);}
+%     \only<3->{\fill[green]    (180,220) rectangle ++(20,20);}
+%     \only<4->{\fill[orange]   (200,100) rectangle ++(20,20);}
+%     \only<4->{\fill[violet]   (140,100) rectangle ++(20,20);}
+%     \only<5->{\fill[pink]     (240,60)  rectangle ++(20,20);}
+%     \only<5->{\fill[teal]     (260,140) rectangle ++(20,20);}
+%     \only<6->{\fill[yellow]   (140,180) rectangle ++(20,20);}
+%     \only<6->{\fill[magenta]  (220,180) rectangle ++(20,20);}
+%     \only<7->{\fill[cyan]     (240,200) rectangle ++(20,20);}
+%     \only<7->{\fill[red]      (280,20)  rectangle ++(20,20);}
+% \end{tikzpicture}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.45\linewidth}
+% \small
+% \textbf{Comparaisons binaires :}
+% \begin{tabbing}
+% \only<3->{\textcolor{blue}{Bleu} < \textcolor{green}{Vert} \quad \= ~~~~$\Rightarrow$ \texttt{1} \kill} % pour alignement
+% \only<3->{\textcolor{blue}{Bleu} < \textcolor{green}{Vert} \> ~~~~$\Rightarrow$ \texttt{1}}\\
+% \only<4->{\textcolor{orange}{Orange} > \textcolor{violet}{Violet} \> ~~~~$\Rightarrow$ \texttt{0}}\\
+% \only<5->{\textcolor{pink}{Rose} < \textcolor{teal}{Turquoise} \> ~~~~$\Rightarrow$ \texttt{1}}\\
+% \only<6->{\textcolor{yellow}{Jaune} > \textcolor{magenta}{Magenta} \> ~~~~$\Rightarrow$ \texttt{0}}\\
+% \only<7->{\textcolor{cyan}{Cyan} < \textcolor{red}{Rouge} \> ~~~~$\Rightarrow$ \texttt{1}}
+% \end{tabbing}
+
+% \vspace{1em}
+% \only<8->{%
+% \textbf{Descripteur final :}\\
+% \texttt{1 0 1 0 1}
+% }
+% \end{minipage}
+% \vspace{1em}
+
+% \begin{itemize}
+%   \item<1-> On considère une fenêtre autour d’un point clé.
+%   \item<2-> On choisit aléatoirement un pixel (ex: \textcolor{blue}{bleu}).
+%   \item<3-> On la compare à un autre (ex: \textcolor{green}{vert}) : \\
+%            $\text{BRIEF}_1 = 1$ si intensité(bleu) < intensité(vert)
+%   \item<4-> On répète avec d'autres paires (ex: \textcolor{orange}{orange} vs \textcolor{violet}{violet})...
+% \end{itemize}
+% \end{frame}
 
 \begin{frame}{Descripteur BRIEF : Principe}
 \begin{minipage}{0.45\linewidth}
 \begin{tikzpicture}[x=1pt,y=1pt,yscale=-1,xscale=1, scale= 0.6]
-    % Grille gauche
+    % Grille de fond
     \draw[step=20,gray!30,thin] (100,20) grid (320,240);
-    \fill[black] (200,120) rectangle ++(20,20);
 
-    % Étape 1 : Choix de paires de pixels
-    \only<2->{\fill[blue]     (100,60)  rectangle ++(20,20);}
-    \only<3->{\fill[green]    (180,220) rectangle ++(20,20);}
-    \only<4->{\fill[orange]   (200,100) rectangle ++(20,20);}
-    \only<4->{\fill[violet]   (140,100) rectangle ++(20,20);}
-    \only<5->{\fill[pink]     (240,60)  rectangle ++(20,20);}
-    \only<5->{\fill[teal]     (260,140) rectangle ++(20,20);}
-    \only<6->{\fill[yellow]   (140,180) rectangle ++(20,20);}
-    \only<6->{\fill[magenta]  (220,180) rectangle ++(20,20);}
-    \only<7->{\fill[cyan]     (240,200) rectangle ++(20,20);}
-    \only<7->{\fill[red]      (280,20)  rectangle ++(20,20);}
+    % Centre de la fenêtre
+    \fill[blue] (200,120) rectangle ++(20,20);
+
+    % Comparaisons (coordonnées relatives)
+    \only<2->{\fill[gray!50] (100,60)  rectangle ++(20,20);}
+    \only<3->{\fill[gray!80] (180,220) rectangle ++(20,20);}
+    \only<4->{\fill[gray!60] (200,100) rectangle ++(20,20);}
+    \only<4->{\fill[gray!30] (140,100) rectangle ++(20,20);}
+    \only<5->{\fill[gray!40] (240,60)  rectangle ++(20,20);}
+    \only<5->{\fill[gray!70] (260,140) rectangle ++(20,20);}
+    \only<6->{\fill[gray!85] (140,180) rectangle ++(20,20);}
+    \only<6->{\fill[gray!20] (220,180) rectangle ++(20,20);}
+    \only<7->{\fill[gray!35] (240,200) rectangle ++(20,20);}
+    \only<7->{\fill[gray!65] (280,20)  rectangle ++(20,20); }
 \end{tikzpicture}
 \end{minipage}
 \hfill
@@ -251,12 +228,12 @@ en vision par ordinateur - Frédéric SUR
 \small
 \textbf{Comparaisons binaires :}
 \begin{tabbing}
-\only<3->{\textcolor{blue}{Bleu} < \textcolor{green}{Vert} \quad \= ~~~~$\Rightarrow$ \texttt{1} \kill} % pour alignement
-\only<3->{\textcolor{blue}{Bleu} < \textcolor{green}{Vert} \> ~~~~$\Rightarrow$ \texttt{1}}\\
-\only<4->{\textcolor{orange}{Orange} > \textcolor{violet}{Violet} \> ~~~~$\Rightarrow$ \texttt{0}}\\
-\only<5->{\textcolor{pink}{Rose} < \textcolor{teal}{Turquoise} \> ~~~~$\Rightarrow$ \texttt{1}}\\
-\only<6->{\textcolor{yellow}{Jaune} > \textcolor{magenta}{Magenta} \> ~~~~$\Rightarrow$ \texttt{0}}\\
-\only<7->{\textcolor{cyan}{Cyan} < \textcolor{red}{Rouge} \> ~~~~$\Rightarrow$ \texttt{1}}
+\only<3->{I(-5,-3) < I(-1,5) \quad \= ~~~~$\Rightarrow$ \texttt{1} \kill}
+\only<3->{I(-5,-3) < I(-1,5) \> ~~~~$\Rightarrow$ \texttt{1}}\\
+\only<4->{I(0,-1) > I(-3,-1) \> ~~~~$\Rightarrow$ \texttt{0}}\\
+\only<5->{I(2,-3) < I(3,1) \> ~~~~$\Rightarrow$ \texttt{1}}\\
+\only<6->{I(-3,3) > I(1,3) \> ~~~~$\Rightarrow$ \texttt{0}}\\
+\only<7->{I(2,4) < I(4,-5) \> ~~~~$\Rightarrow$ \texttt{1}}
 \end{tabbing}
 
 \vspace{1em}
@@ -268,46 +245,14 @@ en vision par ordinateur - Frédéric SUR
 \vspace{1em}
 
 \begin{itemize}
-  \item<1-> On considère une fenêtre autour d’un point clé.
-  \item<2-> On choisit aléatoirement un pixel (ex: \textcolor{blue}{bleu}).
-  \item<3-> On la compare à un autre (ex: \textcolor{green}{vert}) : \\
-           $\text{BRIEF}_1 = 1$ si intensité(bleu) < intensité(vert)
-  \item<4-> On répète avec d'autres paires (ex: \textcolor{orange}{orange} vs \textcolor{violet}{violet})...
+  \item<1-> On considère une fenêtre autour d’un point clé, ici le centre $(0,0)$.
+  \item<2-> On choisit aléatoirement un pixel (ex: \texttt{(-5,-3)}).
+  \item<3-> On le compare à un autre (ex: \texttt{(-1,5)}) :\\
+           $\text{BRIEF}_1 = 1$ si intensité(1er) < intensité(2e)
+  \item<4-> On répète avec d'autres paires...
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Comparaison de descripteurs BRIEF : distance de Hamming}
-\centering
-\small
-
-\textbf{Descripteur 1 (image gauche)} \par
-\texttt{1 0 1 0 1}
-\pause
-
-\vspace{0.5em}
-\textbf{Descripteur 2 (image droite)} \par
-\texttt{1 1 0 0 1}
-\pause
-
-\vspace{1em}
-\textbf{Comparaison bit à bit :}\\[0.5em]
-\begin{tabular}{c c c c c}
-1 & 0 & 1 & 0 & 1 \\
-\texttt{\color{gray}-} & \texttt{\color{gray}-} & \texttt{\color{gray}-} & \texttt{\color{gray}-} & \texttt{\color{gray}-} \\
-1 & 1 & 0 & 0 & 1 \\
-\hline
-\textcolor{green}{0} & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{green}{0} & \textcolor{green}{0}
-\end{tabular}
-\pause
-
-\vspace{1em}
-\textbf{Distance de Hamming = nombre de bits différents = } \texttt{2}
-\pause
-
-\vspace{1em}
-\textit{Plus la distance est faible, plus les points sont similaires.}
-
-\end{frame}
 
 \begin{frame}{Amélioration progressive du descripteur BRIEF}
 \small
@@ -320,7 +265,30 @@ en vision par ordinateur - Frédéric SUR
 \vspace{0.5em}
 \textbf{2. BRIEF RGB} \\
 \hspace{1em}• Comparaison faite indépendamment sur les 3 canaux : R, G, B \\
-\hspace{1em}• \textit{Capture la couleur, mais très sensible aux variations de lumière} \\
+\vspace{0.5em}
+\hspace{1em}
+\begin{minipage}{\linewidth}
+\centering
+\setlength{\fboxsep}{0pt}
+\begin{tikzpicture}
+% Rouge vs Orange
+\node at (0, 0) {\colorbox[RGB]{255,0,0}{\phantom{aaa}}};
+\node at (2, 0) {\colorbox[RGB]{255,128,0}{\phantom{aaa}}};
+\node at (0, -0.5) {\scriptsize \texttt{(255,0,0)}};
+\node at (2, -0.5) {\scriptsize \texttt{(255,128,0)}};
+\node at (1, -1) {\scriptsize Rouge vs Orange};
+
+% Vert foncé vs Vert clair
+\node at (4, 0) {\colorbox[RGB]{0,255,0}{\phantom{aaa}}};
+\node at (6, 0) {\colorbox[RGB]{128,255,128}{\phantom{aaa}}};
+\node at (4, -0.5) {\scriptsize \texttt{(0,255,0)}};
+\node at (6, -0.5) {\scriptsize \texttt{(128,255,128)}};
+\node at (5, -1) {\scriptsize Vert foncé vs Vert clair};
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{0.8em}
+\hspace{1em}• \textit{→ RGB ne reflète pas toujours la perception humaine}
 
 \pause
 \vspace{0.5em}
@@ -328,14 +296,40 @@ en vision par ordinateur - Frédéric SUR
 \hspace{1em}• Comparaison dans l’espace Lab : \\
 \hspace{2em}– $L$ : luminosité (luminance) \\
 \hspace{2em}– $a$, $b$ : composantes de couleur perceptuelles \\
-\hspace{1em}• \textit{Plus robuste aux variations de luminosité et plus proche de la perception humaine} \\
 
-\pause
-\vspace{1em}
-\textbf{Amélioration globale :} \\
-\hspace{1em}• \textit{Robustesse et précision accrues à chaque étape} \\
-\hspace{1em}• \textit{BRIEF Lab permet de meilleures correspondances entre images variées (éclairage, couleur)}
 \end{frame}
+\begin{frame}{Comparaison de descripteurs BRIEF : distance de Hamming}
+\centering
+\small
+\note{Plus la distance est faible, plus les points sont similaires.}
+
+\textbf{Descripteur 1 (image gauche)}\\[0.2em]
+\texttt{1 \quad 0 \quad 1 \quad 0 \quad 1}
+\pause
+
+\vspace{0.8em}
+\textbf{Descripteur 2 (image droite)}\\[0.2em]
+\texttt{1 \quad 1 \quad 0 \quad 0 \quad 1}
+\pause
+
+\vspace{1em}
+\textbf{Comparaison bit à bit :}\\[0.5em]
+\begin{tabular}{c}
+\begin{tabular}{c c c c c}
+\textbf{Bit 1} & \textbf{Bit 2} & \textbf{Bit 3} & \textbf{Bit 4} & \textbf{Bit 5} \\
+1 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 0 & 1 \\
+\hline
+\textcolor{green}{0} & \textcolor{red}{1} & \textcolor{red}{1} & \textcolor{green}{0} & \textcolor{green}{0}
+\end{tabular}
+\end{tabular}
+\pause
+
+\vspace{1em}
+\textbf{Distance de Hamming = nombre de bits différents = } \texttt{2}
+
+\end{frame}
+
 
 %===========================
 \subsection{Algorithme}
@@ -345,64 +339,19 @@ en vision par ordinateur - Frédéric SUR
   \input{donnees/algo_ap.tex}
 \end{frame}
 
-\begin{frame}{Resultat : Filtrage epipolaire}
-  \hspace*{-1cm}
-  \includegraphics[width=1.1\linewidth]{capture/sans_brief.png}\\[0.5em]
-\end{frame}
-
-\begin{frame}{Resultat : droite epipolaire + BRIEF lab}
-  \hspace*{-1cm}
-  \includegraphics[width=1.1\linewidth]{capture/avec_brief.png}\\[0.5em]
-\end{frame}
-
 %===========================
 \subsection{Resultat}
 %===========================
 
-\begin{frame}{Résultats pré-traitement}
-
-    \begin{center}
-    \begin{minipage}{0.32\textwidth}
-        \onslide<1->{\includegraphics[width=\linewidth]{capture/app_complet_1.jpeg}\\
-        \centering\scriptsize Points gardés}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.64\textwidth}
-        \onslide<2->{\includegraphics[width=\linewidth]{capture/app_complet_2.jpeg}\\
-        \centering\scriptsize Appariement}
-    \end{minipage}
-    \end{center}
-    \appxnote{constantes}{Appariement:\\
-int Distance_seuil = 4;
-int Hamming_seuil = 45;\\ \\
-
-Detection\\
-int Window = 4;
-int Seuil_moravec = 800;\\
-
-
-Ransac \\
-int RANSAC_ITER = 1000;
-int DIST_THRESHOLD=1.0;
-int MIN_INLIERS=5;\\\\
-
-Trouve coin\\
-int Seuil_tc =40;
-int Dist_tc = 10;
-}
-
-\end{frame}
-\begin{frame}{comparaison avec SIFT opencv}
-  \note{sift est vraiment nulle comparé à notre algo}
+\begin{frame}{Résultats appariement}
 \begin{center}
-    \begin{minipage}{0.48\textwidth}
-        \onslide<1->{\includegraphics[width=\linewidth]{capture/app_complet_2.jpeg}\\
-        \centering\scriptsize Algorithme personnalisé}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        \onslide<2->{\includegraphics[width=\linewidth]{capture/sift.png}\\
-        \centering\scriptsize SIFT}
-    \end{minipage}
-    \end{center}
+\includegraphics[width=\linewidth]{capture/app_complet_2.jpeg}\\
+\hyperlink{brief-appendix}{
+\beamerbutton{Seuil brief}
+}
+\hyperlink{sift-appendix}{
+\beamerbutton{Comparaison avec Sift}
+}
+\end{center}
+
 \end{frame}

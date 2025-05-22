@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}triangle.h\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}reconstruction.h\PYGZdq{}}
+
+\PYG{c+cp}{\PYGZsh{}define NBRPOINTS 50}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[])}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{argc}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{9}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{stderr}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Usage: \PYGZpc{}s \PYGZlt{}nom\PYGZus{}image\PYGZgt{}*8}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]);}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name3}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name4}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name5}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name6}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name7}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name8}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{8}\PYG{p}{];}
+\PYG{+w}{    }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{matrice\PYGZus{}output}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{nb\PYGZus{}points}\PYG{+w}{ }\PYG{o}{=}\PYG{n}{reconstruction4}\PYG{p}{(}\PYG{n}{image\PYGZus{}name1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name2}\PYG{p}{,}\PYG{+w}{  }\PYG{n}{image\PYGZus{}name3}\PYG{p}{,}\PYG{+w}{  }\PYG{n}{image\PYGZus{}name4}\PYG{p}{,}\PYG{+w}{  }\PYG{n}{image\PYGZus{}name5}\PYG{p}{,}\PYG{+w}{  }\PYG{n}{image\PYGZus{}name6}\PYG{p}{,}\PYG{n}{image\PYGZus{}name7}\PYG{p}{,}\PYG{+w}{  }\PYG{n}{image\PYGZus{}name8}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{matrice\PYGZus{}output}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{double}\PYG{o}{**}\PYG{+w}{ }\PYG{n}{env}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{mat\PYGZus{}to\PYGZus{}table}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{matrice\PYGZus{}output}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{nb\PYGZus{}points}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{unsigned}\PYG{+w}{ }\PYG{k+kt}{long}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{trois\PYGZus{}parmi}\PYG{p}{(}\PYG{n}{nb\PYGZus{}points}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}malloc triangle debut}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{fflush}\PYG{p}{(}\PYG{n}{stdout}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{triangle}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{triangle\PYGZus{}table}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{triangles}\PYG{p}{(}\PYG{n}{nb\PYGZus{}points}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}malloc triangle fin}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{fflush}\PYG{p}{(}\PYG{n}{stdout}\PYG{p}{);}
+\PYG{+w}{    }\PYG{c+c1}{//char fn\PYGZus{}complete[512];}
+\PYG{+w}{    }\PYG{c+c1}{//snprintf(fn\PYGZus{}complete, sizeof(fn\PYGZus{}complete), \PYGZdq{}points/donnees/tri\PYGZus{}\PYGZpc{}s.txt\PYGZdq{}, filename);}
+\PYG{+w}{    }\PYG{c+c1}{//FILE* file2 = fopen(fn\PYGZus{}complete, \PYGZdq{}w\PYGZdq{});}
+
+\PYG{+w}{    }\PYG{k+kt}{bool}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{garde}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{keeptrig}\PYG{p}{(}\PYG{n}{triangle\PYGZus{}table}\PYG{p}{,}\PYG{n}{n}\PYG{p}{,}\PYG{n}{nb\PYGZus{}points}\PYG{p}{,}\PYG{n}{env}\PYG{p}{);}
+\PYG{+w}{    }\PYG{c+cm}{/*for (int i = 0; i \PYGZlt{} n; i++) \PYGZob{}}
+\PYG{c+cm}{        if (garde[i]) \PYGZob{}}
+\PYG{c+cm}{            for (int j = 0; j \PYGZlt{} 3; j++) \PYGZob{}}
+\PYG{c+cm}{                double* point = env[triangle\PYGZus{}table[i][j]];}
+\PYG{c+cm}{                file\PYGZus{}print\PYGZus{}vect(point, file2);}
+\PYG{c+cm}{            \PYGZcb{}}
+\PYG{c+cm}{            fprintf(file2, \PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZbs{}n\PYGZdq{});}
+\PYG{c+cm}{        \PYGZcb{}}
+\PYG{c+cm}{    \PYGZcb{}*/}
+\PYG{+w}{    }\PYG{n}{stl\PYGZus{}generate}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}test.stl\PYGZdq{}}\PYG{p}{,}\PYG{n}{env}\PYG{p}{,}\PYG{n}{triangle\PYGZus{}table}\PYG{p}{,}\PYG{n}{n}\PYG{p}{,}\PYG{n}{garde}\PYG{p}{);}
+\PYG{+w}{    }\PYG{c+c1}{//fclose(file2);}
+\PYG{+w}{    }\PYG{n}{free}\PYG{p}{(}\PYG{n}{garde}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{destroy\PYGZus{}trigs}\PYG{p}{(}\PYG{n}{triangle\PYGZus{}table}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{destroy\PYGZus{}points}\PYG{p}{(}\PYG{n}{env}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{nb\PYGZus{}points}\PYG{p}{);}
+
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{EXIT\PYGZus{}SUCCESS}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

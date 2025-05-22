@@ -6,72 +6,17 @@
 \begin{frame}{Points d'intérêts}
   \centering
   \note{
-  La première étape consiste à repérer des points d'intérêts sur l'image. Par exemple ici, sur un cube. 
+  La première étape consite à déterminer les points dont on doit déterminer les coordonnées 3D décrire notre objet. 
+On appelera ces points les points d'intérêts, qu'on identifie à leur projection une image.
+Par exemple ici sur un cube
 }
   \includegraphics[width=0.6\textwidth]{capture/rub.jpg}
+  \hyperlink{convex-appendix}{
+    \beamerbutton{Contrainte de convexité}
+  }
 \end{frame}
 
-\begin{frame}{Points d'intérêts}
-\note{
-Pour un objet convexe tel qu'un cube, il nous suffit de répérer ces sommets pour le reconstruir en 3D.
-Mais si l’objet est non convexe, comme dans le schéma de droite, on peut détecter des coins qui ne sont pas représentatifs de la structure globale.
-On voit ici que l’enveloppe convexe (en bleu) ne correspond pas exactement à la forme réelle. Ce genre de situation peut gêner certaines étapes de reconstruction.
-}
-\begin{minipage}[t]{0.48\textwidth}
-\centering
-\textbf{Points d'intérêts  sur un cube}\\[0.5em]
-\begin{tikzpicture}[scale=1.2]
 
-% Cube en perspective
-\coordinate (A) at (0,0);
-\coordinate (B) at (2,0);
-\coordinate (C) at (2,2);
-\coordinate (D) at (0,2);
-\coordinate (E) at (0.7,0.7);
-\coordinate (F) at (2.7,0.7);
-\coordinate (G) at (2.7,2.7);
-\coordinate (H) at (0.7,2.7);
-
-% Faces du cube
-\draw[thick] (A) -- (B) -- (C) -- (D) -- cycle; % face avant
-\draw[thick] (A) -- (E) -- (F) -- (B); % face basse
-\draw[thick] (B) -- (F) -- (G) -- (C);
-\draw[thick] (C) -- (G) -- (H) -- (D);
-\draw[thick] (D) -- (H) -- (E) -- (A);
-
-\pause
-% Coins détectés
-\foreach \pt in {(A), (B), (C), (D), (E), (F), (G), (H)} {
-  \filldraw[red] \pt circle (2pt);
-}
-
-\end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\centering
-\only<2->{
-\pause
-\textbf{Problème si non convexe}\\[0.5em]
-\begin{tikzpicture}[scale=1.2]
-% Objet non convexe
-\draw[thick] (0,0) -- (2,0) -- (2,2) -- (1,1) -- (0,2) -- cycle;
-
-\pause
-% Coins détectés
-\foreach \pt in {(0,0), (2,0), (2,2), (1,1), (0,2)} {
-  \filldraw[red] \pt circle (2pt);
-}
-
-\pause
-% Enveloppe convexe
-\draw[blue, dashed, thick] (0,0) -- (2,0) -- (2,2) -- (0,2) -- cycle;
-\node[blue] at (1,-0.5) {\small Enveloppe convexe};
-\end{tikzpicture}
-}
-\end{minipage}
-
-\end{frame}
 
 \subsection{Algorithme}
 %------------------------------------------------
@@ -86,12 +31,9 @@ Si la plus petite variance dépasse un certain seuil, on considère qu’on est 
   \hyperlink{moravec-appendix}{
     \beamerbutton{Exemple}
   }
-  \hyperlink{moravec-code}{
-    \beamerbutton{code}
-  }
 	\small
 \begin{algorithm}[H]
-    \caption{\textsf{Moravec (minimum des variances)}}
+    \caption{\textsf{Séléction de points d'intérêts}}
 
     \only<1->{\KwIn{Image d’intensité \texttt{image}}}
     \only<2->{\KwOut{Matrice des coins détecté}}
@@ -146,7 +88,7 @@ Un ‘1’ correspond à un coin détecté. C’est ce fichier qui pourra être 
 \end{minipage}
 \end{frame}
 
-\begin{frame}{Influence des paramètres de Moravec}
+\begin{frame}{Influence des paramètres}
 \note{"Voici quelques exemples de détection de coins selon différents paramètres.
 
 On voit que si on change la taille de la fenêtre ou le seuil, le résultat est très différent.

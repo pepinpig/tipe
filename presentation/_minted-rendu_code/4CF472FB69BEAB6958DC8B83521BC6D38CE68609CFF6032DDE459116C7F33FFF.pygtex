@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZdq{}moravec.h\PYGZdq{}}
+
+\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n+nf}{bit\PYGZus{}image\PYGZus{}to\PYGZus{}points}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{image}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{nb\PYGZus{}points}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{res}\PYG{o}{=}\PYG{n}{matrice\PYGZus{}nulle}\PYG{p}{(}\PYG{n}{nb\PYGZus{}points}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{c}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{image}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{n}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{image}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{m}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{((}\PYG{n}{image}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{mat}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{])}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{res}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{mat}\PYG{p}{[}\PYG{n}{c}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{res}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{mat}\PYG{p}{[}\PYG{n}{c}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{n}{j}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{c}\PYG{o}{++}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{res}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[])}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{argc}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{stderr}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Usage: \PYGZpc{}s \PYGZlt{}nom\PYGZus{}image\PYGZgt{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]);}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{filename}\PYG{o}{=}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{input\PYGZus{}name}\PYG{p}{[}\PYG{l+m+mi}{32}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name}\PYG{p}{[}\PYG{l+m+mi}{32}\PYG{p}{];}
+\PYG{+w}{    }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{input\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{input\PYGZus{}name}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZpc{}s.txt\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{image\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{input\PYGZus{}name}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZpc{}s.jpg\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{file\PYGZus{}exists}\PYG{p}{(}\PYG{n}{input\PYGZus{}name}\PYG{p}{))\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{command}\PYG{p}{[}\PYG{l+m+mi}{128}\PYG{p}{];}
+\PYG{+w}{        }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{command}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{command}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}python3 jpg\PYGZus{}to\PYGZus{}txt.py \PYGZpc{}s.jpg\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n}{system}\PYG{p}{(}\PYG{n}{command}\PYG{p}{);}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{input}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}s\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{input\PYGZus{}name}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{read\PYGZus{}matrice\PYGZus{}from\PYGZus{}file\PYGZus{}dimension}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{input}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{input\PYGZus{}name}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{output}\PYG{o}{=}\PYG{n}{matrice\PYGZus{}nulle}\PYG{p}{(}\PYG{n}{input}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{n}\PYG{p}{,}\PYG{n}{input}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{m}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d, \PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{output}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{output}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{m}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{nb\PYGZus{}points}\PYG{o}{=}\PYG{n}{moravec}\PYG{p}{(}\PYG{n}{input}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{output}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{output\PYGZus{}name}\PYG{p}{[}\PYG{l+m+mi}{128}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{parametre}\PYG{p}{[}\PYG{l+m+mi}{256}\PYG{p}{];}
+\PYG{+w}{    }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{parametre}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{parametre}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}fichier:\PYGZpc{}s, seuil:\PYGZpc{}d, fenetre:\PYGZpc{}d, param:\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Seuil\PYGZus{}moravec}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Window}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{PARAM}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{output\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{output\PYGZus{}name}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZpc{}s\PYGZhy{}mv\PYGZhy{}\PYGZpc{}d\PYGZhy{}\PYGZpc{}d\PYGZhy{}\PYGZpc{}d.pbm\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Seuil\PYGZus{}moravec}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Window}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{PARAM}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{save\PYGZus{}matrice\PYGZus{}pbm}\PYG{p}{(}\PYG{n}{output}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{output\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{parametre}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{save\PYGZus{}matrice\PYGZus{}to\PYGZus{}file}\PYG{p}{(}\PYG{n}{output}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{filename}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{matrice}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{points}\PYG{o}{=}\PYG{n}{bit\PYGZus{}image\PYGZus{}to\PYGZus{}points}\PYG{p}{(}\PYG{n}{output}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{nb\PYGZus{}points}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{command}\PYG{p}{[}\PYG{l+m+mi}{500}\PYG{p}{];}
+\PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{export\PYGZus{}char}\PYG{p}{[}\PYG{l+m+mi}{32}\PYG{p}{];}
+\PYG{+w}{    }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{export\PYGZus{}char}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{32}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}points\PYGZus{}ap\PYGZus{}\PYGZpc{}s.txt\PYGZdq{}}\PYG{p}{,}\PYG{n}{filename}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{save\PYGZus{}matrice\PYGZus{}to\PYGZus{}file}\PYG{p}{(}\PYG{n}{points}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{export\PYGZus{}char}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{snprintf}\PYG{p}{(}\PYG{n}{command}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{command}\PYG{p}{),}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}python3 plot\PYGZus{}detect\PYGZus{}un.py \PYGZpc{}s \PYGZpc{}s\PYGZdq{}}\PYG{p}{,}\PYG{n}{image\PYGZus{}name}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{export\PYGZus{}char}\PYG{p}{);}
+\PYG{+w}{    }\PYG{c+c1}{//system(command);}
+\PYG{+w}{    }\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}nb\PYGZus{}points : \PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{n}{nb\PYGZus{}points}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{free\PYGZus{}matrice}\PYG{p}{(}\PYG{n}{input}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{free\PYGZus{}matrice}\PYG{p}{(}\PYG{n}{output}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}constante.h\PYGZdq{}}
+
+\PYG{c+c1}{//Appariement}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{Distance\PYGZus{}seuil}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{Hamming\PYGZus{}seuil}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{17}\PYG{p}{;}
+
+\PYG{c+c1}{//Detection}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{Window}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{p}{;}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{Seuil\PYGZus{}moravec}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{500}\PYG{p}{;}
+
+
+\PYG{c+c1}{//Ransac }
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{RANSAC\PYGZus{}ITER}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{DIST\PYGZus{}THRESHOLD}\PYG{o}{=}\PYG{l+m+mf}{2.0}\PYG{p}{;}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{MIN\PYGZus{}INLIERS}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{;}
+
+\PYG{c+c1}{//Trouve coin}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{Seuil\PYGZus{}tc}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{40}\PYG{p}{;}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{Dist\PYGZus{}tc}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}
+
+\PYG{c+c1}{//Triangle}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{Seuil\PYGZus{}triangle}\PYG{o}{=}\PYG{l+m+mf}{1e\PYGZhy{}3}\PYG{p}{;}
+\end{Verbatim}

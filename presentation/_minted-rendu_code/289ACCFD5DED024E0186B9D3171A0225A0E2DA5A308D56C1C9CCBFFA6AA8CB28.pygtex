@@ -1,0 +1,87 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{cv2}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{cv}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{os}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{numpy}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{np}
+\PYG{n}{import}\PYG{+w}{ }\PYG{n}{argparse}
+
+\PYG{c+cp}{\PYGZsh{} Listes pour stocker les points correspondants}
+\PYG{n}{points\PYGZus{}img1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[]}
+\PYG{n}{points\PYGZus{}img2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[]}
+
+\PYG{c+cp}{\PYGZsh{} Fonction pour redimensionner l\PYGZsq{}image en conservant le ratio et avec des dimensions maximales}
+\PYG{n}{def}\PYG{+w}{ }\PYG{n}{resize\PYGZus{}image}\PYG{p}{(}\PYG{n}{image}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max\PYGZus{}height}\PYG{o}{=}\PYG{l+m+mi}{600}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{max\PYGZus{}width}\PYG{o}{=}\PYG{l+m+mi}{3000}\PYG{p}{)}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{height}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{width}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{image}\PYG{p}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{o}{:}\PYG{l+m+mi}{2}\PYG{p}{]}
+\PYG{+w}{    }\PYG{n}{height\PYGZus{}ratio}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{max\PYGZus{}height}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{height}
+\PYG{+w}{    }\PYG{n}{width\PYGZus{}ratio}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{max\PYGZus{}width}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{width}
+\PYG{+w}{    }\PYG{n}{resize\PYGZus{}ratio}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{min}\PYG{p}{(}\PYG{n}{height\PYGZus{}ratio}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{width\PYGZus{}ratio}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mf}{1.0}\PYG{p}{)}\PYG{+w}{  }\PYG{err}{\PYGZsh{}}\PYG{+w}{ }\PYG{n}{Assure}\PYG{+w}{ }\PYG{n}{que}\PYG{+w}{ }\PYG{n}{l}\PYG{err}{\PYGZsq{}}\PYG{n}{image}\PYG{+w}{ }\PYG{n}{ne}\PYG{+w}{ }\PYG{n}{sera}\PYG{+w}{ }\PYG{n}{pas}\PYG{+w}{ }\PYG{n}{agrandie}
+\PYG{+w}{    }\PYG{n}{new\PYGZus{}width}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{p}{(}\PYG{n}{width}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{resize\PYGZus{}ratio}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{new\PYGZus{}height}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{p}{(}\PYG{n}{height}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{resize\PYGZus{}ratio}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{n}{image}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{new\PYGZus{}width}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{new\PYGZus{}height}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{interpolation}\PYG{o}{=}\PYG{n}{cv}\PYG{p}{.}\PYG{n}{INTER\PYGZus{}AREA}\PYG{p}{)}
+
+\PYG{c+cp}{\PYGZsh{} Sauvegarder les points dans un fichier}
+\PYG{n}{def}\PYG{+w}{ }\PYG{n}{save\PYGZus{}points}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{points}\PYG{p}{)}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{with}\PYG{+w}{ }\PYG{n}{open}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{as}\PYG{+w}{ }\PYG{n}{f}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{f}\PYG{p}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}\PYGZob{}len(points)\PYGZcb{} 2}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{+w}{  }\PYG{err}{\PYGZsh{}}\PYG{+w}{ }\PYG{n}{Écrit}\PYG{+w}{ }\PYG{n}{le}\PYG{+w}{ }\PYG{n}{nombre}\PYG{+w}{ }\PYG{n}{de}\PYG{+w}{ }\PYG{n}{points}\PYG{+w}{ }\PYG{n}{en}\PYG{+w}{ }\PYG{n}{première}\PYG{+w}{ }\PYG{n}{ligne}
+\PYG{+w}{        }\PYG{n}{np}\PYG{p}{.}\PYG{n}{savetxt}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{points}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fmt}\PYG{o}{=}\PYG{err}{\PYGZsq{}}\PYG{o}{\PYGZpc{}}\PYG{n}{d}\PYG{err}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+cp}{\PYGZsh{} Sélection des points pour la première image}
+\PYG{n}{def}\PYG{+w}{ }\PYG{n}{select\PYGZus{}points\PYGZus{}img1}\PYG{p}{(}\PYG{n}{event}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{flags}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{param}\PYG{p}{)}\PYG{o}{:}
+\PYG{+w}{   }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{event}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{EVENT\PYGZus{}LBUTTONDOWN}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Point cliqué :\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Original: x=\PYGZob{}x\PYGZcb{}, y=\PYGZob{}y\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{points\PYGZus{}img1}\PYG{p}{.}\PYG{n}{append}\PYG{p}{([}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{])}
+\PYG{+w}{        }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{circle}\PYG{p}{(}\PYG{n}{param}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{255}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{Image}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{err}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{param}\PYG{p}{)}
+
+\PYG{c+cp}{\PYGZsh{} Sélection des points pour la première image}
+\PYG{n}{def}\PYG{+w}{ }\PYG{n}{select\PYGZus{}points\PYGZus{}img2}\PYG{p}{(}\PYG{n}{event}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{flags}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{param}\PYG{p}{)}\PYG{o}{:}
+\PYG{+w}{   }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{event}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{EVENT\PYGZus{}LBUTTONDOWN}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Point cliqué :\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Original: x=\PYGZob{}x\PYGZcb{}, y=\PYGZob{}y\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{points\PYGZus{}img2}\PYG{p}{.}\PYG{n}{append}\PYG{p}{([}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{])}
+\PYG{+w}{        }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{circle}\PYG{p}{(}\PYG{n}{param}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{255}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{),}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{Image}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{err}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{param}\PYG{p}{)}
+
+\PYG{c+cp}{\PYGZsh{} Fonction principale pour charger les images et sélectionner les points}
+\PYG{n}{def}\PYG{+w}{ }\PYG{n}{process\PYGZus{}images}\PYG{p}{(}\PYG{n}{image\PYGZus{}name1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{image\PYGZus{}name2}\PYG{p}{)}\PYG{o}{:}
+\PYG{+w}{    }\PYG{c+cp}{\PYGZsh{} Charger les images}
+\PYG{+w}{    }\PYG{n}{image\PYGZus{}path1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{f}\PYG{err}{\PYGZsq{}}\PYG{p}{.}\PYG{o}{/}\PYG{n}{points}\PYG{o}{/}\PYG{n}{images}\PYG{o}{/}\PYG{p}{\PYGZob{}}\PYG{n}{image\PYGZus{}name1}\PYG{p}{\PYGZcb{}}\PYG{err}{\PYGZsq{}}
+\PYG{+w}{    }\PYG{n}{image\PYGZus{}path2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{f}\PYG{err}{\PYGZsq{}}\PYG{p}{.}\PYG{o}{/}\PYG{n}{points}\PYG{o}{/}\PYG{n}{images}\PYG{o}{/}\PYG{p}{\PYGZob{}}\PYG{n}{image\PYGZus{}name2}\PYG{p}{\PYGZcb{}}\PYG{err}{\PYGZsq{}}
+\PYG{+w}{    }\PYG{n}{original\PYGZus{}img1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{n}{image\PYGZus{}path1}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{original\PYGZus{}img2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{n}{image\PYGZus{}path2}\PYG{p}{)}
+
+\PYG{+w}{    }\PYG{c+cp}{\PYGZsh{} Vérification des images chargées}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{original\PYGZus{}img1}\PYG{+w}{ }\PYG{n}{is}\PYG{+w}{ }\PYG{n}{None}\PYG{+w}{ }\PYG{n}{or}\PYG{+w}{ }\PYG{n}{original\PYGZus{}img2}\PYG{+w}{ }\PYG{n}{is}\PYG{+w}{ }\PYG{n}{None}\PYG{o}{:}
+\PYG{+w}{        }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Erreur : Une ou plusieurs images n\PYGZsq{}ont pas pu être chargées.\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{k}{return}
+
+\PYG{+w}{    }\PYG{n}{img1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{resize\PYGZus{}image}\PYG{p}{(}\PYG{n}{original\PYGZus{}img1}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{img2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{resize\PYGZus{}image}\PYG{p}{(}\PYG{n}{original\PYGZus{}img2}\PYG{p}{)}
+
+\PYG{+w}{    }\PYG{c+cp}{\PYGZsh{} Afficher les images et configurer les callbacks}
+\PYG{+w}{    }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{Image}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{err}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{img1}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{Image}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{err}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{img2}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{setMouseCallback}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{Image}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{err}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{select\PYGZus{}points\PYGZus{}img1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{param}\PYG{o}{=}\PYG{n}{img1}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{setMouseCallback}\PYG{p}{(}\PYG{err}{\PYGZsq{}}\PYG{n}{Image}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{err}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{select\PYGZus{}points\PYGZus{}img2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{param}\PYG{o}{=}\PYG{n}{img2}\PYG{p}{)}
+
+\PYG{+w}{    }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Sélectionnez les points pour les images. Appuyez sur une touche pour continuer.\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{cv}\PYG{p}{.}\PYG{n}{waitKey}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+
+\PYG{+w}{    }\PYG{c+cp}{\PYGZsh{} Sauvegarder les points sélectionnés}
+\PYG{+w}{    }\PYG{n}{base\PYGZus{}name1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{splitext}\PYG{p}{(}\PYG{n}{image\PYGZus{}name1}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{+w}{    }\PYG{n}{base\PYGZus{}name2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{os}\PYG{p}{.}\PYG{n}{path}\PYG{p}{.}\PYG{n}{splitext}\PYG{p}{(}\PYG{n}{image\PYGZus{}name2}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{+w}{    }\PYG{n}{save\PYGZus{}points}\PYG{p}{(}\PYG{n}{f}\PYG{err}{\PYGZsq{}}\PYG{n}{points}\PYG{o}{/}\PYG{n}{donnees}\PYG{o}{/}\PYG{n}{points\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{base\PYGZus{}name1}\PYG{p}{\PYGZcb{}.}\PYG{n}{txt}\PYG{err}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{points\PYGZus{}img1}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{save\PYGZus{}points}\PYG{p}{(}\PYG{n}{f}\PYG{err}{\PYGZsq{}}\PYG{n}{points}\PYG{o}{/}\PYG{n}{donnees}\PYG{o}{/}\PYG{n}{points\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{base\PYGZus{}name2}\PYG{p}{\PYGZcb{}.}\PYG{n}{txt}\PYG{err}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{points\PYGZus{}img2}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s}{\PYGZdq{}Points sauvegardés dans points\PYGZus{}\PYGZob{}base\PYGZus{}name1\PYGZcb{} et points\PYGZus{}\PYGZob{}base\PYGZus{}name2\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+cp}{\PYGZsh{} Point d\PYGZsq{}entrée du programme}
+\PYG{k}{if}\PYG{+w}{ }\PYG{n}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{o}{:}
+\PYG{+w}{    }\PYG{n}{parser}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argparse}\PYG{p}{.}\PYG{n}{ArgumentParser}\PYG{p}{(}\PYG{n}{description}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}Sélectionner des points sur deux images.\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{parser}\PYG{p}{.}\PYG{n}{add\PYGZus{}argument}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}image\PYGZus{}name1\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{type}\PYG{o}{=}\PYG{n}{str}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{help}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}Nom de la première image.\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{parser}\PYG{p}{.}\PYG{n}{add\PYGZus{}argument}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}image\PYGZus{}name2\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{type}\PYG{o}{=}\PYG{n}{str}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{help}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}Nom de la deuxième image.\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{args}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{parser}\PYG{p}{.}\PYG{n}{parse\PYGZus{}args}\PYG{p}{()}
+
+\PYG{+w}{    }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZhy{} Cliquez pour sélectionner un point.\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZhy{} Appuyez sur une touche pour terminer la sélection.\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{process\PYGZus{}images}\PYG{p}{(}\PYG{n}{args}\PYG{p}{.}\PYG{n}{image\PYGZus{}name1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{args}\PYG{p}{.}\PYG{n}{image\PYGZus{}name2}\PYG{p}{)}
+\end{Verbatim}

@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Calibration]{Calibration}
+\section[Reconstruction]{Reconstruction}
 %------------------------------------------------
 %++++++++++++++++++++++++++++++++++++++++++++++++
-\subsection{Système de calibrage}
+\subsection{Détermination du système}
 %++++++++++++++++++++++++++++++++++++++++++++++++
 
 \begin{frame}
@@ -29,12 +29,14 @@
 \begin{frame}{Modèle de projection — Matrice \( P \)}
 
 \begin{itemize}
+  \note{sans entrer dans les détails du calcul, on montre qu on peut lié les coordonnées réels et sur l image par une relation homogene (homgene car la projection nous fait perdre une dimension)
+  matrice de projection encode les caractéristiques de la caméra (rotation et translation) et les parametresintrinsèque (distance focale, taille des pixels)}
   \item<1-> On considère un point 3D \( M = (X, Y, Z) \)
   \item<2-> Il se projette sur un point image \( m = (u, v) \)
   \hyperlink{projection-appendix}{
     \beamerbutton{Compléments projections}
   }
-  \item<3-> On cherche une relation linéaire homogène (pourquoi ?):
+  \item<3-> On cherche une relation linéaire homogène :
   \[
   \lambda
   \begin{bmatrix}
@@ -48,109 +50,36 @@
   \]
 
   \item<4-> \( P \) est une matrice \( 3 \times 4 \), avec 12 inconnues
-  \item<5-> En développant les lignes :
-  \[
-  \lambda u = p_{11}X + p_{12}Y + p_{13}Z + p_{14}
-  \]
-  \[
-  \lambda v = p_{21}X + p_{22}Y + p_{23}Z + p_{24}
-  \]
-  \[
-  \lambda   = p_{31}X + p_{32}Y + p_{33}Z + p_{34}
-  \]
+  \item<5-> En faisant cela pour 6 points on obtient un système ...
 \end{itemize}
 \end{frame}
 
 %------------------------
 
-\begin{frame}{Équations sans \(\lambda\) et système matriciel}
 
-\begin{itemize}
-  \item<1-> Pour un point donné, on élimine \( \lambda \) :
-  
-  \[
-  u (p_{31}X + p_{32}Y + p_{33}Z + p_{34}) = p_{11}X + p_{12}Y + p_{13}Z + p_{14}
-  \]
-  \[
-  v (p_{31}X + p_{32}Y + p_{33}Z + p_{34}) = p_{21}X + p_{22}Y + p_{23}Z + p_{24}
-  \]
-
-  \vspace{0.5em}
-   \item<2-> Cela donne un système homogène ...
-   \[
-   \scriptsize
-   \begin{cases}
-0= & p_{11} x_{C} +p_{12} y_{C}  +p_{13} z_{C} +p_{14} -p_{31} u x_{C} -p_{32} u  z_{C}  -p_{33} u  z_{C}  -p_{34} u \\
-0= &  p_{21} x_{C}  +p_{22} y_{C}  +p_{23} z_{C}  +p_{24} -p_{31} v  x_{C}  -p_{32} v  z_{C}  -p_{33} v  z_{C}  -p_{34} v 
-\end{cases}
-   \]
-  \item<3-> En faisant cela pour n points on obtient un système ...
-\end{itemize}
-
-\end{frame}
-
-
-\begin{frame}{Équations sans \(\lambda\) et système matriciel}
+\begin{frame}{Système matriciel}
   \input{donnees/big_matrice.tex}
 \end{frame}
-
-\subsection{En pratiques}
 
 
 \begin{frame}{Calibration}
   \note{
-    1. rubiks cube comme mire de calibrage, 
-    permet d'identifier facilement les faces et d'y apposer un repère
-    On créer des fichiers types avec les coordonnées des points pour chaque paire de faces et ils nous suffit de selectionner les points à la main pour calibrer }
- \centering
-  \begin{minipage}{0.48\linewidth}
-    \centering
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.7\linewidth]{capture/cube_calibrage.jpg}%
-      \caption{Cube calibrage}
-    \end{figure}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.48\linewidth}
-    \centering
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.8\linewidth]{capture/selection.png}%
-      \caption{Selection des points}
-    \end{figure}
-  \end{minipage}
-\end{frame}
-
-
-\begin{frame}{Shooting photo : importance de la prise de vue}
-  \note{
-    au depart : on tourne autour/ faire tourner rubiks 
-    fond unis mieux pour la Calibration
-    face recouverte de papier pour etre unis et limiter les points inutiles
+    1. Rubik's Cube comme mire de calibrage,\\
+    permet d'identifier facilement les faces et d'y apposer un repère.\\
+    On crée des fichiers types avec les coordonnées des points pour chaque paire de faces,\\
+    et il suffit de sélectionner les points à la main pour calibrer.
   }
   \centering
-  \begin{minipage}{0.48\linewidth}
+  \begin{minipage}{0.32\linewidth}
     \centering
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.48\linewidth]{capture/dodec0.jpg}%
-      \includegraphics[width=0.48\linewidth]{capture/dodec1.jpg} \\
-      \includegraphics[width=0.48\linewidth]{capture/dodec2.jpg}%
-      \includegraphics[width=0.48\linewidth]{capture/dodec3.jpg}
-      {\footnotesize\textbf{Vues initiales}}
-    \end{figure}
+    \includegraphics[width=0.9\linewidth]{capture/cube_tuto.JPG}
+    \vspace{1cm}
+    \includegraphics[width=0.9\linewidth]{capture/BO.png}
   \end{minipage}
   \hfill
-  \begin{minipage}{0.48\linewidth}
+  \begin{minipage}{0.6\linewidth}
     \centering
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.48\linewidth]{capture/dodecf0.jpg}%
-      \includegraphics[width=0.48\linewidth]{capture/dodecf1.jpg} \\
-      \includegraphics[width=0.48\linewidth]{capture/dodecf2.jpg}%
-      \includegraphics[width=0.48\linewidth]{capture/dodecf3.jpg}
-      {\footnotesize\textbf{Vues améliorées}}
-    \end{figure}
+    \includegraphics[width=0.9\linewidth]{capture/selection.png}
+    \captionof{figure}{Interface utilisateur}
   \end{minipage}
 \end{frame}

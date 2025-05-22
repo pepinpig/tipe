@@ -1,0 +1,58 @@
+\documentclass[compress]{beamer}
+
+% Inclusion des packages
+\input{les_packages_pour_beamer.tex}
+
+% Définir les initiales pour affichage dans l'en-tête (à utiliser dans thème perso si besoin)
+\newcommand{\initiales}{L.-H. Cuingnet}
+
+% Paramètres Beamer et thème (à personnaliser dans ce fichier)
+\input{les_param_beamer_tipe}
+
+% Palette de couleurs personnalisée
+\input{la_palette.tex}
+\definecolor{hellseahorse}{RGB}{204, 204, 255}
+\definecolor{seahorse}{RGB}{204,180, 255}
+\definecolor{darkseahorse}{RGB}{83, 74, 196}
+
+\title[Reconstruction 3D]{Reconstruction d’objets convexes à partir de photographies}
+\author{
+  \texorpdfstring{
+    \large Présentation de \important{Lucie-Hélène Cuingnet}\\[0.2cm]
+    \footnotesize Travail réalisé avec \couleur{Barnabé Baruchel}
+    }{Lucie-Hélène Cuingnet et Barnabé Baruchel}
+}
+\date[Mai 2025]{TIPE 2025}
+%\setbeameroption{show notes on second screen=right}
+%================== DÉBUT DU DOCUMENT ===================
+\begin{document}
+
+\section*{Appendix}
+\subsection*{Compléments}
+\input{appariement.tex}
+\input{camera_calibration.tex}
+\input{constante.tex}
+\input{detection.tex}
+\input{manipulation_fichier.tex}
+\input{matrice.tex}
+\input{moravec.tex}
+\input{ransac.tex}
+\input{reconstruction.tex}
+\input{SVD.tex}
+\input{test_camera_calibration.tex}
+\input{test_detection.tex}
+\input{test_moravec.tex}
+\input{test_reconstruction_mult.tex}
+\input{test_triangulation.tex}
+\input{triangle.tex}
+\input{trouve_coin.tex}
+\input{makefile.tex}
+\input{jpg_to_txt_color.tex}
+\input{jpg_to_txt.tex}
+\input{plot_detect.tex}
+\input{plot_detect_un.tex}
+\input{plot_points_3D.tex}
+\input{plot_points_ap.tex}
+\input{select_deux.tex}
+\input{select_un.tex}
+\end{document}
