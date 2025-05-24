@@ -72,21 +72,86 @@ i.e. transition d'images en 2D au monde réel
   \end{minipage}
 \end{frame}
 
+\begin{frame}{Chaine de transition}
+\centering
+\begin{tikzpicture}[
+    node distance=3cm,
+    box/.style={
+        draw=blue!60,
+        thick,
+        fill=blue!5,
+        minimum width=3.5cm,
+        minimum height=3.2cm,
+        align=center,
+        font=\small,
+        inner sep=6pt
+    },
+    arrow/.style={->, thin, shorten >=5pt, shorten <=5pt}
+]
+
+% Étape 1 → 2
+\only<1>{
+    \node[box] (step1) at (0,0) {
+        \includegraphics[height=2.4cm]{capture/selection.jpg} \\
+        \vspace{0.2em}
+        \textbf{1. Sélection}
+    };
+    \node[box, right=of step1] (step2) {
+        \includegraphics[height=2.4cm]{capture/appariement.jpg} \\
+        \vspace{0.2em}
+        \textbf{2. Appariement}
+    };
+    \draw[arrow] (step1) -- (step2);
+}
+
+% Étape 2 → 3
+\only<2>{
+    \node[box] (step2) at (0,0) {
+        \includegraphics[height=2.4cm]{capture/appariement.jpg} \\
+        \vspace{0.2em}
+        \textbf{2. Appariement}
+    };
+    \node[box, right=of step2] (step3) {
+        \includegraphics[height=2.4cm]{capture/cloud.png} \\
+        \vspace{0.2em}
+        \textbf{3. Reconstruction 3D}
+    };
+    \draw[arrow] (step2) -- (step3);
+}
+
+% Étape 3 → 4
+\only<3>{
+    \node[box] (step3) at (0,0) {
+        \includegraphics[height=2.4cm]{capture/cloud.png} \\
+        \vspace{0.2em}
+        \textbf{3. Reconstruction 3D}
+    };
+    \node[box, right=of step3] (step4) {
+        \includegraphics[height=2.4cm]{capture/enveloppe.png} \\
+        \vspace{0.2em}
+        \textbf{4. Enveloppe convexe}
+    };
+    \draw[arrow] (step3) -- (step4);
+}
+\end{tikzpicture}
+\end{frame}
 
 % Slides principales (actives selon les fichiers présents)
-\input{s1_selection.tex}%
-\input{s1.2_appariement.tex}
-\input{s2_reconstruction.tex}
-\input{s2.2_SVD.tex}
-\input{s2.3_reconstruction.tex}
-\input{s3_triangulation.tex}
-\input{s4_resultat}
-\begin{frame}{Fin}
+%\input{s1_selection.tex}%
+%\input{s1.2_appariement.tex}
+%\input{s2_reconstruction.tex}
+%\input{s2.2_SVD.tex}
+%\input{s2.3_reconstruction.tex}
+%\input{s3_triangulation.tex}
+%\input{s4_resultat}
+
+\section*{fin}
+\begin{frame}[noframenumbering]
   \center
   Merci pour votre attention
 \end{frame}
 \section*{Appendix}
 \appendix
 \subsection*{Compléments}
-\input{rejected_frame.tex}
+%\input{rejected_frame.tex}
 \end{document}
